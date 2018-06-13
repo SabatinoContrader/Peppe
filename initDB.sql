@@ -9,3 +9,4 @@ create table pcarpet.stop(id_stop int not null, start timestamp, finish timestam
 create table pcarpet.payment(id_payment int not null, quantity float, username varchar(50) not null, id_stop int not null, primary key (id_payment), foreign key (username) references user (username), foreign key (id_stop) references stop (id_stop));
 create table pcarpet.book(id_book int not null, username varchar(50) not null, id_carplace int not null, id_payment int not null, primary key (id_book), foreign key (username) references user (username), foreign key (id_carplace) references carplace (id_carplace), foreign key (id_payment) references payment (id_payment));
 
+
