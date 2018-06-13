@@ -17,7 +17,7 @@ public class UserService {
         return this.userDAO.getAllUserModels(force);
     }
 
-    public User getUserModel (String username, boolean force) { return this.userDAO.getUserModel(username,force); }
+    //public User getUserModel (String username, boolean force) { return this.userDAO.getUserModel(username,force); }
 
     public boolean insertUser (User user) {
         return this.userDAO.insertUser(user);

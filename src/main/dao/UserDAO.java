@@ -14,7 +14,7 @@ import java.util.Map;
 public class UserDAO
 {
     private final String QUERY_ALL = "select * from user";
-    private final String QUERY_SINGLE_USER = "select * from user where username = ?";
+    //private final String QUERY_SINGLE_USER = "select * from user where username = ?";
 
     private final String QUERY_INSERT_USER = "insert into user (username,password,type,name,surname,birthdate,birthplace,address,handicapped) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -25,9 +25,9 @@ public class UserDAO
         map_users = new HashMap<String, User>();
     }
 
-    public User getUserModel (String _username, boolean force) {
+   /* public User getUserModel (String username, boolean force) {
 
-        if(this.map_users.containsKey(_username) && !force) return this.map_users.get(_username);
+        if(this.map_users.containsKey(username) && !force) return this.map_users.get(username);
 
         Connection connection = ConnectionSingleton.getInstance();
         User user = null;
@@ -35,7 +35,7 @@ public class UserDAO
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(QUERY_SINGLE_USER);
-            preparedStatement.setString(1, _username);
+            preparedStatement.setString(1, username);
 
 
         }
@@ -65,7 +65,7 @@ public class UserDAO
             e.printStackTrace();
         }
         return user;
-    }
+    }*/
 
     public List<User> getAllUserModels (boolean force) {
         List<User> users = new ArrayList<>();
