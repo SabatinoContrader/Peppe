@@ -16,7 +16,7 @@ public class HomeView implements View {
 
 
     public void showOptions() {
-        System.out.println("Benvenuto in ContraderFramework");
+        System.out.println("Benvenuto in pCarpet");
         System.out.println("");
         System.out.println("");
         System.out.println("-------MENU-------");
