@@ -50,7 +50,7 @@ public class HomeDriverView implements View {
             case 3:
                 MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", null);
             case 4:
-                MainDispatcher.getInstance().callAction("ManagementCar", "doControl", null);
+                MainDispatcher.getInstance().callAction("Car", "doControl", null);
             case 5:
                 MainDispatcher.getInstance().callAction("Report", "doControl", null);
             case 6:

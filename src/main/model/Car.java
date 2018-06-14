@@ -16,6 +16,13 @@ public class Car {
         this.username = username;
     }
 
+    public Car(String license_plate, String name, String size, String username) {
+        this.license_plate = license_plate;
+        this.name = name;
+        this.size = size;
+        this.username = username;
+    }
+
     public int getId_car() {
         return id_car;
     }

@@ -17,7 +17,7 @@ public class LoginDAO {
     private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
     private final String QUERY_SIGNUP = "insert into user (username,password,type,birthdate,homeaddress) values (?, ?, ?, ?, ?)";
 
-    public static User getLoggedUser() {
+    public User getLoggedUser() {
         return loggedUser;
     }
 
@@ -28,7 +28,26 @@ public class LoginDAO {
             PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
             statement.setString(1, username);
             statement.setString(2, password);
-            return statement.executeQuery().next();
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String user = resultSet.getString("username");
+                String pass = resultSet.getString("password");
+                String   type         = resultSet.getString("type");
+                if(type.equalsIgnoreCase("driver")) {
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    LocalDate birthdate = ((java.sql.Date) resultSet.getObject("birthdate")).toLocalDate(); //get Object for Localdate
+                    String birthplace = resultSet.getString("birthplace");
+                    String address = resultSet.getString("address");
+                    Boolean handicapped = resultSet.getBoolean("handicapped");
+                    loggedUser = new User(user, pass, type, name, surname, birthdate, birthplace, address, handicapped );
+                }
+                else
+                    loggedUser = new User(user, pass, type);
+
+            }
+            return loggedUser != null;
         }
         catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -82,5 +101,9 @@ public class LoginDAO {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
         }
 
+    }
+
+    public void destroyUser(){
+        loggedUser = null;
     }
 }

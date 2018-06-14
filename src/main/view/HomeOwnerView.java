@@ -21,9 +21,8 @@ public class HomeOwnerView implements View {
         System.out.println("");
         System.out.println("-------MENU OWNER ("+username+")-------");
         System.out.println("");
-        System.out.println("1) Inserisci gomma");
-        System.out.println("2) Visualizza gomme disponibili");
-        System.out.println("3) Logout");
+        System.out.println("1) Gestione parcheggi");
+        System.out.println("2) Logout");
         this.choice = Integer.parseInt(getInput());
     }
 
@@ -35,14 +34,12 @@ public class HomeOwnerView implements View {
 
     @Override
     public void submit() {
-        if (choice < 1 || choice > 3)
+        if (choice < 1 || choice > 2)
             MainDispatcher.getInstance().callAction("Home", "doControl", null);
-        else if (choice == 3)
-            MainDispatcher.getInstance().callAction("Index", "doControl", null);
+        else if (choice == 1)
+            MainDispatcher.getInstance().callAction("ManagementCarPlace", "doControl", null);
         else {
-            Request request = new Request();
-            request.put("choice", choice);
-            MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
+            MainDispatcher.getInstance().callAction("Index", "doControl", null);
         }
     }
 

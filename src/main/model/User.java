@@ -2,8 +2,7 @@ package main.model;
 
 import java.time.LocalDate;
 
-public class User
-{
+public class User {
     private String username;  //primary key
     private String password;
     private String type;
@@ -24,6 +23,12 @@ public class User
         this.birthplace = birthplace;
         this.address = address;
         this.handicapped = handicapped;
+    }
+
+    public User(String username, String password, String type) {
+        this.username = username;
+        this.password = password;
+        this.type = type;
     }
 
     public String getUsername() {
@@ -100,6 +105,7 @@ public class User
 
     @Override
     public String toString() {
-        return "username: " + username + "\npassword: " +password + "\ntype: "+type+"\nname: " + name + "\nsurname: " + surname + "\nbirthdate: " + birthdate + "\nbirthplace: " + birthplace + "\naddress: " + address + "\nhandicapped: " + handicapped;
+        return "username: " + username + "\npassword: " + password + "\ntype: " + type + "\nname: " + name + "\nsurname: " + surname + "\nbirthdate: " + birthdate + "\nbirthplace: " + birthplace + "\naddress: " + address + "\nhandicapped: " + handicapped;
     }
+
 }
