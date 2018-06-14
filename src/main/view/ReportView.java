@@ -2,28 +2,21 @@ package main.view;
 
 import main.MainDispatcher;
 import main.controller.Request;
-import sun.applet.Main;
 
 import java.util.Scanner;
 
-public class HomeView implements View {
-
+public class ReportView implements View  {
     private int choice;
 
     public void showResults(Request request) {
 
     }
 
-
     public void showOptions() {
-        System.out.println("Benvenuto in pCarpet");
+        System.out.println("-------REPORT-------");
         System.out.println("");
-        System.out.println("");
-        System.out.println("-------MENU-------");
-        System.out.println("");
-        System.out.println("1) Inserisci gomma");
-        System.out.println("2) Visualizza gomme disponibili");
-        System.out.println("3) Logout");
+        System.out.println("1) Invia Segnalazione");
+        System.out.println("2) Torna Home");
         this.choice = Integer.parseInt(getInput());
     }
 

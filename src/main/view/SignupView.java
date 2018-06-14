@@ -1,6 +1,5 @@
 package main.view;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import main.MainDispatcher;
 import main.controller.Request;
 
@@ -19,11 +18,12 @@ public class SignupView implements View {
     private String address;
     private Boolean handicapped;
 
+    @Override
     public void showResults (Request request) {
 
     }
 
-
+    @Override
     public void showOptions () {
 
         // (username, password, type, name, surname, birthdate, birthplace, address, handicapped)
@@ -48,6 +48,13 @@ public class SignupView implements View {
         System.out.println("-----GRAZIE,OPERAZIONE IN CORSO----");
     }
 
+    @Override
+    public String getInput () {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    @Override
     public void submit()
     {
         Request request = new Request();
@@ -61,17 +68,9 @@ public class SignupView implements View {
         request.put("address", address);
         request.put("handicapped", handicapped);
 
-        MainDispatcher.getInstance().callAction("Login", "doControl", request);
+        MainDispatcher.getInstance().callAction("Signup", "doControl", request);
     }
 
-
-    public String getInput () {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
-    protected void send () {
-    }
 
     private LocalDate toLocalDate(String date)
     {

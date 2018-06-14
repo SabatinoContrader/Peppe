@@ -5,29 +5,26 @@ import main.controller.Request;
 
 import java.util.Scanner;
 
-public class IndexView implements View {
-
+public class HomeOwnerView implements View {
     private int choice;
-    private String nomeUtente;
-    private String password;
+    private String username;
 
     @Override
     public void showResults(Request request) {
-
+        username = (String) request.getString("username");
     }
 
     @Override
     public void showOptions() {
-
         System.out.println("Benvenuto in pCarpet");
         System.out.println("");
         System.out.println("");
-        System.out.println("-------MENU-------");
+        System.out.println("-------MENU OWNER ("+username+")-------");
         System.out.println("");
-        System.out.println("1) Esegui il login");
-        System.out.println("2) Iscriviti");
+        System.out.println("1) Inserisci gomma");
+        System.out.println("2) Visualizza gomme disponibili");
+        System.out.println("3) Logout");
         this.choice = Integer.parseInt(getInput());
-
     }
 
     @Override
@@ -38,15 +35,16 @@ public class IndexView implements View {
 
     @Override
     public void submit() {
-
-        if (choice == 1)
-            MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        else if (choice == 2)
-            MainDispatcher.getInstance().callAction("Signup", "doControl", null);
-        else
+        if (choice < 1 || choice > 3)
+            MainDispatcher.getInstance().callAction("Home", "doControl", null);
+        else if (choice == 3)
             MainDispatcher.getInstance().callAction("Index", "doControl", null);
-
-
+        else {
+            Request request = new Request();
+            request.put("choice", choice);
+            MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
+        }
     }
+
 
 }

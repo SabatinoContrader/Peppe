@@ -13,6 +13,10 @@ public class LoginService {
         this.userService = new UserService();
     }
 
+    public LoginDAO getLoginDAO() {
+        return loginDAO;
+    }
+
     public boolean login (String username, String password ) {
         return this.loginDAO.login(username, password );
     }
