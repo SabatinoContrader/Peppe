@@ -17,6 +17,7 @@ public class UserDAO
     //private final String QUERY_SINGLE_USER = "select * from user where username = ?";
 
     private final String QUERY_INSERT_USER = "insert into user (username,password,type,name,surname,birthdate,birthplace,address,handicapped) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String QUERY_USER_TYPE = "select type from user where username = ? ";
 
     private Map<String,User> map_users;
 
@@ -24,48 +25,6 @@ public class UserDAO
     {
         map_users = new HashMap<String, User>();
     }
-
-   /* public User getUserModel (String username, boolean force) {
-
-        if(this.map_users.containsKey(username) && !force) return this.map_users.get(username);
-
-        Connection connection = ConnectionSingleton.getInstance();
-        User user = null;
-
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(QUERY_SINGLE_USER);
-            preparedStatement.setString(1, username);
-
-
-        }
-        catch (SQLException e) {
-            GestoreEccezioni.getInstance().gestisciEccezione(e);
-            return null;
-        }
-
-        try {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String   username     = resultSet.getString("username");
-                String   password     = resultSet.getString("password");
-                String   type         = resultSet.getString("type");
-                String   name         = resultSet.getString("name");
-                String   surname      = resultSet.getString("surname");
-                LocalDate birthdate   = ((java.sql.Date)resultSet.getObject("birthdate")).toLocalDate(); //get Object for Localdate
-                String   birthplace   = resultSet.getString("birthplace");
-                String   address      = resultSet.getString("address");
-                Boolean  handicapped  = resultSet.getBoolean("handicapped");
-                user = new User(username, password, type, name, surname, birthdate, birthplace, address, handicapped );
-                this.map_users.put(username, user);
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
-    }*/
 
     public List<User> getAllUserModels (boolean force) {
         List<User> users = new ArrayList<>();
@@ -125,5 +84,22 @@ public class UserDAO
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }
+    }
+
+    public String userType (String username){
+        Connection connection = ConnectionSingleton.getInstance();
+        String type = "";
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_USER_TYPE);
+            statement.setString(1, username );
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                type = resultSet.getString("type");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return type;
     }
 }

@@ -5,7 +5,7 @@ import main.controller.Request;
 
 import java.util.Scanner;
 
-public class IndexView implements View{
+public class IndexView implements View {
 
     private int choice;
     private String nomeUtente;
@@ -17,7 +17,7 @@ public class IndexView implements View{
     }
 
     @Override
-    public void showOptions () {
+    public void showOptions() {
 
         System.out.println("Benvenuto in pCarpet");
         System.out.println("");
@@ -39,24 +39,13 @@ public class IndexView implements View{
     @Override
     public void submit() {
 
-        if(choice == 1)
-        {
-            System.out.println("-----LOGIN----");
-            System.out.println("Nome utente:");
-            nomeUtente = getInput();
-            System.out.println("Password:");
-            password = getInput();
-
-            Request request = new Request();
-            request.put("nomeUtente", nomeUtente);
-            request.put("password", password);
-
-            MainDispatcher.getInstance().callAction("Home", "doControl", request);
-        }
+        if (choice == 1)
+            MainDispatcher.getInstance().callAction("Login", "doControl", null);
         else if (choice == 2)
-        {
             MainDispatcher.getInstance().callAction("Signup", "doControl", null);
-        }
+        else
+            MainDispatcher.getInstance().callAction("Index", "doControl", null);
+
 
     }
 

@@ -58,6 +58,6 @@ public class Carplace {
 
 @Override
     public String toString() {
-        return "Carplace: " + id_carplace + "\nlatitude: " + latitude + "\nlongitude: " + longitude + "\ntype: " + type + "\nid_slot: " + id_slot + "\n"
+        return "Carplace: " + id_carplace + "\nlatitude: " + latitude + "\nlongitude: " + longitude + "\ntype: " + type + "\nid_slot: " + id_slot + "\n";
 }
 }
