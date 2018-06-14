@@ -12,8 +12,10 @@ public class LoginView implements View {
     private String username;
     private String password;
 
+
     @Override
     public void showResults (Request request) {
+
 
     }
 
