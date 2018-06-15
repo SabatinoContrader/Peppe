@@ -3,6 +3,7 @@ package main.view;
 import main.controller.Request;
 import main.model.Car;
 import main.model.Carplace;
+import main.model.Payment;
 import main.model.Stop;
 
 
@@ -14,6 +15,7 @@ public class ManagementCarPlaceView implements View {
     private List<Carplace> carplace;
     private Map<Integer, Stop> stops;
     private Map<Integer, Car> cars;
+    private Map<Integer, Payment> payments;
 
 
     @Override
@@ -21,10 +23,8 @@ public class ManagementCarPlaceView implements View {
         this.carplace = (List<Carplace>) request.get("carplace");
         this.stops = (HashMap<Integer, Stop>) request.get("stops");
         this.cars = (HashMap<Integer, Car>) request.get("cars");
-    }
+        this.payments = (HashMap<Integer, Payment>) request.get("payments");
 
-    @Override
-    public void showOptions() {
         System.out.println("----- GESTIONE PARCHEGGI -----");
         System.out.println("");
         System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
@@ -41,7 +41,7 @@ public class ManagementCarPlaceView implements View {
                 String finish = stop.getFinish();
                 String licensePlate = car.getLicensePlate();
                 String paid;
-                if(start != null)
+                if(payments.containsKey(stop.getId_stop()))
                     paid = "SI";
                 else
                     paid = "NO";
@@ -56,6 +56,11 @@ public class ManagementCarPlaceView implements View {
             }
             System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         }
+    }
+
+    @Override
+    public void showOptions() {
+        System.out.println("//TODO: Eventuale menu");
     }
 
     @Override

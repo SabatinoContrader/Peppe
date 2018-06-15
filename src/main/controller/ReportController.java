@@ -41,7 +41,9 @@ public class ReportController implements Controller {
                 String description = request.get("description").toString();
                 Report report = new Report(type, description, username);
                 reportService.insertReport(report);
-                MainDispatcher.getInstance().callView("Report", null);
+                request = new Request();
+                request.put("username", username);
+                MainDispatcher.getInstance().callView("Report", request);
             }
         } else {
             request = new Request();

@@ -21,13 +21,15 @@ public class RemoveCarView implements View {
         System.out.println("");
 
         if (!this.cars.isEmpty()) {
-            System.out.format("+--------------+------------------+-----------------+%n");
-            System.out.format("| TARGA        | NOME             | DIMENSIONE      |%n");
-            System.out.format("+--------------+------------------+-----------------+%n");
-            String leftAlignFormat = "| %-12s | %-16s | %-15s |%n";
+            System.out.format("+-----+--------------+------------------+-----------------+%n");
+            System.out.format("|     | TARGA        | NOME             | DIMENSIONE      |%n");
+            System.out.format("+-----+--------------+------------------+-----------------+%n");
+            String leftAlignFormat = "| %-3d | %-12s | %-16s | %-15s |%n";
+            int i = 0;
             for (Car car : this.cars) {
-                System.out.format(leftAlignFormat, car.getLicensePlate(), car.getName(), car.getSize());
-                System.out.format("+--------------+------------------+-----------------+%n");
+                System.out.format(leftAlignFormat, i, car.getLicensePlate(), car.getName(), car.getSize());
+                System.out.format("+-----+--------------+------------------+-----------------+%n");
+                i++;
             }
         } else {
             System.out.println("Non ci sono auto, premere un tasto per tornare indietro");
@@ -52,7 +54,7 @@ public class RemoveCarView implements View {
 
         if (!this.cars.isEmpty()) {
             Request request = new Request();
-            request.put("id_car", cars.get(choice - 1).getId_car());
+            request.put("id_car", cars.get(choice).getId_car());
             request.put("carViewName", carViewName);
 
             MainDispatcher.getInstance().callAction("Car", "doControl", request);
