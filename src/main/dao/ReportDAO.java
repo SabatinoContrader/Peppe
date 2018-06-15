@@ -15,7 +15,7 @@ public class ReportDAO
 {
     private final String QUERY_ALL = "select * from report where username = ?";
 
-    private final String QUERY_INSERT_REPORT = "insert into report (id_report,type,description,username) values (?, ?, ?, ?)";
+    private final String QUERY_INSERT_REPORT = "insert into report (type,description,username) values (?, ?, ?)";
 
     private Map<Integer,Report> map_reports;
 
@@ -66,10 +66,9 @@ public class ReportDAO
         Connection connection = ConnectionSingleton.getInstance();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_INSERT_REPORT);
-            statement.setInt(1, report.getId_report() );
-            statement.setInt(2, report.getType() );
-            statement.setString(3, report.getDescription() );
-            statement.setString(4, report.getUsername() );
+            statement.setInt(1, report.getType() );
+            statement.setString(2, report.getDescription() );
+            statement.setString(3, report.getUsername() );
 
             int returnedvalue = statement.executeUpdate();
             if( !this.map_reports.containsKey( report.getId_report() ) && (returnedvalue != -1) ) this.map_reports.put(report.getId_report(), report);

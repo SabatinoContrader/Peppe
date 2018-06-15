@@ -6,13 +6,23 @@ public class Carplace {
     private double latitude;
     private double longitude;
     private boolean type;
+    private boolean busy;
     private int id_slot;
 
-    public Carplace(int id_carplace, double latitude, double longitude, boolean type, int id_slot) {
+    public Carplace(int id_carplace, double latitude, double longitude, boolean type, boolean busy, int id_slot) {
         this.id_carplace = id_carplace;
         this.latitude = latitude;
         this.longitude = longitude;
         this.type= type;
+        this.busy = busy;
+        this.id_slot = id_slot;
+    }
+
+    public Carplace(double latitude, double longitude, boolean type, boolean busy, int id_slot) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.type= type;
+        this.busy = busy;
         this.id_slot = id_slot;
     }
 
@@ -56,7 +66,15 @@ public class Carplace {
         this.id_slot = id_slot;
     }
 
-@Override
+    public boolean isBusy() {
+        return busy;
+    }
+
+    public void setBusy(boolean busy) {
+        this.busy = busy;
+    }
+
+    @Override
     public String toString() {
         return "Carplace: " + id_carplace + "\nlatitude: " + latitude + "\nlongitude: " + longitude + "\ntype: " + type + "\nid_slot: " + id_slot + "\n";
 }

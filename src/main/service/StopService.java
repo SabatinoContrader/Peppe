@@ -1,7 +1,10 @@
 package main.service;
 
 import main.dao.StopDAO;
+import main.dto.ManagementCarPlaceDTO;
 import main.model.Stop;
+
+import java.util.List;
 
 public class StopService {
     private StopDAO stopDAO;
@@ -10,7 +13,7 @@ public class StopService {
         this.stopDAO = new StopDAO();
     }
 
-    public Stop getStop(int id_carplace) {
-        return this.stopDAO.getStop(id_carplace);
+    public List<ManagementCarPlaceDTO> getAllStop(int id_slot) {
+        return this.stopDAO.getAllStop(id_slot);
     }
 }

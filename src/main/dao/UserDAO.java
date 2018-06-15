@@ -14,7 +14,6 @@ import java.util.Map;
 public class UserDAO
 {
     private final String QUERY_ALL = "select * from user";
-    //private final String QUERY_SINGLE_USER = "select * from user where username = ?";
 
     private final String QUERY_INSERT_USER = "insert into user (username,password,type,name,surname,birthdate,birthplace,address,handicapped) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String QUERY_USER_TYPE = "select type from user where username = ? ";

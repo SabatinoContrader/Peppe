@@ -14,7 +14,6 @@ public class Report {
     }
 
     public Report(int type, String description, String username) {
-        //this.id_report = id_report;
         this.type = type;
         this.description = description;
         this.username = username;

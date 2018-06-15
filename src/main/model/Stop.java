@@ -15,6 +15,13 @@ public class Stop {
         this.id_carplace = id_carplace;
     }
 
+    public Stop(String start, String finish, int id_car, int id_carplace) {
+        this.start = start;
+        this.finish = finish;
+        this.id_car = id_car;
+        this.id_carplace = id_carplace;
+    }
+
     public int getId_stop() {
         return id_stop;
     }

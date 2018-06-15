@@ -14,7 +14,7 @@ public class AddCarView implements View{
     private String size;
 
     public void showResults (Request request){
-        //vuoto?
+
     }
 
     public void showOptions (){

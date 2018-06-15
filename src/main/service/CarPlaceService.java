@@ -12,7 +12,7 @@ public class CarPlaceService {
         this.carPlaceDAO = new CarPlaceDAO();
     }
 
-    public List<Carplace> getAllCarPlace(){
-        return this.carPlaceDAO.getAllCarPlace();
+    public List<Carplace> getAllCarPlace(int id_slot){
+        return this.carPlaceDAO.getAllCarPlace(id_slot);
     }
 }

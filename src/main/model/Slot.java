@@ -19,6 +19,15 @@ public class Slot {
         this.username = username;
     }
 
+    public Slot(double latitude, double longitude, String address, float price, String type, String username) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.price = price;
+        this.type = type;
+        this.username = username;
+    }
+
     public int getId_slot() {
         return id_slot;
     }

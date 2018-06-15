@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CarDAO {
 
-    private final String QUERY_ADDCAR = "insert into car (id_car, license_plate, name, size, username) values (?,?,?,?,?)";
+    private final String QUERY_ADDCAR = "insert into car (license_plate, name, size, username) values (?,?,?,?)";
     private final String QUERY_REMOVECAR = "delete from car where id_car = ? ";
 
     private final String QUERY_ALL = "select * from car where username = ?";
@@ -36,11 +36,10 @@ public class CarDAO {
 
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_ADDCAR);
-            statement.setInt(1, car.getId_car());
-            statement.setString(2, car.getLicensePlate());
-            statement.setString(3, car.getName());
-            statement.setString(4, car.getSize());
-            statement.setString(5, car.getUsername());
+            statement.setString(1, car.getLicensePlate());
+            statement.setString(2, car.getName());
+            statement.setString(3, car.getSize());
+            statement.setString(4, car.getUsername());
 
             int returnedvalue = statement.executeUpdate();
             if( !this.map_cars.containsKey( car.getId_car() ) && (returnedvalue != -1) ) this.map_cars.put(car.getId_car(), car);
@@ -81,9 +80,6 @@ public class CarDAO {
                 String name = resultSet.getString("name");
                 String size = resultSet.getString("size");
                 String user = resultSet.getString("username");
-
-
-                //cars.add(new Car(id_car, license_plate, name, size, user));
 
                 if(this.map_cars.containsKey(id_car) && !force)
                 {

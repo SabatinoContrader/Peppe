@@ -20,8 +20,13 @@ public class ReportHystoryView implements View {
 
 
     public void showOptions() {
+
         System.out.println("----- CRONOLOGIA SEGNALAZIONI -----");
         System.out.println("");
+        System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
+        System.out.format("| TIPO                  | DESCRIZIONE                                                                  |%n");
+        System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
+
         for ( Report report : this.reports )
         {
             int type = report.getType();
@@ -33,9 +38,11 @@ public class ReportHystoryView implements View {
                 typeString = "Disservizio stradale";
             else
                 typeString = "Problema servizio";
-            System.out.println("TIPO: " + typeString  + " DESCRIZIONE: " + report.getDescription() );
-        }
 
+            String leftAlignFormat = "| %-21s | %-76s |%n";
+            System.out.format(leftAlignFormat, typeString, description );
+            System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
+        }
     }
 
     public void submit() {

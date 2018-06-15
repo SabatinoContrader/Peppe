@@ -37,7 +37,7 @@ public class HomeOwnerView implements View {
         if (choice < 1 || choice > 2)
             MainDispatcher.getInstance().callAction("Home", "doControl", null);
         else if (choice == 1)
-            MainDispatcher.getInstance().callAction("ManagementCarPlace", "doControl", null);
+            MainDispatcher.getInstance().callAction("ManagementSlot", "doControl", null);
         else {
             MainDispatcher.getInstance().callAction("Index", "doControl", null);
         }

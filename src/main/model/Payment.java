@@ -14,6 +14,12 @@ public class Payment {
         this.id_stop = id_stop;
     }
 
+    public Payment(float quantity, String username, int id_stop) {
+        this.quantity = quantity;
+        this.username = username;
+        this.id_stop = id_stop;
+    }
+
     public int getId_payment() {return id_payment;}
 
     public void setId_payment(int id_payment) {this.id_payment = id_payment;}

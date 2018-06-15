@@ -15,7 +15,6 @@ public class LoginDAO {
     private static User loggedUser;
 
     private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
-    private final String QUERY_SIGNUP = "insert into user (username,password,type,birthdate,homeaddress) values (?, ?, ?, ?, ?)";
 
     public User getLoggedUser() {
         return loggedUser;
@@ -55,25 +54,6 @@ public class LoginDAO {
         }
     }
 
-    public boolean signup (String username, String password, String type, String birthdate, String homeaddress ) {
-
-        Connection connection = ConnectionSingleton.getInstance();
-        try {
-            PreparedStatement statement = connection.prepareStatement(QUERY_SIGNUP);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setString(3, type);
-            statement.setString(4, birthdate);
-            statement.setString(5, homeaddress);
-
-            int returnedvalue = statement.executeUpdate();
-            return (returnedvalue != -1);
-        }
-        catch (SQLException e) {
-            GestoreEccezioni.getInstance().gestisciEccezione(e);
-            return false;
-        }
-    }
 
     public void getUserModel (String user) {
 
