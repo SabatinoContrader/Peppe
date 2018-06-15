@@ -2,6 +2,7 @@ package main.dao;
 
 import main.ConnectionSingleton;
 import main.dto.ManagementCarPlaceDTO;
+import main.dto.ManagementExtensionStopDTO;
 import main.model.Stop;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class StopDAO {
 
     private final String QUERY_STOP = "select * from stop where id_carplace = ?";
     private final String QUERY_ALL_STOP = "select s.id_carplace, s.start, s.finish, ca.type, ca.busy, c.license_plate from stop s, car c, carplace ca where s.id_car = c.id_car and ca.id_slot = ? and ca.id_carplace = s.id_carplace";
-    private final String QUERY_GETALLSTOPS = "Select sl.address, s.start, s.finish, ca.name from stop s, slot sl, carplace c, car ca where s.id_car=ca.id_car and ca.username=? and c.id_slot=sl.id_slot and c.id_carplace=s.id_carplace";
+    private final String QUERY_EXTENSION_STOP = "Select sl.address, s.start, s.finish, ca.name from stop s, slot sl, carplace c, car ca where s.id_car=ca.id_car and ca.username=? and c.id_slot=sl.id_slot and c.id_carplace=s.id_carplace";
 
     public StopDAO() {
 
@@ -47,6 +48,30 @@ public class StopDAO {
         }
         return stops;
 
+
+    }
+
+    public List<ManagementExtensionStopDTO> getAllExtensionStop(String username) {
+        List<ManagementExtensionStopDTO> stops = new ArrayList<>();
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_EXTENSION_STOP);
+            statement.setString(1, username);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String address = resultSet.getString("address");
+                String start = resultSet.getString("start");
+                String finish = resultSet.getString("finish");
+                String name = resultSet.getString("name");
+
+                ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(address, start, finish, name);
+                stops.add(managementExtensionStopDTO);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stops;
 
     }
 }

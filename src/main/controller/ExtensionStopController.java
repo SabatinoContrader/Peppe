@@ -2,24 +2,32 @@ package main.controller;
 
 import javafx.scene.paint.Stop;
 import main.MainDispatcher;
+import main.dao.StopDAO;
+import main.dto.ManagementExtensionStopDTO;
+import main.model.User;
+import main.service.LoginService;
 import main.service.StopService;
 import main.view.ExtensionStopView;
 
 import java.sql.Time;
+import java.util.List;
 
 public class ExtensionStopController implements Controller{
 
+    private LoginService loginService;
+    private StopService stopService;
 
-
-
-    //  private StopService stopService;
-
-    //   public ExtensionStopController() {
-    //     stopService = new StopService();
-
-    // }
+    public ExtensionStopController() {
+        loginService = new LoginService();
+        stopService = new StopService();
+    }
 
     public void doControl(Request request) {
+        User loggedtuser = loginService.getLoggedUser();
+        List<ManagementExtensionStopDTO> managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+
+        Request request_extension = new Request();
+        request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
         if (request != null) {
 
             int choice = Integer.parseInt(request.get("choice").toString());
@@ -44,7 +52,7 @@ public class ExtensionStopController implements Controller{
 
         }
         else
-            MainDispatcher.getInstance().callView("ExtensionStop", null);
+            MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
     }
 
 
