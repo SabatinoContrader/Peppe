@@ -25,15 +25,15 @@ public class ExtensionStopView implements View{
         System.out.println("");
 
         // if (!this.current_stop.equals(null)) {
-        System.out.format("+-------------------+------------------+-----------------+%n");
-        System.out.format("| INDIRIZZO         | INIZIO           | FINE            |%n");
-        System.out.format("+-------------------+------------------+-----------------+%n");
-        String leftAlignFormat = "| %-16s | %-16t | %-16t |%n";
+        System.out.format("+-------------------+-----------------------+-----------------------+%n");
+        System.out.format("| INDIRIZZO         | INIZIO                | FINE                  |%n");
+        System.out.format("+-------------------+-----------------------+-----------------------+%n");
+        String leftAlignFormat = "| %-17s | %-20s | %-20s |%n";
 
         for(ManagementExtensionStopDTO item : this.managementExtensionStopDTO)
         {
             System.out.format(leftAlignFormat, item.getAddress(), item.getStart(), item.getFinish());
-            System.out.format("+-------------------+------------------+-----------------+%n");
+            System.out.format("+-------------------+-----------------------+-----------------------+%n");
         }
         // System.out.format(leftAlignFormat, current_stop.getId_carplace(), current_stop.getStart(), current_stop.getFinish());
         //System.out.format("+-------------------+------------------+-----------------+%n");
