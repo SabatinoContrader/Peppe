@@ -19,7 +19,7 @@ public class HomeOwnerView implements View {
         System.out.println("Benvenuto in pCarpet");
         System.out.println("");
         System.out.println("");
-        System.out.println("-------MENU OWNER ("+username+")-------");
+        System.out.println("----- MENU OWNER ("+username+") -----");
         System.out.println("");
         System.out.println("1) Gestione parcheggi");
         System.out.println("2) Logout");

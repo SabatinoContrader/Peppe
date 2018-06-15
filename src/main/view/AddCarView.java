@@ -18,13 +18,13 @@ public class AddCarView implements View{
     }
 
     public void showOptions (){
-        System.out.println("------ INSERIRE DATI AUTO ------");
+        System.out.println("----- INSERIRE DATI AUTO -----");
         System.out.println("");
-        System.out.println("TARGA");
+        System.out.println("TARGA: ");
         licensePlate = getInput();
-        System.out.println("NOME AUTO");
+        System.out.println("NOME AUTO: ");
         name = getInput();
-        System.out.println("DIMENSIONE");
+        System.out.println("DIMENSIONE: ");
         size = getInput();
 
     }

@@ -17,7 +17,7 @@ public class ManagementCarView implements View{
 
     public void showOptions(){
 
-        System.out.println("------ MANAGE AUTO ------");
+        System.out.println("------ GESTIONE AUTO ------");
         System.out.println("1) Aggiungi auto");
         System.out.println("2) Elimina auto");
         System.out.println("3) Indietro");

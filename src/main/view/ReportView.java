@@ -21,7 +21,7 @@ public class ReportView implements View {
         System.out.println("");
         System.out.println("");
         System.out.println("");
-        System.out.println("-------SEGNALAZIONE-------");
+        System.out.println("----- SEGNALAZIONE -----");
         System.out.println("");
         System.out.println("1) Invia segnalazione");
         System.out.println("2) Leggi storico segnalazioni");

@@ -7,50 +7,55 @@ import main.model.Car;
 import java.util.List;
 import java.util.Scanner;
 
-public class RemoveCarView implements View{
+public class RemoveCarView implements View {
 
-    private String carViewName="RemoveCar";
+    private String carViewName = "RemoveCar";
     private List<Car> cars;
-    int id_car;
     int choice;
 
-    public void showResults (Request request){
-        this.cars  = (List<Car>) request.get("cars");
-    }
+    @Override
+    public void showResults(Request request) {
+        this.cars = (List<Car>) request.get("cars");
 
-    public void showOptions (){
-        System.out.println("------ LE MIE AUTO ------");
+        System.out.println("----- LE MIE AUTO -----");
         System.out.println("");
 
-        if(!this.cars.isEmpty()){
-            for(int i = 0; i < this.cars.size(); i++){
-                System.out.println((i+1)+") "+ cars.get(i).getName());
+        if (!this.cars.isEmpty()) {
+            System.out.format("+--------------+------------------+-----------------+%n");
+            System.out.format("| TARGA        | NOME             | DIMENSIONE      |%n");
+            System.out.format("+--------------+------------------+-----------------+%n");
+            String leftAlignFormat = "| %-12s | %-16s | %-15s |%n";
+            for (Car car : this.cars) {
+                System.out.format(leftAlignFormat, car.getLicensePlate(), car.getName(), car.getSize());
+                System.out.format("+--------------+------------------+-----------------+%n");
             }
-
-
-            System.out.println("SCEGLI AUTO DA CANCELLARE");
-            choice = Integer.parseInt(getInput());
-        }
-        else {
-            System.out.println("non ci sono auto, premere qualunque tasto per tornare indietro");
+        } else {
+            System.out.println("Non ci sono auto, premere un tasto per tornare indietro");
             getInput();
         }
     }
 
-    public String getInput () {
+    @Override
+    public void showOptions() {
+        System.out.println("SCEGLI AUTO DA CANCELLARE");
+        choice = Integer.parseInt(getInput());
+    }
+
+    @Override
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    public void submit(){
+    @Override
+    public void submit() {
 
-        if(!this.cars.isEmpty()) {
+        if (!this.cars.isEmpty()) {
             Request request = new Request();
             request.put("id_car", cars.get(choice - 1).getId_car());
             request.put("carViewName", carViewName);
 
             MainDispatcher.getInstance().callAction("Car", "doControl", request);
-        }
-        else MainDispatcher.getInstance().callAction("Car", "doControl", null);
+        } else MainDispatcher.getInstance().callAction("Car", "doControl", null);
     }
 }

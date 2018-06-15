@@ -27,7 +27,7 @@ public class SignupView implements View {
     public void showOptions () {
 
         // (username, password, type, name, surname, birthdate, birthplace, address, handicapped)
-        System.out.println("-----INSERISCI LE TUE INFORMAZIONI----");
+        System.out.println("----- INSERISCI LE TUE INFORMAZIONI -----");
         System.out.println("Username:");
         username = getInput();
         System.out.println("Password:");

@@ -1,11 +1,10 @@
 package main.view;
 
-import main.MainDispatcher;
 import main.controller.Request;
 import main.model.Car;
 import main.model.Carplace;
 import main.model.Stop;
-import main.service.CarPlaceService;
+
 
 import java.util.*;
 
@@ -26,9 +25,8 @@ public class ManagementCarPlaceView implements View {
 
     @Override
     public void showOptions() {
-        System.out.println("------Gestione parcheggi------");
+        System.out.println("----- GESTIONE PARCHEGGI -----");
         System.out.println("");
-        //System.out.println("ID PARCHEGGIO | ID SLOT | TIPO DISABILE | OCCUPATO | DRIVER |          START          |          FINISH          | PAGATO");
         System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         System.out.format("| ID PARCHEGGIO     | ID SLOT   | TIPO DISABILE   | OCCUPATO    | TARGA    | START                     | FINISH                    | PAGATO     |%n");
         System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");

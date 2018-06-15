@@ -19,11 +19,21 @@ public class ReportHystoryView implements View {
     }
 
 
-    public void showOptions()
-    {
+    public void showOptions() {
+        System.out.println("----- CRONOLOGIA SEGNALAZIONI -----");
+        System.out.println("");
         for ( Report report : this.reports )
         {
-            System.out.println("Report type: " + report.getType()  + " Report description: " + report.getDescription() );
+            int type = report.getType();
+            String description = report.getDescription();
+            String typeString = "";
+            if(type == 1)
+                typeString = "Abuso posto disabili";
+            else if (type == 2)
+                typeString = "Disservizio stradale";
+            else
+                typeString = "Problema servizio";
+            System.out.println("TIPO: " + typeString  + " DESCRIZIONE: " + report.getDescription() );
         }
 
     }

@@ -21,7 +21,7 @@ public class LoginView implements View {
 
     @Override
     public void showOptions () {
-        System.out.println("-----LOGIN----");
+        System.out.println("----- LOGIN -----");
         System.out.println("Nome utente:");
         username = getInput();
         System.out.println("Password:");

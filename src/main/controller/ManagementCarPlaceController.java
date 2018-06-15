@@ -8,7 +8,6 @@ import main.service.CarPlaceService;
 import main.service.CarService;
 import main.service.StopService;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,24 +43,12 @@ public class ManagementCarPlaceController implements Controller {
        for(Map.Entry<Integer, Stop> entry : stops.entrySet()){
 
            Stop stop = entry.getValue();
-           int id_car = stop.getId_car();
            Car car = null;
            car = carService.getCar(stop.getId_car());
            if(car != null)
-               cars.put(car.getId_car(), car);
+               cars.put(stop.getId_carplace(), car);
        }
-       /*
-        for(Carplace place: carplace){
-           Stop stop = stopService.getStop(place.getId_carplace());
-           Integer id_car = new Integer(stop.getId_car());
-            Car car = null;
-            if(id_car != null)
-                car = carService.getCar(stop.getId_car());
-            if(stop != null)
-                stops.put(stop.getId_carplace(), stop);
-            if(car != null)
-                cars.put(car.getId_car(), car);
-        }*/
+
         request.put("stops", stops);
         request.put("cars", cars);
         MainDispatcher.getInstance().callView("ManagementCarPlace", request);
