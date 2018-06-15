@@ -11,16 +11,16 @@ import java.util.*;
 public class ManagementCarPlaceView implements View {
 
     private int choice;
-    List<Carplace> carplace;
-    Map<Integer, Stop> stops;
-    Map<Integer, Car> cars;
+    private List<Carplace> carplace;
+    private Map<Integer, Stop> stops;
+    private Map<Integer, Car> cars;
 
 
     @Override
     public void showResults(Request request) {
-        carplace = (List<Carplace>) request.get("carplace");
-        stops = (HashMap<Integer, Stop>) request.get("stops");
-        cars = (HashMap<Integer, Car>) request.get("cars");
+        this.carplace = (List<Carplace>) request.get("carplace");
+        this.stops = (HashMap<Integer, Stop>) request.get("stops");
+        this.cars = (HashMap<Integer, Car>) request.get("cars");
     }
 
     @Override
@@ -56,8 +56,7 @@ public class ManagementCarPlaceView implements View {
             }
             System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         }
-        }
-
+    }
 
     @Override
     public String getInput() {
@@ -68,6 +67,7 @@ public class ManagementCarPlaceView implements View {
 
     @Override
     public void submit() {
-
+        System.out.println("//TODO: decidere dove andare qui");
+        getInput();
     }
 }

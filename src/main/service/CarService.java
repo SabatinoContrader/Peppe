@@ -25,11 +25,11 @@ public class CarService
 
 
 
-    public List<Car> getAllCarModel(String username) {
-        return this.carDAO.getAllCarModel(username);
+    public List<Car> getAllCarModel(String username,boolean force) {
+        return this.carDAO.getAllCarModel(username,force);
     }
 
-    public Car getCar(int id_car){
-        return this.carDAO.getCar(id_car);
+    public Car getCar(int id_car,boolean force){
+        return this.carDAO.getCar(id_car,force);
     }
 }

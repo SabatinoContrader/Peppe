@@ -4,9 +4,7 @@ import main.MainDispatcher;
 import main.model.Car;
 import main.model.Carplace;
 import main.model.Stop;
-import main.service.CarPlaceService;
-import main.service.CarService;
-import main.service.StopService;
+import main.service.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +15,13 @@ public class ManagementCarPlaceController implements Controller {
     private CarPlaceService carPlaceService;
     private StopService stopService;
     private CarService carService;
+    private LoginService loginService;
 
     public ManagementCarPlaceController() {
         carPlaceService = new CarPlaceService();
         stopService = new StopService();
         carService = new CarService();
+        loginService = new LoginService();
     }
 
    @Override
@@ -40,11 +40,15 @@ public class ManagementCarPlaceController implements Controller {
                stops.put(stop.getId_carplace(), stop);
        }
 
+       //pre-call all cars to save in map. Do just one database call.
+       //carService.getAllCarModel(loginService.getLoggedUser().getUsername(),false);
+
        for(Map.Entry<Integer, Stop> entry : stops.entrySet()){
 
            Stop stop = entry.getValue();
            Car car = null;
-           car = carService.getCar(stop.getId_car());
+           //next call will take values from map if already in it
+           car = carService.getCar(stop.getId_car(),false);
            if(car != null)
                cars.put(stop.getId_carplace(), car);
        }

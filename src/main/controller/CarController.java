@@ -31,7 +31,7 @@ public class CarController implements Controller {
                 if (choice == 1) {
                     MainDispatcher.getInstance().callView("AddCar", null);
                 } else if (choice == 2) {
-                    List<Car> cars = carService.getAllCarModel(username);
+                    List<Car> cars = carService.getAllCarModel(username,false);
                     Request remove_request = new Request();
                     remove_request.put("cars", cars);
                     MainDispatcher.getInstance().callView("RemoveCar", remove_request);

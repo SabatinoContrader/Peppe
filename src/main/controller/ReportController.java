@@ -31,7 +31,7 @@ public class ReportController implements Controller {
                 if (choice == 1) {
                     MainDispatcher.getInstance().callView("ReportSend", null);
                 } else if (choice == 2) {
-                    List<Report> reports = reportService.getAllReportModels(username, true);
+                    List<Report> reports = reportService.getAllReportModels(username, false);
                     Request hystory_request = new Request();
                     hystory_request.put("reports", reports);
                     MainDispatcher.getInstance().callView("ReportHystory", hystory_request);

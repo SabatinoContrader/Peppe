@@ -1,7 +1,7 @@
 drop database pcarpet;
 create database pcarpet;
 create table pcarpet.user (username varchar(50) not null, password varchar(50) not null, type varchar(15) not null, name varchar(25), surname varchar(25), birthdate date, birthplace varchar(25), address varchar(80), handicapped boolean, primary key (username));
-create table pcarpet.car (id_car int not null, license_plate varchar(10) not null, name varchar(20) not null, size varchar(10) not null, username varchar(50) not null, primary key (id_car), foreign key (username) references user (username));
+create table pcarpet.car (id_car int not null auto_increment, license_plate varchar(10) not null, name varchar(20) not null, size varchar(10) not null, username varchar(50) not null, primary key (id_car), foreign key (username) references user (username));
 create table pcarpet.report (id_report int not null auto_increment, type int not null, description varchar(30), username varchar(50) not null, primary key (id_report),  foreign key (username) references user (username));
 create table pcarpet.slot (id_slot int not null, latitude double, longitude double, address varchar(50), price float, type varchar(10), username varchar(50) not null, primary key (id_slot), foreign key (username) references user (username));
 create table pcarpet.carplace (id_carplace int not null, latitude double, longitude double, type boolean, id_slot int not null, primary key (id_carplace), foreign key (id_slot) references slot (id_slot));
