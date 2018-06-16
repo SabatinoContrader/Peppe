@@ -80,7 +80,7 @@ public class UserDAO
             return (returnedvalue != -1);
         }
         catch (SQLException e) {
-            GestoreEccezioni.getInstance().gestisciEccezione(e);
+            GestoreEccezioni.getInstance().gestisciEccezione(e, user.getUsername());
             return false;
         }
     }

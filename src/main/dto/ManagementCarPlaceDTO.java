@@ -29,6 +29,8 @@ public class ManagementCarPlaceDTO
         this.finish = finish;
     }
 
+    
+
     public int getId_carplace() {
         return id_carplace;
     }

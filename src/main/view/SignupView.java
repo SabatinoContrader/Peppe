@@ -74,6 +74,14 @@ public class SignupView implements View {
 
     private LocalDate toLocalDate(String date)
     {
+        while(date.length() != 10)
+        {
+            System.out.println("Incorrect format please reinsert password:");
+            System.out.println("");
+            System.out.println("Birthdate (please insert yyyy-MM-dd format):");
+            date = getInput();
+        }
+
         //change into ISO_LOCAL_DATE
         date.replace("_", "-");
         date.replace(" ", "-");

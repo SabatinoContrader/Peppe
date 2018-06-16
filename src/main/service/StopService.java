@@ -20,4 +20,8 @@ public class StopService {
     public List<ManagementExtensionStopDTO> getAllExtensionStop(String username) {
         return this.stopDAO.getAllExtensionStop(username);
     }
+
+    public boolean extensionStop(int minute, int id_slot){
+        return this.stopDAO.extensionStop(minute, id_slot);
+    }
 }

@@ -1,17 +1,26 @@
 package main.dto;
 
 public class ManagementExtensionStopDTO {
-
+    private int id_stop;
     private String address;
     private String start;
     private String finish;
     private String name;
 
-    public ManagementExtensionStopDTO(String address, String start, String finish, String name) {
+    public ManagementExtensionStopDTO(int id_stop, String address, String start, String finish, String name) {
+        this.id_stop = id_stop;
         this.address = address;
         this.start = start;
         this.finish = finish;
         this.name = name;
+    }
+
+    public int getId_stop() {
+        return id_stop;
+    }
+
+    public void setId_stop(int id_stop) {
+        this.id_stop = id_stop;
     }
 
     public String getAddress() {

@@ -24,35 +24,40 @@ public class ExtensionStopController implements Controller{
 
     public void doControl(Request request) {
         User loggedtuser = loginService.getLoggedUser();
-        List<ManagementExtensionStopDTO> managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-
+        List<ManagementExtensionStopDTO> managementExtensionStopDTO;
         Request request_extension = new Request();
-        request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
         if (request != null) {
-
+            int id_stop = Integer.parseInt(request.get("id_stop").toString());
             int choice = Integer.parseInt(request.get("choice").toString());
             if (choice == 1) {
-                int newFinish=30;
-                //  ExtensionStopService.addTime(newFinish);
-                System.out.println(newFinish);
-                MainDispatcher.getInstance().callView("ExtensionStop",request);
+                int minute=30;
+                stopService.extensionStop(minute, id_stop);
+                managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+                request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
+                MainDispatcher.getInstance().callView("ExtensionStop",request_extension);
 
             } else if (choice == 2) {
-                int newFinish=60;
-                //  ExtensionStopService.addTime(newFinish);
-                MainDispatcher.getInstance().callView("ExtensionStop",request);
+                int minute=60;
+                stopService.extensionStop(minute, id_stop);
+                managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+                request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
+                MainDispatcher.getInstance().callView("ExtensionStop",request_extension);
 
             } else if (choice == 3) {
-                int newFinish=120;
-                // ExtensionStopService.addTime(newFinish);
-                MainDispatcher.getInstance().callView("ExtensionStop",request);
-            } else if(choice==4)
-                MainDispatcher.getInstance().callView("HomeDriver",null);
+                int minute=120;
+                stopService.extensionStop(minute, id_stop);
+                managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+                request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
+                MainDispatcher.getInstance().callView("ExtensionStop",request_extension);
+            }
 
 
         }
-        else
+        else {
+            managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+            request_extension.put("managementExtensionStopDTO",managementExtensionStopDTO);
             MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
+        }
     }
 
 

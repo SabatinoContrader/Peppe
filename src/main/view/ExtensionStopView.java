@@ -25,15 +25,15 @@ public class ExtensionStopView implements View{
         System.out.println("");
 
         // if (!this.current_stop.equals(null)) {
-        System.out.format("+-------------------+-----------------------+-----------------------+%n");
-        System.out.format("| INDIRIZZO         | INIZIO                | FINE                  |%n");
-        System.out.format("+-------------------+-----------------------+-----------------------+%n");
-        String leftAlignFormat = "| %-17s | %-20s | %-20s |%n";
+        System.out.format("+---------------------------+---------------------+-----------------------+-----------------------+%n");
+        System.out.format("| INDIRIZZO                 | AUTO                | INIZIO                | FINE                  |%n");
+        System.out.format("+---------------------------+---------------------+-----------------------+-----------------------+%n");
+        String leftAlignFormat = "| %-25s | %-19s | %-20s | %-20s |%n";
 
         for(ManagementExtensionStopDTO item : this.managementExtensionStopDTO)
         {
-            System.out.format(leftAlignFormat, item.getAddress(), item.getStart(), item.getFinish());
-            System.out.format("+-------------------+-----------------------+-----------------------+%n");
+            System.out.format(leftAlignFormat, item.getAddress(), item.getName(), item.getStart(), item.getFinish());
+            System.out.format("+---------------------------+---------------------+-----------------------+-----------------------+%n");
         }
         // System.out.format(leftAlignFormat, current_stop.getId_carplace(), current_stop.getStart(), current_stop.getFinish());
         //System.out.format("+-------------------+------------------+-----------------+%n");
@@ -68,11 +68,14 @@ public class ExtensionStopView implements View{
 
         Request request = new Request();
         request.put("choice", choice);
-        if (choice > 0 && choice < 5) {
+        request.put("id_stop", managementExtensionStopDTO.get(0).getId_stop());
+        //TODO add view to choose stop
+        if (choice > 0 && choice < 4) {
             MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", request);
-        } else {
+        } else if (choice == 4){
+            MainDispatcher.getInstance().callAction("Home", "doControl", null);
+        } else
             MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", null);
-        }
 
     }
 }
