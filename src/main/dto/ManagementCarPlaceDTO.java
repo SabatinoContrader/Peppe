@@ -6,37 +6,77 @@ import main.model.Stop;
 
 public class ManagementCarPlaceDTO
 {
-    private Carplace carplace;
-    private Stop stop;
-    private Car car;
+    private int id_carplace;
+    private int id_slot;
+    private boolean type;
+    private boolean busy;
+    private String license_plate;
+    private String start;
+    private String finish;
 
     public ManagementCarPlaceDTO(Carplace carplace, Stop stop, Car car) {
-        this.carplace = carplace;
-        this.stop = stop;
-        this.car = car;
+        id_carplace = carplace.getId_carplace();
+        id_slot = carplace.getId_slot();
+        type = carplace.getType();
+        busy = carplace.isBusy();
+        license_plate = car.getLicensePlate();
+        start = stop.getStart();
+        finish = stop.getFinish();
     }
 
-    public Carplace getCarplace() {
-        return carplace;
+    public int getId_carplace() {
+        return id_carplace;
     }
 
-    public void setCarplace(Carplace carplace) {
-        this.carplace = carplace;
+    public void setId_carplace(int id_carplace) {
+        this.id_carplace = id_carplace;
     }
 
-    public Stop getStop() {
-        return stop;
+    public int getId_slot() {
+        return id_slot;
     }
 
-    public void setStop(Stop stop) {
-        this.stop = stop;
+    public void setId_slot(int id_slot) {
+        this.id_slot = id_slot;
     }
 
-    public Car getCar() {
-        return car;
+    public boolean isType() {
+        return type;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setType(boolean type) {
+        this.type = type;
+    }
+
+    public boolean isBusy() {
+        return busy;
+    }
+
+    public void setBusy(boolean busy) {
+        this.busy = busy;
+    }
+
+    public String getLicense_plate() {
+        return license_plate;
+    }
+
+    public void setLicense_plate(String license_plate) {
+        this.license_plate = license_plate;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getFinish() {
+        return finish;
+    }
+
+    public void setFinish(String finish) {
+        this.finish = finish;
     }
 }
