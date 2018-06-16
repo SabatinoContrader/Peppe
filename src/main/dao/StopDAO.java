@@ -16,7 +16,6 @@ import java.util.List;
 public class StopDAO {
 
     private final String QUERY_STOP = "select * from stop where id_carplace = ?";
-    private final String QUERY_ALL_STOP = "select s.id_carplace, s.start, s.finish, ca.type, ca.busy, c.license_plate from stop s, car c, carplace ca where s.id_car = c.id_car and ca.id_slot = ? and ca.id_carplace = s.id_carplace";
     private final String QUERY_SHOW_STOP = "Select s.id_stop, sl.address, s.start, s.finish, ca.name from stop s, slot sl, carplace c, car ca where s.id_car=ca.id_car and ca.username=? and c.id_slot=sl.id_slot and c.id_carplace=s.id_carplace";
     private final String QUERY_EXTENSION_STOP = "UPDATE stop SET finish = finish + INTERVAL ? MINUTE WHERE id_stop = ?";
 
@@ -25,34 +24,6 @@ public class StopDAO {
 
     }
 
-    public List<ManagementCarPlaceDTO> getAllStop(int id_slot) {
-        List<ManagementCarPlaceDTO> stops = new ArrayList<>();
-        Connection connection = ConnectionSingleton.getInstance();
-        try {
-            PreparedStatement statement = connection.prepareStatement(QUERY_ALL_STOP);
-            statement.setInt(1, id_slot);
-
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-
-                int id_carplace = resultSet.getInt("id_carplace");
-
-                boolean type = resultSet.getBoolean("type");
-                boolean busy = resultSet.getBoolean("busy");
-                String license_plate = resultSet.getString("license_plate");
-                String start = resultSet.getString("start");
-                String finish = resultSet.getString("finish");
-
-                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(id_carplace, id_slot, type, busy, license_plate, start, finish);
-                stops.add(managementCarPlaceDTO);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return stops;
-
-
-    }
 
     public List<ManagementExtensionStopDTO> getAllExtensionStop(String username) {
         List<ManagementExtensionStopDTO> stops = new ArrayList<>();
@@ -95,5 +66,27 @@ public class StopDAO {
             return false;
         }
         return true;
+    }
+
+    public Stop getStop(int id_carplace) {
+        Stop stop = null;
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_STOP);
+            statement.setInt(1, id_carplace);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id_stop = resultSet.getInt("id_stop");
+                String start = resultSet.getString("start");
+                String finish = resultSet.getString("finish");
+                int id_car = resultSet.getInt("id_car");
+                stop = new Stop(id_stop, start, finish, id_car, id_carplace);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stop;
     }
 }

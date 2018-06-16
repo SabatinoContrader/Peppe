@@ -29,12 +29,12 @@ public class ManagementCarPlaceView implements View {
         String leftAlignFormat = "| %-17d | %-9d | %-15s | %-11s | %-8s | %-25s | %-25s | %-10s |%n";
 
         for(ManagementCarPlaceDTO managementCarPlaceDTOs: this.managementCarPlaceDTOs){
-            System.out.format(leftAlignFormat, managementCarPlaceDTOs.getId_carplace(), managementCarPlaceDTOs.getId_slot(), managementCarPlaceDTOs.isType(), managementCarPlaceDTOs.isBusy(), managementCarPlaceDTOs.getLicense_plate(), managementCarPlaceDTOs.getStart(), managementCarPlaceDTOs.getFinish(), "BO");
+            System.out.format(leftAlignFormat, managementCarPlaceDTOs.getCarplace().getId_carplace(), managementCarPlaceDTOs.getCarplace().getId_slot(), managementCarPlaceDTOs.getCarplace().getType(), managementCarPlaceDTOs.getCarplace().isBusy(), managementCarPlaceDTOs.getCar().getLicensePlate(), managementCarPlaceDTOs.getStop().getStart(), managementCarPlaceDTOs.getStop().getFinish(), "BO");
             System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         }
         for(Carplace place: this.carplace){
             if(!place.isBusy()){
-                System.out.format(leftAlignFormat, place.getId_carplace(), place.getId_slot(), place.getType(), "NO", "", "", "", "");
+                System.out.format(leftAlignFormat, place.getId_carplace(), place.getId_slot(), place.getType(), "false", "", "", "", "");
                 System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
             }
         }
