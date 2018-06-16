@@ -19,6 +19,7 @@ public class CarDAO {
 
     private final String QUERY_ALL = "select * from car where username = ?";
     private final String QUERY_CAR = "select * from car where id_car = ?";
+    private final String QUERY_USER_CAR = "select * from car where username = ?";
 
     private Map<Integer,Car> map_cars;
 

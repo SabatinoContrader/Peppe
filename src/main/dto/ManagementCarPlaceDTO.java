@@ -15,13 +15,23 @@ public class ManagementCarPlaceDTO
     private String finish;
 
     public ManagementCarPlaceDTO(Carplace carplace, Stop stop, Car car) {
-        id_carplace = carplace.getId_carplace();
-        id_slot = carplace.getId_slot();
-        type = carplace.getType();
-        busy = carplace.isBusy();
-        license_plate = car.getLicensePlate();
-        start = stop.getStart();
-        finish = stop.getFinish();
+        this.id_carplace = carplace.getId_carplace();
+        this.id_slot = carplace.getId_slot();
+        this.type = carplace.getType();
+        this.busy = carplace.isBusy();
+        this.license_plate = car.getLicensePlate();
+        this.start = stop.getStart();
+        this.finish = stop.getFinish();
+    }
+
+    public ManagementCarPlaceDTO(Carplace carplace) {
+        this.id_carplace = carplace.getId_carplace();
+        this.id_slot = carplace.getId_slot();
+        this.type = carplace.getType();
+        this.busy = carplace.isBusy();
+        this.license_plate = "";
+        this.start = "";
+        this.finish = "";
     }
 
     public int getId_carplace() {

@@ -1,5 +1,6 @@
 package main.view;
 
+import main.MainDispatcher;
 import main.controller.Request;
 import main.dto.ManagementCarPlaceDTO;
 import main.model.Car;
@@ -12,13 +13,14 @@ import java.util.*;
 
 public class ManagementCarPlaceView implements View {
 
-    private List<Carplace> carplace;
     private List<ManagementCarPlaceDTO> managementCarPlaceDTOs;
+    private int choice;
+    private int id_slot;
 
 
     @Override
     public void showResults(Request request) {
-        this.carplace = (List<Carplace>) request.get("carplace");
+        this.id_slot = Integer.parseInt(request.get("id_slot").toString());
         this.managementCarPlaceDTOs = (List<ManagementCarPlaceDTO>) request.get("managementCarPlaceDTOs");
 
         System.out.println("----- GESTIONE PARCHEGGI -----");
@@ -32,17 +34,13 @@ public class ManagementCarPlaceView implements View {
             System.out.format(leftAlignFormat, managementCarPlaceDTOs.getId_carplace(), managementCarPlaceDTOs.getId_slot(), managementCarPlaceDTOs.isType(), managementCarPlaceDTOs.isBusy(), managementCarPlaceDTOs.getLicense_plate(), managementCarPlaceDTOs.getStart(), managementCarPlaceDTOs.getFinish(), "BO");
             System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         }
-        for(Carplace place: this.carplace){
-            if(!place.isBusy()){
-                System.out.format(leftAlignFormat, place.getId_carplace(), place.getId_slot(), place.getType(), "false", "", "", "", "");
-                System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
-            }
-        }
     }
 
     @Override
     public void showOptions() {
-        System.out.println("//TODO: Eventuale menu");
+        System.out.println("");
+        System.out.println("1) Torna alla Home");
+        choice = Integer.parseInt(getInput());
     }
 
     @Override
@@ -54,7 +52,17 @@ public class ManagementCarPlaceView implements View {
 
     @Override
     public void submit() {
-        System.out.println("//TODO: decidere dove andare qui");
-        getInput();
+        Request request = new Request();
+        request.put("choice", choice);
+
+        if (choice == 1) {
+            MainDispatcher.getInstance().callAction("Home", "doControl", request);
+        } else {
+            request.put("managementCarPlaceDTOs", managementCarPlaceDTOs);
+            request.put("id_slot", id_slot);
+            MainDispatcher.getInstance().callAction("ManagementCarPlace", "doControl", request);
+        }
+
+
     }
 }

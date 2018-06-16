@@ -16,4 +16,8 @@ public class SlotService {
     public List<Slot> getAllSlot () {
         return this.slotDAO.getAllSlot();
     }
+
+    public Slot getSlot(int id_slot) {
+        return this.slotDAO.getSlot(id_slot);
+    }
 }

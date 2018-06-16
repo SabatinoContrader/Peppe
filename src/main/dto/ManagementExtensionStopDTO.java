@@ -1,5 +1,9 @@
 package main.dto;
 
+import main.model.Car;
+import main.model.Slot;
+import main.model.Stop;
+
 public class ManagementExtensionStopDTO {
     private int id_stop;
     private String address;
@@ -13,6 +17,14 @@ public class ManagementExtensionStopDTO {
         this.start = start;
         this.finish = finish;
         this.name = name;
+    }
+
+    public ManagementExtensionStopDTO(Stop stop, Slot slot, Car car) {
+        this.id_stop = stop.getId_stop();
+        this.address = slot.getAddress();
+        this.start = stop.getStart();
+        this.finish = stop.getFinish();
+        this.name = car.getName();
     }
 
     public int getId_stop() {

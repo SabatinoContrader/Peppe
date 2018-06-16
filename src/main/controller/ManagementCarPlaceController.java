@@ -21,9 +21,8 @@ public class ManagementCarPlaceController implements Controller {
     public void doControl(Request request) {
         int id_slot = (int)request.get("id_slot");
         List<ManagementCarPlaceDTO> managementCarPlaceDTOs = stopService.getAllStop(id_slot);
-        List<Carplace> carplace = carPlaceService.getAllCarPlace(id_slot);
-        request.put("carplace", carplace);
         request.put("managementCarPlaceDTOs", managementCarPlaceDTOs);
+        request.put("id_slot", id_slot);
         MainDispatcher.getInstance().callView("ManagementCarPlace", request);
     }
 }

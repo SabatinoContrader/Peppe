@@ -10,7 +10,7 @@ public class GestoreEccezioni {
     }
 
     private GestoreEccezioni() {
-        run_on_debug_mode = false;
+        run_on_debug_mode = true;
     }
 
     public void gestisciEccezione(Throwable e)

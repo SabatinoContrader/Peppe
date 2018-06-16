@@ -15,4 +15,8 @@ public class CarPlaceService {
     public List<Carplace> getAllCarPlace(int id_slot){
         return this.carPlaceDAO.getAllCarPlace(id_slot);
     }
+
+    public Carplace getCarplace(int id_carplace) {
+        return this.carPlaceDAO.getCarplace(id_carplace);
+    }
 }
