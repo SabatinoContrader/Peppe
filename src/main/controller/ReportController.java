@@ -7,6 +7,7 @@ import main.service.LoginService;
 import main.service.ReportService;
 import main.service.UserService;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ReportController implements Controller {
@@ -39,7 +40,8 @@ public class ReportController implements Controller {
             } else if (reportViewName.equals("ReportSend")) {
                 int type = Integer.parseInt(request.get("type").toString());
                 String description = request.get("description").toString();
-                Report report = new Report(type, description, username);
+                String time = request.get("time").toString();
+                Report report = new Report(type, description, time, username);
                 reportService.insertReport(report);
                 request = new Request();
                 request.put("username", username);

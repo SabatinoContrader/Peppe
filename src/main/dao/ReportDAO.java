@@ -15,7 +15,7 @@ public class ReportDAO
 {
     private final String QUERY_ALL = "select * from report where username = ?";
 
-    private final String QUERY_INSERT_REPORT = "insert into report (type,description,username) values (?, ?, ?)";
+    private final String QUERY_INSERT_REPORT = "insert into report (type,description, time, username) values (?, ?, ?, ?)";
 
     private Map<Integer,Report> map_reports;
 
@@ -36,6 +36,7 @@ public class ReportDAO
                 int       id_report     = resultSet.getInt("id_report");
                 int       type          = resultSet.getInt("type");
                 String    description   = resultSet.getString("description");
+                String    time   = resultSet.getString("time");
                 String    username      = resultSet.getString("username");
 
                 //Report report = new Report(id_report,type,description,username);
@@ -48,7 +49,7 @@ public class ReportDAO
                 }
                 else
                 {
-                    Report report = new Report(id_report,type,description,username);
+                    Report report = new Report(id_report,type,description, time, username);
                     reports.add(report);
                     this.map_reports.put(id_report, report);
                 }
@@ -68,7 +69,8 @@ public class ReportDAO
             PreparedStatement statement = connection.prepareStatement(QUERY_INSERT_REPORT);
             statement.setInt(1, report.getType() );
             statement.setString(2, report.getDescription() );
-            statement.setString(3, report.getUsername() );
+            statement.setString(3, report.getTime() );
+            statement.setString(4, report.getUsername() );
 
             int returnedvalue = statement.executeUpdate();
             if( !this.map_reports.containsKey( report.getId_report() ) && (returnedvalue != -1) ) this.map_reports.put(report.getId_report(), report);

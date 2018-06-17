@@ -28,7 +28,6 @@ public class ExtensionStopView implements View {
         String leftAlignFormat = "| %-25s | %-19s | %-20s | %-20s |%n";
 
        // if (!this.managementExtensionStopDTO.isEmpty()) {
-
                 System.out.format(leftAlignFormat, managementExtensionStopDTO.getAddress(), managementExtensionStopDTO.getName(), managementExtensionStopDTO.getStart(), managementExtensionStopDTO.getFinish());
                 System.out.format("+---------------------------+---------------------+-----------------------+-----------------------+%n");
 

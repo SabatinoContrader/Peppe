@@ -4,6 +4,8 @@ import main.MainDispatcher;
 import main.controller.Request;
 import sun.applet.Main;
 
+
+import java.sql.Timestamp;
 import java.util.Scanner;
 
 public class ReportSendView implements View {
@@ -31,9 +33,11 @@ public class ReportSendView implements View {
     }
 
     public void submit() {
+        Timestamp time = new Timestamp(System.currentTimeMillis());
         Request request = new Request();
         request.put("type", type);
         request.put("description", description);
+        request.put("time", time);
         request.put("reportViewName", reportViewName);
         MainDispatcher.getInstance().callAction("Report", "doControl", request);
     }

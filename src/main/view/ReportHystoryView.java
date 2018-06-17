@@ -23,15 +23,16 @@ public class ReportHystoryView implements View {
 
         System.out.println("----- CRONOLOGIA SEGNALAZIONI -----");
         System.out.println("");
-        System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
-        System.out.format("| TIPO                  | DESCRIZIONE                                                                  |%n");
-        System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
-
+        System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
+        System.out.format("| DATA E ORA            | TIPO                  | DESCRIZIONE                                                                  |%n");
+        System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
+        String leftAlignFormat = "| %-21s | %-21s | %-76s |%n";
         for ( Report report : this.reports )
         {
             int type = report.getType();
             String description = report.getDescription();
             String typeString = "";
+            String time = report.getTime();
             if(type == 1)
                 typeString = "Abuso posto disabili";
             else if (type == 2)
@@ -39,9 +40,9 @@ public class ReportHystoryView implements View {
             else
                 typeString = "Problema servizio";
 
-            String leftAlignFormat = "| %-21s | %-76s |%n";
-            System.out.format(leftAlignFormat, typeString, description );
-            System.out.format("+-----------------------+------------------------------------------------------------------------------+%n");
+
+            System.out.format(leftAlignFormat, time, typeString, description );
+            System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
         }
     }
 

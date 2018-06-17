@@ -31,6 +31,7 @@ public class ExtensionStopsView implements View {
         for (ManagementExtensionStopDTO item : this.managementExtensionStopDTO) {
             System.out.format(leftAlignFormat, i, item.getAddress(), item.getName(), item.getStart(), item.getFinish());
             System.out.format("+-----+---------------------------+---------------------+-----------------------+-----------------------+%n");
+            i++;
         }
 
 

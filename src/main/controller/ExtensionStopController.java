@@ -57,7 +57,7 @@ public class ExtensionStopController implements Controller{
                 }
 
             } else if(extensionStopViewName.equalsIgnoreCase("ExtensionStops")){
-                ManagementExtensionStopDTO managementSelectedExtensionStopDTO = (ManagementExtensionStopDTO)request.get("ManagementExtensionStopDTO");
+                ManagementExtensionStopDTO managementSelectedExtensionStopDTO = (ManagementExtensionStopDTO)request.get("managementExtensionStopDTO");
                 request_extension.put("managementExtensionStopDTO", managementSelectedExtensionStopDTO);
                 MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
             }
