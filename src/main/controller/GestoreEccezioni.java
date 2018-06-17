@@ -16,11 +16,14 @@ public class GestoreEccezioni {
     public void gestisciEccezione(Throwable e)
     {
         if(run_on_debug_mode) e.printStackTrace();
+        System.out.println("");
+        System.out.println("ERRORE! OPERAZIONE NON ESEGUITA");
+        System.out.println("");
     }
 
     public void gestisciEccezione(Throwable e, String typed)
     {
-        //if(run_on_debug_mode) e.printStackTrace();
+        if(run_on_debug_mode) e.printStackTrace();
 
         if(e.getMessage().equals("Duplicate entry '"+ typed +"' for key 'PRIMARY'")) System.out.println("Nome utente '" + typed + "' già esistente");
     }

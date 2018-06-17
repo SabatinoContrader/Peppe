@@ -25,7 +25,7 @@ public class HomeDriverView implements View {
         System.out.println("1) Cerca parcheggio");
         System.out.println("2) Prenota parcheggio privato");
         System.out.println("3) Prolunga sosta");
-        System.out.println("4) Gestione auto");
+        System.out.println("4) Aggiungi/Rimuovi auto");
         System.out.println("5) Gestione segnalazioni");
         System.out.println("6) Logout");
         this.choice = Integer.parseInt(getInput());
@@ -34,7 +34,9 @@ public class HomeDriverView implements View {
     @Override
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        while (input.equals("")) input = scanner.nextLine();
+        return input;
     }
 
 

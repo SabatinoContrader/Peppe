@@ -49,7 +49,9 @@ public class SignupView implements View {
     @Override
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        while (input.equals("")) input = scanner.nextLine();
+        return input;
     }
 
     @Override

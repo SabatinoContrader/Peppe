@@ -58,6 +58,7 @@ public class RemoveCarView implements View {
             request.put("carViewName", carViewName);
 
             MainDispatcher.getInstance().callAction("Car", "doControl", request);
-        } else MainDispatcher.getInstance().callAction("Car", "doControl", null);
+        } else
+            MainDispatcher.getInstance().callAction("Car", "doControl", null);
     }
 }

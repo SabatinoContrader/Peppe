@@ -36,9 +36,8 @@ public class IndexView implements View {
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        //System.out.println("input:" + input);
         while (input.equals("")) input = scanner.nextLine();
-        return input; //scanner.nextLine();
+        return input;
     }
 
     @Override

@@ -9,10 +9,9 @@ public class ReportView implements View {
 
     private int choice;
     private String reportViewName = "Report";
-    private String username = "";
 
     public void showResults(Request request) {
-        username = (String) request.getString("username");
+
     }
 
 
@@ -43,16 +42,16 @@ public class ReportView implements View {
             request.put("reportViewName", reportViewName);
             MainDispatcher.getInstance().callAction("Report", "doControl", request);
         } else if (choice == 3) {
-            Request request = new Request();
-            request.put("username", username);
-            MainDispatcher.getInstance().callAction("Home", "doControl", request);
+            MainDispatcher.getInstance().callAction("Home", "doControl", null);
         }
     }
 
 
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        while (input.equals("")) input = scanner.nextLine();
+        return input;
     }
 
     protected void send() {

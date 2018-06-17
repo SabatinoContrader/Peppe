@@ -15,10 +15,6 @@ public class ReportHystoryView implements View {
 
         this.reports = (List<Report>) request.get("reports");
 
-    }
-
-
-    public void showOptions() {
 
         System.out.println("----- CRONOLOGIA SEGNALAZIONI -----");
         System.out.println("");
@@ -47,6 +43,17 @@ public class ReportHystoryView implements View {
             System.out.println("Nessuna segnalazione inviata. Premere un tasto per tornare indietro.");
             getInput();
         }
+        else
+        {
+            System.out.println("Premere un tasto per tornare indietro.");
+            getInput();
+        }
+
+    }
+
+
+    public void showOptions() {
+
     }
 
     public void submit() {
