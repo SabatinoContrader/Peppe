@@ -22,6 +22,6 @@ public class GestoreEccezioni {
     {
         //if(run_on_debug_mode) e.printStackTrace();
 
-        if(e.getMessage().equals("Duplicate entry '"+ typed +"' for key 'PRIMARY'")) System.out.println("Nome utente " + typed + " già esistente");
+        if(e.getMessage().equals("Duplicate entry '"+ typed +"' for key 'PRIMARY'")) System.out.println("Nome utente '" + typed + "' già esistente");
     }
 }

@@ -13,14 +13,16 @@ public class IndexView implements View {
 
     @Override
     public void showResults(Request request) {
-
+        if(request != null) {
+            System.out.println("Username o password sbagliati");
+            System.out.println("");
+        }
     }
 
     @Override
     public void showOptions() {
 
         System.out.println("Benvenuto in pCarpet");
-        System.out.println("");
         System.out.println("");
         System.out.println("----- MENU -----");
         System.out.println("");
@@ -33,7 +35,10 @@ public class IndexView implements View {
     @Override
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        //System.out.println("input:" + input);
+        while (input.equals("")) input = scanner.nextLine();
+        return input; //scanner.nextLine();
     }
 
     @Override

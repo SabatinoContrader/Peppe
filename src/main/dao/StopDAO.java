@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class StopDAO {
     private final String QUERY_SHOW_STOP = "Select s.id_stop, sl.address, s.start, s.finish, ca.name from stop s, slot sl, carplace c, car ca where s.id_car=ca.id_car and ca.username=? and c.id_slot=sl.id_slot and c.id_carplace=s.id_carplace";
     private final String QUERY_EXTENSION_STOP = "UPDATE stop SET finish = finish + INTERVAL ? MINUTE WHERE id_stop = ?";
     private final String QUERY_USER_STOP = "select * from stop where id_car = ?";
-
+    private final String QUERY_SET_EXTENSION_STOP = "update stop set finish = ? where id_stop = ?";
 
     public StopDAO() {
 
@@ -50,17 +51,35 @@ public class StopDAO {
 
     }
 
-    public boolean extensionStop(int minute, int id_slot) {
+    public boolean extensionStop(int minute, int id_stop){
         Connection connection = ConnectionSingleton.getInstance();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_EXTENSION_STOP);
-            statement.setInt(1, minute);
-            statement.setInt(2, id_slot);
+            statement.setInt(1, minute );
+            statement.setInt(2, id_stop );
 
 
             statement.executeUpdate();
 
         } catch (SQLException e) {
+            GestoreEccezioni.getInstance().gestisciEccezione(e);
+            return false;
+        }
+        return true;
+    }
+
+
+    public boolean extensionStop(int id_stop, String finish){
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_SET_EXTENSION_STOP);
+
+            statement.setString(1, finish );
+            statement.setInt(2, id_stop );
+
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }

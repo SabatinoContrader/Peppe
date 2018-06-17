@@ -58,8 +58,15 @@ public class StopService {
         return managementExtensionStopDTOs;
     }
 
-    public boolean extensionStop(int minute, int id_slot) {
-        return this.stopDAO.extensionStop(minute, id_slot);
+    public boolean extensionStop(int minute, int id_stop) {
+        return this.stopDAO.extensionStop(minute, id_stop);
+    }
+
+    public boolean extensionStop(ManagementExtensionStopDTO managementExtensionStopDTO) {
+        int id_stop = managementExtensionStopDTO.getId_stop();
+        //il finish contiene già la data aggiornata
+        String finish = managementExtensionStopDTO.getFinish();
+        return this.stopDAO.extensionStop(id_stop,finish);
     }
 
     public Stop getStop(int id_carplace) {

@@ -30,8 +30,9 @@ public class SignupController implements Controller {
 
             if (userService.insertUser(newUser)) {
                 MainDispatcher.getInstance().callView("Login", request);
-            } else {
-                MainDispatcher.getInstance().callAction("Signup", "doControl", null);
+            }
+            else {
+                MainDispatcher.getInstance().callAction("Index", "doControl", null);
             }
         } else
             MainDispatcher.getInstance().callView("Signup", request);

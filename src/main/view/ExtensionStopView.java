@@ -4,6 +4,14 @@ import main.MainDispatcher;
 import main.controller.Request;
 import main.dto.ManagementExtensionStopDTO;
 
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
+
 import java.util.Scanner;
 
 public class ExtensionStopView implements View {
@@ -61,15 +69,43 @@ public class ExtensionStopView implements View {
     public void submit() {
         Request request = new Request();
         request.put("extensionStopViewName", extensionStopViewName);
-        request.put("choice", choice);
-        request.put("id_stop", managementExtensionStopDTO.getId_stop());
-        request.put("managementExtensionStopDTO", managementExtensionStopDTO);
-        if (choice > 0 && choice < 4) {
-            MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", request);
-        } else if (choice == 4) {
-            MainDispatcher.getInstance().callAction("Home", "doControl", null);
-        } else
-            MainDispatcher.getInstance().callAction("Home", "doControl", null);
+
+            //request.put("choice", choice);
+            //request.put("id_stop", managementExtensionStopDTO.getId_stop());
+            if (choice > 0 && choice < 4) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+                try
+                {
+                    Date parsedDate = dateFormat.parse(managementExtensionStopDTO.getFinish());
+                    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+                    LocalDateTime date = timestamp.toLocalDateTime();
+
+                    if(choice == 1) {
+                        LocalDateTime mydate = date.plus(30,ChronoUnit.MINUTES);
+                        String updateddate = mydate.toString().replace("T", " ");
+                        managementExtensionStopDTO.setFinish(updateddate);
+                    }
+                    if(choice == 2)
+                    {
+                        LocalDateTime mydate =date.plus(60,ChronoUnit.MINUTES);
+                        String updateddate = mydate.toString().replace("T", " ");
+                        managementExtensionStopDTO.setFinish(updateddate);
+                    }
+                    if(choice == 3)
+                    {
+                        LocalDateTime mydate = date.plus(120,ChronoUnit.MINUTES);
+                        String updateddate = mydate.toString().replace("T", " ");
+                        managementExtensionStopDTO.setFinish(updateddate);
+                    }
+                    request.put("managementExtensionStopDTO", managementExtensionStopDTO);
+                    MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", request);
+                }
+
+                catch(Exception e) {};
+            } else if (choice == 4) {
+                MainDispatcher.getInstance().callAction("Home", "doControl", null);
+            } else
+                MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", null);
 
     }
 }

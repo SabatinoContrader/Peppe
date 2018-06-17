@@ -18,39 +18,31 @@ public class ExtensionStopController implements Controller {
         stopService = new StopService();
     }
 
+
+    // Gestisce chiamate da 3 view
+    // da HomeDriverView (request => null)
+    // da ExtensionStopView (request => managementExtensionStopDTO)
+    // da ExtensionStopsView (request => managementExtensionStopDTO)
     public void doControl(Request request) {
         User loggedtuser = loginService.getLoggedUser();
         List<ManagementExtensionStopDTO> managementExtensionStopDTO;
         Request request_extension = new Request();
         if (request != null) {
             String extensionStopViewName = request.get("extensionStopViewName").toString();
-            if (extensionStopViewName.equalsIgnoreCase("ExtensionStop")) {
-                int id_stop = Integer.parseInt(request.get("id_stop").toString());
-                int choice = Integer.parseInt(request.get("choice").toString());
-                if (choice == 1) {
-                    int minute = 30;
-                    stopService.extensionStop(minute, id_stop);
-                    managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-                    request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
-                    MainDispatcher.getInstance().callAction("Home", "doControl", null);
 
-                } else if (choice == 2) {
-                    int minute = 60;
-                    stopService.extensionStop(minute, id_stop);
-                    managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-                    request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
-                    MainDispatcher.getInstance().callAction("Home", "doControl", null);
+            if(extensionStopViewName.equalsIgnoreCase("ExtensionStop")) {
 
-                } else if (choice == 3) {
-                    int minute = 120;
-                    stopService.extensionStop(minute, id_stop);
-                    managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-                    request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
-                    MainDispatcher.getInstance().callAction("Home", "doControl", null);
-                }
+                ManagementExtensionStopDTO ExtensionStop_DTO = (ManagementExtensionStopDTO)request.get("managementExtensionStopDTO");
+                stopService.extensionStop(ExtensionStop_DTO);
 
-            } else if (extensionStopViewName.equalsIgnoreCase("ExtensionStops")) {
-                ManagementExtensionStopDTO managementSelectedExtensionStopDTO = (ManagementExtensionStopDTO) request.get("managementExtensionStopDTO");
+                //Da usare se si torna nell'elenco per aggiornarlo
+                //managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+                //request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
+
+                MainDispatcher.getInstance().callAction("Home", "doControl", null);
+
+            } else if(extensionStopViewName.equalsIgnoreCase("ExtensionStops")){
+                ManagementExtensionStopDTO managementSelectedExtensionStopDTO = (ManagementExtensionStopDTO)request.get("managementExtensionStopDTO");
                 request_extension.put("managementExtensionStopDTO", managementSelectedExtensionStopDTO);
                 MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
             }

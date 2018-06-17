@@ -22,8 +22,8 @@ public class LoginController implements Controller {
             if (loginService.login(username, password))
                 MainDispatcher.getInstance().callAction("Home", "doControl", request);
             else
-                MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        } else
+                MainDispatcher.getInstance().callAction("Index", "doControl", request);
+        }else
             MainDispatcher.getInstance().callView("Login", request);
     }
 
