@@ -2,7 +2,6 @@ package main.service;
 
 import main.dao.CarDAO;
 import main.model.Car;
-import main.model.Gomma;
 
 import java.util.List;
 

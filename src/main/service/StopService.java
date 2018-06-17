@@ -34,8 +34,7 @@ public class StopService {
                 Car car = carService.getCar(stop.getId_car(), false);
                 ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(place, stop, car);
                 managementCarPlaceDTOs.add(managementCarPlaceDTO);
-            }
-            else{
+            } else {
                 ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(place);
                 managementCarPlaceDTOs.add(managementCarPlaceDTO);
             }
@@ -46,19 +45,16 @@ public class StopService {
     public List<ManagementExtensionStopDTO> getAllExtensionStop(String username) {
         List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new ArrayList<ManagementExtensionStopDTO>();
         List<Car> usercars = carService.getAllCarModel(username, true);
-        for (Car car: usercars){
-            //nome auto da car
+        for (Car car : usercars) {
             int id_car = car.getId_car();
             Stop stop = getUserStop(id_car);
-            //start e finish da stop
-            if(stop != null) {
+            if (stop != null) {
                 Carplace carplace = carPlaceService.getCarplace(stop.getId_carplace());
                 Slot slot = slotService.getSlot(carplace.getId_slot());
-                //nome da slot
                 ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop, slot, car);
                 managementExtensionStopDTOs.add(managementExtensionStopDTO);
             }
-         }
+        }
         return managementExtensionStopDTOs;
     }
 

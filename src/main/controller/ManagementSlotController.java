@@ -10,7 +10,7 @@ public class ManagementSlotController implements Controller {
 
     private SlotService slotService;
 
-    public ManagementSlotController(){
+    public ManagementSlotController() {
         slotService = new SlotService();
     }
 

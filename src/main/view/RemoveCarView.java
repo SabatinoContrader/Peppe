@@ -54,7 +54,7 @@ public class RemoveCarView implements View {
 
         if (!this.cars.isEmpty()) {
             Request request = new Request();
-            request.put("id_car", cars.get(choice-1).getId_car());
+            request.put("id_car", cars.get(choice - 1).getId_car());
             request.put("carViewName", carViewName);
 
             MainDispatcher.getInstance().callAction("Car", "doControl", request);

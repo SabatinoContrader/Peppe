@@ -4,7 +4,6 @@ import main.MainDispatcher;
 import main.controller.Request;
 import main.dto.ManagementExtensionStopDTO;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ExtensionStopView implements View {

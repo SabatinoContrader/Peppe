@@ -20,7 +20,7 @@ public class HomeDriverView implements View {
         System.out.println("Benvenuto in pCarpet");
         System.out.println("");
         System.out.println("");
-        System.out.println("----- MENU DRIVER ("+username+") -----");
+        System.out.println("----- MENU DRIVER (" + username + ") -----");
         System.out.println("");
         System.out.println("1) Cerca parcheggio");
         System.out.println("2) Prenota parcheggio privato");

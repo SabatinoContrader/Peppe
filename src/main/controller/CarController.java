@@ -5,7 +5,6 @@ import main.model.Car;
 import main.model.User;
 import main.service.CarService;
 import main.service.LoginService;
-import sun.applet.Main;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class CarController implements Controller {
         User user = loginService.getLoggedUser();
         String username = user.getUsername();
 
-        List<Car> cars = carService.getAllCarModel(username,true);
+        List<Car> cars = carService.getAllCarModel(username, true);
         Request remove_request = new Request();
         remove_request.put("cars", cars);
 
@@ -34,7 +33,7 @@ public class CarController implements Controller {
                 if (choice == 1) {
                     MainDispatcher.getInstance().callView("AddCar", null);
                 } else if (choice == 2) {
-                    cars = carService.getAllCarModel(username,true);
+                    cars = carService.getAllCarModel(username, true);
                     remove_request = new Request();
                     remove_request.put("cars", cars);
                     MainDispatcher.getInstance().callView("RemoveCar", remove_request);
@@ -56,16 +55,14 @@ public class CarController implements Controller {
             } else if (carViewName.equals("RemoveCar")) {
                 int id_car = Integer.parseInt(request.get("id_car").toString());
                 carService.removecar(id_car);
-                cars = carService.getAllCarModel(username,true);
+                cars = carService.getAllCarModel(username, true);
                 remove_request.put("cars", cars);
                 MainDispatcher.getInstance().callView("ManagementCar", remove_request);
             }
-        }
-        else {
+        } else {
             MainDispatcher.getInstance().callView("ManagementCar", remove_request);
         }
     }
-
 
 
 }

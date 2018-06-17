@@ -11,13 +11,12 @@ public class ReportView implements View {
     private String reportViewName = "Report";
     private String username = "";
 
-    public void showResults (Request request)
-    {
+    public void showResults(Request request) {
         username = (String) request.getString("username");
     }
 
 
-    public void showOptions () {
+    public void showOptions() {
         System.out.println("");
         System.out.println("");
         System.out.println("");
@@ -51,12 +50,12 @@ public class ReportView implements View {
     }
 
 
-    public String getInput () {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    protected void send () {
+    protected void send() {
     }
 
 

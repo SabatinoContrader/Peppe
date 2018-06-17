@@ -2,8 +2,6 @@ package main.view;
 
 import main.MainDispatcher;
 import main.controller.Request;
-import sun.applet.Main;
-
 
 import java.sql.Timestamp;
 import java.util.Scanner;
@@ -20,14 +18,12 @@ public class ReportSendView implements View {
     }
 
 
-    public void showOptions()
-    {
-        // (username, password, type, name, surname, birthdate, birthplace, address, handicapped)
+    public void showOptions() {
         System.out.println("----- COMPILA LA TUA SEGNALAZIONE -----");
         System.out.println("1) Abuso spazio dedicato a persone con disabilità");
         System.out.println("2) Disservizio stradale");
         System.out.println("3) Problema riscontrato nell'usufruire del servizio");
-        type = Integer.parseInt( getInput() );
+        type = Integer.parseInt(getInput());
         System.out.println("Descrivere il problema in un breve testo: ");
         description = getInput();
     }

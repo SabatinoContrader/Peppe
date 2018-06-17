@@ -17,20 +17,19 @@ public class GommaDAO {
 
     }
 
-    public List<Gomma> getAllGomme () {
+    public List<Gomma> getAllGomme() {
         List<Gomma> gomme = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
-           Statement statement = connection.createStatement();
-           ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-           while (resultSet.next()) {
-               String model = resultSet.getString("model");
-               String manufacturer = resultSet.getString("manufacturer");
-               double price = resultSet.getDouble("price");
-               gomme.add(new Gomma(model, manufacturer, price));
-           }
-        }
-        catch (SQLException e) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+            while (resultSet.next()) {
+                String model = resultSet.getString("model");
+                String manufacturer = resultSet.getString("manufacturer");
+                double price = resultSet.getDouble("price");
+                gomme.add(new Gomma(model, manufacturer, price));
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return gomme;
@@ -44,8 +43,7 @@ public class GommaDAO {
             preparedStatement.setString(2, gomma.getManufacturer());
             preparedStatement.setDouble(3, gomma.getPrice());
             return preparedStatement.execute();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }

@@ -1,6 +1,5 @@
 package main.view;
 
-import main.MainDispatcher;
 import main.controller.Request;
 
 import java.util.Scanner;
@@ -18,7 +17,7 @@ public class FindCarPlaceView implements View {
 
     @Override
     public void showOptions() {
-        System.out.println("----- TROVA PARCHEGGIO ("+username+") -----");
+        System.out.println("----- TROVA PARCHEGGIO (" + username + ") -----");
         System.out.println("");
         System.out.println("Destinazione:");
         place = getInput();

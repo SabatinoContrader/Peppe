@@ -7,10 +7,10 @@ import main.model.Car;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagementCarView implements View{
+public class ManagementCarView implements View {
 
     private int choice;
-    private String carViewName="ManagementCar";
+    private String carViewName = "ManagementCar";
     private List<Car> cars;
 
     @Override
@@ -38,7 +38,7 @@ public class ManagementCarView implements View{
     }
 
 
-    public void showOptions(){
+    public void showOptions() {
         System.out.println("1) Aggiungi auto");
         System.out.println("2) Elimina auto");
         System.out.println("3) Indietro");
@@ -46,12 +46,10 @@ public class ManagementCarView implements View{
     }
 
 
-    public String getInput () {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-
-
 
 
     public void submit() {
@@ -60,7 +58,7 @@ public class ManagementCarView implements View{
         request.put("choice", choice);
         if (choice > 0 && choice < 3) {
             MainDispatcher.getInstance().callAction("Car", "doControl", request);
-        } else if(choice == 3){
+        } else if (choice == 3) {
             MainDispatcher.getInstance().callAction("Home", "doControl", null);
         } else
             MainDispatcher.getInstance().callAction("Car", "doControl", null);

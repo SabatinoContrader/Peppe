@@ -12,11 +12,11 @@ public class CarPlaceDAO {
     private final String QUERY_ALL_CARPLACE = "select * from carplace where id_slot = ?";
     private final String QUERY_CARPLACE = "select * from carplace where id_carplace = ?";
 
-    public CarPlaceDAO(){
+    public CarPlaceDAO() {
 
     }
 
-    public List<Carplace> getAllCarPlace (int id_slot){
+    public List<Carplace> getAllCarPlace(int id_slot) {
         List<Carplace> carplace = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
@@ -32,8 +32,7 @@ public class CarPlaceDAO {
                 int id_slots = resultSet.getInt("id_slot");
                 carplace.add(new Carplace(id_carplace, latitude, longitude, type, busy, id_slots));
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return carplace;

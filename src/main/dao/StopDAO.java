@@ -2,7 +2,6 @@ package main.dao;
 
 import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
-import main.dto.ManagementCarPlaceDTO;
 import main.dto.ManagementExtensionStopDTO;
 import main.model.Stop;
 
@@ -51,18 +50,17 @@ public class StopDAO {
 
     }
 
-    public boolean extensionStop(int minute, int id_slot){
+    public boolean extensionStop(int minute, int id_slot) {
         Connection connection = ConnectionSingleton.getInstance();
         try {
             PreparedStatement statement = connection.prepareStatement(QUERY_EXTENSION_STOP);
-            statement.setInt(1, minute );
-            statement.setInt(2, id_slot );
+            statement.setInt(1, minute);
+            statement.setInt(2, id_slot);
 
 
             statement.executeUpdate();
 
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }

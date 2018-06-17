@@ -3,7 +3,6 @@ package main.view;
 import main.MainDispatcher;
 import main.controller.Request;
 import main.model.Report;
-import sun.applet.Main;
 
 import java.util.List;
 import java.util.Scanner;
@@ -40,11 +39,11 @@ public class ReportHystoryView implements View {
                 typeString = "Problema servizio";
 
 
-                System.out.format(leftAlignFormat, time, typeString, description);
-                System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
+            System.out.format(leftAlignFormat, time, typeString, description);
+            System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
 
         }
-        if (reports.isEmpty()){
+        if (reports.isEmpty()) {
             System.out.println("Nessuna segnalazione inviata. Premere un tasto per tornare indietro.");
             getInput();
         }

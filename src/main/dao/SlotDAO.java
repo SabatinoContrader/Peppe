@@ -15,7 +15,7 @@ public class SlotDAO {
 
     }
 
-    public List<Slot> getAllSlot () {
+    public List<Slot> getAllSlot() {
         List<Slot> slots = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
@@ -31,8 +31,7 @@ public class SlotDAO {
                 String username = resultSet.getString("username");
                 slots.add(new Slot(id_slot, latitude, longitude, address, price, type, username));
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return slots;

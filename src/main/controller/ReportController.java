@@ -5,9 +5,7 @@ import main.model.Report;
 import main.model.User;
 import main.service.LoginService;
 import main.service.ReportService;
-import main.service.UserService;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class ReportController implements Controller {

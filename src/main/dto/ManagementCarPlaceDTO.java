@@ -4,8 +4,7 @@ import main.model.Car;
 import main.model.Carplace;
 import main.model.Stop;
 
-public class ManagementCarPlaceDTO
-{
+public class ManagementCarPlaceDTO {
     private int id_carplace;
     private int id_slot;
     private boolean type;

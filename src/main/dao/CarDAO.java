@@ -3,8 +3,6 @@ package main.dao;
 import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
 import main.model.Car;
-import main.model.Report;
-
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,23 +12,18 @@ import java.util.Map;
 
 public class CarDAO {
 
-    private final String QUERY_ADDCAR = "insert into car (license_plate, name, size, username) values (?,?,?,?)";
+    private final String QUERY_ADDCAR = "insert into car (license_plate, name, size, username) values (? ,?,?,?)";
     private final String QUERY_REMOVECAR = "delete from car where id_car = ? ";
 
     private final String QUERY_ALL = "select * from car where username = ?";
     private final String QUERY_CAR = "select * from car where id_car = ?";
     private final String QUERY_USER_CAR = "select * from car where username = ?";
 
-    private Map<Integer,Car> map_cars;
+    private Map<Integer, Car> map_cars;
 
-    public CarDAO()
-    {
-        map_cars = new HashMap<Integer,Car>();
+    public CarDAO() {
+        map_cars = new HashMap<Integer, Car>();
     }
-
-    //public Map<Integer, Car> getMap_cars() {
-    //    return map_cars;
-    //}
 
     public boolean addcar(Car car) {
         Connection connection = ConnectionSingleton.getInstance();
@@ -43,7 +36,8 @@ public class CarDAO {
             statement.setString(4, car.getUsername());
 
             int returnedvalue = statement.executeUpdate();
-            if( !this.map_cars.containsKey( car.getId_car() ) && (returnedvalue != -1) ) this.map_cars.put(car.getId_car(), car);
+            if (!this.map_cars.containsKey(car.getId_car()) && (returnedvalue != -1))
+                this.map_cars.put(car.getId_car(), car);
             return (returnedvalue != -1);
         } catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -58,7 +52,7 @@ public class CarDAO {
             statement.setInt(1, id_car);
 
             int returnedvalue = statement.executeUpdate();
-            if( this.map_cars.containsKey( id_car ) && (returnedvalue == 1) ) this.map_cars.remove( id_car );
+            if (this.map_cars.containsKey(id_car) && (returnedvalue == 1)) this.map_cars.remove(id_car);
             return (returnedvalue == 1);
         } catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -82,12 +76,9 @@ public class CarDAO {
                 String size = resultSet.getString("size");
                 String user = resultSet.getString("username");
 
-                if(this.map_cars.containsKey(id_car) && !force)
-                {
-                    cars.add( this.map_cars.get(id_car) );
-                }
-                else
-                {
+                if (this.map_cars.containsKey(id_car) && !force) {
+                    cars.add(this.map_cars.get(id_car));
+                } else {
                     Car car = new Car(id_car, license_plate, name, size, user);
                     cars.add(car);
                     this.map_cars.put(id_car, car);
@@ -116,14 +107,9 @@ public class CarDAO {
                 String name = resultSet.getString("name");
                 String size = resultSet.getString("size");
                 String user = resultSet.getString("username");
-                //car = new Car(car_id, license_plate, name, size, user);
-
-                if(this.map_cars.containsKey(id_car) && !force)
-                {
+                if (this.map_cars.containsKey(id_car) && !force) {
                     car = this.map_cars.get(id_car);
-                }
-                else
-                {
+                } else {
                     car = new Car(id_car, license_plate, name, size, user);
                     this.map_cars.put(id_car, car);
                 }

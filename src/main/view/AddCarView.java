@@ -5,19 +5,19 @@ import main.controller.Request;
 
 import java.util.Scanner;
 
-public class AddCarView implements View{
+public class AddCarView implements View {
 
-    private String carViewName="AddCar";
+    private String carViewName = "AddCar";
 
     private String licensePlate;
     private String name;
     private String size;
 
-    public void showResults (Request request){
+    public void showResults(Request request) {
 
     }
 
-    public void showOptions (){
+    public void showOptions() {
         System.out.println("----- INSERIRE DATI AUTO -----");
         System.out.println("");
         System.out.println("TARGA: ");
@@ -29,18 +29,18 @@ public class AddCarView implements View{
 
     }
 
-    public String getInput () {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
 
-    public void submit(){
+    public void submit() {
 
         Request request = new Request();
         request.put("licensePlate", licensePlate);
         request.put("name", name);
-        request.put("size", size );
+        request.put("size", size);
         request.put("carViewName", carViewName);
 
         MainDispatcher.getInstance().callAction("Car", "doControl", request);

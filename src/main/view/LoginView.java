@@ -14,13 +14,13 @@ public class LoginView implements View {
 
 
     @Override
-    public void showResults (Request request) {
+    public void showResults(Request request) {
 
 
     }
 
     @Override
-    public void showOptions () {
+    public void showOptions() {
         System.out.println("----- LOGIN -----");
         System.out.println("Nome utente:");
         username = getInput();
@@ -29,7 +29,7 @@ public class LoginView implements View {
     }
 
     @Override
-    public String getInput () {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }

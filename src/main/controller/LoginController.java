@@ -1,7 +1,6 @@
 package main.controller;
 
 import main.MainDispatcher;
-import main.model.User;
 import main.service.LoginService;
 import main.service.UserService;
 
@@ -24,7 +23,7 @@ public class LoginController implements Controller {
                 MainDispatcher.getInstance().callAction("Home", "doControl", request);
             else
                 MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        }else
+        } else
             MainDispatcher.getInstance().callView("Login", request);
     }
 

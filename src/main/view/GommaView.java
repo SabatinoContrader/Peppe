@@ -1,8 +1,8 @@
 package main.view;
+
 import main.MainDispatcher;
 import main.controller.Request;
 import main.model.Gomma;
-import main.dao.GommaDAO;
 import main.service.GommaService;
 
 import java.util.List;
@@ -13,14 +13,14 @@ public class GommaView implements View {
     private GommaService gommaService;
     private String mode;
 
-  public GommaView () {
-      this.gommaService = new GommaService();
-      this.mode = "all";
-  }
+    public GommaView() {
+        this.gommaService = new GommaService();
+        this.mode = "all";
+    }
 
     @Override
     public void showResults(Request request) {
-       this.mode  = (String) request.get("mode");
+        this.mode = (String) request.get("mode");
     }
 
     @Override
@@ -49,13 +49,12 @@ public class GommaView implements View {
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
-  }
+    }
 
     @Override
     public void submit() {
         MainDispatcher.getInstance().callAction("Home", "doControl", null);
     }
-
 
 
 }

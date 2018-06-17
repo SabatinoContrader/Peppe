@@ -20,7 +20,7 @@ public class LoginDAO {
         return loggedUser;
     }
 
-    public boolean login (String username, String password ) {
+    public boolean login(String username, String password) {
 
         Connection connection = ConnectionSingleton.getInstance();
         try {
@@ -32,58 +32,28 @@ public class LoginDAO {
             while (resultSet.next()) {
                 String user = resultSet.getString("username");
                 String pass = resultSet.getString("password");
-                String   type         = resultSet.getString("type");
-                if(type.equalsIgnoreCase("driver")) {
+                String type = resultSet.getString("type");
+                if (type.equalsIgnoreCase("driver")) {
                     String name = resultSet.getString("name");
                     String surname = resultSet.getString("surname");
                     LocalDate birthdate = ((java.sql.Date) resultSet.getObject("birthdate")).toLocalDate(); //get Object for Localdate
                     String birthplace = resultSet.getString("birthplace");
                     String address = resultSet.getString("address");
                     Boolean handicapped = resultSet.getBoolean("handicapped");
-                    loggedUser = new User(user, pass, type, name, surname, birthdate, birthplace, address, handicapped );
-                }
-                else
+                    loggedUser = new User(user, pass, type, name, surname, birthdate, birthplace, address, handicapped);
+                } else
                     loggedUser = new User(user, pass, type);
 
             }
             return loggedUser != null;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }
     }
 
 
-    public void getUserModel (String user) {
-
-        Connection connection = ConnectionSingleton.getInstance();
-
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(QUERY_LOGIN);
-            preparedStatement.setString(1, user);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String   username     = resultSet.getString("username");
-                String   password     = resultSet.getString("password");
-                String   type         = resultSet.getString("type");
-                String   name         = resultSet.getString("name");
-                String   surname      = resultSet.getString("surname");
-                LocalDate birthdate   = ((java.sql.Date)resultSet.getObject("birthdate")).toLocalDate(); //get Object for Localdate
-                String   birthplace   = resultSet.getString("birthplace");
-                String   address      = resultSet.getString("address");
-                Boolean  handicapped  = resultSet.getBoolean("handicapped");
-                loggedUser = new User(username, password, type, name, surname, birthdate, birthplace, address, handicapped );
-        }
-        }catch (SQLException e) {
-            GestoreEccezioni.getInstance().gestisciEccezione(e);
-        }
-
-    }
-
-    public void destroyUser(){
+    public void destroyUser() {
         loggedUser = null;
     }
 }

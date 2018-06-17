@@ -3,11 +3,6 @@ package main.view;
 import main.MainDispatcher;
 import main.controller.Request;
 import main.dto.ManagementCarPlaceDTO;
-import main.model.Car;
-import main.model.Carplace;
-import main.model.Payment;
-import main.model.Stop;
-
 
 import java.util.*;
 

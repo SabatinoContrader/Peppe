@@ -4,9 +4,7 @@ import main.MainDispatcher;
 import main.controller.Request;
 import main.model.Slot;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ManagementSlotView implements View {

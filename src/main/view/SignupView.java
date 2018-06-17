@@ -19,14 +19,12 @@ public class SignupView implements View {
     private Boolean handicapped;
 
     @Override
-    public void showResults (Request request) {
+    public void showResults(Request request) {
 
     }
 
     @Override
-    public void showOptions () {
-
-        // (username, password, type, name, surname, birthdate, birthplace, address, handicapped)
+    public void showOptions() {
         System.out.println("----- INSERISCI LE TUE INFORMAZIONI -----");
         System.out.println("Username:");
         username = getInput();
@@ -38,29 +36,28 @@ public class SignupView implements View {
         System.out.println("Surname:");
         surname = getInput();
         System.out.println("Birthdate (please insert yyyy-MM-dd format):");
-        birthdate = toLocalDate ( getInput() );
+        birthdate = toLocalDate(getInput());
         System.out.println("Birthplace:");
         birthplace = getInput();
         System.out.println("Address:");
         address = getInput();
         System.out.println("Handicapped (please insert 0->false, 1->true):");
-        handicapped = stringToBool( getInput() );
+        handicapped = stringToBool(getInput());
         System.out.println("-----GRAZIE,OPERAZIONE IN CORSO----");
     }
 
     @Override
-    public String getInput () {
+    public String getInput() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     @Override
-    public void submit()
-    {
+    public void submit() {
         Request request = new Request();
         request.put("username", username);
         request.put("password", password);
-        request.put("type", type );
+        request.put("type", type);
         request.put("name", name);
         request.put("surname", surname);
         request.put("birthdate", birthdate);
@@ -72,22 +69,18 @@ public class SignupView implements View {
     }
 
 
-    private LocalDate toLocalDate(String date)
-    {
-        while(date.length() != 10)
-        {
+    private LocalDate toLocalDate(String date) {
+        while (date.length() != 10) {
             System.out.println("Incorrect format please reinsert password:");
             System.out.println("");
             System.out.println("Birthdate (please insert yyyy-MM-dd format):");
             date = getInput();
         }
 
-        //change into ISO_LOCAL_DATE
         date.replace("_", "-");
         date.replace(" ", "-");
         date.replace("/", "-");
 
-        //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(date);
         return localDate;
     }
@@ -97,7 +90,7 @@ public class SignupView implements View {
             return true;
         if (s.equals("0"))
             return false;
-        throw new IllegalArgumentException(s+" is not a bool. Only 1 and 0 are.");
+        throw new IllegalArgumentException(s + " is not a bool. Only 1 and 0 are.");
     }
 
 }
