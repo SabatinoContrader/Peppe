@@ -24,6 +24,9 @@ public class MainDispatcher {
 
     public void callAction(String controller, String action, Request request) {
         Controller oggettoController = (Controller) ReflectionUtils.instantiateClass("main.controller." + controller + "Controller");
+
+        DebugSingleton.getInstance().println( oggettoController.getClass().getName() );
+
         try {
              Method metodo = oggettoController.getClass().getMethod(action, Request.class);
             metodo.invoke(oggettoController, request);
@@ -34,6 +37,9 @@ public class MainDispatcher {
 
     public void callView(String view, Request request) {
         View oggettoView = (View) ReflectionUtils.instantiateClass("main.view." + view + "View");
+
+        DebugSingleton.getInstance().println( oggettoView.getClass().getName() );
+
         oggettoView.showResults(request);
         oggettoView.showOptions();
         oggettoView.submit();
