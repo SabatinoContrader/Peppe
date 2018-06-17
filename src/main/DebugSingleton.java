@@ -35,8 +35,14 @@ public class DebugSingleton {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    // System.out.println(ANSI_GREEN_BACKGROUND + ANSI_RED + "This text has a green background and red text!" + ANSI_RESET);
+
     private DebugSingleton() {
         isDebugginMode = false;
+    }
+
+    public boolean isDebugginMode() {
+        return isDebugginMode;
     }
 
     public static DebugSingleton getInstance() {
