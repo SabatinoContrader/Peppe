@@ -64,16 +64,17 @@ public class ExtensionStopController implements Controller{
         }
         else {
             managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-
-            if(managementExtensionStopDTO.size() <= 1) {
+            if(managementExtensionStopDTO.size() == 1) {
                 request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO.get(0));
                 MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
             }
-            else {
+            else if(managementExtensionStopDTO.size() > 1){
                 request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
                 MainDispatcher.getInstance().callView("ExtensionStops", request_extension);
+            } else{
+                request_extension.put("managementExtensionStopDTO", new ManagementExtensionStopDTO());
+                MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
             }
-
         }
     }
 

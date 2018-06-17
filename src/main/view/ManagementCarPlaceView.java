@@ -30,8 +30,8 @@ public class ManagementCarPlaceView implements View {
         System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         String leftAlignFormat = "| %-17d | %-9d | %-15s | %-11s | %-8s | %-25s | %-25s | %-10s |%n";
 
-        for(ManagementCarPlaceDTO managementCarPlaceDTOs: this.managementCarPlaceDTOs){
-            System.out.format(leftAlignFormat, managementCarPlaceDTOs.getId_carplace(), managementCarPlaceDTOs.getId_slot(), managementCarPlaceDTOs.isType(), managementCarPlaceDTOs.isBusy(), managementCarPlaceDTOs.getLicense_plate(), managementCarPlaceDTOs.getStart(), managementCarPlaceDTOs.getFinish(), "BO");
+        for (ManagementCarPlaceDTO managementCarPlaceDTOs : this.managementCarPlaceDTOs) {
+            System.out.format(leftAlignFormat, managementCarPlaceDTOs.getId_carplace(), managementCarPlaceDTOs.getId_slot(), managementCarPlaceDTOs.isType(), managementCarPlaceDTOs.isBusy(), managementCarPlaceDTOs.getLicense_plate(), managementCarPlaceDTOs.getStart(), managementCarPlaceDTOs.getFinish(), "");
             System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");
         }
     }
@@ -39,8 +39,8 @@ public class ManagementCarPlaceView implements View {
     @Override
     public void showOptions() {
         System.out.println("");
-        System.out.println("1) Torna alla Home");
-        choice = Integer.parseInt(getInput());
+        System.out.println("Premere un tasto per tornare indietro.");
+        getInput();
     }
 
     @Override
@@ -52,17 +52,6 @@ public class ManagementCarPlaceView implements View {
 
     @Override
     public void submit() {
-        Request request = new Request();
-        request.put("choice", choice);
-
-        if (choice == 1) {
-            MainDispatcher.getInstance().callAction("Home", "doControl", request);
-        } else {
-            request.put("managementCarPlaceDTOs", managementCarPlaceDTOs);
-            request.put("id_slot", id_slot);
-            MainDispatcher.getInstance().callAction("ManagementCarPlace", "doControl", request);
-        }
-
-
+        MainDispatcher.getInstance().callAction("Home", "doControl", null);
     }
 }

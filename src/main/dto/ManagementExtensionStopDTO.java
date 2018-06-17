@@ -27,6 +27,10 @@ public class ManagementExtensionStopDTO {
         this.name = car.getName();
     }
 
+    public ManagementExtensionStopDTO(){
+
+    }
+
     public int getId_stop() {
         return id_stop;
     }

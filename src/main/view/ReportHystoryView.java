@@ -27,13 +27,12 @@ public class ReportHystoryView implements View {
         System.out.format("| DATA E ORA            | TIPO                  | DESCRIZIONE                                                                  |%n");
         System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
         String leftAlignFormat = "| %-21s | %-21s | %-76s |%n";
-        for ( Report report : this.reports )
-        {
+        for (Report report : this.reports) {
             int type = report.getType();
             String description = report.getDescription();
             String typeString = "";
             String time = report.getTime();
-            if(type == 1)
+            if (type == 1)
                 typeString = "Abuso posto disabili";
             else if (type == 2)
                 typeString = "Disservizio stradale";
@@ -41,13 +40,17 @@ public class ReportHystoryView implements View {
                 typeString = "Problema servizio";
 
 
-            System.out.format(leftAlignFormat, time, typeString, description );
-            System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
+                System.out.format(leftAlignFormat, time, typeString, description);
+                System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");
+
+        }
+        if (reports.isEmpty()){
+            System.out.println("Nessuna segnalazione inviata. Premere un tasto per tornare indietro.");
+            getInput();
         }
     }
 
     public void submit() {
-        //add back choice
         MainDispatcher.getInstance().callAction("Report", "doControl", null);
     }
 
