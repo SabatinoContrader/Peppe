@@ -9,3 +9,6 @@ target/
 *.iml
 out
 gen
+/.settings/
+/.classpath
+/.project
