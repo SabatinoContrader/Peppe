@@ -20,7 +20,7 @@ public class HomeDriverView implements View {
         System.out.println("");
         System.out.println("----- MENU DRIVER (" + username + ") -----");
         System.out.println("");
-        System.out.println("1) Cerca parcheggio");
+        System.out.println("1) Trova parcheggio");
         System.out.println("2) Prenota parcheggio privato");
         System.out.println("3) Prolunga sosta");
         System.out.println("4) Aggiungi/Rimuovi auto");

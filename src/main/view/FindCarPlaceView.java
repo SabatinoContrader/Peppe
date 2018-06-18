@@ -1,5 +1,6 @@
 package main.view;
 
+import main.MainDispatcher;
 import main.controller.Request;
 
 import java.util.Scanner;
@@ -20,8 +21,11 @@ public class FindCarPlaceView implements View {
         System.out.println("");
         System.out.println("----- TROVA PARCHEGGIO (" + username + ") -----");
         System.out.println("");
-        System.out.println("Destinazione:");
-        place = getInput();
+//        System.out.println("Destinazione:");
+//        place = getInput();
+        //remove
+        System.out.println("Non implementato ancora premere invio per tornare indietro");
+        getInput();
 
     }
 
@@ -34,7 +38,7 @@ public class FindCarPlaceView implements View {
 
     @Override
     public void submit() {
-
+        MainDispatcher.getInstance().callAction("Home", "doControl", null);
     }
 
 
