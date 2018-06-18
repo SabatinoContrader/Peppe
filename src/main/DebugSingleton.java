@@ -35,6 +35,7 @@ public class DebugSingleton {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+
     public boolean isDebugginMode() {
         return isDebugginMode;
     }
@@ -42,6 +43,7 @@ public class DebugSingleton {
     public void setDebugginMode(boolean debugginMode) {
         isDebugginMode = debugginMode;
     }
+
 
     private DebugSingleton() {
         isDebugginMode = false;
