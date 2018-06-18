@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class ReportDAO {
     private final String QUERY_ALL = "select * from report where username = ?";
-
+    private final String QUERY_REPORT_OWNER = "select * from report";
     private final String QUERY_INSERT_REPORT = "insert into report (type,description, time, username) values (?, ?, ?, ?)";
 
     private Map<Integer, Report> map_reports;
@@ -68,5 +68,26 @@ public class ReportDAO {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }
+    }
+
+    public List<Report> getAllReportOwner() {
+        List<Report> reports = new ArrayList<>();
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(QUERY_REPORT_OWNER);
+            while (resultSet.next()) {
+                int id_report = resultSet.getInt("id_report");
+                int type = resultSet.getInt("type");
+                String description = resultSet.getString("description");
+                String time = resultSet.getString("time");
+                String username = resultSet.getString("username");
+                Report report = new Report(id_report, type, description, time, username);
+                reports.add(report);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reports;
     }
 }

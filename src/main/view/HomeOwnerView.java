@@ -20,7 +20,8 @@ public class HomeOwnerView implements View {
         System.out.println("----- MENU OWNER (" + username + ") -----");
         System.out.println("");
         System.out.println("1) Gestione parcheggi");
-        System.out.println("2) Logout");
+        System.out.println("2) Segnalazioni degli utenti");
+        System.out.println("3) Logout");
         this.choice = Integer.parseInt(getInput());
     }
 
@@ -34,10 +35,12 @@ public class HomeOwnerView implements View {
 
     @Override
     public void submit() {
-        if (choice < 1 || choice > 2)
+        if (choice < 1 || choice > 3)
             MainDispatcher.getInstance().callAction("Home", "doControl", null);
         else if (choice == 1)
             MainDispatcher.getInstance().callAction("ManagementSlot", "doControl", null);
+        else if (choice == 2)
+            MainDispatcher.getInstance().callAction("Report", "doControl", null);
         else {
             MainDispatcher.getInstance().callAction("Index", "doControl", null);
         }

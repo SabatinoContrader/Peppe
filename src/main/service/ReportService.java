@@ -20,4 +20,8 @@ public class ReportService {
     public boolean insertReport (Report report) {
         return this.reportDAO.insertReport(report);
     }
+
+    public List<Report> getAllReportOwner() {
+        return this.reportDAO.getAllReportOwner();
+    }
 }

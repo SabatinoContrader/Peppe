@@ -74,7 +74,7 @@ public class SignupView implements View {
 
     private LocalDate toLocalDate(String date) {
         while (date.length() != 10) {
-            System.out.println("Incorrect format please reinsert password:");
+            System.out.println("Incorrect format please reinsert birthdate:");
             System.out.println("");
             System.out.println("Birthdate (please insert yyyy-MM-dd format):");
             date = getInput();
