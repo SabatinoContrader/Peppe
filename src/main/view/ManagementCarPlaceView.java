@@ -34,7 +34,7 @@ public class ManagementCarPlaceView implements View {
     @Override
     public void showOptions() {
         System.out.println("");
-        System.out.println("Premere un tasto per tornare indietro.");
+        System.out.println("Premere invio per tornare indietro.");
         getInput();
     }
 

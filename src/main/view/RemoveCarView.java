@@ -32,7 +32,7 @@ public class RemoveCarView implements View {
                 i++;
             }
         } else {
-            System.out.println("Non ci sono auto, premere un tasto per tornare indietro");
+            System.out.println("Non ci sono auto, premere invio per tornare indietro");
             getInput();
         }
     }

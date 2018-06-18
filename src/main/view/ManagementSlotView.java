@@ -32,7 +32,7 @@ public class ManagementSlotView implements View {
                 i++;
             }
         } else {
-            System.out.println("Non ci sono slot, premere un tasto per tornare indietro");
+            System.out.println("Non ci sono slot, premere invio per tornare indietro");
             getInput();
         }
     }

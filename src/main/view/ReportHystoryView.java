@@ -40,7 +40,7 @@ public class ReportHystoryView implements View {
 
         }
         if (reports.isEmpty()) {
-            System.out.println("Nessuna segnalazione inviata. Premere un tasto per tornare indietro.");
+            System.out.println("Nessuna segnalazione inviata. Premere invio per tornare indietro.");
             getInput();
         }
         else

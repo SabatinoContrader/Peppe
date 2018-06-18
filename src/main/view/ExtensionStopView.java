@@ -39,7 +39,7 @@ public class ExtensionStopView implements View {
             System.out.format("+---------------------------+---------------------+-----------------------+-----------------------+%n");
 
         } else {
-            System.out.println("Non possiedi auto in sosta. Premere un tasto per tornare indietro.");
+            System.out.println("Non possiedi auto in sosta. Premere invio per tornare indietro.");
             getInput();
         }
 
@@ -62,52 +62,46 @@ public class ExtensionStopView implements View {
     @Override
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        while (input.equals("")) input = scanner.nextLine();
-        return input;
+        return scanner.nextLine();
     }
 
     @Override
     public void submit() {
         Request request = new Request();
         request.put("extensionStopViewName", extensionStopViewName);
-
-            //request.put("choice", choice);
-            //request.put("id_stop", managementExtensionStopDTO.getId_stop());
+        if (managementExtensionStopDTO.getAddress() != null) {
             if (choice > 0 && choice < 4) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                try
-                {
+                try {
                     Date parsedDate = dateFormat.parse(managementExtensionStopDTO.getFinish());
                     Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                     LocalDateTime date = timestamp.toLocalDateTime();
 
-                    if(choice == 1) {
-                        LocalDateTime mydate = date.plus(30,ChronoUnit.MINUTES);
+                    if (choice == 1) {
+                        LocalDateTime mydate = date.plus(30, ChronoUnit.MINUTES);
                         String updateddate = mydate.toString().replace("T", " ");
                         managementExtensionStopDTO.setFinish(updateddate);
                     }
-                    if(choice == 2)
-                    {
-                        LocalDateTime mydate =date.plus(60,ChronoUnit.MINUTES);
+                    if (choice == 2) {
+                        LocalDateTime mydate = date.plus(60, ChronoUnit.MINUTES);
                         String updateddate = mydate.toString().replace("T", " ");
                         managementExtensionStopDTO.setFinish(updateddate);
                     }
-                    if(choice == 3)
-                    {
-                        LocalDateTime mydate = date.plus(120,ChronoUnit.MINUTES);
+                    if (choice == 3) {
+                        LocalDateTime mydate = date.plus(120, ChronoUnit.MINUTES);
                         String updateddate = mydate.toString().replace("T", " ");
                         managementExtensionStopDTO.setFinish(updateddate);
                     }
                     request.put("managementExtensionStopDTO", managementExtensionStopDTO);
                     MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", request);
+                } catch (Exception e) {
                 }
-
-                catch(Exception e) {};
+                ;
             } else if (choice == 4) {
                 MainDispatcher.getInstance().callAction("Home", "doControl", null);
             } else
                 MainDispatcher.getInstance().callAction("ExtensionStop", "doControl", null);
-
+        } else
+            MainDispatcher.getInstance().callAction("Home", "doControl", null);
     }
 }
