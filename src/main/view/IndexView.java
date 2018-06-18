@@ -21,10 +21,8 @@ public class IndexView implements View {
 
     @Override
     public void showOptions() {
-
-        System.out.println("Benvenuto in pCarpet");
         System.out.println("");
-        System.out.println("----- MENU -----");
+        System.out.println("----- PCARPET -----");
         System.out.println("");
         System.out.println("1) Esegui il login");
         System.out.println("2) Iscriviti");

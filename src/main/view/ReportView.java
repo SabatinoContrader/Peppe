@@ -17,8 +17,6 @@ public class ReportView implements View {
 
     public void showOptions() {
         System.out.println("");
-        System.out.println("");
-        System.out.println("");
         System.out.println("----- SEGNALAZIONE -----");
         System.out.println("");
         System.out.println("1) Invia segnalazione");

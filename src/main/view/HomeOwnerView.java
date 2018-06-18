@@ -16,8 +16,6 @@ public class HomeOwnerView implements View {
 
     @Override
     public void showOptions() {
-        System.out.println("Benvenuto in pCarpet");
-        System.out.println("");
         System.out.println("");
         System.out.println("----- MENU OWNER (" + username + ") -----");
         System.out.println("");

@@ -18,6 +18,7 @@ public class AddCarView implements View {
     }
 
     public void showOptions() {
+        System.out.println("");
         System.out.println("----- INSERIRE DATI AUTO -----");
         System.out.println("");
         System.out.println("TARGA: ");

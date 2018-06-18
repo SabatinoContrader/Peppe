@@ -25,7 +25,7 @@ public class ExtensionStopView implements View {
     public void showResults(Request request) {
 
         this.managementExtensionStopDTO = (ManagementExtensionStopDTO) request.get("managementExtensionStopDTO");
-
+        System.out.println("");
         System.out.println("----- LA MIA SOSTA -----");
         System.out.println("");
 

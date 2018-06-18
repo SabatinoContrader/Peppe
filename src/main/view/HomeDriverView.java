@@ -17,8 +17,6 @@ public class HomeDriverView implements View {
 
     @Override
     public void showOptions() {
-        System.out.println("Benvenuto in pCarpet");
-        System.out.println("");
         System.out.println("");
         System.out.println("----- MENU DRIVER (" + username + ") -----");
         System.out.println("");

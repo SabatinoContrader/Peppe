@@ -15,7 +15,7 @@ public class ReportHystoryView implements View {
 
         this.reports = (List<Report>) request.get("reports");
 
-
+        System.out.println("");
         System.out.println("----- CRONOLOGIA SEGNALAZIONI -----");
         System.out.println("");
         System.out.format("+-----------------------+-----------------------+------------------------------------------------------------------------------+%n");

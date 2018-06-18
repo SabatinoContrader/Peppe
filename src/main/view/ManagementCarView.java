@@ -16,7 +16,7 @@ public class ManagementCarView implements View {
     @Override
     public void showResults(Request request) {
         this.cars = (List<Car>) request.get("cars");
-
+        System.out.println("");
         System.out.println("----- LE MIE AUTO -----");
         System.out.println("");
 

@@ -15,7 +15,7 @@ public class ManagementSlotView implements View {
     @Override
     public void showResults(Request request) {
         this.slots = (List<Slot>) request.get("slots");
-
+        System.out.println("");
         System.out.println("----- SLOT -----");
         System.out.println("");
 

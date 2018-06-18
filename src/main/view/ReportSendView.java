@@ -19,6 +19,7 @@ public class ReportSendView implements View {
 
 
     public void showOptions() {
+        System.out.println("");
         System.out.println("----- COMPILA LA TUA SEGNALAZIONE -----");
         System.out.println("1) Abuso spazio dedicato a persone con disabilità");
         System.out.println("2) Disservizio stradale");

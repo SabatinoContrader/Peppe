@@ -17,7 +17,7 @@ public class ManagementCarPlaceView implements View {
     public void showResults(Request request) {
         this.id_slot = Integer.parseInt(request.get("id_slot").toString());
         this.managementCarPlaceDTOs = (List<ManagementCarPlaceDTO>) request.get("managementCarPlaceDTOs");
-
+        System.out.println("");
         System.out.println("----- GESTIONE PARCHEGGI -----");
         System.out.println("");
         System.out.format("+-------------------+-----------+-----------------+-------------+----------+---------------------------+---------------------------+------------+%n");

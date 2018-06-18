@@ -17,6 +17,7 @@ public class FindCarPlaceView implements View {
 
     @Override
     public void showOptions() {
+        System.out.println("");
         System.out.println("----- TROVA PARCHEGGIO (" + username + ") -----");
         System.out.println("");
         System.out.println("Destinazione:");

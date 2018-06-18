@@ -3,6 +3,7 @@ package main.view;
 import main.MainDispatcher;
 import main.controller.Request;
 
+import java.io.Console;
 import java.util.Scanner;
 
 public class LoginView implements View {
@@ -21,6 +22,7 @@ public class LoginView implements View {
 
     @Override
     public void showOptions() {
+        System.out.println("");
         System.out.println("----- LOGIN -----");
         System.out.println("Nome utente:");
         username = getInput();

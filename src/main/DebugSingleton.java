@@ -35,6 +35,14 @@ public class DebugSingleton {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    public boolean isDebugginMode() {
+        return isDebugginMode;
+    }
+
+    public void setDebugginMode(boolean debugginMode) {
+        isDebugginMode = debugginMode;
+    }
+
     private DebugSingleton() {
         isDebugginMode = false;
     }
@@ -49,7 +57,7 @@ public class DebugSingleton {
     public void println(String str)
     {
         if(isDebugginMode)
-            System.out.println(ANSI_YELLOW + str + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + str + ANSI_RESET);
     }
 
 }

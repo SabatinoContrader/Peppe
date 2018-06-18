@@ -25,6 +25,7 @@ public class SignupView implements View {
 
     @Override
     public void showOptions() {
+        System.out.println("");
         System.out.println("----- INSERISCI LE TUE INFORMAZIONI -----");
         System.out.println("Username:");
         username = getInput();
