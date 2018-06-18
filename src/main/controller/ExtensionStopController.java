@@ -18,11 +18,6 @@ public class ExtensionStopController implements Controller {
         stopService = new StopService();
     }
 
-
-    // Gestisce chiamate da 3 view
-    // da HomeDriverView (request => null)
-    // da ExtensionStopView (request => managementExtensionStopDTO)
-    // da ExtensionStopsView (request => managementExtensionStopDTO)
     public void doControl(Request request) {
         User user = userService.getLoggedUser();
         List<ManagementExtensionStopDTO> managementExtensionStopDTO;
@@ -31,13 +26,8 @@ public class ExtensionStopController implements Controller {
             String extensionStopViewName = request.get("extensionStopViewName").toString();
 
             if(extensionStopViewName.equalsIgnoreCase("ExtensionStop")) {
-
                 ManagementExtensionStopDTO ExtensionStop_DTO = (ManagementExtensionStopDTO)request.get("managementExtensionStopDTO");
                 stopService.extensionStop(ExtensionStop_DTO);
-
-                //Da usare se si torna nell'elenco per aggiornarlo
-                //managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
-                //request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO);
 
                 MainDispatcher.getInstance().callAction("Home", "doControl", null);
 

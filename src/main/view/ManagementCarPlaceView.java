@@ -9,13 +9,9 @@ import java.util.*;
 public class ManagementCarPlaceView implements View {
 
     private List<ManagementCarPlaceDTO> managementCarPlaceDTOs;
-    private int choice;
-    private int id_slot;
-
 
     @Override
     public void showResults(Request request) {
-        this.id_slot = Integer.parseInt(request.get("id_slot").toString());
         this.managementCarPlaceDTOs = (List<ManagementCarPlaceDTO>) request.get("managementCarPlaceDTOs");
         System.out.println("");
         System.out.println("----- GESTIONE PARCHEGGI -----");

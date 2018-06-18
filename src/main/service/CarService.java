@@ -1,5 +1,6 @@
 package main.service;
 
+import main.Reference;
 import main.dao.CarDAO;
 import main.model.Car;
 
@@ -13,13 +14,29 @@ public class CarService
         this.carDAO = new CarDAO();
     }
 
-    public boolean addcar(Car car)
+//    public boolean addcar(Car car)
+//    {
+//        return this.carDAO.addcar(car);
+//    }
+
+    public boolean addcar(Car car, Reference<List<Car>> carlist)
     {
-        return this.carDAO.addcar(car);
+        boolean result = this.carDAO.addcar(car);
+        carlist.get().add(car);
+        return result;
     }
 
-    public boolean removecar(int id_car){
-        return this.carDAO.removecar(id_car);
+    public boolean removecar(int id_car, Reference<List<Car>> carlist){
+        boolean result =  this.carDAO.removecar(id_car);
+
+        for( Car itemcar : carlist.get()) {
+            if(itemcar.getId_car() == id_car)
+            {
+                carlist.get().remove(itemcar);
+                break;
+            }
+        }
+        return result;
     }
 
 

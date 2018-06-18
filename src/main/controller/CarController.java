@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.MainDispatcher;
+import main.Reference;
 import main.model.Car;
 import main.model.User;
 import main.service.CarService;
@@ -23,6 +24,7 @@ public class CarController implements Controller {
         String username = user.getUsername();
 
         List<Car> cars = carService.getAllCarModel(username, true);
+        Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
         Request carlist_request = new Request();
         carlist_request.put("cars", cars);
 
@@ -33,9 +35,6 @@ public class CarController implements Controller {
                 if (choice == 1) {
                     MainDispatcher.getInstance().callView("AddCar", null);
                 } else if (choice == 2) {
-                    cars = carService.getAllCarModel(username, true);
-                    carlist_request = new Request();
-                    carlist_request.put("cars", cars);
                     MainDispatcher.getInstance().callView("RemoveCar", carlist_request);
                 } else if (choice == 3) {
                     MainDispatcher.getInstance().callAction("Home", "doControl", null);
@@ -47,9 +46,8 @@ public class CarController implements Controller {
                 String size = request.get("size").toString();
 
                 Car car = new Car(licensePlate, name, size, username);
-                if (carService.addcar(car)) {
-                    List<Car> updatedcars = carService.getAllCarModel(username, true);
-                    carlist_request.put("cars", updatedcars);
+                if (carService.addcar(car, mycars)) {
+                    carlist_request.put("cars", cars);
                     MainDispatcher.getInstance().callView("ManagementCar", carlist_request);
                 }
                 else
@@ -57,8 +55,8 @@ public class CarController implements Controller {
 
             } else if (carViewName.equals("RemoveCar")) {
                 int id_car = Integer.parseInt(request.get("id_car").toString());
-                carService.removecar(id_car);
-                cars = carService.getAllCarModel(username, true);
+                carService.removecar(id_car, mycars);
+
                 carlist_request.put("cars", cars);
                 MainDispatcher.getInstance().callView("ManagementCar", carlist_request);
             }
