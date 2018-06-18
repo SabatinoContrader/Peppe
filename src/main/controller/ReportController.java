@@ -3,24 +3,24 @@ package main.controller;
 import main.MainDispatcher;
 import main.model.Report;
 import main.model.User;
-import main.service.LoginService;
 import main.service.ReportService;
+import main.service.UserService;
 
 import java.util.List;
 
 public class ReportController implements Controller {
 
     private ReportService reportService;
-    private LoginService loginService;
+    private UserService userService;
 
     public ReportController() {
         reportService = new ReportService();
-        loginService = new LoginService();
+        userService = new UserService();
     }
 
     public void doControl(Request request) {
         String username = "";
-        User user = loginService.getLoggedUser();
+        User user = userService.getLoggedUser();
         username = user.getUsername();
         if(user.getType().equalsIgnoreCase("driver")) {
             if (request != null) {

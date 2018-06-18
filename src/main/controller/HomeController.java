@@ -2,19 +2,19 @@ package main.controller;
 
 import main.MainDispatcher;
 import main.model.User;
-import main.service.LoginService;
+import main.service.UserService;
 
 public class HomeController implements Controller {
 
-    private LoginService loginService;
+    private UserService userService;
 
     public HomeController() {
-        loginService = new LoginService();
+        userService = new UserService();
     }
 
     public void doControl(Request request) {
         String type = "";
-        User user = loginService.getLoggedUser();
+        User user = userService.getLoggedUser();
         String username = user.getUsername();
         if (request != null) {
             type = user.getType();

@@ -20,4 +20,16 @@ public class UserService {
     public boolean insertUser (User user) {
         return this.userDAO.insertUser(user);
     }
+
+    public boolean login (String username, String password ) {
+        return this.userDAO.login(username, password );
+    }
+
+    public User getLoggedUser (){
+        return this.userDAO.getLoggedUser();
+    }
+
+    public void destroyUser(){
+        this.userDAO.destroyUser();
+    }
 }

@@ -4,22 +4,22 @@ import main.MainDispatcher;
 import main.model.Car;
 import main.model.User;
 import main.service.CarService;
-import main.service.LoginService;
+import main.service.UserService;
 
 import java.util.List;
 
 public class CarController implements Controller {
 
     private CarService carService;
-    private LoginService loginService;
+    private UserService userService;
 
     public CarController() {
         carService = new CarService();
-        loginService = new LoginService();
+        userService = new UserService();
     }
 
     public void doControl(Request request) {
-        User user = loginService.getLoggedUser();
+        User user = userService.getLoggedUser();
         String username = user.getUsername();
 
         List<Car> cars = carService.getAllCarModel(username, true);

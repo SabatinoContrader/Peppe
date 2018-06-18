@@ -1,19 +1,19 @@
 package main.controller;
 
 import main.MainDispatcher;
-import main.service.LoginService;
+import main.service.UserService;
 
 public class IndexController implements Controller {
 
-    private LoginService loginService;
+    private UserService userService;
 
     public IndexController() {
-        loginService = new LoginService();
+        userService = new UserService();
     }
 
     @Override
     public void doControl(Request request) {
-        loginService.destroyUser();
+        userService.destroyUser();
         MainDispatcher.getInstance().callView("Index", request);
     }
 }

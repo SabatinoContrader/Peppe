@@ -3,18 +3,18 @@ package main.controller;
 import main.MainDispatcher;
 import main.dto.ManagementExtensionStopDTO;
 import main.model.User;
-import main.service.LoginService;
 import main.service.StopService;
+import main.service.UserService;
 
 import java.util.List;
 
 public class ExtensionStopController implements Controller {
 
-    private LoginService loginService;
+    private UserService userService;
     private StopService stopService;
 
     public ExtensionStopController() {
-        loginService = new LoginService();
+        userService = new UserService();
         stopService = new StopService();
     }
 
@@ -24,7 +24,7 @@ public class ExtensionStopController implements Controller {
     // da ExtensionStopView (request => managementExtensionStopDTO)
     // da ExtensionStopsView (request => managementExtensionStopDTO)
     public void doControl(Request request) {
-        User loggedtuser = loginService.getLoggedUser();
+        User user = userService.getLoggedUser();
         List<ManagementExtensionStopDTO> managementExtensionStopDTO;
         Request request_extension = new Request();
         if (request != null) {
@@ -47,7 +47,7 @@ public class ExtensionStopController implements Controller {
                 MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
             }
         } else {
-            managementExtensionStopDTO = stopService.getAllExtensionStop(loggedtuser.getUsername());
+            managementExtensionStopDTO = stopService.getAllExtensionStop(user.getUsername());
             if (managementExtensionStopDTO.size() == 1) {
                 request_extension.put("managementExtensionStopDTO", managementExtensionStopDTO.get(0));
                 MainDispatcher.getInstance().callView("ExtensionStop", request_extension);

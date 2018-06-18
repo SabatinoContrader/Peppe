@@ -12,15 +12,56 @@ import java.util.List;
 import java.util.Map;
 
 public class UserDAO {
-    private final String QUERY_ALL = "select * from user";
-
-    private final String QUERY_INSERT_USER = "insert into user (username,password,type,name,surname,birthdate,birthplace,address,handicapped) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private final String QUERY_USER_TYPE = "select type from user where username = ? ";
-
+    private static User loggedUser;
     private Map<String, User> map_users;
+
+    private final String QUERY_ALL = "select * from user";
+    private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
+    private final String QUERY_INSERT_USER = "insert into user (username,password,type,name,surname,birthdate,birthplace,address,handicapped) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public UserDAO() {
         map_users = new HashMap<String, User>();
+    }
+
+    public boolean login(String username, String password) {
+
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String user = resultSet.getString("username");
+                String pass = resultSet.getString("password");
+                String type = resultSet.getString("type");
+                if (type.equalsIgnoreCase("driver")) {
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    LocalDate birthdate = ((java.sql.Date) resultSet.getObject("birthdate")).toLocalDate(); //get Object for Localdate
+                    String birthplace = resultSet.getString("birthplace");
+                    String address = resultSet.getString("address");
+                    Boolean handicapped = resultSet.getBoolean("handicapped");
+                    loggedUser = new User(user, pass, type, name, surname, birthdate, birthplace, address, handicapped);
+                } else
+                    loggedUser = new User(user, pass, type);
+
+            }
+            return loggedUser != null;
+        } catch (SQLException e) {
+            GestoreEccezioni.getInstance().gestisciEccezione(e);
+            return false;
+        }
+    }
+
+
+    public void destroyUser() {
+        loggedUser = null;
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
     }
 
     public List<User> getAllUserModels(boolean force) {
