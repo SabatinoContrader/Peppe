@@ -77,20 +77,4 @@ public class UserDAO {
             return false;
         }
     }
-
-    public String userType(String username) {
-        Connection connection = ConnectionSingleton.getInstance();
-        String type = "";
-        try {
-            PreparedStatement statement = connection.prepareStatement(QUERY_USER_TYPE);
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                type = resultSet.getString("type");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return type;
-    }
 }

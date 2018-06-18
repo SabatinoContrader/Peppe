@@ -20,8 +20,4 @@ public class UserService {
     public boolean insertUser (User user) {
         return this.userDAO.insertUser(user);
     }
-
-    public String userType (String username) {
-        return this.userDAO.userType(username);
-    }
 }
