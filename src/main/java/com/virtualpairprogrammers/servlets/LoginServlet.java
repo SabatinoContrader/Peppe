@@ -22,9 +22,9 @@ public class LoginServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		
+		String richiesta = request.getParameter("richiesta");
 
-		if (request != null && !isLogged) {
+		if (richiesta.equalsIgnoreCase("login")) {
 
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -39,11 +39,12 @@ public class LoginServlet extends HttpServlet {
 				else
 					getServletContext().getRequestDispatcher("/homeOwner.jsp").forward(request, response);
 			} else {
+				isLogged = false;
 				request.setAttribute("error", "Username o password sbagliati");
 				getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 			
-		}else {
+		}else if(richiesta.equalsIgnoreCase("logout")){
 			session.invalidate();
 			userService.destroyUser();
 			isLogged = false;

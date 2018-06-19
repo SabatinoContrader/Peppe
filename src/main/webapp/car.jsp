@@ -8,36 +8,47 @@
 
 	<%
 		List<Car> cars = (List<Car>) request.getAttribute("cars");
-		request.setAttribute("cars", cars);
 	%>
 
 
 	<h2>Lista auto</h2>
-	<input type=submit value="Aggiungi auto">
-	<input type=submit value="Indietro">
+	<form action="CarServlet" method="post">
+		<button name="richiesta" value="addCar" />
+		Aggiungi auto
+		</button>
+	</form>
+
+	</br>
+
+	<form action="HomeServlet" method="post">
+		<input type=submit value="Indietro">
+	</form>
+
 	</br>
 	</br>
 	</br>
 
 
-	<table style="width: 50%">
+	<table style="width: 25%">
 
 		<tr>
 			<th>Targa</th>
 			<th>Nome</th>
-			<th>Elimina</th>
+			<th></th>
 		</tr>
 
-<% for(Car car: cars){ %>
-<tr>
-<td align="center"><%= car.getLicensePlate()%>
-</td>
-<td align="center"><%= car.getName()%>
-</td>
-<td align="center"><input type=submit value="Elimina">
-</td>
-</tr>
-<% } %>
+		<%
+			for (Car car : cars) {
+		%>
+		<tr>
+			<td align="center"><%=car.getLicensePlate()%></td>
+			<td align="center"><%=car.getName()%></td>
+			<td align="center"><a
+				href="CarServlet?richiesta=removeCar&id=<%=car.getId_car()%>">Elimina</a></td>
+		</tr>
+		<%
+			}
+		%>
 	</table>
 
 </body>

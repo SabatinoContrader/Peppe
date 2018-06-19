@@ -20,9 +20,9 @@
              <a class="btn btn-lg btn-primary btn-block" href="FindCarPlaceServlet">Trova parcheggio</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="BookServlet">Prenota parcheggio privato</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="ExtensionStopServlet">Prolunga sosta</a></br>
-             <a class="btn btn-lg btn-primary btn-block" href="CarServlet">Aggiungi/Rimuovi auto</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="CarServlet?richiesta=home">Aggiungi/Rimuovi auto</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="ReportServlet">Gestione segnalazioni</a></br>
-             <a class="btn btn-lg btn-primary btn-block" href="LoginServlet">Logout</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="LoginServlet?richiesta=logout">Logout</a></br>
                                    
            </form>
 
