@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         userService = new UserService();
     }
 
-    public void doPost (HttpServletRequest request,
+    public void service (HttpServletRequest request,
                         HttpServletResponse response)
             throws ServletException,IOException {
 
@@ -38,13 +38,11 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("homeDriver.jsp");
                 else
                     response.sendRedirect("homeOwner.jsp");
-
-
-
             }
             else{
                 session.setAttribute("error","Username o password sbagliati");
-                response.sendRedirect("index.jsp");}
+                response.sendRedirect("index.jsp");
+                }
             //}else
             //MainDispatcher.getInstance().callView("Login", request);
         }

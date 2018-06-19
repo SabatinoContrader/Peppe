@@ -27,9 +27,10 @@
       <input type="text" name = "username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" name = "password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <p><% if(error != null) out.println(error); %></p>
+      <p><% if(error != null) 
+    	  			out.println(error); %></p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></br>
-      <a href="https://www.w3schools.com/html/">Prima volta su PCARPET? Iscriviti </a>
+      <a href="LoginServlet">Prima volta su PCARPET? Iscriviti </a>
       </form>
   </body>
 </html>
