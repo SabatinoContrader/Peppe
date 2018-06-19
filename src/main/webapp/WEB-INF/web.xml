@@ -1,71 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5">
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		 version="2.5">
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
 	<servlet>
-		<servlet-name>HelloWorldServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.HelloWorldServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>DisplayAllBooksServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.DisplayAllBooksServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>FindBooksByAuthorServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.FindBooksByAuthorServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>AddNewBookServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.AddNewBookServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>AddToCartServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.AddToCartServlet</servlet-class>
+		<servlet-name>IndexServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.IndexServlet</servlet-class>
 	</servlet>
 
 	<servlet>
-		<servlet-name>ViewCartServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.ViewCartServlet</servlet-class>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.LoginServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.HomeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BookServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.BookServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CarServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.CarServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ExtensionStopServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.ExtensionStopServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FindCarPlaceServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.FindCarPlaceServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MenagementCarPlaceServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.MenagementCarPlaceServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MenagementSlotServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.MenagementSlotServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ReportServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.ReportServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SingupServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.SingupServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>HelloWorldServlet</servlet-name>
-		<url-pattern>/hello-everyone.html</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>DisplayAllBooksServlet</servlet-name>
-		<url-pattern>/all-books.html</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>FindBooksByAuthorServlet</servlet-name>
-		<url-pattern>/FindBooksByAuthor.html</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>AddNewBookServlet</servlet-name>
-		<url-pattern>/AddNewBook.html</url-pattern>
+		<servlet-name>IndexServlet</servlet-name>
+		<url-pattern>/IndexServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>AddToCartServlet</servlet-name>
-		<url-pattern>/addToCart.html</url-pattern>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-		<servlet-name>ViewCartServlet</servlet-name>
-		<url-pattern>/viewCart.html</url-pattern>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/HomeServlet</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet-mapping>
+		<servlet-name>BookServlet</servlet-name>
+		<url-pattern>/BookServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CarServlet</servlet-name>
+		<url-pattern>/CarServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ExtensionStopServlet</servlet-name>
+		<url-pattern>/ExtensionStopServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FindCarPlaceServlet</servlet-name>
+		<url-pattern>/FindCarPlaceServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MenagementCarPlaceServlet</servlet-name>
+		<url-pattern>/MenagementCarPlaceServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MenagementSlotServlet</servlet-name>
+		<url-pattern>/MenagementSlotServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ReportServlet</servlet-name>
+		<url-pattern>/ReportServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SingupServlet</servlet-name>
+		<url-pattern>/SingupServlet</url-pattern>
+	</servlet-mapping>
+
 	<session-config>
 		<session-timeout>4000</session-timeout>
 	</session-config>

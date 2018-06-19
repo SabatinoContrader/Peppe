@@ -1,8 +1,12 @@
 package com.virtualpairprogrammers.servlets;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.virtualpairprogrammers.domain.Book;
 import com.virtualpairprogrammers.services.BookService;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 public class DisplayAllBooksServlet extends HttpServlet
 {
@@ -53,4 +58,42 @@ public class DisplayAllBooksServlet extends HttpServlet
 		
 		out.close();
 	}
+
+    public static class ConnectionSingleton {
+
+
+        private static Connection connection = null;
+
+
+        private ConnectionSingleton() {
+        }
+
+
+        public static Connection getInstance() {
+            if (connection == null) {
+                try {
+                    Properties properties = new Properties();
+                    InputStream inputStream = new FileInputStream("config.properties");
+                    properties.load(inputStream);
+                    String vendor = properties.getProperty("db.vendor");
+                    String driver = properties.getProperty("db.driver");
+                    String host = properties.getProperty("db.host");
+                    String port = properties.getProperty("db.port");
+                    String dbName = properties.getProperty("db.name");
+                    String username = properties.getProperty("db.username");
+                    String password = properties.getProperty("db.password");
+                    Class c = Class.forName(driver);
+                    System.out.println("Ho caricato: " + c.getName());
+                    String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName;
+                    DriverManagerDataSource dataSource = new DriverManagerDataSource(myUrl, username, password);
+                    dataSource.setDriverClassName(driver);
+                    connection = dataSource.getConnection();
+                } catch (Exception e) {
+                    GestoreEccezioni.getInstance().gestisciEccezione(e);
+                }
+            }
+            return connection;
+        }
+
+    }
 }
