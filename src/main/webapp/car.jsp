@@ -28,16 +28,16 @@
 			<th>Elimina</th>
 		</tr>
 
-		<c:forEach items="${cars}" var="car">
-			<tr>
-				<td align="center"><c:out value="${car.licensePlate}" /></td>
-				<td align="center"><c:out value="${car.name}" /></td>
-				<td align='center'><form>
-						<input type=submit value="click me" style="width: 25%"></td>
-			</tr>
-		</c:forEach>
-
-
+<% for(Car car: cars){ %>
+<tr>
+<td align="center"><%= car.getLicensePlate()%>
+</td>
+<td align="center"><%= car.getName()%>
+</td>
+<td align="center"><input type=submit value="Elimina">
+</td>
+</tr>
+<% } %>
 	</table>
 
 </body>
