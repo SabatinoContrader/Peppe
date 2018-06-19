@@ -11,7 +11,7 @@
 
 
   <body class="text-center">
-    <form class="form-signup" action="SignupServlet?richiesta=registed" method="post">
+    <form class="form-signup" action="SignupServlet" method="post">
       <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 	  <label for="username" class="sr-only">Username</label></br>
 	  <input type="text" name = "username" id="username" class="form-control" placeholder="Username" required autofocus></br>
@@ -27,6 +27,9 @@
 	  <input type="text" name = "birthplace" id="birthplace" class="form-control" placeholder="birthplace" required autofocus></br>
 	  <label for="address" class="sr-only">Indirizzo</label></br>
 	  <input type="text" name = "address" id="address" class="form-control" placeholder="address" required autofocus></br>
+	  
+	  
+	  <input type="text" name="richiesta" value="registed" hidden></p>
 	  
 	  <label for="handicapped" class="sr-only">Disabile</label>
 	  <input type="radio" id="handicappedChoice1"

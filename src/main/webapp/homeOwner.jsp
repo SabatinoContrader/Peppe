@@ -1,15 +1,28 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
- </head>
+         <head>
+           <meta charset="utf-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+           <meta name="description" content="">
+           <meta name="author" content="">
+           
+            <title>PCARPET</title>
 
-  <body class="text-center">
+		    <!-- Bootstrap core CSS -->
+		    <link href="bootstrap.min.css" rel="stylesheet">
+		
+		    <!-- Custom styles for this template -->
+		    <link href="signin.css" rel="stylesheet">
+        </head>
 
-      <h1>OWNER</h1>
+         <body class="text-center">
+		   <form class="form-signin" action="LoginServlet" method="post">
+             <h1 class="h3 mb-3 font-weight-normal"><b>OWNER</b></h1>
+             <a class="btn btn-lg btn-primary btn-block" href="ManagementCarPlaceServlet">Gestione parcheggi</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="ReportServlet">Segnalazioni degli utenti</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="LoginServlet">Logout</a></br>
+             
+                                   
+           </form>
 
-
-  </body>
-</html>
+         </body>
+       </html>

@@ -6,7 +6,7 @@
     <meta name="author" content="">
 
     <%
-        String error = (String)session.getAttribute("error");
+        String error = (String)request.getAttribute("error");
     %>
 
 
