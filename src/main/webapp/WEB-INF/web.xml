@@ -5,18 +5,14 @@
 		 version="2.5">
 
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>IndexServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.IndexServlet</servlet-class>
-	</servlet>
 
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.virtualpairprogrammers.servlets.LoginServlet</servlet-class>
 	</servlet>
+
 
 	<servlet>
 		<servlet-name>HomeServlet</servlet-name>
@@ -59,19 +55,15 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>SingupServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.SingupServlet</servlet-class>
+		<servlet-name>SignupServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.SignupServlet</servlet-class>
 	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>IndexServlet</servlet-name>
-		<url-pattern>/IndexServlet</url-pattern>
-	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
+
 
 	<servlet-mapping>
 		<servlet-name>HomeServlet</servlet-name>
@@ -114,8 +106,8 @@
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>SingupServlet</servlet-name>
-		<url-pattern>/SingupServlet</url-pattern>
+		<servlet-name>SignupServlet</servlet-name>
+		<url-pattern>/SignupServlet</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

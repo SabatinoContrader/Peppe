@@ -30,7 +30,7 @@
       <p><% if(error != null) 
     	  			out.println(error); %></p>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></br>
-      <a href="LoginServlet">Prima volta su PCARPET? Iscriviti </a>
+      <a href="SignupServlet?richiesta=register">Prima volta su PCARPET? Iscriviti </a>
       </form>
   </body>
 </html>

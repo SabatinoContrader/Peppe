@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
 
-        //if (request != null) {
+        if (request != null) {
 
             String username = request.getParameter("username");
             String password = request.getParameter("password");
@@ -41,11 +41,11 @@ public class LoginServlet extends HttpServlet {
             }
             else{
                 session.setAttribute("error","Username o password sbagliati");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
                 }
             //}else
             //MainDispatcher.getInstance().callView("Login", request);
         }
 
-   // }
+    }
 }
