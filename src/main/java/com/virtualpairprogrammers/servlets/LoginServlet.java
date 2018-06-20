@@ -36,8 +36,10 @@ public class LoginServlet extends HttpServlet {
 				type = user.getType();
 				if (type.equals("driver"))
 					getServletContext().getRequestDispatcher("/homeDriver.jsp").forward(request, response);
-				else
+				else if (type.equals("driver"))
 					getServletContext().getRequestDispatcher("/homeOwner.jsp").forward(request, response);
+				else if (type.equals("cop"))
+					getServletContext().getRequestDispatcher("/homeCop.jsp").forward(request, response);
 			} else {
 				isLogged = false;
 				request.setAttribute("error", "Username o password sbagliati");
