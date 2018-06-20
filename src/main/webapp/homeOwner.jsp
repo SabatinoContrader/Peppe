@@ -18,7 +18,7 @@
 		   <form class="form-signin" action="LoginServlet" method="post">
              <h1 class="h3 mb-3 font-weight-normal"><b>OWNER</b></h1>
              <a class="btn btn-lg btn-primary btn-block" href="ManagementCarPlaceServlet">Gestione parcheggi</a></br>
-             <a class="btn btn-lg btn-primary btn-block" href="ReportServlet">Segnalazioni degli utenti</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=home">Segnalazioni degli utenti</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="LoginServlet?richiesta=logout">Logout</a></br>
              
                                    

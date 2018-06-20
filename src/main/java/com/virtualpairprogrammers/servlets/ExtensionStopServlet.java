@@ -72,7 +72,6 @@ public class ExtensionStopServlet extends HttpServlet
 	                request.setAttribute("managementExtensionStopDTO", managementExtensionStopDTO.get(0));
 	                
 	                //MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
-	                //response.sendRedirect("ExtensionStop.jsp");
 	                getServletContext().getRequestDispatcher("/ExtensionStop.jsp").forward(request, response);
 	                
 	            } else if (managementExtensionStopDTO.size() > 1) {
@@ -81,7 +80,6 @@ public class ExtensionStopServlet extends HttpServlet
 	                request.setAttribute("managementExtensionStopDTO", managementExtensionStopDTO);
 	                             
 	                //MainDispatcher.getInstance().callView("ExtensionStops", request_extension);
-	                //response.sendRedirect("ExtensionStops.jsp");
 	                getServletContext().getRequestDispatcher("/ExtensionStops.jsp").forward(request, response);
 	            } else {
 	            	
@@ -89,7 +87,6 @@ public class ExtensionStopServlet extends HttpServlet
 	                request.setAttribute("managementExtensionStopDTO", new ManagementExtensionStopDTO());
 	                
 	                //MainDispatcher.getInstance().callView("ExtensionStop", request_extension);
-	                //response.sendRedirect("ExtensionStop.jsp");
 	                getServletContext().getRequestDispatcher("/ExtensionStop.jsp").forward(request, response);
 	            }
 	        }

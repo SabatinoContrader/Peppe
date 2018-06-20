@@ -27,9 +27,7 @@
 	</br>
 
 	<form action="HomeServlet" method="post">
-		<button value="Indietro" />
-		Indietro
-		</button>
+	<input type="submit" name="richiesta" value="Indietro">
 	</form>
 	</form>
 
