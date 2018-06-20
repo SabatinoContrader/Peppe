@@ -43,8 +43,8 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error", "Username o password sbagliati");
 				getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			}
-			
-		}else if(richiesta.equalsIgnoreCase("logout")){
+
+		} else if (richiesta.equalsIgnoreCase("logout")) {
 			session.invalidate();
 			userService.destroyUser();
 			isLogged = false;
@@ -52,7 +52,5 @@ public class LoginServlet extends HttpServlet {
 		}
 
 	}
-	
-	
-	
+
 }
