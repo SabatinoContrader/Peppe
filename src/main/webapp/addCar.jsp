@@ -26,8 +26,8 @@
 	</br>
 	</br>
 
-	<form action="HomeServlet" method="post">
-	<input type="submit" name="richiesta" value="Indietro">
+	<form action="CarServlet" method="post">
+		<input type="submit" name="richiesta" value="Indietro" />
 	</form>
 	</form>
 

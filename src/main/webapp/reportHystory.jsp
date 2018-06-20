@@ -28,7 +28,6 @@
 			<th>Segnalazione</th>
 			<th>Data</th>
 			<th>Utente</th>
-			<th></th>
 		</tr>
 
 		<%
@@ -44,8 +43,6 @@
 			<td align="center"><%=report.getDescription()%></td>
 			<td align="center"><%=report.getTime()%></td>
 			<td align="center"><%=report.getUsername()%></td>
-			<td align="center"><a
-				href="CarServlet?richiesta=removeCar&id=<%=report.getId_report()%>">Elimina</a></td>
 		</tr>
 		<%
 			}
