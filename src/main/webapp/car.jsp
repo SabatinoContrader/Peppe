@@ -20,13 +20,9 @@
 
 	</br>
 
-	<form action="HomeServlet" method="post">
-		<input type=submit value="Indietro">
-	</form>
 
-	</br>
-	</br>
-	</br>
+
+
 
 
 	<table style="width: 25%">
@@ -50,6 +46,12 @@
 			}
 		%>
 	</table>
+	
+	</br>
+	
+		<form action="HomeServlet" method="post">
+		<input type=submit value="Indietro">
+	</form>
 
 </body>
 </html>

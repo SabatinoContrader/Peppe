@@ -26,7 +26,7 @@
 	</br>
 	</br>
 
-	<form action="HomeServlet" method="post">
+	<form action="CarServlet?richiesta=home" method="post">
 		<button value="Indietro" />
 		Indietro
 		</button>
