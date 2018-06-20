@@ -1,7 +1,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.virtualpairprogrammers.domain.Stop"%>
 
-<%@ page import="com.virtualpairprogrammers.dto.*"%>
+<%@ page import="com.virtualpairprogrammers.dto.ManagementExtensionStopDTO"%>
 
 
 <!DOCTYPE html>
@@ -20,10 +20,10 @@
   <table style="width: 75%">
 
     <tr>
-      <th>Indirizzo</th>
-      <th>Auto</th>
-      <th>Inizio</th>
-      <th>Fine</th>
+      <th>INDIRIZZO</th>
+      <th>AUTO</th>
+      <th>INIZIO</th>
+      <th>FINE</th>
       <th></th>
       <th></th>
     </tr>

@@ -24,10 +24,10 @@
 	<table style="width: 75%">
 
 		<tr>
-			<th>Tipo Segnalazione</th>
-			<th>Segnalazione</th>
-			<th>Data</th>
-			<th>Utente</th>
+			<th>TIPO SEGNALAZIONE</th>
+			<th>SEGNALAZIONE</th>
+			<th>DATA</th>
+			<th>UTENTE</th>
 		</tr>
 
 		<%

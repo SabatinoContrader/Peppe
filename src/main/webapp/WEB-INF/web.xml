@@ -40,13 +40,13 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>MenagementCarPlaceServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.MenagementCarPlaceServlet</servlet-class>
+		<servlet-name>ManagementCarPlaceServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.ManagementCarPlaceServlet</servlet-class>
 	</servlet>
 
 	<servlet>
-		<servlet-name>MenagementSlotServlet</servlet-name>
-		<servlet-class>com.virtualpairprogrammers.servlets.MenagementSlotServlet</servlet-class>
+		<servlet-name>ManagementSlotServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.ManagementSlotServlet</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -91,13 +91,13 @@
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>MenagementCarPlaceServlet</servlet-name>
-		<url-pattern>/MenagementCarPlaceServlet</url-pattern>
+		<servlet-name>ManagementCarPlaceServlet</servlet-name>
+		<url-pattern>/ManagementCarPlaceServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>MenagementSlotServlet</servlet-name>
-		<url-pattern>/MenagementSlotServlet</url-pattern>
+		<servlet-name>ManagementSlotServlet</servlet-name>
+		<url-pattern>/ManagementSlotServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
