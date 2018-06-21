@@ -30,7 +30,10 @@
 		
 
 	</form>
+	</br>
+	
 	<button id="startsearch" style="width: 55px" type="submit">Cerca</button>
+	</br>
 	</br>
 	<div id="map" style="width: 600px; height: 600px; background: yellow"></div>
 

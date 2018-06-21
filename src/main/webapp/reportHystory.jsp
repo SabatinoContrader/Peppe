@@ -35,9 +35,10 @@
 		%>
 		<tr>
 			<td align="center">
-			<%if(report.getType() == 1) out.println("Abuso spazio dedicato a persone con disabilità");
+			<% if(report.getType() == 0) out.println("Avviso del gestore");
+			else if(report.getType() == 1) out.println("Abuso spazio dedicato a persone con disabilità");
 			else if(report.getType() == 2) out.println("Disservizio stradale");
-			else if(report.getType() == 3) out.println("Problema riscontrato nell'usufruire del servizio");
+			else if(report.getType() == 3) out.println("Problema riscontrato nell'usufruire del servizio"); 
 			%>
 			</td>
 			<td align="center"><%=report.getDescription()%></td>

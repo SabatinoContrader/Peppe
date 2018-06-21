@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 				type = user.getType();
 				if (type.equals("driver"))
 					getServletContext().getRequestDispatcher("/homeDriver.jsp").forward(request, response);
-				else if (type.equals("driver"))
+				else if (type.equals("gestore"))
 					getServletContext().getRequestDispatcher("/homeOwner.jsp").forward(request, response);
 				else if (type.equals("cop"))
 					getServletContext().getRequestDispatcher("/homeCop.jsp").forward(request, response);

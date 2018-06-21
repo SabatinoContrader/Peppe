@@ -55,8 +55,14 @@ public class ReportServlet extends HttpServlet {
 				Report report = new Report(type, description, time, username);
 				reportService.insertReport(report);
 
-				// request.setAttribute("username", username);
 				getServletContext().getRequestDispatcher("/homeDriver.jsp").forward(request, response);
+				break;
+				
+			case "ownerReport":
+				String usernameOwner = "gestore"; //da sistemare
+				List<Report> reportOwner = reportService.getAllReportModels(usernameOwner, false);
+				request.setAttribute("reports", reportOwner);
+				getServletContext().getRequestDispatcher("/reportHystory.jsp").forward(request, response);
 				break;
 
 			default:
@@ -71,6 +77,26 @@ public class ReportServlet extends HttpServlet {
 
 				getServletContext().getRequestDispatcher("/reportOwner.jsp").forward(request, response);
 				break;
+				
+			case "addReport":	
+				getServletContext().getRequestDispatcher("/addReportOwner.jsp").forward(request, response);
+				break;
+				
+			case "addedReport":
+				String description = request.getParameter("description").toString();
+				int type = 0; //owner type
+				String time = (String) request.getAttribute("time");
+				Report report = new Report(type, description, time, username);
+				reportService.insertReport(report);
+				getServletContext().getRequestDispatcher("/homeOwner.jsp").forward(request, response);
+				break;
+				
+			case "hystoryOwner":
+				List<Report> reportsOwner = reportService.getAllReportModels(username, false);
+				request.setAttribute("reports", reportsOwner);
+				getServletContext().getRequestDispatcher("/reportHystory.jsp").forward(request, response);
+				break;
+				
 			default:
 				getServletContext().getRequestDispatcher("/homeOwner.jsp").forward(request, response);
 				break;

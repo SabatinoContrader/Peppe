@@ -11,17 +11,11 @@ request.setAttribute("time", time);
 %>
 
 <form action="ReportServlet" method="post">
-<p>
-Tipo: <select name="type">
-<option value="1">Abuso spazio dedicato a persone con disabilità</option>
-<option value="2">Disservizio stradale</option>
-<option value="3">Problema riscontrato nell'usufruire del servizio</option>
-</select>
-</p>
-<textarea rows="6" cols="50" name="description" placeholder="Descrizione del problema riscontrato">
+
+<textarea rows="6" cols="50" name="description" placeholder="Descrizione della segnalazione">
 </textarea>
 <br>
-<button name="richiesta" value="addReport" >
+<button name="richiesta" value="addedReport" >
 Invia
 </button>
 
@@ -33,7 +27,7 @@ Indietro
 </form>
 
 <form action="ReportServlet" method="post">
-<button name="richiesta" value="hystoryDriver" >
+<button name="richiesta" value="hystoryOwner" >
 Accedi alla cronologia
 </button>
 <form>
