@@ -1,26 +1,29 @@
-<%@ page import="java.util.List"%>
-<%@ page import="com.virtualpairprogrammers.dto.ManagementCarPlaceDTO"%>
-
-
+<%@ page import="java.util.List" %>
+<%@ page import="com.virtualpairprogrammers.dto.ManagementCarPlaceDTO" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CARPLACES</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 
+<div class="container">
+  <h1>Lista posti auto</h1>
+   </br>         
+  <table class="table table-striped">
+    <thead>
+	
 	<%
 		List<ManagementCarPlaceDTO> carPlaces = (List<ManagementCarPlaceDTO>) request
 				.getAttribute("managementCarPlaceDTO");
 	%>
-
-	<p>
-	<table style="width: 75%">
 	
-	<h1>Lista posti auto</h1>
-
-		<tr>
-			<th>ID PARCHEGGIO</th>
+      <tr>
+        <th>ID PARCHEGGIO</th>
 			<th>ID SLOT</th>
 			<th>TIPO DISABILE</th>
 			<th>OCCUPATO</th>
@@ -28,38 +31,33 @@
 			<th>START</th>
 			<th>FINISH</th>
 			<th>PAGATO</th>
-		</tr>
-
-		<%
+      </tr>
+    </thead>
+    <tbody>
+      <%
 			for (ManagementCarPlaceDTO carPlace : carPlaces) {
 		%>
 		<tr>
 
-			<td align="center"><%=carPlace.getId_carplace()%></td>
-			<td align="center"><%=carPlace.getId_slot()%></td>
-			<td align="center"><%=carPlace.isType()%></td>
-			<td align="center"><%=carPlace.isBusy()%></td>
-			<td align="center"><%=carPlace.getLicense_plate()%></td>
-			<td align="center"><%=carPlace.getStart()%></td>
-			<td align="center"><%=carPlace.getFinish()%></td>
+			<td><%=carPlace.getId_carplace()%></td>
+			<td><%=carPlace.getId_slot()%></td>
+			<td><%=carPlace.isType()%></td>
+			<td><%=carPlace.isBusy()%></td>
+			<td><%=carPlace.getLicense_plate()%></td>
+			<td><%=carPlace.getStart()%></td>
+			<td><%=carPlace.getFinish()%></td>
+			<td><%= ""%></td>
 			<!-- manca pagato -->
 		</tr>
 		<%
 			}
 		%>
 	</table>
-	<br>
-	<br>
-	<form action="ManagementCarPlaceServlet?richiesta=home" method="post">
-		<input type=submit value="Indietro">
-	</form>
+	
+	
+	<a class="btn btn-lg btn-primary btn-block" href="ManagementCarPlaceServlet?richiesta=home" style="width: 100px; height: 45px;">Indietro</a></br>
 	</p>
-
-
-
-
-
-
+</div>
 
 </body>
 </html>

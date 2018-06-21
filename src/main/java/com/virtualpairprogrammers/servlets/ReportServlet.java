@@ -71,7 +71,7 @@ public class ReportServlet extends HttpServlet {
 			}
 		} else if (user.getType().equalsIgnoreCase("gestore")) {
 			switch (view) {
-			case "home":
+			case "reportUser":
 				List<Report> reports = reportService.getAllReportOwner();
 				request.setAttribute("reports", reports);
 

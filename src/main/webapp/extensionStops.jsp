@@ -2,41 +2,46 @@
 <%@ page import="com.virtualpairprogrammers.domain.Stop"%>
 
 <%@ page import="com.virtualpairprogrammers.dto.ManagementExtensionStopDTO"%>
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
 
-  <%
+<div class="container">
+  <h1>Prolunga la tua sosta</h1>
+     </br>     
+  <table class="table table-striped">
+    <thead>
+	
+	 <%
     List<ManagementExtensionStopDTO> managementExtensionStopDTO = (List<ManagementExtensionStopDTO>) request.getAttribute("stops");
   %>
-
-
-  <h2>Prolunga la tua sosta</h2>
-
-  </br>
-
-  <table style="width: 75%">
-
-    <tr>
-      <th>INDIRIZZO</th>
+	
+      <tr>
+        <th>INDIRIZZO</th>
       <th>AUTO</th>
       <th>INIZIO</th>
       <th>FINE</th>
       <th></th>
       <th></th>
-    </tr>
-
-    <%
+      </tr>
+    </thead>
+    <tbody>
+	<%
       for (ManagementExtensionStopDTO stop : managementExtensionStopDTO) {
     %>
     <tr>
-    <form action="ExtensionStopServlet" method="post">
-      <td align="center"><%=stop.getAddress()%></td>
-      <td align="center"><%=stop.getName()%></td>
-      <td align="center"><%=stop.getStart()%></td>
-      <td align="center"><%=stop.getFinish()%></td>
+         <form action="ExtensionStopServlet" method="post">
+      <td><%=stop.getAddress()%></td>
+      <td><%=stop.getName()%></td>
+      <td><%=stop.getStart()%></td>
+      <td><%=stop.getFinish()%></td>
       
       
       <td>
@@ -61,19 +66,21 @@
       <input type="text" name="finish"    value="<%= stop.getFinish()  %>" hidden></input>
       
       
-      <td align="center" ><button type="submit" style="width:100px; height:20px;">Prolunga</button></td> 
+      <td align="center" ><button type="submit" style="width:100px; height:30px;">Prolunga</button></td> 
+      
+      <td>
     </form>
     </tr>
     <%
       }
     %>
-  </table>
-
-  </br>
-
-  <form action="HomeServlet" method="post">
-    <input type=submit value="Indietro">
+	</table>
+	
+    
+    <a class="btn btn-lg btn-primary btn-block" href="HomeServlet" style="width: 100px; height: 45px;">Indietro</a></br>
   </form>
+	</p>
+</div>
 
 </body>
 </html>

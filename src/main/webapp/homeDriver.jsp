@@ -23,6 +23,7 @@
              <a class="btn btn-lg btn-primary btn-block" href="CarServlet?richiesta=home">Aggiungi/Rimuovi auto</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=home">Invia segnalazione</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=ownerReport">Segnalazioni del gestore</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="UsefulNumbersServlet">Numeri utili</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="LoginServlet?richiesta=logout">Logout</a></br>
                                    
            </form>

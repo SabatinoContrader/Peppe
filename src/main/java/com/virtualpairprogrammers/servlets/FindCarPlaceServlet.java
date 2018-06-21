@@ -12,7 +12,7 @@ import com.virtualpairprogrammers.domain.Car;
 import com.virtualpairprogrammers.domain.User;
 import com.virtualpairprogrammers.services.CarService;
 import com.virtualpairprogrammers.services.UserService;
-import com.virtualpairprogrammers.utils.Reference;
+import com.virtualpairprogrammers.genericclass.Reference;
 
 public class FindCarPlaceServlet extends HttpServlet{
 

@@ -19,7 +19,7 @@
              <h1 class="h3 mb-3 font-weight-normal"><b>OWNER</b></h1>
              <a class="btn btn-lg btn-primary btn-block" href="ManagementCarPlaceServlet?richiesta=home">Gestione parcheggi</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=addReport">Invia segnalazione</a></br>
-             <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=home">Segnalazioni degli utenti</a></br>
+             <a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=reportUser">Segnalazioni degli utenti</a></br>
              <a class="btn btn-lg btn-primary btn-block" href="LoginServlet?richiesta=logout">Logout</a></br>
              
                                    

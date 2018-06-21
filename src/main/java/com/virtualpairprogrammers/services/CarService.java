@@ -4,7 +4,7 @@ package com.virtualpairprogrammers.services;
 import java.util.List;
 import com.virtualpairprogrammers.dao.CarDAO;
 import com.virtualpairprogrammers.domain.Car;
-import com.virtualpairprogrammers.utils.Reference;
+import com.virtualpairprogrammers.genericclass.Reference;
 
 public class CarService
 {
