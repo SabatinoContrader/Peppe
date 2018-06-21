@@ -35,6 +35,19 @@ Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
 request.setAttribute("cars", cars);
 
+if(request.getParameter("latitude") != null)
+{
+String latitude = request.getParameter("latitude");
+String longitude = request.getParameter("longitude");
+
+//get all near places from server
+
+String zoom = request.getParameter("zoom");
+request.setAttribute("latitude",latitude);
+request.setAttribute("longitude",longitude);
+request.setAttribute("zoom",zoom);
+
+}
 
 getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
 }

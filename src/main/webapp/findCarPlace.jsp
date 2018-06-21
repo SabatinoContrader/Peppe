@@ -5,8 +5,22 @@
 <html>
 <body>
 
+	<%! String latitude = "41.9"; %>
+	<%! String longitude =  "12.48"; %>
+	<%! String zoom =  "10"; %>
 	<%
+	if(request.getAttribute("latitude") != null)
+	{		
+		latitude = (String) request.getAttribute("latitude");
+		longitude = (String) request.getAttribute("longitude");
+		zoom = (String) request.getAttribute("zoom");
+		
+		System.out.println("latitude: " + latitude);
+		System.out.println("longitude: " + longitude);
+		System.out.println("zoom: " + zoom);
+	}
 		List<Car> cars = (List<Car>) request.getAttribute("cars");
+	
 	%>
 
 	<h1>Cerca Parcheggio</h1>
@@ -28,7 +42,6 @@
 		</select>
 
 		
-
 	</form>
 	</br>
 	
@@ -41,8 +54,8 @@
 	<script>
 		function myMap() {
 			var mapOptions = {
-				center : new google.maps.LatLng(41.9, 12.48),
-				zoom : 10,
+				center : new google.maps.LatLng(<%=latitude%>, <%=longitude%>),
+				zoom : <%=zoom%>,
 				mapTypeId : google.maps.MapTypeId.HYBRID
 			}
 
@@ -51,10 +64,15 @@
 
 			var geocoder = new google.maps.Geocoder();
 
-// 			google.maps.event.addListener(map, "click", function(event) {
+ 			google.maps.event.addListener(map, "dragend", function(event) { 				
+ 				document.getElementById('latitude').value = map.getCenter().lat();
+ 				document.getElementById('longitude').value = map.getCenter().lng();
+ 				document.getElementById('zoom').value = map.getZoom();
+ 				document.getElementById("inviaCoordinate").submit();
+ 				
 // 				alert("latitude: " + event.latLng.lat() + " longitude: "
-// 						+ event.latLng.lng())
-// 			});
+// 						+ event.latLng.lng())latLng.lat();
+			});
 
 			var input = document.getElementById('autocomplete');
 			var autocomplete = new google.maps.places.Autocomplete(input);
@@ -91,6 +109,12 @@
 
 	<script
 		src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyDTNgLH1U5z1iVMk8tTV8W8Xo3UFaocHqo&callback=myMap"></script>
+
+	<form id="inviaCoordinate" action="FindCarPlaceServlet" method="post">
+		<input id="latitude" type="text" name="latitude" value="null" hidden>
+		<input id="longitude" type="text" name="longitude" value="null" hidden>
+		<input id="zoom" type="text" name="zoom" value="null" hidden>
+	</form>
 
 </body>
 </html>
