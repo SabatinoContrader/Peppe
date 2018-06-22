@@ -20,4 +20,8 @@ public class SlotService {
     public Slot getSlot(int id_slot) {
         return this.slotDAO.getSlot(id_slot);
     }
+    
+    public List<Slot> getNearSlot(double lat, double lng) {
+        return this.slotDAO.getNearSlot(lat, lng);
+    }
 }

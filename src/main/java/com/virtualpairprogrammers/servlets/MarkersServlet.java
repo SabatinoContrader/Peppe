@@ -13,12 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.virtualpairprogrammers.domain.Slot;
+import com.virtualpairprogrammers.services.SlotService;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MarkersServlet extends HttpServlet {
+	
+	SlotService slotService;
+	
+	public MarkersServlet() {
+		this.slotService = new SlotService();
+	}
 
 	//final static Logger logger = Logger.getLogger(MarkersServlet.class);
 
@@ -29,13 +36,8 @@ public class MarkersServlet extends HttpServlet {
 		Double lng = Double.parseDouble(request.getParameter("lng"));
 
 		// calcolo slot vicini e li aggiungo a Map chiamata al service
-		List<Slot> slots = new ArrayList<>();
-		
-		//esempi di debug
-		slots.add(new Slot(41.979954, 12.364329, "", 1.0F, "",""));
-		slots.add(new Slot(41.974948, 12.529221, "", 1.0F, "",""));
-		slots.add(new Slot(41.894162, 12.401421, "", 1.0F, "",""));
-		
+		List<Slot> slots = slotService.getNearSlot(lat, lng);
+        
 		JSONArray objArray= new JSONArray();
 		
 		// Trasformo la lista in Json

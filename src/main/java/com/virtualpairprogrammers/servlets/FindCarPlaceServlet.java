@@ -17,10 +17,10 @@ import com.virtualpairprogrammers.services.CarService;
 import com.virtualpairprogrammers.services.UserService;
 import com.virtualpairprogrammers.genericclass.Reference;
 
-public class FindCarPlaceServlet extends HttpServlet{
+public class FindCarPlaceServlet extends HttpServlet {
 
-private UserService userService;
-private CarService carService;
+	private UserService userService;
+	private CarService carService;
 
 	public FindCarPlaceServlet() {
 		userService = new UserService();
@@ -28,7 +28,7 @@ private CarService carService;
 	}
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		User user = userService.getLoggedUser();
 		String username = user.getUsername();
 
@@ -36,18 +36,6 @@ private CarService carService;
 		Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
 		request.setAttribute("cars", cars);
-
-		if (request.getParameter("latitude") != null) {
-			String latitude = request.getParameter("latitude");
-			String longitude = request.getParameter("longitude");
-
-			// get all near places from server
-
-			String zoom = request.getParameter("zoom");
-			request.setAttribute("latitude", latitude);
-			request.setAttribute("longitude", longitude);
-			request.setAttribute("zoom", zoom);
-		}
 
 		getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
 	}
