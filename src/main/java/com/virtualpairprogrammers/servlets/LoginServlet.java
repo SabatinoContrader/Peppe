@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher("/homeCop.jsp").forward(request, response);
 			} else {
 				isLogged = false;
-				request.setAttribute("error", "Username o password sbagliati");
+				request.setAttribute("feedback", "Username o password sbagliati");
 				getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 

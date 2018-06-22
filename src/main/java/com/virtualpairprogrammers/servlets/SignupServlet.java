@@ -41,11 +41,12 @@ public class SignupServlet extends HttpServlet {
 			User newUser = new User(username, password, type, name, surname, birthdate, birthplace, address, handicapped);
 
             if (userService.insertUser(newUser)) {
-            	session.removeAttribute("error");
+            	session.removeAttribute("feedback");
+            	request.setAttribute("feedback", "Registrazione effettuata con successo");
             	getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			
 		}else {
-			request.setAttribute("error", "Registrazione non effettuata");
+			request.setAttribute("feedback", "Registrazione non effettuata");
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 

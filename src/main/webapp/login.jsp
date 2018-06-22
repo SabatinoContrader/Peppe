@@ -7,7 +7,7 @@
 <meta name="author" content="">
 
 <%
-        String error = (String)request.getAttribute("error");
+        String feedback = (String)request.getAttribute("feedback");
     %>
 
 
@@ -33,8 +33,8 @@
 			type="text" name="richiesta" value="login" hidden>
 		</p>
 		<p>
-			<% if(error != null) 
-    	  			out.println(error); %>
+			<% if(feedback != null) 
+    	  			out.println(feedback); %>
 		</p>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 			in</button>
