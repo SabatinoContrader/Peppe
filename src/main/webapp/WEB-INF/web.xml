@@ -63,6 +63,11 @@
 		<servlet-name>UsefulNumbersServlet</servlet-name>
 		<servlet-class>com.virtualpairprogrammers.servlets.UsefulNumbersServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>MarkersServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.MarkersServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -118,6 +123,11 @@
 	<servlet-mapping>
 		<servlet-name>UsefulNumbersServlet</servlet-name>
 		<url-pattern>/UsefulNumbersServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>MarkersServlet</servlet-name>
+		<url-pattern>/MarkersServlet</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

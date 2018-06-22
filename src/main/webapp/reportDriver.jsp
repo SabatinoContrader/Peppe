@@ -16,6 +16,7 @@
 		request.setAttribute("time", time);
 	%>
 
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 mb-3">
 			<h1 class="element-margin-left">Invia segnalazione</h1>
@@ -51,6 +52,7 @@
 
 
 		</div>
+	</div>
 	</div>
 </body>
 </html>

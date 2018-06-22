@@ -1,7 +1,10 @@
 package com.virtualpairprogrammers.servlets;
 
+import java.beans.XMLEncoder;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,37 +22,34 @@ public class FindCarPlaceServlet extends HttpServlet{
 private UserService userService;
 private CarService carService;
 
-public FindCarPlaceServlet() {
-userService = new UserService();
-carService = new CarService();
-}
+	public FindCarPlaceServlet() {
+		userService = new UserService();
+		carService = new CarService();
+	}
 
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		User user = userService.getLoggedUser();
+		String username = user.getUsername();
 
-public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-{
-User user = userService.getLoggedUser();
-String username = user.getUsername();
+		List<Car> cars = carService.getAllCarModel(username, true);
+		Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
-List<Car> cars = carService.getAllCarModel(username, true);
-Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
+		request.setAttribute("cars", cars);
 
-request.setAttribute("cars", cars);
+		if (request.getParameter("latitude") != null) {
+			String latitude = request.getParameter("latitude");
+			String longitude = request.getParameter("longitude");
 
-if(request.getParameter("latitude") != null)
-{
-String latitude = request.getParameter("latitude");
-String longitude = request.getParameter("longitude");
+			// get all near places from server
 
-//get all near places from server
+			String zoom = request.getParameter("zoom");
+			request.setAttribute("latitude", latitude);
+			request.setAttribute("longitude", longitude);
+			request.setAttribute("zoom", zoom);
+		}
 
-String zoom = request.getParameter("zoom");
-request.setAttribute("latitude",latitude);
-request.setAttribute("longitude",longitude);
-request.setAttribute("zoom",zoom);
-
-}
-
-getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
-}
+		getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
+	}
 
 }
