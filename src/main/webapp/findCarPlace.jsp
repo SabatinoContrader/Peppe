@@ -74,6 +74,8 @@
 				loadCarSlots(map.getCenter().lat(), map.getCenter().lng());
 			});
 
+			
+			
 			google.maps.event.addListener(map, "zoom_changed", function(event) {
 				deleteMarkersZoom(map);
 			});
@@ -178,7 +180,8 @@
 
 			// Deletes all markers in the array by removing references to them.
 			function deleteMarkersZoom(map) {
-				if (map.getZoom() < 10) {
+				if (map.getZoom() < 15) {
+
 					console.log("zoom: " + map.getZoom());
 					clearMarkers();
 				} else {
