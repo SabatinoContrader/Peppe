@@ -1,6 +1,7 @@
 <%@ page import="java.sql.Timestamp;"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="pcarpet.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -17,8 +18,9 @@
 
 	<div class="row">
 		<div class="col-md-6 mb-3">
-			<h1 style="margin-left: 20px;">Invia segnalazione</h1>
-			<form action="ReportServlet" method="post" style="margin-left: 20px;" >
+			<h1 class="element-margin-left">Invia segnalazione</h1>
+			<form action="ReportServlet" method="post"
+				class="element-margin-left">
 				<select name="type" class="form-control form-control-lg"
 					id="validationCustom03" onchange="ChangecatList()" required>
 					<option value="1">Abuso spazio dedicato a persone con
@@ -32,19 +34,20 @@
 					placeholder="Descrizione del problema riscontrato">
 </textarea>
 				</br>
-				<button class="btn btn-lg btn-primary btn-block" name="richiesta" value="addReport" style="width: 250px;">
-					Invia</button>
+				<button class="btn btn-lg btn-primary btn-block submit-button"
+					name="richiesta" value="addReport">Invia</button>
 			</form>
 
-			<a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=hystoryDriver" style="width: 250px; height: 45px; margin-left: 20px; line-height: 22.5px;">Accedi alla
-					cronologia</a></br>
-			
-			
-			</br> </br>
+			<a
+				class="btn btn-lg btn-primary btn-block submit-button element-margin-left center-button"
+				href="ReportServlet?richiesta=hystoryDriver">Accedi alla
+				cronologia</a></br> </br> </br>
 			</form>
-			
-			
-			<a class="btn btn-lg btn-primary btn-block" href="ReportServlet?richiesta=indietro" style="width: 150px; height: 45px; margin-left: 20px;">Indietro</a></br>
+
+
+			<a
+				class="btn btn-lg btn-primary btn-block back-button element-margin-left"
+				href="ReportServlet?richiesta=indietro">Indietro</a></br>
 
 
 		</div>

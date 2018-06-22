@@ -3,6 +3,9 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="pcarpet.css">
+</head>
 <body>
 
 	<%! String latitude = "41.9"; %>
@@ -27,7 +30,7 @@
 
 
 	<form action="FindCarPlaceServlet" method="post">
-		<input id="autocomplete" style="width: 340px" type="text"
+		<input id="autocomplete" class="autocomplete-textview" type="text"
 			placeholder="Inserisci destinazione">
 		</text>
 
@@ -41,14 +44,14 @@
 			%>
 		</select>
 
-		
+
 	</form>
 	</br>
-	
+
 	<button id="startsearch" style="width: 55px" type="submit">Cerca</button>
 	</br>
 	</br>
-	<div id="map" style="width: 600px; height: 600px; background: yellow"></div>
+	<div id="map" class="map-place"></div>
 
 
 	<script>

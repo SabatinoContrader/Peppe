@@ -40,18 +40,18 @@
 	  
 	  
       <div align="right" style="position:relative">
-      <label for="handicapped" style="font-size: 20px; position:absolute; left:0">Disabile</label>
+      <label for="handicapped" class="signup-label-position signup-label">Disabile</label>
       <input type="radio" id="handicappedChoice1"
      name="handicapped" value="true">
     <label for="handicappedChoice1" style="font-size: 20px;">Si</label>
 
     <input type="radio" id="handicappedChoice2"
      name="handicapped" value="false">
-    <label for="handicappedChoice2" style="font-size: 20px">No</label></br>
+    <label for="handicappedChoice2" class="signup-label">No</label></br>
 	  </div>
 	  
        </br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 170px">Sign up</button></br>
+      <button class="btn btn-lg btn-primary btn-block submit-button" type="submit">Sign up</button></br>
       </div>
       </form>
   </body>
