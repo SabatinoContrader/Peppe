@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 public class MarkersServlet extends HttpServlet {
 	
 	SlotService slotService;
@@ -27,7 +28,7 @@ public class MarkersServlet extends HttpServlet {
 		this.slotService = new SlotService();
 	}
 
-	//final static Logger logger = Logger.getLogger(MarkersServlet.class);
+	final static Logger logger = Logger.getLogger(MarkersServlet.class);
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

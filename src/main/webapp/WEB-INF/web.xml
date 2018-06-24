@@ -68,6 +68,11 @@
 		<servlet-name>MarkersServlet</servlet-name>
 		<servlet-class>com.virtualpairprogrammers.servlets.MarkersServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>LegislationServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.LegislationServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -129,6 +134,12 @@
 		<servlet-name>MarkersServlet</servlet-name>
 		<url-pattern>/MarkersServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>LegislationServlet</servlet-name>
+		<url-pattern>/LegislationServlet</url-pattern>
+	</servlet-mapping>
+	
 
 	<session-config>
 		<session-timeout>4000</session-timeout>

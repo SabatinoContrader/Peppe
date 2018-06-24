@@ -74,8 +74,6 @@
 				loadCarSlots(map.getCenter().lat(), map.getCenter().lng());
 			});
 
-			
-			
 			google.maps.event.addListener(map, "zoom_changed", function(event) {
 				deleteMarkersZoom(map);
 			});
@@ -108,6 +106,17 @@
 			document.getElementById('startsearch').addEventListener('click',
 					function() {
 						geocodeAddress(geocoder, map);
+					});
+
+			document.getElementById("autocomplete").addEventListener('keydown',
+					function(event) {
+						
+						//keycode 13 = Enter
+						if (event.keyCode === 13) {
+							event.preventDefault();
+							geocodeAddress(geocoder, map);
+							//document.getElementById("id_of_button").click();
+						}
 					});
 
 			//la chiamata viene indirizzata direttamente a doPost o doGet se c'è su service

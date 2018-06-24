@@ -34,6 +34,8 @@
 			gestore</a></br> <a class="btn btn-lg btn-primary btn-block"
 			href="UsefulNumbersServlet">Numeri utili</a></br> <a
 			class="btn btn-lg btn-primary btn-block"
+			href="LegislationServlet">Normative</a></br> <a
+			class="btn btn-lg btn-primary btn-block"
 			href="LoginServlet?richiesta=logout">Logout</a></br>
 
 	</form>
