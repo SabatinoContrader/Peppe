@@ -47,6 +47,8 @@ public class MarkersServlet extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		obj.put("lat", slot.getLatitude());
 		obj.put("lng", slot.getLongitude());		
+		obj.put("address", slot.getAddress());
+		obj.put("type", slot.getType());
 		objArray.put(obj);
 		}
 
