@@ -41,11 +41,11 @@
 </div>
 	</br>
 	</br>
-	<div id="map" class="map-place"></div>
+	<div id="map" class="map-place element-margin-left"></div>
 	</br>
 	<form style="display: inline-block;" action="FindCarPlaceServlet"
 			method="post">
-			<button class="btn btn-lg btn-primary btn-block back-button" type="submit" name="richiesta"
+			<button class="btn btn-lg btn-primary btn-block back-button element-margin-left" type="submit" name="richiesta"
 				value="Indietro">Indietro</button>
 		</form>
 
@@ -143,7 +143,7 @@
 							var latLng = new google.maps.LatLng(obj.lat,
 									obj.lng);
 							
-							title [i] = obj.address + "<br> Tipo: " + obj.type;
+							title [i] = "<h3>"+obj.address+"</h3>" + "<br> Tipo: " + obj.type;
 							
 							// Creating a marker and putting it on the map
 							var marker = new google.maps.Marker({
