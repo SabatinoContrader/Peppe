@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.virtualpairprogrammers.domain.Carplace;
 import com.virtualpairprogrammers.domain.Slot;
+import com.virtualpairprogrammers.services.CarPlaceService;
 import com.virtualpairprogrammers.services.SlotService;
 
 import org.apache.log4j.Logger;
@@ -23,9 +25,11 @@ import org.json.JSONObject;
 public class MarkersServlet extends HttpServlet {
 	
 	SlotService slotService;
+	CarPlaceService carplaceService;
 	
 	public MarkersServlet() {
 		this.slotService = new SlotService();
+		this.carplaceService = new CarPlaceService();
 	}
 
 	final static Logger logger = Logger.getLogger(MarkersServlet.class);
@@ -38,17 +42,21 @@ public class MarkersServlet extends HttpServlet {
 
 		// calcolo slot vicini e li aggiungo a Map chiamata al service
 		List<Slot> slots = slotService.getNearSlot(lat, lng);
-        
+		List<Carplace> carplaces;
 		JSONArray objArray= new JSONArray();
 		
 		// Trasformo la lista in Json
 		for(Slot slot : slots)
 		{
 		JSONObject obj = new JSONObject();
+		obj.put("id", slot.getId_slot());
 		obj.put("lat", slot.getLatitude());
 		obj.put("lng", slot.getLongitude());		
 		obj.put("address", slot.getAddress());
 		obj.put("type", slot.getType());
+		
+		carplaces = carplaceService.getAllCarPlace(slot.getId_slot());
+		obj.put("carplaceList", carplaces);
 		objArray.put(obj);
 		}
 

@@ -133,7 +133,6 @@
 						//rimuovo i markers precedenti
 						deleteMarkers();
 						var objArray = JSON.parse(http.responseText);
-						
 						var infoWindow = new google.maps.InfoWindow(), marker, i;
 						var title = [];
 						
@@ -143,7 +142,9 @@
 							var latLng = new google.maps.LatLng(obj.lat,
 									obj.lng);
 							
-							title [i] = "<h3>"+obj.address+"</h3>" + "<br> Tipo: " + obj.type;
+							var freeCarPlaces = getFreeCarPlaces(obj.carplaceList);
+							
+							title [i] = "<h3>"+obj.address+"</h3>" + "<br> Tipo: " + obj.type + "<br> Numero posti: " + obj.carplaceList.length + "<br> Disponibli: " + freeCarPlaces;
 							
 							// Creating a marker and putting it on the map
 							var marker = new google.maps.Marker({
@@ -172,6 +173,16 @@
 					}
 				}
 			}
+			
+			function getFreeCarPlaces(carplaces){
+				var count=0;
+				for (var i = 0; i < carplaces.length; i++) {
+					if(!carplaces.busy)
+						count++;
+				}
+				return count;
+			}
+			
 			// Sets the map on all markers in the array.
 			function setMapOnAll(map) {
 				for (var i = 0; i < markers.length; i++) {
