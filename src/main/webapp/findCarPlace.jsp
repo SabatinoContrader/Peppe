@@ -17,37 +17,37 @@
 	<h1 class="element-margin-left">Cerca Parcheggio</h1>
 
 	<div class="col-md-6 mb-3">
-	<input id="autocomplete" class="form-control form-control-lg" type="text"
-		placeholder="Inserisci destinazione">
-	</text>
-	</br>
-	<select class="form-control form-control-lg">
-	<option value="" hidden>Seleziona auto</option>
-		<%
-			for (Car car : cars) {
-		%>
-		<option value="" class=""><%=car.getName()%></option>
-		<%
-			}
-		%>
-	</select>
+		<input id="autocomplete" class="form-control form-control-lg"
+			type="text" placeholder="Inserisci destinazione">
+		</text>
+		</br> <select class="form-control form-control-lg">
+			<option value="" hidden>Seleziona auto</option>
+			<%
+				for (Car car : cars) {
+			%>
+			<option value="" class=""><%=car.getName()%></option>
+			<%
+				}
+			%>
+		</select> </br>
 
-	</br>
+		<div style="float: left;">
+			<button id="startsearch"
+				class="btn btn-lg btn-primary btn-block back-button">Cerca</button>
 
-	<div style="float: left;">
-		<button id="startsearch" class="btn btn-lg btn-primary btn-block back-button">Cerca</button>
-		
-	</div>
-</div>
-	</br>
-	</br>
-	<div id="map" class="map-place element-margin-left"></div>
-	</br>
-	<form style="display: inline-block;" action="FindCarPlaceServlet"
+		</div>
+		</br> </br>
+		<div id="map" class="map-place"></div>
+		</br>
+		<form style="display: inline-block;" action="FindCarPlaceServlet"
 			method="post">
-			<button class="btn btn-lg btn-primary btn-block back-button element-margin-left" type="submit" name="richiesta"
-				value="Indietro">Indietro</button>
+			<button class="btn btn-lg btn-primary btn-block back-button"
+				type="submit" name="richiesta" value="Indietro">Indietro</button>
 		</form>
+	</div>
+
+
+
 
 
 	<script>
@@ -135,17 +135,21 @@
 						var objArray = JSON.parse(http.responseText);
 						var infoWindow = new google.maps.InfoWindow(), marker, i;
 						var title = [];
-						
+
 						for (var i = 0; i < objArray.length; i++) {
 							var obj = objArray[i];
 							//console.log("AAAAAAAAAAAAAAAA" + obj.lat + ", " + obj.lng);
 							var latLng = new google.maps.LatLng(obj.lat,
 									obj.lng);
-							
+
 							var freeCarPlaces = getFreeCarPlaces(obj.carplaceList);
-							
-							title [i] = "<h3>"+obj.address+"</h3>" + "<br> Tipo: " + obj.type + "<br> Numero posti: " + obj.carplaceList.length + "<br> Disponibli: " + freeCarPlaces;
-							
+
+							title[i] = "<h3>" + obj.address + "</h3>"
+									+ "<br> Tipo: " + obj.type
+									+ "<br> Numero posti: "
+									+ obj.carplaceList.length
+									+ "<br> Disponibli: " + freeCarPlaces;
+
 							// Creating a marker and putting it on the map
 							var marker = new google.maps.Marker({
 								position : latLng,
@@ -154,35 +158,32 @@
 								icon : icons["parking"].icon
 							//scaledsize: new google.maps.Size(64,64);
 							});
-							
-							
-							google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					            return function() {
-					                infoWindow.setContent(title [i]);
-					                infoWindow.open(map, marker);
-					            }
-					        })(marker, i));
+
+							google.maps.event.addListener(marker, 'click',
+									(function(marker, i) {
+										return function() {
+											infoWindow.setContent(title[i]);
+											infoWindow.open(map, marker);
+										}
+									})(marker, i));
 							markers.push(marker);
-							
-							
-							
-							
+
 						}
 						//var parser = new DOMParser();
 						//var xmlDoc = parser.parseFromString(response,"text/xml");
 					}
 				}
 			}
-			
-			function getFreeCarPlaces(carplaces){
-				var count=0;
+
+			function getFreeCarPlaces(carplaces) {
+				var count = 0;
 				for (var i = 0; i < carplaces.length; i++) {
-					if(!carplaces[i].busy)
+					if (!carplaces[i].busy)
 						count++;
 				}
 				return count;
 			}
-			
+
 			// Sets the map on all markers in the array.
 			function setMapOnAll(map) {
 				for (var i = 0; i < markers.length; i++) {
