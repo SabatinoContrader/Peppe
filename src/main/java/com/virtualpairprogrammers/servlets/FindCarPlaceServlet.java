@@ -29,15 +29,21 @@ public class FindCarPlaceServlet extends HttpServlet {
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		User user = userService.getLoggedUser();
-		String username = user.getUsername();
+	    String richiesta = request.getParameter("richiesta");
+	    
+		if (richiesta.equalsIgnoreCase("home")) {
+			User user = userService.getLoggedUser();
+			String username = user.getUsername();
 
-		List<Car> cars = carService.getAllCarModel(username, true);
-		Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
+			List<Car> cars = carService.getAllCarModel(username, true);
+			Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
-		request.setAttribute("cars", cars);
+			request.setAttribute("cars", cars);
 
-		getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/findCarPlace.jsp").forward(request, response);
+		} else if (richiesta.equalsIgnoreCase("Indietro")) {
+			getServletContext().getRequestDispatcher("/homeDriver.jsp").forward(request, response);
+		}
 	}
 
 }

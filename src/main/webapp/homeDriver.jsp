@@ -20,7 +20,7 @@
 		<h1 class="h3 mb-3 font-weight-normal">
 			<b>DRIVER</b>
 		</h1>
-		<a class="btn btn-lg btn-primary btn-block" href="FindCarPlaceServlet">Trova
+		<a class="btn btn-lg btn-primary btn-block" href="FindCarPlaceServlet?richiesta=home">Trova
 			parcheggio</a></br> <a class="btn btn-lg btn-primary btn-block"
 			href="BookServlet">Prenota parcheggio privato</a></br> <a
 			class="btn btn-lg btn-primary btn-block"

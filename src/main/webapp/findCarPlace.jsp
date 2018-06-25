@@ -15,26 +15,31 @@
 	<h1>Cerca Parcheggio</h1>
 
 
-	<form action="FindCarPlaceServlet" method="post">
-		<input id="autocomplete" class="autocomplete-textview" type="text"
-			placeholder="Inserisci destinazione">
-		</text>
+	<input id="autocomplete" class="autocomplete-textview" type="text"
+		placeholder="Inserisci destinazione">
+	</text>
 
-		<select>
-			<%
-				for (Car car : cars) {
-			%>
-			<option value=""><%=car.getName()%></option>
-			<%
-				}
-			%>
-		</select>
+	<select>
+		<%
+			for (Car car : cars) {
+		%>
+		<option value=""><%=car.getName()%></option>
+		<%
+			}
+		%>
+	</select>
 
-
-	</form>
 	</br>
 
-	<button id="startsearch" style="width: 55px" type="submit">Cerca</button>
+	<div style="float: left;">
+		<button id="startsearch" style="width: 55px">Cerca</button>
+		<form style="display: inline-block;" action="FindCarPlaceServlet"
+			method="post">
+			<button style="width: 60px;" type="submit" name="richiesta"
+				value="Indietro">Indietro</button>
+		</form>
+	</div>
+
 	</br>
 	</br>
 	<div id="map" class="map-place"></div>
@@ -110,7 +115,7 @@
 
 			document.getElementById("autocomplete").addEventListener('keydown',
 					function(event) {
-						
+
 						//keycode 13 = Enter
 						if (event.keyCode === 13) {
 							event.preventDefault();
