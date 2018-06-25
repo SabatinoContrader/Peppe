@@ -177,7 +177,7 @@
 			function getFreeCarPlaces(carplaces){
 				var count=0;
 				for (var i = 0; i < carplaces.length; i++) {
-					if(!carplaces.busy)
+					if(!carplaces[i].busy)
 						count++;
 				}
 				return count;
