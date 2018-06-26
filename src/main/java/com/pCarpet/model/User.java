@@ -40,6 +40,6 @@ public class User {
     private String address;
 	
 	@Column
-    private boolean handicapped;
+    private Boolean handicapped;
 
 }

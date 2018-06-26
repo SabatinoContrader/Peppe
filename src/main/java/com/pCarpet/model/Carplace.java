@@ -29,10 +29,10 @@ public class Carplace {
     private double longitude;
 	
 	@Column
-    private boolean type;
+    private Boolean type;
 	
 	@Column
-    private boolean busy;
+    private Boolean busy;
 	
 	@ManyToOne
 	@JoinColumn(name="id_slot")
