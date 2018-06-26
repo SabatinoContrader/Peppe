@@ -24,18 +24,18 @@
 			<b>DRIVER</b>
 		</h1>
 		<a class="btn btn-lg btn-primary btn-block"
-			href="FindCarPlaceServlet?richiesta=home">Trova parcheggio</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="ExtensionStopServlet?richiesta=home">Prolunga sosta</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="CarServlet?richiesta=home">Aggiungi/Rimuovi auto</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="ReportServlet?richiesta=home">Invia segnalazione</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="ReportServlet?richiesta=ownerReport">Segnalazioni del
-			gestore</a></br> <a class="btn btn-lg btn-primary btn-block"
-			href="UsefulNumbersServlet">Numeri utili</a></br> <a
-			class="btn btn-lg btn-primary btn-block" href="LegislationServlet">Normative</a></br>
+			href="FindCarPlaceServlet?richiesta=home">Trova parcheggio</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="ExtensionStopServlet?richiesta=home">Prolunga sosta</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/Car/carsList">Aggiungi/Rimuovi auto</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="ReportServlet?richiesta=home">Invia segnalazione</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="ReportServlet?richiesta=ownerReport">Segnalazioni del gestore</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="UsefulNumbersServlet">Numeri utili</a></br> 
+		<a class="btn btn-lg btn-primary btn-block" href="/Legislation/legislations">Normative</a></br>
 		<a class="btn btn-lg btn-primary btn-block"
 			href="LoginServlet?richiesta=logout">Logout</a></br>
 

@@ -1,0 +1,45 @@
+.back-button{
+	width: 170px !important;
+}
+
+.element-margin-left{
+	margin-left: 20px !important;
+}
+
+.center-button{
+	line-height: 22.5px;
+}
+
+.submit-button{
+	width: 250px !important;
+    height: 45px;
+}
+
+.table-medium{
+	width: 50%;
+}
+
+.table-button{
+	width:100px; 
+    height:30px;
+}
+
+.map-place{
+	width: 496.5px; 
+    height: 600px; 
+    background: yellow
+}
+
+.autocomplete-textview{
+	width: 496.5px;
+}
+
+.signup-label{
+	font-size: 20px;
+}
+
+.signup-label-position{
+	position:absolute; 
+    left:0
+}
+
