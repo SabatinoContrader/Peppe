@@ -119,7 +119,7 @@ public class ReportController {
 	@RequestMapping(value = "/back", method = RequestMethod.GET) 
 	public String back(HttpServletRequest request, Model model ) {
 		User user = userService.getLoggedUser();
-		if(user.getType().equalsIgnoreCase("driver")) {return "reportDriver";}
+		if(user.getType().equalsIgnoreCase("driver")) {return "homeDriver";}
 		else { return "addReportOwner";}
 		
 	}		

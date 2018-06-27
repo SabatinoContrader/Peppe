@@ -11,8 +11,8 @@
 <meta name="author" content="">
 
 <%
-        String feedback = (String)request.getAttribute("feedback");
-    %>
+	String feedback = (String) request.getAttribute("feedback");
+%>
 
 
 <title>PCARPET</title>
@@ -37,16 +37,20 @@
 			class="form-control" placeholder="Password" required> <input
 			type="text" name="richiesta" value="login" hidden>
 		</p>
-		<p>
+		
+		<c:choose>
+			<c:when test="${feedback == 'success'}">
+				<p>Registrazione effettuata con successo</p>
+			</c:when>
 
-			<% if(feedback != null) 
+			<c:when test="${feedback == 'failed'}">
+				<p>Registrazione non effettuata</p>
+			</c:when>
+		</c:choose>
 
-    	  			out.println(feedback); %>
-		</p>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 			in</button>
-		</br> <a href="SignupServlet?richiesta=register">Prima volta su
-			PCARPET? Iscriviti </a>
+		</br> <a href="/Signup/register">Prima volta su PCARPET? Iscriviti </a>
 	</form>
 </body>
 </html>

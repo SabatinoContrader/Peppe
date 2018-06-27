@@ -8,39 +8,47 @@ import com.pCarpet.model.User;
 
 @Service
 public class UserService {
-	
+
 	private UserRepository userRepository;
 	private static User loggedUser;
 
-	@Autowired 
+	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-	
+
 	public Boolean login(String username, String password) {
 		User user = userRepository.findByUsernameAndPassword(username, password);
 		if (user == null) {
 			return false;
 		} else {
-			if (user.getPassword().equals(password))
-			{
+			if (user.getPassword().equals(password)) {
 				loggedUser = user;
 				return true;
-			}
-			else
-			{
+			} else {
 				return false;
 			}
 		}
 	}
-	
-	public User getLoggedUser()
-	{
+
+	public boolean insertUser(User user) {
+		if (existsByUsername(user.getUsername())) {
+			return false;
+		} else {
+			this.userRepository.save(user);
+			return true;
+		}
+	}
+
+	public boolean existsByUsername(String username) {
+		return this.userRepository.existsByUsername(username);
+	}
+
+	public User getLoggedUser() {
 		return loggedUser;
 	}
-	
-	public void destroyUser()
-	{
+
+	public void destroyUser() {
 		loggedUser = null;
 	}
 }
