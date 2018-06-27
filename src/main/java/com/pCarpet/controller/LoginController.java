@@ -48,8 +48,8 @@ public class LoginController {
 		else 
 		{
 			isLogged = false;
-			model.addAttribute("feedback", "Username o password sbagliati");
-			return "login";
+			model.addAttribute("feedback", "wrong");
+			return "index";
 		}
 	}
 	

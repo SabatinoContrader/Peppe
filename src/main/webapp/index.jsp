@@ -46,6 +46,10 @@
 			<c:when test="${feedback == 'failed'}">
 				<p>Registrazione non effettuata</p>
 			</c:when>
+			
+			<c:when test="${feedback == 'wrong'}">
+				<p>Username o password sbagliati</p>
+			</c:when>
 		</c:choose>
 
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
