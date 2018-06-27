@@ -9,20 +9,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pCarpet.model.Car;
-import com.pCarpet.model.User;
+import com.pCarpet.model.Slot;
 
 @Repository
 @Transactional
-public interface CarRepository extends CrudRepository<Car, Long>{
+public interface SlotRepository extends CrudRepository<Slot, Long>{
 	
-	List<Car> findByUser(User user);
+	List<Slot> findAll();
 	
-	void deleteById(int id);
+	//@Modifying
+	//@Query("SELECT S FROM Slot S WHERE S.id_slot=?1")
 	
-	Car save(Car car);
+	Slot findById(int id);
 	
-	Car findById(int id);
-
+	//List<Slot> getNearSlots... 
 	
 }

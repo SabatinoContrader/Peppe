@@ -3,6 +3,7 @@ package com.pCarpet.dao;
 
 import com.pCarpet.dto.ManagementExtensionStopDTO;
 import com.pCarpet.model.Car;
+import com.pCarpet.model.Carplace;
 import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
 
@@ -41,4 +42,8 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 //	@Modifying
 //  @Query("SELECT r FROM Report r WHERE r.user.username=?1")
 //	List<Report> findAllByUsername(String username);
+	
+
+	
+	Stop findByCarplace(Carplace carplace);
 }

@@ -6,8 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.pCarpet.dao.CarPlaceRepository;
+import com.pCarpet.dao.CarRepository;
 import com.pCarpet.dao.ReportRepository;
 import com.pCarpet.dao.StopRepository;
+import com.pCarpet.dto.ManagementCarPlaceDTO;
 import com.pCarpet.dto.ManagementExtensionStopDTO;
 import com.pCarpet.model.Car;
 import com.pCarpet.model.Carplace;
@@ -20,13 +24,18 @@ import com.pCarpet.model.User;
 public class StopService {
 
     private StopRepository stopRepository;
+    private CarPlaceService carPlaceService;
+    private CarService carService;
 
     @Autowired 
-    public  StopService(StopRepository stopRepository) {
+    public  StopService(StopRepository stopRepository, CarPlaceService carPlaceService, CarService carService) {
         this.stopRepository = stopRepository;
+        this.carPlaceService = carPlaceService;
+        this.carService = carService;
+
     }
 
-    public List<ManagementExtensionStopDTO> getAllExtensionStop(User user) 
+    public List<ManagementExtensionStopDTO> getAllExtensionStop(User user)
     {
         List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new ArrayList<ManagementExtensionStopDTO>();
         
@@ -50,5 +59,27 @@ public class StopService {
         //il finish contiene già la data aggiornata
         String finish = managementExtensionStopDTO.getFinish();
         return this.stopRepository.extensionStop(id_stop,finish);
+    }
+    
+    public List<ManagementCarPlaceDTO> getAllStop(Slot slot) {
+    	List<Carplace> allCarPlace = carPlaceService.getAllCarPlace(slot);
+        List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new ArrayList<ManagementCarPlaceDTO>();
+        
+        for (Carplace place : allCarPlace) {
+            Stop stop = getStop(place);
+            if (stop != null) {
+                Car car = carService.getCar(stop.getCar().getId());
+                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(place, stop, car);
+                managementCarPlaceDTOs.add(managementCarPlaceDTO);
+            } else {
+                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(place);
+                managementCarPlaceDTOs.add(managementCarPlaceDTO);
+            }
+        }
+        return managementCarPlaceDTOs;
+    }
+    
+    public Stop getStop(Carplace carplace) {
+        return this.stopRepository.findByCarplace(carplace);
     }
 }

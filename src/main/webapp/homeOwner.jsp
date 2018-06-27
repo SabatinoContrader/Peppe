@@ -21,7 +21,7 @@
 			<b>OWNER</b>
 		</h1>
 		<a class="btn btn-lg btn-primary btn-block"
-			href="ManagementCarPlaceServlet?richiesta=home">Gestione parcheggi</a></br> 
+			href="/ManagementSlot/ManagementSlotControl">Gestione parcheggi</a></br> 
 		<a class="btn btn-lg btn-primary btn-block"
 			href="/Report/owner/addReport">Invia segnalazione</a></br> 
 		<a class="btn btn-lg btn-primary btn-block"

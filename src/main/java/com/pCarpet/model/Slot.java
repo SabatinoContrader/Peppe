@@ -16,9 +16,9 @@ import lombok.*;
 public class Slot {
 	
 	@Id
-	@Column
+	@Column(name="id_slot")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_slot;
+    private int id;
 	
 	@Column
     private double latitude;

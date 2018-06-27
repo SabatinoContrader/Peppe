@@ -40,7 +40,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<!-- <optional>true</optional> -->
-			<version>1.18.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>

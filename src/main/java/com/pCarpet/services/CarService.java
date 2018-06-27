@@ -44,8 +44,8 @@ public class CarService {
     	return this.carRepository.findByUser(user);
     }
 
-//    public Car getCar(int id_car,boolean force){
-//        return this.carDAO.getCar(id_car,force);
-//    }
+    public Car getCar(int id_car){
+        return this.carRepository.findById(id_car);
+    }
 
 }
