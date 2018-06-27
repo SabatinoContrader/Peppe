@@ -24,7 +24,7 @@
 			<b>DRIVER</b>
 		</h1>
 		<a class="btn btn-lg btn-primary btn-block"
-			href="FindCarPlaceServlet?richiesta=home">Trova parcheggio</a></br> <a
+			href="/FindCarPlace/showSlot">Trova parcheggio</a></br> <a
 			class="btn btn-lg btn-primary btn-block"
 			href="/ExtensionStop/extensionStops">Prolunga sosta</a></br> <a
 			class="btn btn-lg btn-primary btn-block" href="/Car/carsList">Aggiungi/Rimuovi
