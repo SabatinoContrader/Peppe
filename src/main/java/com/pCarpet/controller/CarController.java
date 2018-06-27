@@ -72,11 +72,6 @@ public class CarController {
 		return "car";
 	}
 	
-	@RequestMapping(value = "/backHome", method = RequestMethod.GET)
-	public String driverBackHome(HttpServletRequest request, Model model ) {
-		return "homeDriver";
-	}
-	
 	@RequestMapping(value = "/backCarsList", method = RequestMethod.POST)
 	public String driverBackCarsList(HttpServletRequest request, Model model ) {
 		User user = userService.getLoggedUser();

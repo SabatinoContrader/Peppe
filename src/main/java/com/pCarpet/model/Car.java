@@ -17,9 +17,9 @@ import lombok.Data;
 public class Car {
 	
 	@Id
-	@Column
+	@Column(name = "id_car")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_car;
+    private int id;
 	
 	@Column
 	@NotNull

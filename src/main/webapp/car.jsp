@@ -36,7 +36,7 @@
 			<td><%=car.getLicense_plate()%></td>
 			<td><%=car.getName()%></td>
 			<td><a
-				href="/Car/removeCar?id=<%=car.getId_car()%>">Elimina</a></td>
+				href="/Car/removeCar?id=<%=car.getId()%>">Elimina</a></td>
 		</tr>
 		<%
 			}
@@ -50,7 +50,7 @@
 
 	
 	<a class="btn btn-lg btn-primary btn-block submit-button" href="/Car/addCar">Aggiungi auto</a></br>
-	<a class="btn btn-lg btn-primary btn-block back-button" href="/Car/backHome">Indietro</a></br>
+	<a class="btn btn-lg btn-primary btn-block back-button" href="/Home/dispatchHome">Indietro</a></br>
 	
 	</p>
 </div>

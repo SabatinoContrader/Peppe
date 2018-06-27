@@ -18,15 +18,9 @@ public interface CarRepository extends CrudRepository<Car, Long>{
 	
 	List<Car> findByUser(User user);
 	
-	
-	@Modifying
-	@Query("DELETE FROM Car WHERE id_car = ?1")
 	void deleteById(int id);
 	
 	Car save(Car car);
-
-
-	
 
 	
 }

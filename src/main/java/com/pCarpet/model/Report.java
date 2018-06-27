@@ -8,9 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+
+//@Getter
+//@Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
 
 @Entity
 public class Report {
@@ -31,6 +36,6 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name = "username")
-    private User user; 
+    private User user; 	
 
 }

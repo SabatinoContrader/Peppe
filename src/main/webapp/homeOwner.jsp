@@ -23,11 +23,11 @@
 		<a class="btn btn-lg btn-primary btn-block"
 			href="ManagementCarPlaceServlet?richiesta=home">Gestione parcheggi</a></br> 
 		<a class="btn btn-lg btn-primary btn-block"
-			href="ReportServlet?richiesta=addReport">Invia segnalazione</a></br> 
+			href="/Report/owner/addReport">Invia segnalazione</a></br> 
 		<a class="btn btn-lg btn-primary btn-block"
-			href="ReportServlet?richiesta=reportUser">Segnalazioni degli utenti</a></br> 
+			href="/Report/owner/reportUser">Segnalazioni degli utenti</a></br> 
 		<a class="btn btn-lg btn-primary btn-block"
-			href="LoginServlet?richiesta=logout">Logout</a></br>
+			href="/Login/logoutControl">Logout</a></br>
 
 
 	</form>

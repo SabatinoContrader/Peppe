@@ -58,6 +58,6 @@ public class LoginController {
 	{
 		userService.destroyUser();
 		isLogged = false;
-		return "login";
+		return "index";
 	}
 }
