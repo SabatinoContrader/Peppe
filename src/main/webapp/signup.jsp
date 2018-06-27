@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+      <link rel="stylesheet" type="text/css" href="/css/pcarpet.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -33,18 +34,14 @@
       
 	  <input type="text" name = "birthplace" class="form-control form-control-lg" id="birthplace" class="form-control" placeholder="birthplace" required autofocus></br>
       
-	  <input type="text" name = "address" id="address" class="form-control form-control-lg" placeholder="address" required autofocus></br>
-	  
-	  
-	  <input type="text" name="richiesta" value="registed" hidden></p>
-	  
+	  <input type="text" name = "address" id="address" class="form-control form-control-lg" placeholder="address" required autofocus></br>	  	  	  
 	  
 	  
       <div align="right" style="position:relative">
       <label for="handicapped" class="signup-label-position signup-label">Disabile</label>
       <input type="radio" id="handicappedChoice1"
      name="handicapped" value="true">
-    <label for="handicappedChoice1" style="font-size: 20px;">Si</label>
+    <label for="handicappedChoice1" class="signup-label">Si</label>
 
     <input type="radio" id="handicappedChoice2"
      name="handicapped" value="false">
