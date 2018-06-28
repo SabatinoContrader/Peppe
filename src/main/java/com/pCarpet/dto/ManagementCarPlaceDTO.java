@@ -14,7 +14,7 @@ public class ManagementCarPlaceDTO {
     private String finish;
 
     public ManagementCarPlaceDTO(Carplace carplace, Stop stop, Car car) {
-        this.id_carplace = carplace.getId_carplace();
+        this.id_carplace = carplace.getId();
         this.id_slot = carplace.getSlot().getId();
         this.type = carplace.getType();
         this.busy = carplace.getBusy();
@@ -24,7 +24,7 @@ public class ManagementCarPlaceDTO {
     }
 
     public ManagementCarPlaceDTO(Carplace carplace) {
-        this.id_carplace = carplace.getId_carplace();
+        this.id_carplace = carplace.getId();
         this.id_slot = carplace.getSlot().getId();
         this.type = carplace.getType();
         this.busy = carplace.getBusy();

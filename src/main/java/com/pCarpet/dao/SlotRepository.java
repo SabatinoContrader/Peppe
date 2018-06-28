@@ -22,6 +22,8 @@ public interface SlotRepository extends CrudRepository<Slot, Long>{
 	
 	Slot findById(int id);
 	
-	//List<Slot> getNearSlots... 
+	@Modifying
+	@Query("SELECT s FROM Slot s WHERE (ABS(s.latitude - ?1)) < 0.01 AND (ABS(s.longitude - ?2)) < 0.01")
+	List<Slot> getNearSlot(double lat,double lng);
 	
 }

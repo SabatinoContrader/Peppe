@@ -29,6 +29,9 @@ public class CarPlaceService {
 		return this.carPlaceRepository.findBySlot(slot);
 	}
 
+    public Carplace getCarplace(int id_carplace) {
+        return this.carPlaceRepository.findById(id_carplace);
+    }
 	
 
 }

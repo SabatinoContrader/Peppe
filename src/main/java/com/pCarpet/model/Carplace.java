@@ -18,9 +18,9 @@ import lombok.*;
 public class Carplace {
 
 	@Id
-	@Column
+	@Column(name = "id_carplace")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_carplace;
+    private int id;
 	
 	@Column
     private double latitude;

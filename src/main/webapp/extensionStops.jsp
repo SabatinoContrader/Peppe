@@ -77,7 +77,7 @@
 	</table>
 	
     <!--TODO:  Da fare -->
-    <a class="btn btn-lg btn-primary btn-block back-button" href="HomeServlet">Indietro</a></br>
+    <a class="btn btn-lg btn-primary btn-block back-button" href="/Home/dispatchHome">Indietro</a></br>
   </form>
 	</p>
 </div>

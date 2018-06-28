@@ -33,7 +33,7 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 		
 	@Modifying
 	@Query("update Stop set finish = ?2 where id_stop = ?1")
-	Stop extensionStop(int id_stop,String finish);
+	void extensionStop(int id_stop,String finish);
 	
 //	@Modifying
 //	@Query("Select s.id_stop, sl.address, s.start, s.finish, ca.name from stop s, slot sl, carplace c, car ca where s.id_car=ca.id_car and ca.username=?1 and c.id_slot=sl.id_slot and c.id_carplace=s.id_carplace")

@@ -65,7 +65,7 @@
 			}
 		};
 		function myMap() {
-			
+
 			var mapOptions = {
 				center : new google.maps.LatLng(41.9, 12.48),
 				zoom : 10,
@@ -75,7 +75,7 @@
 			}
 			var map = new google.maps.Map(document.getElementById("map"),
 					mapOptions);
-			
+
 			var geocoder = new google.maps.Geocoder();
 			google.maps.event.addListener(map, "dragend", function(event) {
 				loadCarSlots(map.getCenter().lat(), map.getCenter().lng());
@@ -122,7 +122,7 @@
 			//dunque se necessatio creare un altro servlet
 			function loadCarSlots(lat, lng) {
 				var http = new XMLHttpRequest();
-				var url = 'MarkersServlet';
+				var url = '/updateParkings'; //window.location.href
 				var params = 'lat=' + lat + '&lng=' + lng + ''; //op=getMarkers&
 				http.open('POST', url, true);
 				//Send the proper header information along with the request
@@ -131,32 +131,29 @@
 				http.send(params);
 				http.onreadystatechange = function() {//Call a function when the state changes.
 					if (http.readyState == 4 && http.status == 200) {
+
 						//rimuovo i markers precedenti
 						deleteMarkers();
-						var objArray = JSON.parse(http.responseText);
+						var objDTOlist = JSON.parse(http.responseText);
 						var infoWindow = new google.maps.InfoWindow(), marker, i;
 						var title = [];
-
-						for (var i = 0; i < objArray.length; i++) {
-							var obj = objArray[i];
-							var latLng = new google.maps.LatLng(obj.lat,
-									obj.lng);
-
-							var freeCarPlaces = getFreeCarPlaces(obj.carplaceList);
-
-							var info = "<h3>" + obj.address + "</h3>"
-							+ "<br> Tipo: " + obj.type
+						for (var i = 0; i < objDTOlist.length; i++) {
+							var obj = objDTOlist[i];							
+							
+							var latLng = new google.maps.LatLng(obj.slot.latitude,
+									obj.slot.longitude);
+							var freeCarPlaces = getFreeCarPlaces(obj.carplace);
+							var info = "<h3>" + obj.slot.address + "</h3>"
+							+ "<br> Tipo: " + obj.slot.type
 							+ "<br> Numero posti: "
-							+ obj.carplaceList.length
+							+ obj.carplace.length
 							+ "<br> Disponibli: " + freeCarPlaces
 							+ "<br><a>Indicazioni</a>";
 							
-							if (obj.type == "privato")
-
+							if (obj.slot.type == "privato")
 								info = info + "<br><a>Prenota</a>";
 								
 							title[i] = info;
-
 							// Creating a marker and putting it on the map
 							var marker = new google.maps.Marker({
 								position : latLng,
@@ -165,7 +162,6 @@
 								icon : icons["parking"].icon
 							//scaledsize: new google.maps.Size(64,64);
 							});
-
 							google.maps.event.addListener(marker, 'click',
 									(function(marker, i) {
 										return function() {
@@ -174,10 +170,8 @@
 										}
 									})(marker, i));
 							markers.push(marker);
-
 						}
-						//var parser = new DOMParser();
-						//var xmlDoc = parser.parseFromString(response,"text/xml");
+
 					}
 				}
 			}
@@ -219,8 +213,6 @@
 				markers = [];
 			}
 		}
-		
-		
 	</script>
 
 	<script

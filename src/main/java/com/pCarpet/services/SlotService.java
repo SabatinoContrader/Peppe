@@ -29,7 +29,7 @@ public class SlotService {
         return slotRepository.findById(id_slot);
     }
     
-//    public List<Slot> getNearSlot(double lat, double lng) {
-//        return getNearSlot(lat, lng);
-//    }
+    public List<Slot> getNearSlot(double lat, double lng) {
+        return slotRepository.getNearSlot(lat, lng);
+    }
 }

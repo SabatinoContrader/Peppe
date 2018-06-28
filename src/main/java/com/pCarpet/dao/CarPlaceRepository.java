@@ -20,7 +20,5 @@ public interface CarPlaceRepository extends CrudRepository<Carplace, Long>{
 	
 	List<Carplace> findBySlot(Slot slot);
 	
-	
-
-	
+	Carplace findById(int id);
 }

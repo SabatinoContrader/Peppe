@@ -26,12 +26,14 @@ public class StopService {
     private StopRepository stopRepository;
     private CarPlaceService carPlaceService;
     private CarService carService;
-
+    private SlotService slotService;
+    
     @Autowired 
-    public  StopService(StopRepository stopRepository, CarPlaceService carPlaceService, CarService carService) {
+    public  StopService(StopRepository stopRepository, CarPlaceService carPlaceService, CarService carService, SlotService slotService) {
         this.stopRepository = stopRepository;
         this.carPlaceService = carPlaceService;
         this.carService = carService;
+        this.slotService = slotService;
 
     }
 
@@ -39,26 +41,25 @@ public class StopService {
     {
         List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new ArrayList<ManagementExtensionStopDTO>();
         
-        //TODO: FAREEEEE!!!
-//        List<Car> usercars = carService.getAllCar(user);
-//        for (Car car : usercars) {
-//            Stop stop = this.stopRepository.findByCar(car);
-//            if (stop != null) {
-//                Carplace carplace = carPlaceService.getCarplace(stop.getId_carplace());
-//                Slot slot = slotService.getSlot(carplace.getId_slot());
-//                ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop, slot, car);
-//                managementExtensionStopDTOs.add(managementExtensionStopDTO);
-//            }
-//        }
+        List<Car> usercars = carService.getAllCar(user);
+        for (Car car : usercars) {
+            Stop stop = this.stopRepository.findByCar(car);
+            if (stop != null) {
+                Carplace carplace = carPlaceService.getCarplace(stop.getCarplace().getId());
+                Slot slot = slotService.getSlot(carplace.getSlot().getId());
+                ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop, slot, car);
+                managementExtensionStopDTOs.add(managementExtensionStopDTO);
+            }
+        }
         return managementExtensionStopDTOs;
     }
     
-    public Stop extensionStop(ManagementExtensionStopDTO managementExtensionStopDTO)
+    public void extensionStop(ManagementExtensionStopDTO managementExtensionStopDTO)
     {
         int id_stop = managementExtensionStopDTO.getId_stop();
         //il finish contiene già la data aggiornata
         String finish = managementExtensionStopDTO.getFinish();
-        return this.stopRepository.extensionStop(id_stop,finish);
+        this.stopRepository.extensionStop(id_stop,finish);
     }
     
     public List<ManagementCarPlaceDTO> getAllStop(Slot slot) {
