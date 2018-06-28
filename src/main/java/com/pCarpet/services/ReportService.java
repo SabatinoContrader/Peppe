@@ -20,7 +20,6 @@ public class ReportService {
     }
 
     public List<Report> getAllReportModels (User user) {
-    	//List<Report> reports = this.reportRepository.findAllByUsername(user);
     	List<Report> reports = this.reportRepository.findByUser(user);
         return reports;
     }

@@ -12,11 +12,6 @@
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
-	<%
-		Timestamp time = new Timestamp(System.currentTimeMillis());
-		request.setAttribute("time", time);
-	%>
-
 
 
 	<h1 class="element-margin-left">Invia segnalazione</h1>
@@ -28,15 +23,15 @@
 					class="form-control form-control-lg element-margin-left">
 </textarea>
 				<br>
-				<button type="submit" class="btn btn-lg btn-primary btn-block element-margin-left submit-button">
+				<button type="submit"
+					class="btn btn-lg btn-primary btn-block element-margin-left submit-button">
 					Invia</button>
 
 
 
 				<a
 					class="btn btn-lg btn-primary btn-block submit-button element-margin-left"
-					href="/Report/owner/hystory">Accedi alla
-					cronologia</a></br> </br> </br> <a
+					href="/Report/owner/hystory">Accedi alla cronologia</a></br> </br> </br> <a
 					class="btn btn-lg btn-primary btn-block back-button element-margin-left"
 					href="/Home/dispatchHome">Indietro</a></br>
 

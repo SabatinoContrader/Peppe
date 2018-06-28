@@ -1,5 +1,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.pCarpet.model.Slot"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +23,6 @@
 		<table class="table table-striped table-medium">
 			<thead>
 
-				<%
-					List<Slot> slots = (List<Slot>) request.getAttribute("slots");
-				%>
-
 				<tr>
 					<th>INDIRIZZO</th>
 					<th>PREZZO</th>
@@ -32,19 +30,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-					for (Slot slot : slots) {
-				%>
-				<tr>
-					<td><%=slot.getAddress()%></td>
-					<td><%=slot.getPrice()%></td>
-					<td><a
-						href="/ManagementCarPlace/CarPlace?id=<%=slot.getId()%>">Seleziona</a></td>
-				</tr>
-				<%
-					}
-				%>
-			
+
+				<c:forEach items="${slots}" var="slot">
+					<tr>
+						<td>${slot.address}</td>
+						<td>${slot.price}</td>
+						<td><a href="/ManagementCarPlace/CarPlace?id=${slot.id}">Seleziona</a></td>
+					</tr>
+				</c:forEach>
 		</table>
 
 

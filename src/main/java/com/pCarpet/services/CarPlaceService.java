@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pCarpet.dao.CarPlaceRepository;
-import com.pCarpet.dao.CarRepository;
-import com.pCarpet.model.Car;
 import com.pCarpet.model.Carplace;
 import com.pCarpet.model.Slot;
-import com.pCarpet.model.User;
-import com.pCarpet.utils.Reference;
+
 
 
 @Service

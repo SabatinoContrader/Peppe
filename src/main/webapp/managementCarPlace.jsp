@@ -1,5 +1,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.pCarpet.dto.ManagementCarPlaceDTO"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +23,6 @@
 		<table class="table table-striped">
 			<thead>
 
-				<%
-					List<ManagementCarPlaceDTO> carPlaces = (List<ManagementCarPlaceDTO>) request
-							.getAttribute("managementCarPlaceDTO");
-				%>
 
 				<tr>
 					<th>ID PARCHEGGIO</th>
@@ -38,25 +36,22 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-					for (ManagementCarPlaceDTO carPlace : carPlaces) {
-				%>
-				<tr>
 
-					<td><%=carPlace.getId_carplace()%></td>
-					<td><%=carPlace.getId_slot()%></td>
-					<td><%=carPlace.isType()%></td>
-					<td><%=carPlace.isBusy()%></td>
-					<td><%=carPlace.getLicense_plate()%></td>
-					<td><%=carPlace.getStart()%></td>
-					<td><%=carPlace.getFinish()%></td>
-					<td><%=""%></td>
-					<!-- manca pagato -->
-				</tr>
-				<%
-					}
-				%>
-			
+
+				<c:forEach items="${managementCarPlaceDTO}" var="carplacedto">
+					<tr>
+
+						<td>${carplacedto.id_carplace}</td>
+						<td>${carplacedto.id_slot}</td>
+						<td>${carplacedto.type}</td>
+						<td>${carplacedto.busy}</td>
+						<td>${carplacedto.license_plate}</td>
+						<td>${carplacedto.start}</td>
+						<td>${carplacedto.finish}</td>
+						<td>""</td>
+						<!-- manca pagato -->
+					</tr>
+				</c:forEach>
 		</table>
 
 

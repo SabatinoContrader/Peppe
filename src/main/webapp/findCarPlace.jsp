@@ -1,5 +1,6 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.pCarpet.model.Car"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,9 +11,6 @@
 </head>
 <body>
 
-	<%
-		List<Car> cars = (List<Car>) request.getAttribute("cars");
-	%>
 
 	<h1 class="element-margin-left">Cerca Parcheggio</h1>
 
@@ -22,13 +20,11 @@
 		</text>
 		</br> <select class="form-control form-control-lg">
 			<option value="" hidden>Seleziona auto</option>
-			<%
-				for (Car car : cars) {
-			%>
-			<option value="" class=""><%=car.getName()%></option>
-			<%
-				}
-			%>
+
+
+			<c:forEach items="${cars}" var="car">
+				<option value="" class="">${car.name}</option>
+			</c:forEach>
 		</select> </br>
 
 		<div style="float: left;">
@@ -138,21 +134,20 @@
 						var infoWindow = new google.maps.InfoWindow(), marker, i;
 						var title = [];
 						for (var i = 0; i < objDTOlist.length; i++) {
-							var obj = objDTOlist[i];							
-							
-							var latLng = new google.maps.LatLng(obj.slot.latitude,
-									obj.slot.longitude);
+							var obj = objDTOlist[i];
+
+							var latLng = new google.maps.LatLng(
+									obj.slot.latitude, obj.slot.longitude);
 							var freeCarPlaces = getFreeCarPlaces(obj.carplace);
 							var info = "<h3>" + obj.slot.address + "</h3>"
-							+ "<br> Tipo: " + obj.slot.type
-							+ "<br> Numero posti: "
-							+ obj.carplace.length
-							+ "<br> Disponibli: " + freeCarPlaces
-							+ "<br><a>Indicazioni</a>";
-							
+									+ "<br> Tipo: " + obj.slot.type
+									+ "<br> Numero posti: "
+									+ obj.carplace.length + "<br> Disponibli: "
+									+ freeCarPlaces + "<br><a>Indicazioni</a>";
+
 							if (obj.slot.type == "privato")
 								info = info + "<br><a>Prenota</a>";
-								
+
 							title[i] = info;
 							// Creating a marker and putting it on the map
 							var marker = new google.maps.Marker({

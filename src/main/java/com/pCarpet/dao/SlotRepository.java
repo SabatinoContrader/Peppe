@@ -17,8 +17,6 @@ public interface SlotRepository extends CrudRepository<Slot, Long>{
 	
 	List<Slot> findAll();
 	
-	//@Modifying
-	//@Query("SELECT S FROM Slot S WHERE S.id_slot=?1")
 	
 	Slot findById(int id);
 	

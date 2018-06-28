@@ -15,11 +15,5 @@ public interface UserRepository extends CrudRepository<User, Long>
 	
 		User save(User user);	
 		boolean existsByUsername(String username);
-		
-		//User findByUsername(String username);
-		//User save(User user);	  	  
-		
-//		@Modifying
-//	    @Query("UPDATE Utente SET password=?1 WHERE username=?2")
-//		void updateUtente(String newpassword, String username);
+
 }

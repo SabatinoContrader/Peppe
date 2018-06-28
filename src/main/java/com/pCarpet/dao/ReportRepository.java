@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +23,5 @@ public interface ReportRepository extends CrudRepository<Report, Long>
 	
 	List<Report> findByUser(User user);
 		
-//	@Modifying
-//  @Query("SELECT r FROM Report r WHERE r.user.username=?1")
-//	List<Report> findAllByUsername(String username);
+
 }

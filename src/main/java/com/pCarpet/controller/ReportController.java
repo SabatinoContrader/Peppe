@@ -5,8 +5,8 @@ import com.pCarpet.model.User;
 import com.pCarpet.services.ReportService;
 import com.pCarpet.services.UserService;
 
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/Report")
@@ -50,16 +49,15 @@ public class ReportController {
 	public String driverAddReport(HttpServletRequest request, Model model ) {
 		
 		User user = userService.getLoggedUser();
-		
+		Timestamp time = new Timestamp(System.currentTimeMillis());
 		int type = Integer.parseInt(request.getParameter("type").toString());
 		String description = request.getParameter("description").toString();
-		String time = (String) request.getAttribute("time");
 		
 		//va bene???
 		Report report = new Report();
 		report.setType(type);
 		report.setDescription(description);
-		report.setTime(time);
+		report.setTime(time.toString());
 		report.setUser(user);
 		//Report report = new Report(0,0, description, time, user);
 		//Report report = new Report(type, description, time, user.getUsername());
@@ -95,13 +93,13 @@ public class ReportController {
 		User user = userService.getLoggedUser();
 		String description = request.getParameter("description").toString();
 		int type = 0; //owner type
-		String time = (String) request.getAttribute("time");
-		
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+
 		//va bene???
 		Report report = new Report();
 		report.setType(type);
 		report.setDescription(description);
-		report.setTime(time);
+		report.setTime(time.toString());
 		report.setUser(user);
 		//Report report = new Report(type, description, time, user.getUsername());
 		reportService.insertReport(report);

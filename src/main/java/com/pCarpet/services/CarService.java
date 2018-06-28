@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.pCarpet.dao.CarRepository;
 import com.pCarpet.model.Car;
 import com.pCarpet.model.User;
-import com.pCarpet.utils.Reference;
 
 
 @Service
@@ -21,14 +20,6 @@ public class CarService {
 		this.carRepository = carRepository;
 	}
 	
-//	public boolean addcar(Car car, Reference<List<Car>> carlist)
-//    {
-//        boolean result = this.carDAO.addcar(car);
-//        carlist.get().add(car);
-//        return result;
-//    }
-//
-	
 	public void addCar(Car car){
         this.carRepository.save(car);
     }
@@ -37,7 +28,6 @@ public class CarService {
     public void removeCar(int id_car){
         this.carRepository.deleteById(id_car);
     }
-
 
 
     public List<Car> getAllCar(User user) {

@@ -6,16 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.pCarpet.dao.CarPlaceRepository;
-import com.pCarpet.dao.CarRepository;
-import com.pCarpet.dao.ReportRepository;
 import com.pCarpet.dao.StopRepository;
 import com.pCarpet.dto.ManagementCarPlaceDTO;
 import com.pCarpet.dto.ManagementExtensionStopDTO;
 import com.pCarpet.model.Car;
 import com.pCarpet.model.Carplace;
-import com.pCarpet.model.Report;
 import com.pCarpet.model.Slot;
 import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
@@ -57,7 +52,6 @@ public class StopService {
     public void extensionStop(ManagementExtensionStopDTO managementExtensionStopDTO)
     {
         int id_stop = managementExtensionStopDTO.getId_stop();
-        //il finish contiene già la data aggiornata
         String finish = managementExtensionStopDTO.getFinish();
         this.stopRepository.extensionStop(id_stop,finish);
     }

@@ -10,11 +10,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<%
-	String feedback = (String) request.getAttribute("feedback");
-%>
-
-
 <title>PCARPET</title>
 
 <!-- Bootstrap core CSS -->
