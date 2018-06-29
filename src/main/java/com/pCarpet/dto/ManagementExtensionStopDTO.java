@@ -10,13 +10,15 @@ public class ManagementExtensionStopDTO {
     private String start;
     private String finish;
     private String name;
+    private float price;
 
-    public ManagementExtensionStopDTO(int id_stop, String address, String start, String finish, String name) {
+    public ManagementExtensionStopDTO(int id_stop, String address, String start, String finish, String name, float price) {
         this.id_stop = id_stop;
         this.address = address;
         this.start = start;
         this.finish = finish;
         this.name = name;
+        this.price = price;
     }
 
     public ManagementExtensionStopDTO(Stop stop, Slot slot, Car car) {
@@ -25,6 +27,7 @@ public class ManagementExtensionStopDTO {
         this.start = stop.getStart();
         this.finish = stop.getFinish();
         this.name = car.getName();
+        this.price = slot.getPrice();
     }
 
     public ManagementExtensionStopDTO() {
@@ -70,5 +73,15 @@ public class ManagementExtensionStopDTO {
     public void setName(String name) {
         this.name = name;
     }
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+    
+    
 }
 

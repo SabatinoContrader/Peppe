@@ -54,6 +54,7 @@ public class ExtensionStopController {
 		String start = request.getParameter("start");
 		String finish = request.getParameter("finish");
 		String address = request.getParameter("address");
+		float price = Float.parseFloat(request.getParameter("price"));
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 		String updateddate = null;
@@ -70,7 +71,7 @@ public class ExtensionStopController {
 			
 		}
 
-		ManagementExtensionStopDTO item = new ManagementExtensionStopDTO(id_stop, address, start, updateddate, name);
+		ManagementExtensionStopDTO item = new ManagementExtensionStopDTO(id_stop, address, start, updateddate, name, price);
 		stopService.extensionStop(item);
 		List<ManagementExtensionStopDTO> managementExtensionStopDTO = stopService.getAllExtensionStop(user);
 		request.setAttribute("stops", managementExtensionStopDTO);

@@ -30,6 +30,7 @@
 					<th>INIZIO</th>
 					<th>FINE</th>
 					<th></th>
+					<th>DA PAGARE</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -42,8 +43,9 @@
 							<td>${stop.name}</td>
 							<td>${stop.start}</td>
 							<td>${stop.finish}</td>
+						
 
-							<td><select name="minute">
+							<td><select class="select" name="minute">
 									<option value="15">15 min</option>
 									<option value="30">30 min</option>
 									<option value="45">45 min</option>
@@ -52,11 +54,14 @@
 									<option value="90">1 h 30 min</option>
 									<option value="105">1 h 45 min</option>
 									<option value="120">2 h</option>
-							</select></td> <input type="text" name="id" value="${stop.id_stop}" hidden></input>
+							</select></td> 
+							<td><p class="newprice">${(stop.price / 60) * 15} &euro;</p></td>
+							<input type="text" name="id" value="${stop.id_stop}" hidden></input>
 							<input type="text" name="address" value="${stop.address}" hidden></input>
 							<input type="text" name="name" value="${stop.name}" hidden></input>
 							<input type="text" name="start" value="${stop.start}" hidden></input>
 							<input type="text" name="finish" value="${stop.finish}" hidden></input>
+							<input type="text" class="price" name="price" value="${stop.price}" hidden></input>
 
 
 							<td align="center"><button type="submit"
@@ -68,12 +73,32 @@
 				</c:forEach>
 		</table>
 
-		<!--TODO:  Da fare -->
 		<a class="btn btn-lg btn-primary btn-block back-button"
 			href="/Home/dispatchHome">Indietro</a></br>
 		</form>
 		</p>
 	</div>
+
+<script>
+	var select = document.getElementsByClassName("select");
+	var newprice = document.getElementsByClassName("newprice");
+	var price = document.getElementsByClassName("price");
+	
+
+  	for(var i=0; i<select.length; i++){
+  	
+  		select[i].addEventListener('change', 
+			(function(i) {
+				return function() {		
+					var min = select[i].options[select[i].selectedIndex].value;
+					var pay = (price[i].value / 60) * min;
+					newprice[i].innerHTML = pay + "\u20AC";
+				}
+			})(i));
+
+  	}
+</script>
+
 
 </body>
 </html>
