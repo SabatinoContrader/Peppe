@@ -53,6 +53,11 @@ function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
     
     //init infoWindow events
     //this.InitInfoWindowEvents();     
+    
+    this.tariffaOraria;
+    
+    this.markerMap = new Map();
+    this.InitChangeSelectMinuteEvent();
 };
   
 
@@ -117,11 +122,13 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 				var freeCarPlaces = self.getFreeCarPlaces(obj.carplace);
 				var info = "<h3>" + obj.slot.address + "</h3>"
 						+ "<br> Tipo: " + obj.slot.type
+						+ "<br> Tariffa oraria: " + obj.slot.price + "\u20AC"
 						+ "<br> Numero posti: "
 						+ obj.carplace.length + "<br> Disponibli: "
-						+ freeCarPlaces + "<br><a id='indications'>Indicazioni</a>";
+						+ freeCarPlaces 
+						+ "<br><a id='indications'>Indicazioni</a>"
+						+ "<br><a id='sosta'>Inizia sosta</a>";
 						
-
 				if (obj.slot.type == "privato")
 					info = info + "<br><a>Prenota</a>";
 
@@ -129,7 +136,8 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 				
 				//make markers
 				var marker = self.makeMarker(latLng,self.icons["parking"].icon);
-				self.AddMarkerEvent(marker,title[i]);
+				self.markerMap.set(marker, obj);
+				self.AddMarkerEvent(marker,title[i], obj);
 			}
 		}
 	}
@@ -261,7 +269,6 @@ GoogleApiManager.prototype.AddMarkerEvent = function(marker,content)
 					
 					google.maps.event.clearListeners(self.infoWindow, 'domready');
 					self.infoWindow.setContent(content);
-					//addInfoWindowDomreadyListener(marker);
 					self.InitInfoWindowEvents(marker);
 					self.infoWindow.open(self.map, marker);
 				}
@@ -273,22 +280,48 @@ GoogleApiManager.prototype.InitInfoWindowEvents = function(marker)
 		var self = this;		
 		google.maps.event.addListener(self.infoWindow, 'domready', function() {
 			
-			//document.getElementById(obj.slot.address).addEventListener("click", GoogleMap_selected(obj.slot.latitude,obj.slot.longitude) );
-			document.getElementById("indications").addEventListener("click", function() {
+			document.getElementById("indications").addEventListener("click", function(){
 				self.StartDirectionsRequest(marker);
+			});
+			
+			document.getElementById("sosta").addEventListener("click", function() {
+				self.StartStop(marker);
 			});
 		});
 };
+
+GoogleApiManager.prototype.StartStop = function(marker){
+	var obj = this.markerMap.get(marker);
+	var select = document.getElementById("select");
+	select.disabled = false;
+	document.getElementById("payandgo").disabled = false;
+	select.value = 15;
+	document.getElementById("slot").innerHTML = "Slot: "+ obj.slot.address;
+	var price = obj.slot.price;
+	var minute = select.value;
+	var newprice = document.getElementById("newprice");
+	newprice.innerHTML = "Prezzo: " + (price / 60) * minute + "\u20AC";
+	
+}
+
+GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
+{
+	var self = this;
+	var select = document.getElementById("select");
+	select.addEventListener('change', function() {
+		var obj = self.markerMap.get(self.currentSelectedMarker);
+		var min = select.value;
+		var pay = (obj.slot.price / 60) * min;
+		document.getElementById("newprice").innerHTML = "Prezzo: " + pay + "\u20AC";
+	});
+}
 
 GoogleApiManager.prototype.StartDirectionsRequest = function(marker)
 {
 
     var from = new google.maps.LatLng(41.9, 12.48);
     var to = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
-    //var to = new google.maps.LatLng(41.909954, 12.494329);
 
-    //directionsService = new google.maps.DirectionsService();
-    
      var directionsRequest = {
        origin: from,
        destination: to,
@@ -310,7 +343,6 @@ GoogleApiManager.prototype.StartDirectionsRequest = function(marker)
                     suppressMarkers: true
 
                   });
-                //directionsRenderer.setDirections(response);
                 self.deleteMarkers();
                 }
                 else
@@ -396,170 +428,3 @@ GoogleApiManager.prototype.deleteMarkers = function()
 };
 
 
-//		function myMap() {
-//			
-//			
-//			//la chiamata viene indirizzata direttamente a doPost o doGet se c'è su service
-//			//dunque se necessatio creare un altro servlet
-//			function loadCarSlots(lat, lng) {
-//				var http = new XMLHttpRequest();
-//				var url = '/updateParkings'; //window.location.href
-//				var params = 'lat=' + lat + '&lng=' + lng + ''; //op=getMarkers&
-//				http.open('POST', url, true);
-//				//Send the proper header information along with the request
-//				http.setRequestHeader('Content-type',
-//						'application/x-www-form-urlencoded');
-//				http.send(params);
-//				http.onreadystatechange = function() {//Call a function when the state changes.
-//					if (http.readyState == 4 && http.status == 200) {
-//
-//						//rimuovo i markers precedenti
-//						deleteMarkers();
-//						var objDTOlist = JSON.parse(http.responseText);
-//						var infoWindow = new google.maps.InfoWindow(), marker, i;					
-//						
-//						var title = [];
-//						for (var i = 0; i < objDTOlist.length; i++) {
-//							var obj = objDTOlist[i];
-//
-//							var latLng = new google.maps.LatLng(
-//									obj.slot.latitude, obj.slot.longitude);
-//							var freeCarPlaces = getFreeCarPlaces(obj.carplace);
-//							var info = "<h3>" + obj.slot.address + "</h3>"
-//									+ "<br> Tipo: " + obj.slot.type
-//									+ "<br> Numero posti: "
-//									+ obj.carplace.length + "<br> Disponibli: "
-//									+ freeCarPlaces + "<br><a id='indications'>Indicazioni</a>";
-//									
-//
-//							if (obj.slot.type == "privato")
-//								info = info + "<br><a>Prenota</a>";
-//
-//							title[i] = info;
-//							// Creating a marker and putting it on the map
-//							var marker = new google.maps.Marker({
-//								position : latLng,
-//								map : map,
-//								//title: data.title
-//								icon : icons["parking"].icon
-//							//scaledsize: new google.maps.Size(64,64);
-//							});
-//						
-//							
-//							google.maps.event.addListener(marker, 'click',
-//									(function(marker, i) {
-//										return function() {		
-//											google.maps.event.clearListeners(infoWindow, 'domready');
-//											infoWindow.setContent(title[i]);
-//											addInfoWindowDomreadyListener(marker);
-//											infoWindow.open(map, marker);
-//										}
-//									})(marker, i));
-//						
-//							function addInfoWindowDomreadyListener(marker)
-//							{
-//	 						google.maps.event.addListener(infoWindow, 'domready', function() {
-//	 							
-// 								//document.getElementById(obj.slot.address).addEventListener("click", GoogleMap_selected(obj.slot.latitude,obj.slot.longitude) );
-//	 							document.getElementById("indications").addEventListener("click", function() {
-//
-//	 						        var from = new google.maps.LatLng(41.9, 12.48);
-//	 						        var to = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
-//	 						        //var to = new google.maps.LatLng(41.909954, 12.494329);
-//									
-//	 						        //directionsService = new google.maps.DirectionsService();
-//	 						        
-//	 						         var directionsRequest = {
-//	 						           origin: from,
-//	 						           destination: to,
-//	 						           travelMode: google.maps.DirectionsTravelMode.DRIVING,
-//	 						           unitSystem: google.maps.UnitSystem.METRIC
-//	 						         };
-//
-//	 						         directionsService.route(
-//	 						                  directionsRequest,
-//	 						                  function(response, status)
-//	 						                  {
-//
-//	 						                    if (status == google.maps.DirectionsStatus.OK)
-//	 						                    {
-//	 						                    	directionsRenderer = new google.maps.DirectionsRenderer({
-//	 						                        map: map,
-//	 						                        directions: response,
-//	 						                        suppressMarkers: true
-//
-//	 						                      });
-//	 						                    //directionsRenderer.setDirections(response);
-//	 						                     deleteMarkers();
-//	 						                    }
-//	 						                    else
-//	 						                        {
-//	 						                         alert("Unable to retrive route");
-//	 						                        }
-//	 						                var leg = response.routes[ 0 ].legs[ 0 ];
-//	 						                makeMarker( leg.start_location, icons["start"], "title" );
-//	 						                makeMarker( leg.end_location, icons["parking"].icon, 'title' );
-//	 						                  }
-//	 						                );	 
-//	 						        isInSearchDirectionMode = true;
-//	 						        document.getElementById("seleziona").disabled = false;
-//	 						       document.getElementById("cambia").disabled = false;
-//	 							});
-//							});
-//							}
-//	 						
-//							markers.push(marker);
-//						}						
-//
-//					}
-//				}
-//			}
-//						
-//			 
-//			 function makeMarker( position, icon, title ) {
-//				 var marker = new google.maps.Marker({
-//				  position: position,
-//				  map: map,
-//				  icon: icon,
-//				  title: title
-//				 });
-//				 markers.push(marker);
-//				}
-//
-//			function getFreeCarPlaces(carplaces) {
-//				var count = 0;
-//				for (var i = 0; i < carplaces.length; i++) {
-//					if (!carplaces[i].busy)
-//						count++;
-//				}
-//				return count;
-//			}
-//
-//			// Sets the map on all markers in the array.
-//			function setMapOnAll(map) {
-//				for (var i = 0; i < markers.length; i++) {
-//					markers[i].setMap(map);
-//				}
-//			}
-//			// Removes the markers from the map, but keeps them in the array.
-//			function clearMarkers() {
-//				setMapOnAll(null);
-//			}
-//			// Shows any markers currently in the array.
-//			function showMarkers() {
-//				setMapOnAll(map);
-//			}
-//			// Deletes all markers in the array by removing references to them.
-//			function deleteMarkersZoom(map) {
-//				if (map.getZoom() < 15) {
-//					console.log("zoom: " + map.getZoom());
-//					clearMarkers();
-//				} else {
-//					showMarkers();
-//				}
-//			}
-//			function deleteMarkers() {
-//				clearMarkers();
-//				markers = [];
-//			}
-//		}

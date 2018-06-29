@@ -40,6 +40,23 @@
 		</br> </br>
 		<div id="map" class="map-place"></div>
 		</br>
+		
+		<h3>Inserisci la durata della sosta</h3></br>
+		<p id='slot'>Slot: </p>
+		<select id='select' name='minute' disabled>
+		<option value='15'>15 min</option>
+		<option value='30'>30 min</option>
+		<option value='45'>45 min</option>
+		<option value='60'>1 h</option>
+		<option value='75'>1 h 15 min</option>
+		<option value='90'>1 h 30 min</option>
+		<option value='105'>1 h 45 min</option>
+		<option value='120'>2 h</option>
+	    </select></br>
+	    <p id='newprice'>Prezzo: </p>
+	    <button id="payandgo"disabled>Paga ed inizia</button>
+		</br></br>
+		
 		<form style="display: inline-block;" action="/Home/dispatchHome"
 			method="post">
 			<button class="btn btn-lg btn-primary btn-block back-button"
@@ -53,7 +70,6 @@
 
 	<script>
 	function myMap() {
-		console.log("blabla");
 		var googleApiManager = new GoogleApiManager('map',41.9, 12.48,'/updateParkings');
 			googleApiManager.selectAutoCompleteTextbox('autocomplete','startsearch');
 			googleApiManager.selectDirectionModeBackButton('cambia');
