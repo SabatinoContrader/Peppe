@@ -20,7 +20,10 @@
 		<input id="autocomplete" class="form-control form-control-lg"
 			type="text" placeholder="Inserisci destinazione">
 		</text>
-		</br> <select class="form-control form-control-lg">
+		
+		<button id="myposition">Posizione</button>
+		
+		</br></br> <select class="form-control form-control-lg">
 			<option value="" hidden>Seleziona auto</option>
 
 

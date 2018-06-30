@@ -58,6 +58,9 @@ function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
     
     this.markerMap = new Map();
     this.InitChangeSelectMinuteEvent();
+    
+    this.currentLatitude;
+    this.currentLongitude;
 };
   
 
@@ -156,8 +159,6 @@ GoogleApiManager.prototype.selectDirectionModeBackButton = function(backButtonID
 		self.runTurnByTurnButtonDOM.disabled = true;
 		self.deleteMarkers();
 		self.geocodeCoordinates(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude);
-		
-		//self.doAjaxForNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng());
 	});	
 };
 
@@ -256,6 +257,23 @@ GoogleApiManager.prototype.InitGeocodeAddressEvents = function()
 					self.geocodeAddress();
 				}
 			});
+	
+	document.getElementById("myposition").addEventListener('click',
+			function(){
+				if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(showPosition);
+				} else { 
+						console.log("Geolocation is not supported by this browser.");
+						}
+		
+	});
+	
+	function showPosition(position) {
+		self.currentLatitude = position.coords.latitude;
+		self.currentLongitude = position.coords.longitude;
+		self.geocodeCoordinates(self.currentLatitude, self.currentLongitude);
+	}
+	
 };
 
 GoogleApiManager.prototype.AddMarkerEvent = function(marker,content)
@@ -281,7 +299,18 @@ GoogleApiManager.prototype.InitInfoWindowEvents = function(marker)
 		google.maps.event.addListener(self.infoWindow, 'domready', function() {
 			
 			document.getElementById("indications").addEventListener("click", function(){
-				self.StartDirectionsRequest(marker);
+				  
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} else { 
+					console.log("Geolocation is not supported by this browser.");
+					}
+	
+				function showPosition(position) {
+					self.currentLatitude = position.coords.latitude;
+					self.currentLongitude = position.coords.longitude;
+					self.StartDirectionsRequest(marker);
+				}	
 			});
 			
 			document.getElementById("sosta").addEventListener("click", function() {
@@ -319,7 +348,7 @@ GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
 GoogleApiManager.prototype.StartDirectionsRequest = function(marker)
 {
 
-    var from = new google.maps.LatLng(41.9, 12.48);
+    var from = new google.maps.LatLng(this.currentLatitude, this.currentLongitude);
     var to = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
 
      var directionsRequest = {
@@ -426,5 +455,7 @@ GoogleApiManager.prototype.deleteMarkers = function()
 	self.clearMarkers();
 	self.markers = [];
 };
+
+
 
 
