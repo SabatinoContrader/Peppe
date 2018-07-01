@@ -5,7 +5,6 @@ import com.pCarpet.model.Car;
 import com.pCarpet.model.Carplace;
 import com.pCarpet.model.Stop;
 
-
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,6 +24,7 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 	@Query("update Stop set finish = ?2 where id_stop = ?1")
 	void extensionStop(int id_stop,String finish);
 	
-
 	Stop findByCarplace(Carplace carplace);
+	
+	Stop save(Stop stop);
 }

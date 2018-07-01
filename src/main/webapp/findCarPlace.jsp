@@ -23,12 +23,12 @@
 		
 		<button id="myposition">Posizione</button>
 		
-		</br></br> <select class="form-control form-control-lg">
+		</br></br> <select id="carSelect" class="form-control form-control-lg">
 			<option value="" hidden>Seleziona auto</option>
 
 
 			<c:forEach items="${cars}" var="car">
-				<option value="" class="">${car.name}</option>
+				<option value="${car.id}" class="">${car.name}</option>
 			</c:forEach>
 		</select> </br>
 

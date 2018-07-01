@@ -10,7 +10,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.*;
 
-@Data
+//@Data
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 public class Payment {
@@ -28,8 +33,11 @@ public class Payment {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name="id_slot")
-
-	private Slot slot;
+	@JoinColumn(name="id_stop")
+	private Stop stop;
+	
+//	@ManyToOne
+//	@JoinColumn(name="id_slot")
+//	private Slot slot;
 
 }

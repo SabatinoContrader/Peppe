@@ -12,7 +12,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.*;
 
-@Data
+//@Data
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 public class Carplace {
@@ -31,10 +36,10 @@ public class Carplace {
 	@Column
     private Boolean type;
 	
-	@Column
-    private Boolean busy;
-	
 	@ManyToOne
 	@JoinColumn(name="id_slot")
     private Slot slot;
+	
+	@Column
+    private Boolean busy;
 }

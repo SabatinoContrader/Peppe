@@ -77,4 +77,9 @@ public class StopService {
     public Stop getStop(Carplace carplace) {
         return this.stopRepository.findByCarplace(carplace);
     }
+    
+    public void insertStop(Stop stop)
+    {
+    	this.stopRepository.save(stop);
+    }
 }

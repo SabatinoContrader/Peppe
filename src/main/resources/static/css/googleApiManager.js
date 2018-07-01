@@ -61,6 +61,8 @@ function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
     
     this.currentLatitude;
     this.currentLongitude;
+    
+    this.payAndGo();
 };
   
 
@@ -142,6 +144,40 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 				self.markerMap.set(marker, obj);
 				self.AddMarkerEvent(marker,title[i], obj);
 			}
+		}
+	}
+};
+
+//pass params in map
+GoogleApiManager.prototype.doAjax = function(url,mapParams,success,fail,method)
+{
+	var self = this;
+	var http = new XMLHttpRequest();
+	var myurl = url; 
+	
+	var params = "";
+	for (const [key, value] of mapParams.entries()) {
+		  console.log(key, value);
+		  params = params + (key + "=" + value + "&");
+		}
+	if(params.length > 0) params.slice(0, -1);
+	
+	console.log("params:  " + params);
+	
+	http.open(method, myurl, true);
+	//Send the proper header information along with the request
+	http.setRequestHeader('Content-type',
+			'application/x-www-form-urlencoded');
+	http.send(params);
+	http.onreadystatechange = function() 
+	{
+		if (http.readyState == 4 && http.status == 200) 
+		{
+			success(http);
+		}
+		else
+		{
+			fail(http);
 		}
 	}
 };
@@ -333,6 +369,40 @@ GoogleApiManager.prototype.StartStop = function(marker){
 	
 }
 
+GoogleApiManager.prototype.payAndGo = function(marker){
+	
+	var self = this;
+	document.getElementById("payandgo").addEventListener('click', function(){
+		select.disabled = true;
+		document.getElementById("payandgo").disabled = true;
+		
+		var obj = self.markerMap.get(self.currentSelectedMarker);
+		
+		var selectedcar = document.getElementById("carSelect").value;
+		var timeToAddFromNow = document.getElementById("select").value;
+		var price = (obj.slot.price / 60) * timeToAddFromNow;
+		
+		var params = new Map();
+		params.set('timeToAdd', timeToAddFromNow);
+		params.set('totalPrice', price);
+		params.set('id_slot', obj.slot.id);
+		params.set('id_car', selectedcar);
+		
+		///Payment
+		self.doAjax('/Payment/addPayment', params, paySuccess, payFailed , 'POST');
+	});
+	
+	function paySuccess(http)
+	{
+		console.log("invio pagamento riuscito: " + http.responseText);
+	}
+	
+	function payFailed(http)
+	{
+		console.log("errore connessione col server: " + http.responseText);
+	}
+}
+
 GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
 {
 	var self = this;
@@ -454,6 +524,7 @@ GoogleApiManager.prototype.deleteMarkers = function()
 	var self = this;
 	self.clearMarkers();
 	self.markers = [];
+	self.markerMap.clear();
 };
 
 

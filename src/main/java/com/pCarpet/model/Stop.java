@@ -10,7 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.*;
 
-@Data
+//@Data
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 public class Stop {
