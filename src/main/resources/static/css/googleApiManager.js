@@ -73,6 +73,15 @@ GoogleApiManager.prototype.Initicons = function()
 			parking : {
 				icon : this.iconBase + 'parking_lot_maps.png'
 			},
+			parkingGreen : {
+				icon : '/css/green.png'
+			},
+			parkingRed : {
+				icon : '/css/red.png'
+			},
+			parkingYellow : {
+				icon : '/css/yellow.png'
+			},
 			library : {
 				icon : this.iconBase + 'library_maps.png'
 			},
@@ -125,12 +134,12 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 				var latLng = new google.maps.LatLng(
 						obj.slot.latitude, obj.slot.longitude);
 				var freeCarPlaces = self.getFreeCarPlaces(obj.carplace);
+				var numberCarPlaces = obj.carplace.length; 
 				var info = "<h3>" + obj.slot.address + "</h3>"
 						+ "<br> Tipo: " + obj.slot.type
 						+ "<br> Tariffa oraria: " + obj.slot.price + "\u20AC"
-						+ "<br> Numero posti: "
-						+ obj.carplace.length + "<br> Disponibli: "
-						+ freeCarPlaces 
+						+ "<br> Numero posti: " + numberCarPlaces 
+						+ "<br> Disponibli: " + freeCarPlaces 
 						+ "<br><a id='indications'>Indicazioni</a>"
 						+ "<br><a id='sosta'>Inizia sosta</a>";
 						
@@ -140,7 +149,12 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 				title[i] = info;
 				
 				//make markers
-				var marker = self.makeMarker(latLng,self.icons["parking"].icon);
+				if(freeCarPlaces == 0)
+					var marker = self.makeMarker(latLng,self.icons["parkingRed"].icon);
+				else if (freeCarPlaces < (numberCarPlaces / 4))
+					var marker = self.makeMarker(latLng,self.icons["parkingYellow"].icon);
+				else 
+					var marker = self.makeMarker(latLng,self.icons["parkingGreen"].icon);
 				self.markerMap.set(marker, obj);
 				self.AddMarkerEvent(marker,title[i], obj);
 			}
