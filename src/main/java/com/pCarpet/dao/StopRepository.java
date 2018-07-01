@@ -2,8 +2,10 @@ package com.pCarpet.dao;
 
 
 import com.pCarpet.model.Car;
-import com.pCarpet.model.Carplace;
+import com.pCarpet.model.Slot;
 import com.pCarpet.model.Stop;
+
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +26,7 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 	@Query("update Stop set finish = ?2 where id_stop = ?1")
 	void extensionStop(int id_stop,String finish);
 	
-	Stop findByCarplace(Carplace carplace);
+	List<Stop> findBySlot(Slot slot);
 	
 	Stop save(Stop stop);
 }

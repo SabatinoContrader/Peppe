@@ -25,10 +25,7 @@
 
 
 				<tr>
-					<th>ID PARCHEGGIO</th>
 					<th>ID SLOT</th>
-					<th>TIPO DISABILE</th>
-					<th>OCCUPATO</th>
 					<th>TARGA</th>
 					<th>START</th>
 					<th>FINISH</th>
@@ -40,11 +37,7 @@
 
 				<c:forEach items="${managementCarPlaceDTO}" var="carplacedto">
 					<tr>
-
-						<td>${carplacedto.id_carplace}</td>
 						<td>${carplacedto.id_slot}</td>
-						<td>${carplacedto.type}</td>
-						<td>${carplacedto.busy}</td>
 						<td>${carplacedto.license_plate}</td>
 						<td>${carplacedto.start}</td>
 						<td>${carplacedto.finish}</td>

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pCarpet.model.Car;
-import com.pCarpet.model.Carplace;
 import com.pCarpet.model.Payment;
 import com.pCarpet.model.Slot;
 import com.pCarpet.model.Stop;
@@ -57,7 +56,6 @@ public class PaymentController {
 		User user = userService.getLoggedUser();
 		
 		List<Payment> payments = paymentService.getAllPayment(user);
-		//Reference<List<Payment>> mypayments = new Reference<List<Payment>>(payments);
 
 		model.addAttribute("payments", payments);
 		return "paymentsHystory";
@@ -90,9 +88,8 @@ public class PaymentController {
 		//non ci sarà il carplace!
 		//mi prenderò lo slot per la creazione di carplace!
 		Slot slot = slotService.getSlot(id_slot);
-		Carplace carplace = new Carplace(12, 21.3123, 34.312312, true, slot, true);
 		
-		Stop stop = new Stop(0,start,finish,car,carplace);
+		Stop stop = new Stop(0,start,finish,car,slot);
 		stopService.insertStop(stop);
 		
 		System.out.println("4");
@@ -100,7 +97,6 @@ public class PaymentController {
 		Payment payment = new Payment(0,totalPrice,user,stop);	
 		paymentService.insertPayment(payment);		
 		
-		//request.setAttribute("payments", paymentService.getAllPayment(user));
 		
 		return payment;
 	}

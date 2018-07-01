@@ -37,8 +37,8 @@ public class Stop {
 	private Car car;
 	
 	@ManyToOne
-    @JoinColumn(name="id_carplace")
-	private Carplace carplace;
+    @JoinColumn(name="id_slot")
+	private Slot slot;
 	
 }   	
 	

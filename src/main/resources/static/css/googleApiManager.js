@@ -134,26 +134,26 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 
 			//rimuovo i markers precedenti
 			self.deleteMarkers();
-			var objDTOlist = JSON.parse(http.responseText);
+			var objlist = JSON.parse(http.responseText);
 			//var infoWindow = new google.maps.InfoWindow(), marker, i;					
 			
 			var title = [];
-			for (var i = 0; i < objDTOlist.length; i++) {
-				var obj = objDTOlist[i];
+			for (var i = 0; i < objlist.length; i++) {
+				var obj = objlist[i];
 
 				var latLng = new google.maps.LatLng(
-						obj.slot.latitude, obj.slot.longitude);
-				var freeCarPlaces = self.getFreeCarPlaces(obj.carplace);
-				var numberCarPlaces = obj.carplace.length; 
-				var info = "<h3>" + obj.slot.address + "</h3>"
-						+ "<br> Tipo: " + obj.slot.type
-						+ "<br> Tariffa oraria: " + obj.slot.price + "\u20AC"
+						obj.latitude, obj.longitude);
+				var freeCarPlaces = obj.number_carplace_free;
+				var numberCarPlaces = obj.number_carplace;
+				var info = "<h3>" + obj.address + "</h3>"
+						+ "<br> Tipo: " + obj.type
+						+ "<br> Tariffa oraria: " + obj.price + "\u20AC"
 						+ "<br> Numero posti: " + numberCarPlaces 
 						+ "<br> Disponibli: " + freeCarPlaces 
 						+ "<br><a id='indications'>Indicazioni</a>"
 						+ "<br><a id='sosta'>Inizia sosta</a>";
 						
-				if (obj.slot.type == "privato")
+				if (obj.type == "privato")
 					info = info + "<br><a>Prenota</a>";
 
 				title[i] = info;
@@ -410,8 +410,8 @@ GoogleApiManager.prototype.StartStop = function(marker){
 	this.selectMinuteDOM.disabled = false;
 	this.payAndGoDOM.disabled = false;
 	select.value = 15;
-	this.slotAddressDOM.innerHTML = "Slot: "+ obj.slot.address;
-	var price = obj.slot.price;
+	this.slotAddressDOM.innerHTML = "Slot: "+ obj.address;
+	var price = obj.price;
 	var minute = select.value;
 	this.showPriceDOM.innerHTML = "Prezzo: " + (price / 60) * minute + "\u20AC";
 	
@@ -428,12 +428,12 @@ GoogleApiManager.prototype.payAndGo = function(marker){
 		
 		var selectedcar = self.selectCarChoiceDOM.value;
 		var timeToAddFromNow = self.selectMinuteDOM.value;
-		var price = (obj.slot.price / 60) * timeToAddFromNow;
+		var price = (obj.price / 60) * timeToAddFromNow;
 		
 		var params = new Map();
 		params.set('timeToAdd', timeToAddFromNow);
 		params.set('totalPrice', price);
-		params.set('id_slot', obj.slot.id);
+		params.set('id_slot', obj.id);
 		params.set('id_car', selectedcar);
 		
 		///Payment
@@ -457,7 +457,7 @@ GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
 	self.selectMinuteDOM.addEventListener('change', function() {
 		var obj = self.markerMap.get(self.currentSelectedMarker);
 		var min = select.value;
-		var pay = (obj.slot.price / 60) * min;
+		var pay = (obj.price / 60) * min;
 		self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
 	});
 }
@@ -520,15 +520,6 @@ GoogleApiManager.prototype.makeMarker = function(position,icon)
 	 return marker;
 };
 
-GoogleApiManager.prototype.getFreeCarPlaces = function(carplaces)
-{
-	var count = 0;
-	for (var i = 0; i < carplaces.length; i++) {
-		if (!carplaces[i].busy)
-			count++;
-	}
-	return count;
-};
 
 //Sets the map on all markers in the array.
 GoogleApiManager.prototype.setMapOnAll = function(map)
