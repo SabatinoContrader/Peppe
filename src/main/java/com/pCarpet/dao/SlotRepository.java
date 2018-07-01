@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.pCarpet.model.Slot;
+import com.pCarpet.model.User;
 
 @Repository
 @Transactional
@@ -17,6 +18,7 @@ public interface SlotRepository extends CrudRepository<Slot, Long>{
 	
 	List<Slot> findAll();
 	
+	List<Slot> findByUser(User user);
 	
 	Slot findById(int id);
 	

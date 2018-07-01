@@ -1,6 +1,6 @@
 		
 
-function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
+function GoogleApiManagerDriver(mapId ,latitude, longitude, serverUrl)
 {
 	//Server
 	this.serverUrl = serverUrl;
@@ -76,7 +76,7 @@ function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
 };
   
 
-GoogleApiManager.prototype.Initicons = function()
+GoogleApiManagerDriver.prototype.Initicons = function()
 {
 	this.iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 	this.icons = {
@@ -105,7 +105,7 @@ GoogleApiManager.prototype.Initicons = function()
 		};
 };
 
-GoogleApiManager.prototype.InitMap = function(latitude,longitude)
+GoogleApiManagerDriver.prototype.InitMap = function(latitude,longitude)
 {
 	var mapOptions = {
 			center : new google.maps.LatLng(latitude, longitude),
@@ -118,7 +118,7 @@ GoogleApiManager.prototype.InitMap = function(latitude,longitude)
 			mapOptions);
 };
 
-GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
+GoogleApiManagerDriver.prototype.doAjaxForNearSlots = function(latitude,longitude)
 {
 	var self = this;
 	var http = new XMLHttpRequest();
@@ -173,7 +173,7 @@ GoogleApiManager.prototype.doAjaxForNearSlots = function(latitude,longitude)
 };
 
 //pass params in map
-GoogleApiManager.prototype.doAjax = function(url,mapParams,success,fail,method)
+GoogleApiManagerDriver.prototype.doAjax = function(url,mapParams,success,fail,method)
 {
 	var self = this;
 	var http = new XMLHttpRequest();
@@ -206,7 +206,7 @@ GoogleApiManager.prototype.doAjax = function(url,mapParams,success,fail,method)
 	}
 };
 
-GoogleApiManager.prototype.selectDirectionModeBackButton = function(backButtonID)
+GoogleApiManagerDriver.prototype.selectDirectionModeBackButton = function(backButtonID)
 {
 	var self = this;
 	this.directionModeBackButtonDOM = document.getElementById(backButtonID);
@@ -222,7 +222,7 @@ GoogleApiManager.prototype.selectDirectionModeBackButton = function(backButtonID
 	});	
 };
 
-GoogleApiManager.prototype.selectRunTurnByTurnButton = function(turnByTurnButtonID)
+GoogleApiManagerDriver.prototype.selectRunTurnByTurnButton = function(turnByTurnButtonID)
 {
 	this.runTurnByTurnButtonDOM = document.getElementById(turnByTurnButtonID);
 	
@@ -231,7 +231,7 @@ GoogleApiManager.prototype.selectRunTurnByTurnButton = function(turnByTurnButton
 	});	
 };
 
-GoogleApiManager.prototype.InitGoogleMapsEvents = function()
+GoogleApiManagerDriver.prototype.InitGoogleMapsEvents = function()
 {
 	var self = this;
 	google.maps.event.addListener(self.map, "dragend", function(event) {
@@ -244,7 +244,7 @@ GoogleApiManager.prototype.InitGoogleMapsEvents = function()
 	});
 };
 
-GoogleApiManager.prototype.selectAutoCompleteTextbox = function(autoCompleteTextboxId,autoCompleteSubmitButtonID)
+GoogleApiManagerDriver.prototype.selectAutoCompleteTextbox = function(autoCompleteTextboxId,autoCompleteSubmitButtonID)
 {
 	this.autoCompleteTextboxDOM = document.getElementById(autoCompleteTextboxId);
 	this.autoCompleteTextboxSubmitButtonDOM = document.getElementById(autoCompleteSubmitButtonID);
@@ -254,7 +254,7 @@ GoogleApiManager.prototype.selectAutoCompleteTextbox = function(autoCompleteText
     this.InitGeocodeAddressEvents();
 };
 
-GoogleApiManager.prototype.selectChangeMinute = function(selectTagId,showPriceTagID,slotAddressId,payAndGoButtonId,selectCarChoiceTagId)
+GoogleApiManagerDriver.prototype.selectChangeMinute = function(selectTagId,showPriceTagID,slotAddressId,payAndGoButtonId,selectCarChoiceTagId)
 {
 	this.selectMinuteDOM = document.getElementById(selectTagId);
 	this.showPriceDOM = document.getElementById(showPriceTagID);
@@ -268,7 +268,7 @@ GoogleApiManager.prototype.selectChangeMinute = function(selectTagId,showPriceTa
 	this.payAndGo();
 };
 
-GoogleApiManager.prototype.selectFindMyPosition = function(findMyPositionButtonId)
+GoogleApiManagerDriver.prototype.selectFindMyPosition = function(findMyPositionButtonId)
 {
 	this.findMyPositionButtonDOM = document.getElementById(findMyPositionButtonId);
 	
@@ -276,7 +276,7 @@ GoogleApiManager.prototype.selectFindMyPosition = function(findMyPositionButtonI
 };
 
 //call only after selectAutoCompleteTextbox()
-GoogleApiManager.prototype.geocodeAddress = function()
+GoogleApiManagerDriver.prototype.geocodeAddress = function()
 {
 	var self = this;
 	var address = this.autoCompleteTextboxDOM.value;
@@ -299,7 +299,7 @@ GoogleApiManager.prototype.geocodeAddress = function()
 					});
 };
 
-GoogleApiManager.prototype.geocodeCoordinates = function(latitude,longitude)
+GoogleApiManagerDriver.prototype.geocodeCoordinates = function(latitude,longitude)
 {
 	var self = this;
 	var location = new google.maps.LatLng(latitude, longitude);
@@ -313,7 +313,7 @@ GoogleApiManager.prototype.geocodeCoordinates = function(latitude,longitude)
 						{
 							this.map.setCenter(results[0].geometry.location);
 							this.map.setZoom(15);
-							self.doAjaxForNearSlots(this.map.getCenter().lat(), this.map.getCenter().lng());
+							self.doAjaxForNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng());
 						} else 
 						{
 							alert('Geocode was not successful for the following reason: '
@@ -323,7 +323,7 @@ GoogleApiManager.prototype.geocodeCoordinates = function(latitude,longitude)
 };
 
 //call only after selectAutoCompleteTextbox()
-GoogleApiManager.prototype.InitGeocodeAddressEvents = function()
+GoogleApiManagerDriver.prototype.InitGeocodeAddressEvents = function()
 {
 	var self = this;
 	this.autoCompleteTextboxSubmitButtonDOM.addEventListener('click',
@@ -340,8 +340,9 @@ GoogleApiManager.prototype.InitGeocodeAddressEvents = function()
 			});	
 };
 
-GoogleApiManager.prototype.InitGeocodeFindMyPositionEvent = function()
+GoogleApiManagerDriver.prototype.InitGeocodeFindMyPositionEvent = function()
 {
+	var self = this;
 	this.findMyPositionButtonDOM.addEventListener('click',
 			function(){
 				if (navigator.geolocation) {
@@ -359,7 +360,7 @@ GoogleApiManager.prototype.InitGeocodeFindMyPositionEvent = function()
 	}
 }
 
-GoogleApiManager.prototype.AddMarkerEvent = function(marker,content)
+GoogleApiManagerDriver.prototype.AddMarkerEvent = function(marker,content)
 {
 	var self = this;
 	google.maps.event.addListener(marker, 'click',
@@ -376,7 +377,7 @@ GoogleApiManager.prototype.AddMarkerEvent = function(marker,content)
 			})(marker,content));
 };
 
-GoogleApiManager.prototype.InitInfoWindowEvents = function(marker)
+GoogleApiManagerDriver.prototype.InitInfoWindowEvents = function(marker)
 {
 		var self = this;		
 		google.maps.event.addListener(self.infoWindow, 'domready', function() {
@@ -404,7 +405,7 @@ GoogleApiManager.prototype.InitInfoWindowEvents = function(marker)
 };
 
 //call selectChangeMinute() before
-GoogleApiManager.prototype.StartStop = function(marker){
+GoogleApiManagerDriver.prototype.StartStop = function(marker){
 	  
 	var obj = this.markerMap.get(marker);
 	this.selectMinuteDOM.disabled = false;
@@ -417,7 +418,7 @@ GoogleApiManager.prototype.StartStop = function(marker){
 	
 }
 
-GoogleApiManager.prototype.payAndGo = function(marker){
+GoogleApiManagerDriver.prototype.payAndGo = function(marker){
 	    
 	var self = this;
 	this.payAndGoDOM.addEventListener('click', function(){
@@ -451,7 +452,7 @@ GoogleApiManager.prototype.payAndGo = function(marker){
 	}
 }
 
-GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
+GoogleApiManagerDriver.prototype.InitChangeSelectMinuteEvent = function()
 {
 	var self = this;
 	self.selectMinuteDOM.addEventListener('change', function() {
@@ -462,7 +463,7 @@ GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
 	});
 }
 
-GoogleApiManager.prototype.StartDirectionsRequest = function(marker)
+GoogleApiManagerDriver.prototype.StartDirectionsRequest = function(marker)
 {
 
     var from = new google.maps.LatLng(this.currentLatitude, this.currentLongitude);
@@ -509,7 +510,7 @@ GoogleApiManager.prototype.StartDirectionsRequest = function(marker)
      self.directionModeBackButtonDOM.disabled = false;
 };
 
-GoogleApiManager.prototype.makeMarker = function(position,icon)
+GoogleApiManagerDriver.prototype.makeMarker = function(position,icon)
 {
 	 var marker = new google.maps.Marker({
 		  position: position,
@@ -522,7 +523,7 @@ GoogleApiManager.prototype.makeMarker = function(position,icon)
 
 
 //Sets the map on all markers in the array.
-GoogleApiManager.prototype.setMapOnAll = function(map)
+GoogleApiManagerDriver.prototype.setMapOnAll = function(map)
 {
 	var self = this;
 	for (var i = 0; i < self.markers.length; i++) {
@@ -531,21 +532,21 @@ GoogleApiManager.prototype.setMapOnAll = function(map)
 };
 
 //Removes the markers from the map, but keeps them in the array.
-GoogleApiManager.prototype.clearMarkers = function()
+GoogleApiManagerDriver.prototype.clearMarkers = function()
 {
 	var self = this;
 	self.setMapOnAll(null);
 };
 
 //Shows any markers currently in the array.
-GoogleApiManager.prototype.showMarkers = function()
+GoogleApiManagerDriver.prototype.showMarkers = function()
 {
 	var self = this;
 	self.setMapOnAll(self.map);
 };
 
 //Hidden markers when zooming to far.
-GoogleApiManager.prototype.deleteMarkersZoom = function()
+GoogleApiManagerDriver.prototype.deleteMarkersZoom = function()
 {
 	var self = this;
 	if (self.map.getZoom() < 15) {
@@ -557,7 +558,7 @@ GoogleApiManager.prototype.deleteMarkersZoom = function()
 };
 
 //Deletes all markers in the array by removing references to them.
-GoogleApiManager.prototype.deleteMarkers = function()
+GoogleApiManagerDriver.prototype.deleteMarkers = function()
 {
 	var self = this;
 	self.clearMarkers();

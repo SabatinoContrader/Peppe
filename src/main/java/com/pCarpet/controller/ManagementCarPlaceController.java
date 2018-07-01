@@ -31,12 +31,13 @@ public class ManagementCarPlaceController {
 
 	@RequestMapping(value = "/CarPlace", method = RequestMethod.GET)
 	public String getAllCarplace(HttpServletRequest request, Model model) {
-
-		int id_slot = Integer.parseInt(request.getParameter("id"));
-		Slot slot = slotService.getSlot(id_slot);
-		List<ManagementCarPlaceDTO> managementCarPlaceDTOs = stopService.getAllStop(slot);
-		model.addAttribute("managementCarPlaceDTO", managementCarPlaceDTOs);
-		return "managementCarPlace";
+//
+//		int id_slot = Integer.parseInt(request.getParameter("id"));
+//		Slot slot = slotService.getSlot(id_slot);
+//		List<ManagementCarPlaceDTO> managementCarPlaceDTOs = stopService.getAllStop(slot);
+//		model.addAttribute("managementCarPlaceDTO", managementCarPlaceDTOs);
+//		return "managementCarPlace";
+		return "";
 
 	}
 

@@ -20,12 +20,13 @@ public class StopService {
     private StopRepository stopRepository;
     private CarService carService;
     private SlotService slotService;
-    
+    private UserService userService;
     @Autowired 
-    public  StopService(StopRepository stopRepository, CarService carService, SlotService slotService) {
+    public  StopService(StopRepository stopRepository, CarService carService, SlotService slotService, UserService userService) {
         this.stopRepository = stopRepository;
         this.carService = carService;
         this.slotService = slotService;
+        this.userService = userService;
 
     }
 
@@ -52,17 +53,33 @@ public class StopService {
         this.stopRepository.extensionStop(id_stop,finish);
     }
     
-    public List<ManagementCarPlaceDTO> getAllStop(Slot slot) {
+    public List<ManagementCarPlaceDTO> getAllStopDTOByCurrentUser() {
         List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new ArrayList<ManagementCarPlaceDTO>();
+      
+      	
+    	User user = userService.getLoggedUser();
+        List<Slot> slots = (List<Slot>) slotService.getAllSlotByUser(user);
         
-        List<Stop> stops = getStops(slot);
-        
-        for (Stop stop : stops) {
-            	Car car = carService.getCar(stop.getCar().getId());
-                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(stop, car);
-                managementCarPlaceDTOs.add(managementCarPlaceDTO);
+        for(Slot slot : slots )
+        {
+        	List<Stop> stops = getStops(slot);
+        	ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(slot, stops);
+        	managementCarPlaceDTOs.add(managementCarPlaceDTO);
         }
+        
         return managementCarPlaceDTOs;
+        
+        
+        
+        
+//        List<Stop> stops = getStops(slot);
+//        
+//        for (Stop stop : stops) {
+//            	Car car = carService.getCar(stop.getCar().getId());
+//                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(stop, car);
+//                managementCarPlaceDTOs.add(managementCarPlaceDTO);
+//        }
+//        return managementCarPlaceDTOs;
     }
     
     public List<Stop> getStops(Slot slot) {

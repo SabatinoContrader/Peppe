@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- Javascript -->
-<script src="/css/googleApiManager.js"></script>
+<script src="/css/googleApiManagerDriver.js"></script>
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/pcarpet.css">
@@ -73,12 +73,12 @@
 
 	<script>
 	function myMap() {
-		var googleApiManager = new GoogleApiManager('map',41.9, 12.48,'/updateParkings');
-			googleApiManager.selectAutoCompleteTextbox('autocomplete','startsearch');
-			googleApiManager.selectDirectionModeBackButton('cambia');
-			googleApiManager.selectRunTurnByTurnButton('seleziona');
-			googleApiManager.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
-			googleApiManager.selectFindMyPosition('myposition');
+		var googleApiManagerDriver = new GoogleApiManagerDriver('map',41.9, 12.48,'/updateParkings');
+			googleApiManagerDriver.selectAutoCompleteTextbox('autocomplete','startsearch');
+			googleApiManagerDriver.selectDirectionModeBackButton('cambia');
+			googleApiManagerDriver.selectRunTurnByTurnButton('seleziona');
+			googleApiManagerDriver.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
+			googleApiManagerDriver.selectFindMyPosition('myposition');
 		};
 	</script>
 

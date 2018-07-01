@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pCarpet.dao.SlotRepository;
 import com.pCarpet.model.Slot;
+import com.pCarpet.model.User;
 
 @Service
 public class SlotService {
@@ -22,6 +23,11 @@ public class SlotService {
     
     public List<Slot> getAllSlot () {
         return slotRepository.findAll();
+    }
+    
+    public List<Slot> getAllSlotByUser(User user)
+    {
+    	return slotRepository.findByUser(user);
     }
 
     
