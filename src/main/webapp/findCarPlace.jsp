@@ -77,6 +77,8 @@
 			googleApiManager.selectAutoCompleteTextbox('autocomplete','startsearch');
 			googleApiManager.selectDirectionModeBackButton('cambia');
 			googleApiManager.selectRunTurnByTurnButton('seleziona');
+			googleApiManager.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
+			googleApiManager.selectFindMyPosition('myposition');
 		};
 	</script>
 

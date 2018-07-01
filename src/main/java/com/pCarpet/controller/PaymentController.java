@@ -90,7 +90,7 @@ public class PaymentController {
 		//non ci sarà il carplace!
 		//mi prenderò lo slot per la creazione di carplace!
 		Slot slot = slotService.getSlot(id_slot);
-		Carplace carplace = new Carplace(1, 34.321312, 23.4234, true, slot, true);
+		Carplace carplace = new Carplace(12, 21.3123, 34.312312, true, slot, true);
 		
 		Stop stop = new Stop(0,start,finish,car,carplace);
 		stopService.insertStop(stop);

@@ -57,12 +57,22 @@ function GoogleApiManager(mapId ,latitude, longitude, serverUrl)
     this.tariffaOraria;
     
     this.markerMap = new Map();
-    this.InitChangeSelectMinuteEvent();
+    //this.InitChangeSelectMinuteEvent();
+    
+    //select time to stop
+    this.selectMinuteDOM;
+    this.showPriceDOM;
+    this.slotAddressDOM;
+    this.payAndGoDOM;
+    this.selectCarChoiceDOM;
+    
+    //select my position
+    this.findMyPositionButtonDOM;
     
     this.currentLatitude;
     this.currentLongitude;
     
-    this.payAndGo();
+    //this.payAndGo();
 };
   
 
@@ -244,6 +254,27 @@ GoogleApiManager.prototype.selectAutoCompleteTextbox = function(autoCompleteText
     this.InitGeocodeAddressEvents();
 };
 
+GoogleApiManager.prototype.selectChangeMinute = function(selectTagId,showPriceTagID,slotAddressId,payAndGoButtonId,selectCarChoiceTagId)
+{
+	this.selectMinuteDOM = document.getElementById(selectTagId);
+	this.showPriceDOM = document.getElementById(showPriceTagID);
+	this.slotAddressDOM = document.getElementById(slotAddressId);
+	this.payAndGoDOM = document.getElementById(payAndGoButtonId);
+	this.selectCarChoiceDOM = document.getElementById(selectCarChoiceTagId);
+	
+    //init chose stop time events
+	this.InitChangeSelectMinuteEvent();
+	//init pay and go event
+	this.payAndGo();
+};
+
+GoogleApiManager.prototype.selectFindMyPosition = function(findMyPositionButtonId)
+{
+	this.findMyPositionButtonDOM = document.getElementById(findMyPositionButtonId);
+	
+	this.InitGeocodeFindMyPositionEvent();
+};
+
 //call only after selectAutoCompleteTextbox()
 GoogleApiManager.prototype.geocodeAddress = function()
 {
@@ -306,9 +337,12 @@ GoogleApiManager.prototype.InitGeocodeAddressEvents = function()
 					event.preventDefault();
 					self.geocodeAddress();
 				}
-			});
-	
-	document.getElementById("myposition").addEventListener('click',
+			});	
+};
+
+GoogleApiManager.prototype.InitGeocodeFindMyPositionEvent = function()
+{
+	this.findMyPositionButtonDOM.addEventListener('click',
 			function(){
 				if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(showPosition);
@@ -323,8 +357,7 @@ GoogleApiManager.prototype.InitGeocodeAddressEvents = function()
 		self.currentLongitude = position.coords.longitude;
 		self.geocodeCoordinates(self.currentLatitude, self.currentLongitude);
 	}
-	
-};
+}
 
 GoogleApiManager.prototype.AddMarkerEvent = function(marker,content)
 {
@@ -363,37 +396,38 @@ GoogleApiManager.prototype.InitInfoWindowEvents = function(marker)
 				}	
 			});
 			
+			//call selectChangeMinute() before
 			document.getElementById("sosta").addEventListener("click", function() {
 				self.StartStop(marker);
 			});
 		});
 };
 
+//call selectChangeMinute() before
 GoogleApiManager.prototype.StartStop = function(marker){
+	  
 	var obj = this.markerMap.get(marker);
-	var select = document.getElementById("select");
-	select.disabled = false;
-	document.getElementById("payandgo").disabled = false;
+	this.selectMinuteDOM.disabled = false;
+	this.payAndGoDOM.disabled = false;
 	select.value = 15;
-	document.getElementById("slot").innerHTML = "Slot: "+ obj.slot.address;
+	this.slotAddressDOM.innerHTML = "Slot: "+ obj.slot.address;
 	var price = obj.slot.price;
 	var minute = select.value;
-	var newprice = document.getElementById("newprice");
-	newprice.innerHTML = "Prezzo: " + (price / 60) * minute + "\u20AC";
+	this.showPriceDOM.innerHTML = "Prezzo: " + (price / 60) * minute + "\u20AC";
 	
 }
 
 GoogleApiManager.prototype.payAndGo = function(marker){
-	
+	    
 	var self = this;
-	document.getElementById("payandgo").addEventListener('click', function(){
-		select.disabled = true;
-		document.getElementById("payandgo").disabled = true;
+	this.payAndGoDOM.addEventListener('click', function(){
+		self.selectMinuteDOM.disabled = true;
+		self.payAndGoDOM.disabled = true;
 		
 		var obj = self.markerMap.get(self.currentSelectedMarker);
 		
-		var selectedcar = document.getElementById("carSelect").value;
-		var timeToAddFromNow = document.getElementById("select").value;
+		var selectedcar = self.selectCarChoiceDOM.value;
+		var timeToAddFromNow = self.selectMinuteDOM.value;
 		var price = (obj.slot.price / 60) * timeToAddFromNow;
 		
 		var params = new Map();
@@ -420,12 +454,11 @@ GoogleApiManager.prototype.payAndGo = function(marker){
 GoogleApiManager.prototype.InitChangeSelectMinuteEvent = function()
 {
 	var self = this;
-	var select = document.getElementById("select");
-	select.addEventListener('change', function() {
+	self.selectMinuteDOM.addEventListener('change', function() {
 		var obj = self.markerMap.get(self.currentSelectedMarker);
 		var min = select.value;
 		var pay = (obj.slot.price / 60) * min;
-		document.getElementById("newprice").innerHTML = "Prezzo: " + pay + "\u20AC";
+		self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
 	});
 }
 
