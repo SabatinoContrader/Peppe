@@ -401,12 +401,14 @@ GoogleApiManagerDriver.prototype.InitInfoWindowEvents = function(marker)
 				}	
 			});
 			
-			if(self.freeCarPlaces > 0){
+			var obj = self.markerMap.get(self.currentSelectedMarker);
+			if(obj.number_carplace_free > 0){
 				//call selectChangeMinute() before
 				document.getElementById("sosta").addEventListener("click", function() {
 					self.StartStop(marker);
 				});
 			}
+			
 		});
 };
 
