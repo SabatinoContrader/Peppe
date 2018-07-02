@@ -72,6 +72,8 @@ function GoogleApiManagerDriver(mapId ,latitude, longitude, serverUrl)
     this.currentLatitude;
     this.currentLongitude;
     
+    this.freeCarPlaces = 0;
+    
     //this.payAndGo();
 };
   
@@ -143,15 +145,17 @@ GoogleApiManagerDriver.prototype.doAjaxForNearSlots = function(latitude,longitud
 
 				var latLng = new google.maps.LatLng(
 						obj.latitude, obj.longitude);
-				var freeCarPlaces = obj.number_carplace_free;
+				self.freeCarPlaces = obj.number_carplace_free;
 				var numberCarPlaces = obj.number_carplace;
 				var info = "<h3>" + obj.address + "</h3>"
 						+ "<br> Tipo: " + obj.type
 						+ "<br> Tariffa oraria: " + obj.price + "\u20AC"
 						+ "<br> Numero posti: " + numberCarPlaces 
-						+ "<br> Disponibli: " + freeCarPlaces 
-						+ "<br><a id='indications'>Indicazioni</a>"
-						+ "<br><a id='sosta'>Inizia sosta</a>";
+						+ "<br> Disponibli: " + self.freeCarPlaces 
+						+ "<br><a id='indications'>Indicazioni</a>";
+				
+				if(self.freeCarPlaces > 0)
+					info += "<br><a id='sosta'>Inizia sosta</a>";
 						
 				if (obj.type == "privato")
 					info = info + "<br><a>Prenota</a>";
@@ -159,9 +163,9 @@ GoogleApiManagerDriver.prototype.doAjaxForNearSlots = function(latitude,longitud
 				title[i] = info;
 				
 				//make markers
-				if(freeCarPlaces == 0)
+				if(self.freeCarPlaces == 0)
 					var marker = self.makeMarker(latLng,self.icons["parkingRed"].icon);
-				else if (freeCarPlaces < (numberCarPlaces / 4))
+				else if (self.freeCarPlaces < 5)
 					var marker = self.makeMarker(latLng,self.icons["parkingYellow"].icon);
 				else 
 					var marker = self.makeMarker(latLng,self.icons["parkingGreen"].icon);
@@ -397,10 +401,12 @@ GoogleApiManagerDriver.prototype.InitInfoWindowEvents = function(marker)
 				}	
 			});
 			
-			//call selectChangeMinute() before
-			document.getElementById("sosta").addEventListener("click", function() {
-				self.StartStop(marker);
-			});
+			if(self.freeCarPlaces > 0){
+				//call selectChangeMinute() before
+				document.getElementById("sosta").addEventListener("click", function() {
+					self.StartStop(marker);
+				});
+			}
 		});
 };
 
@@ -422,23 +428,28 @@ GoogleApiManagerDriver.prototype.payAndGo = function(marker){
 	    
 	var self = this;
 	this.payAndGoDOM.addEventListener('click', function(){
-		self.selectMinuteDOM.disabled = true;
-		self.payAndGoDOM.disabled = true;
-		
-		var obj = self.markerMap.get(self.currentSelectedMarker);
-		
 		var selectedcar = self.selectCarChoiceDOM.value;
-		var timeToAddFromNow = self.selectMinuteDOM.value;
-		var price = (obj.price / 60) * timeToAddFromNow;
-		
-		var params = new Map();
-		params.set('timeToAdd', timeToAddFromNow);
-		params.set('totalPrice', price);
-		params.set('id_slot', obj.id);
-		params.set('id_car', selectedcar);
-		
-		///Payment
-		self.doAjax('/Payment/addPayment', params, paySuccess, payFailed , 'POST');
+		if(selectedcar != ""){
+			self.selectMinuteDOM.disabled = true;
+			self.payAndGoDOM.disabled = true;
+			
+			var obj = self.markerMap.get(self.currentSelectedMarker);
+			
+			
+			var timeToAddFromNow = self.selectMinuteDOM.value;
+			var price = (obj.price / 60) * timeToAddFromNow;
+			
+			var params = new Map();
+			params.set('timeToAdd', timeToAddFromNow);
+			params.set('totalPrice', price);
+			params.set('id_slot', obj.id);
+			params.set('id_car', selectedcar);
+			
+			///Payment
+			self.doAjax('/Payment/addPayment', params, paySuccess, payFailed , 'POST');
+		}
+		else
+			alert("Devi inserire un auto prima di iniziare la sosta!");
 	});
 	
 	function paySuccess(http)
