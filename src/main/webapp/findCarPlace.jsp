@@ -47,6 +47,7 @@
 		<h3>Inserisci la durata della sosta</h3></br>
 		<p id='slot'>Slot: </p>
 		<select id='select' name='minute' disabled>
+		<option value='' hidden>Seleziona minuti</option>
 		<option value='15'>15 min</option>
 		<option value='30'>30 min</option>
 		<option value='45'>45 min</option>
@@ -57,7 +58,12 @@
 		<option value='120'>2 h</option>
 	    </select></br>
 	    <p id='newprice'>Prezzo: </p>
+	    
+	    <form style="display: inline-block;" action="/Payment/addPayment"
+			method="post">
 	    <button id="payandgo"disabled>Paga ed inizia</button>
+	    </form>
+	    
 		</br></br>
 		
 		<form style="display: inline-block;" action="/Home/dispatchHome"

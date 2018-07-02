@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.pCarpet.model.Car;
 import com.pCarpet.model.User;
 import com.pCarpet.services.CarService;
+import com.pCarpet.services.StopService;
 import com.pCarpet.services.UserService;
 
 @Controller
@@ -20,18 +21,17 @@ import com.pCarpet.services.UserService;
 public class FindCarPlaceController {
 	
 	private UserService userService;
-	private CarService carService;
+	private StopService stopService;
 	
 	@Autowired
-	public FindCarPlaceController(UserService userService, CarService carService)  {
+	public FindCarPlaceController(UserService userService, StopService stopService)  {
 		this.userService = userService;
-		this.carService = carService;
+		this.stopService = stopService;
 	}
 	
 	@RequestMapping(value = "/showSlot", method = RequestMethod.GET) 
 	public String showSlot(HttpServletRequest request, Model model ) {
-		User user = userService.getLoggedUser();
-		List<Car> cars = carService.getAllCar(user);
+		List<Car> cars = stopService.getCarWithoutStopOfUser();
 		model.addAttribute("cars", cars);
 		return "findCarPlace";
 	

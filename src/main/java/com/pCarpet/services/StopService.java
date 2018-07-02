@@ -150,4 +150,15 @@ public class StopService {
     public Stop getStop(Car car) {
     	return this.stopRepository.findByCar(car);
     }
+    
+    public List<Car> getCarWithoutStopOfUser() {
+    	User user = userService.getLoggedUser();
+    	List<Car> cars = carService.getAllCar(user);
+    	List<Car> carsWithoutStop = new ArrayList<>();
+    	for(Car car: cars) {
+    		if(!stopRepository.existsByCar(car))
+    			carsWithoutStop.add(car);
+    	}
+    	return carsWithoutStop;
+    }
 }

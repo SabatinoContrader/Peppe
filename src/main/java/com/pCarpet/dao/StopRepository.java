@@ -33,4 +33,6 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 	@Modifying
 	@Query("update Stop set expired = ?2 where id_stop = ?1")
 	void updateExpired(int id_stop,boolean isBefore);
+	
+	boolean existsByCar(Car car);
 }

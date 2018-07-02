@@ -179,7 +179,6 @@ GoogleApiManagerOwner.prototype.loadOwnerSlots = function(){
 			  }
 			
 			var info = "<h3>" + obj.slot.address + "</h3>"
-					+ "<br> Tipo: " + obj.slot.type
 					+ "<br> Tariffa oraria: " + obj.slot.price + "\u20AC"
 					+ "<br> Numero posti: " + numberCarPlaces 
 					+ "<br> Disponibli: " + freeCarPlaces

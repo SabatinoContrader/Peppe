@@ -92,11 +92,8 @@ public class PaymentController {
 		Stop stop = new Stop(0,start,finish,false,car,slot);
 		stopService.insertStop(stop);
 		
-		System.out.println("4");
-		
 		Payment payment = new Payment(0,totalPrice,user,stop);	
 		paymentService.insertPayment(payment);		
-		
 		
 		return payment;
 	}
