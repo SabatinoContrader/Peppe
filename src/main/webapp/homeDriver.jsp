@@ -24,18 +24,22 @@
 			<b>DRIVER</b>
 		</h1>
 		<a class="btn btn-lg btn-primary btn-block"
-			href="/FindCarPlace/showSlot">Trova parcheggio</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="/ExtensionStop/extensionStops">Prolunga sosta</a></br> <a
-			class="btn btn-lg btn-primary btn-block" href="/Car/carsList">Aggiungi/Rimuovi
-			auto</a></br> <a class="btn btn-lg btn-primary btn-block"
-			href="/Report/driver/reports">Invia segnalazione</a></br> <a
-			class="btn btn-lg btn-primary btn-block"
-			href="/Report/driver/ownerReport">Segnalazioni del gestore</a></br> <a
-			class="btn btn-lg btn-primary btn-block" href="/UsefulNumber/userNumbers">Numeri
-			utili</a></br> <a class="btn btn-lg btn-primary btn-block"
-			href="/Legislation/legislations">Normative</a></br> <a
-			class="btn btn-lg btn-primary btn-block" href="/Login/logoutControl">Logout</a></br>
+			href="/FindCarPlace/showSlot">Trova parcheggio</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/ExtensionStop/extensionStops">Prolunga sosta</a></br> 
+		<a class="btn btn-lg btn-primary btn-block" href="/Car/carsList">Aggiungi/Rimuovi
+			auto</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/Report/driver/reports">Invia segnalazione</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/Report/driver/ownerReport">Segnalazioni del gestore</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/Payment/paymentList">Pagamenti</a></br> 
+		<a class="btn btn-lg btn-primary btn-block" href="/UsefulNumber/userNumbers">Numeri
+			utili</a></br> 
+		<a class="btn btn-lg btn-primary btn-block"
+			href="/Legislation/legislations">Normative</a></br> 
+		<a class="btn btn-lg btn-primary btn-block" href="/Login/logoutControl">Logout</a></br>
 
 	</form>
 
