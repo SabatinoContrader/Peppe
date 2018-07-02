@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pCarpet.dao.PaymentRepository;
 import com.pCarpet.model.Payment;
+import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
 
 @Service
@@ -25,5 +26,9 @@ public class PaymentService {
 
     public List<Payment> getAllPayment(User user) {
     	return this.paymentRepository.findByUser(user);
+    }
+    
+    public List<Payment> getPaymentForStop(Stop stop) {
+    	return this.paymentRepository.findByStop(stop);
     }
 }

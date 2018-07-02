@@ -7,6 +7,7 @@ function GoogleApiManagerOwner(mapId ,latitude, longitude, serverUrl)
 		
 	//DOM elements
 	this.mapDOM = document.getElementById(mapId);
+	this.stopListDOM;
 	
 	//icons vars
 	this.iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
@@ -44,6 +45,7 @@ function GoogleApiManagerOwner(mapId ,latitude, longitude, serverUrl)
     this.currentLatitude;
     this.currentLongitude;
     
+    this.loadOwnerSlots();
 };
   
 
@@ -80,67 +82,13 @@ GoogleApiManagerOwner.prototype.InitMap = function(latitude,longitude)
 {
 	var mapOptions = {
 			center : new google.maps.LatLng(latitude, longitude),
-			zoom : 10,
+			zoom : 12,
 			mapTypeId : google.maps.MapTypeId.ROADMAP,
 			disableDefaultUI : true,
 			zoomControl : true
 		}
 	return map = new google.maps.Map(this.mapDOM,
 			mapOptions);
-};
-
-GoogleApiManagerOwner.prototype.doAjaxForNearSlots = function(latitude,longitude)
-{
-	var self = this;
-	var http = new XMLHttpRequest();
-	var url = self.serverUrl; //window.location.href '/updateParkings'
-	var params = 'lat=' + latitude + '&lng=' + longitude + ''; //op=getMarkers&
-	http.open('POST', url, true);
-	//Send the proper header information along with the request
-	http.setRequestHeader('Content-type',
-			'application/x-www-form-urlencoded');
-	http.send(params);
-	http.onreadystatechange = function() {//Call a function when the state changes.
-		if (http.readyState == 4 && http.status == 200) {
-
-			//rimuovo i markers precedenti
-			self.deleteMarkers();
-			var objlist = JSON.parse(http.responseText);
-			//var infoWindow = new google.maps.InfoWindow(), marker, i;					
-			
-			var title = [];
-			for (var i = 0; i < objlist.length; i++) {
-				var obj = objlist[i];
-
-				var latLng = new google.maps.LatLng(
-						obj.latitude, obj.longitude);
-				var freeCarPlaces = obj.number_carplace_free;
-				var numberCarPlaces = obj.number_carplace;
-				var info = "<h3>" + obj.address + "</h3>"
-						+ "<br> Tipo: " + obj.type
-						+ "<br> Tariffa oraria: " + obj.price + "\u20AC"
-						+ "<br> Numero posti: " + numberCarPlaces 
-						+ "<br> Disponibli: " + freeCarPlaces 
-						+ "<br><a id='indications'>Indicazioni</a>"
-						+ "<br><a id='sosta'>Inizia sosta</a>";
-						
-				if (obj.type == "privato")
-					info = info + "<br><a>Prenota</a>";
-
-				title[i] = info;
-				
-				//make markers
-				if(freeCarPlaces == 0)
-					var marker = self.makeMarker(latLng,self.icons["parkingRed"].icon);
-				else if (freeCarPlaces < (numberCarPlaces / 4))
-					var marker = self.makeMarker(latLng,self.icons["parkingYellow"].icon);
-				else 
-					var marker = self.makeMarker(latLng,self.icons["parkingGreen"].icon);
-				self.markerMap.set(marker, obj);
-				self.AddMarkerEvent(marker,title[i], obj);
-			}
-		}
-	}
 };
 
 //pass params in map
@@ -177,66 +125,75 @@ GoogleApiManagerOwner.prototype.doAjax = function(url,mapParams,success,fail,met
 	}
 };
 
-GoogleApiManagerOwner.prototype.selectDirectionModeBackButton = function(backButtonID)
-{
-	var self = this;
-	this.directionModeBackButtonDOM = document.getElementById(backButtonID);
-	
-	document.getElementById(backButtonID).addEventListener("click", function(){
-		self.isInSearchDirectionMode = false;
-		self.directionsRenderer.setMap(null);
-		self.directionsRenderer = null;
-		self.directionModeBackButtonDOM.disabled = true;
-		self.runTurnByTurnButtonDOM.disabled = true;
-		self.deleteMarkers();
-		self.geocodeCoordinates(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude);
-	});	
-};
+GoogleApiManagerOwner.prototype.selectStopList = function(stopListID){
+	this.stopListDOM = document.getElementById(stopListID);
+}
 
-GoogleApiManagerOwner.prototype.selectRunTurnByTurnButton = function(turnByTurnButtonID)
-{
-	this.runTurnByTurnButtonDOM = document.getElementById(turnByTurnButtonID);
+GoogleApiManagerOwner.prototype.loadOwnerSlots = function(){
+    
+	var self = this;
+	var params = new Map();
+	self.doAjax(self.serverUrl, params, slotLoadSuccess, slotLoadFailed , 'POST');
 	
-	document.getElementById(turnByTurnButtonID).addEventListener("click", function(){
-		//document.getElementById(turnByTurnButtonID).disabled = true;
-	});	
-};
+	function slotLoadSuccess(http)
+	{
+		console.log("scaricamento slot riuscito: " + http.responseText);
+		
+		//rimuovo i markers precedenti
+		self.deleteMarkers();
+		var objDTO = JSON.parse(http.responseText);
+		//var infoWindow = new google.maps.InfoWindow(), marker, i;					
+		
+		var title = [];
+		for (var i = 0; i < objDTO.length; i++) {
+			var obj = objDTO[i];
+
+			var latLng = new google.maps.LatLng(
+					obj.slot.latitude, obj.slot.longitude);
+			var freeCarPlaces = obj.slot.number_carplace_free;
+			var numberCarPlaces = obj.slot.number_carplace;
+			var info = "<h3>" + obj.slot.address + "</h3>"
+					+ "<br> Tipo: " + obj.slot.type
+					+ "<br> Tariffa oraria: " + obj.slot.price + "\u20AC"
+					+ "<br> Numero posti: " + numberCarPlaces 
+					+ "<br> Disponibli: " + freeCarPlaces
+					+ "<br><a id='slotInfo'>Dettagli</a>";
+
+
+			title[i] = info;
+			
+			//make markers
+			if(freeCarPlaces == 0)
+				var marker = self.makeMarker(latLng,self.icons["parkingRed"].icon);
+			else if (freeCarPlaces < (numberCarPlaces / 4))
+				var marker = self.makeMarker(latLng,self.icons["parkingYellow"].icon);
+			else 
+				var marker = self.makeMarker(latLng,self.icons["parkingGreen"].icon);
+			
+			self.markerMap.set(marker, obj);
+			self.AddMarkerEvent(marker,title[i], obj);
+		}
+		
+		//se parto da lontano i marker devono essere invisibili se da vicino visibili.
+		//self.deleteMarkersZoom();
+	}
+	
+	function slotLoadFailed(http)
+	{
+		console.log("scaricamento slot non riuscito: " + http.responseText);
+	}
+}
 
 GoogleApiManagerOwner.prototype.InitGoogleMapsEvents = function()
 {
 	var self = this;
-	google.maps.event.addListener(self.map, "dragend", function(event) {
-		if(self.isInSearchDirectionMode == false)
-			self.doAjaxForNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng());
-	});
-	google.maps.event.addListener(self.map, "zoom_changed", function(event) {
-		if(self.isInSearchDirectionMode == false)
-			self.deleteMarkersZoom();
-	});
-};
-
-GoogleApiManagerOwner.prototype.selectAutoCompleteTextbox = function(autoCompleteTextboxId,autoCompleteSubmitButtonID)
-{
-	this.autoCompleteTextboxDOM = document.getElementById(autoCompleteTextboxId);
-	this.autoCompleteTextboxSubmitButtonDOM = document.getElementById(autoCompleteSubmitButtonID);
-	this.autocomplete = new google.maps.places.Autocomplete(this.autoCompleteTextboxDOM);
+//	google.maps.event.addListener(self.map, "dragend", function(event) {
+//			self.doAjaxForNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng());
+//	});
 	
-    //init geocode address events
-    this.InitGeocodeAddressEvents();
-};
-
-GoogleApiManagerOwner.prototype.selectChangeMinute = function(selectTagId,showPriceTagID,slotAddressId,payAndGoButtonId,selectCarChoiceTagId)
-{
-	this.selectMinuteDOM = document.getElementById(selectTagId);
-	this.showPriceDOM = document.getElementById(showPriceTagID);
-	this.slotAddressDOM = document.getElementById(slotAddressId);
-	this.payAndGoDOM = document.getElementById(payAndGoButtonId);
-	this.selectCarChoiceDOM = document.getElementById(selectCarChoiceTagId);
-	
-    //init chose stop time events
-	this.InitChangeSelectMinuteEvent();
-	//init pay and go event
-	this.payAndGo();
+//	google.maps.event.addListener(self.map, "zoom_changed", function(event) {
+//			self.deleteMarkersZoom();
+//	});
 };
 
 GoogleApiManagerOwner.prototype.selectFindMyPosition = function(findMyPositionButtonId)
@@ -293,23 +250,6 @@ GoogleApiManagerOwner.prototype.geocodeCoordinates = function(latitude,longitude
 					});
 };
 
-//call only after selectAutoCompleteTextbox()
-GoogleApiManagerOwner.prototype.InitGeocodeAddressEvents = function()
-{
-	var self = this;
-	this.autoCompleteTextboxSubmitButtonDOM.addEventListener('click',
-			function() {
-				self.geocodeAddress();
-			});
-	this.autoCompleteTextboxDOM.addEventListener('keydown',
-			function(event) {
-				//keycode 13 = Enter
-				if (event.keyCode === 13) {
-					event.preventDefault();
-					self.geocodeAddress();
-				}
-			});	
-};
 
 GoogleApiManagerOwner.prototype.InitGeocodeFindMyPositionEvent = function()
 {
@@ -352,133 +292,46 @@ GoogleApiManagerOwner.prototype.InitInfoWindowEvents = function(marker)
 {
 		var self = this;		
 		google.maps.event.addListener(self.infoWindow, 'domready', function() {
-			
-			document.getElementById("indications").addEventListener("click", function(){
+					
+			document.getElementById("slotInfo").addEventListener("click", function(){
+				  console.log("creo lista info stop");	
 				  
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(showPosition);
-				} else { 
-					console.log("Geolocation is not supported by this browser.");
-					}
-	
-				function showPosition(position) {
-					self.currentLatitude = position.coords.latitude;
-					self.currentLongitude = position.coords.longitude;
-					self.StartDirectionsRequest(marker);
-				}	
-			});
+				  var obj = self.markerMap.get(self.currentSelectedMarker);
+				  	
+				  console.log("obj: " + obj.slot.address);
+				  
+				  var html = "";
+				  for(var i = 0; i < obj.stop_list.length; i++)
+					  {
+					  	 html += "<tr>";
+				         html += "<td>"+ obj.stop_list[i].id_stop +"</td>";
+				         //html += "<td>"+ obj.stop_list[i].type +"</td>";
+				         html += "<td>"+ obj.stop_list[i].car.license_plate +"</td>";
+				         html += "<td>"+ obj.stop_list[i].start +"</td>";
+				         html += "<td>"+ obj.stop_list[i].finish +"</td>";
+				         
+				         var paymentCurrentStop = [];
+				         for(var j = 0; j < obj.payment_list.length; j++)
+				        		 {
+				        		      if(obj.payment_list[j].stop.id_stop == obj.stop_list[i].id_stop) 
+				        		    	  paymentCurrentStop.push(obj.payment_list[j]);
+				        		 }
+				         if(paymentCurrentStop.length > 0)
+				        	 {
+				        	 	html += "<td> SI </td>";
+				        	 }
+				         else
+				        	 {
+				        	 	html += "<td> NO </td>";
+				        	 }
+				         html += "</tr>";
+					  }	  
+				  
+				  console.log("html: " + html);
+				  self.stopListDOM.innerHTML = html;
+			});		
 			
-			//call selectChangeMinute() before
-			document.getElementById("sosta").addEventListener("click", function() {
-				self.StartStop(marker);
-			});
 		});
-};
-
-//call selectChangeMinute() before
-GoogleApiManagerOwner.prototype.StartStop = function(marker){
-	  
-	var obj = this.markerMap.get(marker);
-	this.selectMinuteDOM.disabled = false;
-	this.payAndGoDOM.disabled = false;
-	select.value = 15;
-	this.slotAddressDOM.innerHTML = "Slot: "+ obj.address;
-	var price = obj.price;
-	var minute = select.value;
-	this.showPriceDOM.innerHTML = "Prezzo: " + (price / 60) * minute + "\u20AC";
-	
-}
-
-GoogleApiManagerOwner.prototype.payAndGo = function(marker){
-	    
-	var self = this;
-	this.payAndGoDOM.addEventListener('click', function(){
-		self.selectMinuteDOM.disabled = true;
-		self.payAndGoDOM.disabled = true;
-		
-		var obj = self.markerMap.get(self.currentSelectedMarker);
-		
-		var selectedcar = self.selectCarChoiceDOM.value;
-		var timeToAddFromNow = self.selectMinuteDOM.value;
-		var price = (obj.price / 60) * timeToAddFromNow;
-		
-		var params = new Map();
-		params.set('timeToAdd', timeToAddFromNow);
-		params.set('totalPrice', price);
-		params.set('id_slot', obj.id);
-		params.set('id_car', selectedcar);
-		
-		///Payment
-		self.doAjax('/Payment/addPayment', params, paySuccess, payFailed , 'POST');
-	});
-	
-	function paySuccess(http)
-	{
-		console.log("invio pagamento riuscito: " + http.responseText);
-	}
-	
-	function payFailed(http)
-	{
-		console.log("errore connessione col server: " + http.responseText);
-	}
-}
-
-GoogleApiManagerOwner.prototype.InitChangeSelectMinuteEvent = function()
-{
-	var self = this;
-	self.selectMinuteDOM.addEventListener('change', function() {
-		var obj = self.markerMap.get(self.currentSelectedMarker);
-		var min = select.value;
-		var pay = (obj.price / 60) * min;
-		self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
-	});
-}
-
-GoogleApiManagerOwner.prototype.StartDirectionsRequest = function(marker)
-{
-
-    var from = new google.maps.LatLng(this.currentLatitude, this.currentLongitude);
-    var to = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
-
-     var directionsRequest = {
-       origin: from,
-       destination: to,
-       travelMode: google.maps.DirectionsTravelMode.DRIVING,
-       unitSystem: google.maps.UnitSystem.METRIC
-     };
-
-     var self = this;
-     this.directionsService.route(
-              directionsRequest,
-              function(response, status)
-              {
-
-                if (status == google.maps.DirectionsStatus.OK)
-                {
-                	self.directionsRenderer = new google.maps.DirectionsRenderer({
-                    map: self.map,
-                    directions: response,
-                    suppressMarkers: true
-
-                  });
-                self.deleteMarkers();
-                }
-                else
-                    {
-                     alert("Unable to retrive route");
-                    }
-            var leg = response.routes[ 0 ].legs[ 0 ];
-            self.makeMarker( leg.start_location, self.icons["start"] );
-            self.makeMarker( leg.end_location, self.icons["parking"].icon);                       
-              }
-            );	
-     
-     self.DirectionModeStartLatitude = marker.getPosition().lat();
-     self.DirectionModeStartLongitude = marker.getPosition().lng();
-    	 
-     self.isInSearchDirectionMode = true;
-     self.runTurnByTurnButtonDOM.disabled = false;
-     self.directionModeBackButtonDOM.disabled = false;
 };
 
 GoogleApiManagerOwner.prototype.makeMarker = function(position,icon)

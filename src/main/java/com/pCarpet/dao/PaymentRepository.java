@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pCarpet.model.Car;
 import com.pCarpet.model.Payment;
+import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
 
 @Repository
@@ -18,6 +19,10 @@ import com.pCarpet.model.User;
 public interface PaymentRepository extends CrudRepository<Payment, Long>{
 	
 	List<Payment> findByUser(User user);
+	
+	List<Payment> findByStop(Stop stop);
+	
 	Payment save(Payment payment);
+	
 	
 }

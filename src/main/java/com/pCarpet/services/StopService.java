@@ -10,6 +10,7 @@ import com.pCarpet.dao.StopRepository;
 import com.pCarpet.dto.ManagementCarPlaceDTO;
 import com.pCarpet.dto.ManagementExtensionStopDTO;
 import com.pCarpet.model.Car;
+import com.pCarpet.model.Payment;
 import com.pCarpet.model.Slot;
 import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
@@ -21,13 +22,15 @@ public class StopService {
     private CarService carService;
     private SlotService slotService;
     private UserService userService;
+    private PaymentService paymentService;
+    
     @Autowired 
-    public  StopService(StopRepository stopRepository, CarService carService, SlotService slotService, UserService userService) {
+    public  StopService(StopRepository stopRepository, CarService carService, SlotService slotService, UserService userService,PaymentService paymentService) {
         this.stopRepository = stopRepository;
         this.carService = carService;
         this.slotService = slotService;
         this.userService = userService;
-
+        this.paymentService = paymentService;
     }
 
     public List<ManagementExtensionStopDTO> getAllExtensionStop(User user)
@@ -63,7 +66,16 @@ public class StopService {
         for(Slot slot : slots )
         {
         	List<Stop> stops = getStops(slot);
-        	ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(slot, stops);
+        	List<Payment> payments = new ArrayList<>();
+            for(Stop stop : stops )
+            {
+            	List<Payment> stopPayments = paymentService.getPaymentForStop(stop);
+                for(Payment payment : stopPayments )
+                {
+                	payments.add(payment);
+                }
+            }
+        	ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(slot, payments, stops);
         	managementCarPlaceDTOs.add(managementCarPlaceDTO);
         }
         

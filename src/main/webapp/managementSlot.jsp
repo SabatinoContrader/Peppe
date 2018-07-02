@@ -30,40 +30,33 @@
 
 
 	<div class="container">
-		<h1>Lista posti auto</h1>
+		<h1>Auto in sosta</h1>
 		</br>
 		<table class="table table-striped">
 			<thead>
 
 
 				<tr>
-					<th>ID PARCHEGGIO</th>
-					<th>ID SLOT</th>
-					<th>TIPO DISABILE</th>
-					<th>OCCUPATO</th>
+					<th>ID STOP</th>
+					<!--  <th>TIPO DISABILE</th>  -->
 					<th>TARGA</th>
 					<th>START</th>
 					<th>FINISH</th>
 					<th>PAGATO</th>
 				</tr>
 			</thead>
-			<tbody>
-
-
-				<c:forEach items="${managementCarPlaceDTO}" var="carplacedto">
-					<tr>
-
-						<td>${carplacedto.id_carplace}</td>
-						<td>${carplacedto.id_slot}</td>
-						<td>${carplacedto.type}</td>
-						<td>${carplacedto.busy}</td>
-						<td>${carplacedto.license_plate}</td>
-						<td>${carplacedto.start}</td>
-						<td>${carplacedto.finish}</td>
-						<td>""</td>
-						<!-- manca pagato -->
-					</tr>
-				</c:forEach>
+			<tbody id="stopList"></tbody>
+<%-- 				<c:forEach items="${managementCarPlaceDTO}" var="carplacedto"> --%>
+<!-- 					<tr> -->
+<%-- 						<td>${carplacedto.id_slot}</td> --%>
+<%-- 						<td>${carplacedto.type}</td> --%>
+<%-- 						<td>${carplacedto.license_plate}</td> --%>
+<%-- 						<td>${carplacedto.start}</td> --%>
+<%-- 						<td>${carplacedto.finish}</td> --%>
+<!-- 						<td>""</td> -->
+<!-- 						manca pagato -->
+<!-- 					</tr> -->
+<%-- 				</c:forEach> --%>
 		</table>
 
 
@@ -77,12 +70,8 @@
 
 	<script>
 	function myMap() {
-		var googleApiManagerOwner = new GoogleApiManagerOwner('map',41.9, 12.48,'/updateParkings');
-// 			googleApiManagerOwner.selectAutoCompleteTextbox('autocomplete','startsearch');
-// 			googleApiManagerOwner.selectDirectionModeBackButton('cambia');
-// 			googleApiManagerOwner.selectRunTurnByTurnButton('seleziona');
-// 			googleApiManagerOwner.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
-// 			googleApiManagerOwner.selectFindMyPosition('myposition');
+		var googleApiManagerOwner = new GoogleApiManagerOwner('map',41.9, 12.48,'/updateSlots');
+			googleApiManagerOwner.selectStopList('stopList');
 		};
 	</script>
 
