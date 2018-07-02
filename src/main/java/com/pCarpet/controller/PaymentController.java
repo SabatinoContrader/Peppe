@@ -89,7 +89,7 @@ public class PaymentController {
 		//mi prenderò lo slot per la creazione di carplace!
 		Slot slot = slotService.getSlot(id_slot);
 		
-		Stop stop = new Stop(0,start,finish,car,slot);
+		Stop stop = new Stop(0,start,finish,false,car,slot);
 		stopService.insertStop(stop);
 		
 		System.out.println("4");

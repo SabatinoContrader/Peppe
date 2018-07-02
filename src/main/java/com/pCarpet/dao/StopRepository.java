@@ -29,4 +29,8 @@ public interface StopRepository extends CrudRepository<Stop, Long>
 	List<Stop> findBySlot(Slot slot);
 	
 	Stop save(Stop stop);
+	
+	@Modifying
+	@Query("update Stop set expired = ?2 where id_stop = ?1")
+	void updateExpired(int id_stop,boolean isBefore);
 }

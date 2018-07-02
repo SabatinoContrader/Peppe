@@ -16,6 +16,8 @@
 
 	<h1 class="element-margin-left">Gestione Parcheggi</h1>
 
+	<button id="refresh" class="btn btn-lg btn-primary btn-block back-button element-margin-left">Aggiorna</button>
+	
 	<div class="col-md-6 mb-3">
 		</br> </br>
 		<div id="map" class="map-place"></div>
@@ -58,11 +60,8 @@
 <!-- 					</tr> -->
 <%-- 				</c:forEach> --%>
 		</table>
+		<p id="abusiveError"></p>
 
-
-		<a class="btn btn-lg btn-primary btn-block back-button"
-			href="/ManagementSlot/ManagementSlotControl">Indietro</a></br>
-		</p>
 	</div>
 	
 
@@ -71,7 +70,8 @@
 	<script>
 	function myMap() {
 		var googleApiManagerOwner = new GoogleApiManagerOwner('map',41.9, 12.48,'/updateSlots');
-			googleApiManagerOwner.selectStopList('stopList');
+			googleApiManagerOwner.selectStopList('stopList','abusiveError');
+			googleApiManagerOwner.selectRefresh('refresh');
 		};
 	</script>
 

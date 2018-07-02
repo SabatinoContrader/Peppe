@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 //@Data
@@ -31,6 +33,9 @@ public class Stop {
 	@Column
     private String finish;
 	
+	@Column
+	@NotNull
+    private Boolean expired;	
 	
 	@ManyToOne
     @JoinColumn(name="id_car")

@@ -21,7 +21,7 @@
 			type="text" placeholder="Inserisci destinazione">
 		</text>
 		
-		<button id="myposition">Posizione</button>
+		<button id="myposition" class="btn btn-lg btn-primary btn-block back-button">Posizione</button>
 		
 		</br></br> <select id="carSelect" class="form-control form-control-lg">
 			<option value="" hidden>Seleziona auto</option>

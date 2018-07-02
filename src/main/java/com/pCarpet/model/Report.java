@@ -7,15 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.*;
 
-@Data
+//@Data
 
-//@Getter
-//@Setter
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 public class Report {
@@ -33,6 +34,10 @@ public class Report {
 	
 	@Column
     private String time;
+	
+	@Column
+	@NotNull
+    private String state;
 	
 	@ManyToOne
 	@JoinColumn(name = "username")

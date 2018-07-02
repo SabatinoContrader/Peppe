@@ -51,16 +51,9 @@ public class ReportController {
 		User user = userService.getLoggedUser();
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		int type = Integer.parseInt(request.getParameter("type").toString());
-		String description = request.getParameter("description").toString();
+		String description = request.getParameter("description").toString();		
 		
-		//va bene???
-		Report report = new Report();
-		report.setType(type);
-		report.setDescription(description);
-		report.setTime(time.toString());
-		report.setUser(user);
-		//Report report = new Report(0,0, description, time, user);
-		//Report report = new Report(type, description, time, user.getUsername());
+		Report report = new Report(0,type, description, time.toString(), "Non gestita" ,user);
 		reportService.insertReport(report);
 
 		return "homeDriver";
@@ -94,14 +87,8 @@ public class ReportController {
 		String description = request.getParameter("description").toString();
 		int type = 0; //owner type
 		Timestamp time = new Timestamp(System.currentTimeMillis());
-
-		//va bene???
-		Report report = new Report();
-		report.setType(type);
-		report.setDescription(description);
-		report.setTime(time.toString());
-		report.setUser(user);
-		//Report report = new Report(type, description, time, user.getUsername());
+		
+		Report report = new Report(0,type, description, time.toString(), "In lavorazione" ,user);
 		reportService.insertReport(report);
 		return "homeOwner";
 	}
