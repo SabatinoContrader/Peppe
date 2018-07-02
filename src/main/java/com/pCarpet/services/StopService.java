@@ -36,7 +36,7 @@ public class StopService {
         
         List<Car> usercars = carService.getAllCar(user);
         for (Car car : usercars) {
-            Stop stop = this.stopRepository.findByCar(car);
+            Stop stop = this.getStop(car);
             if (stop != null) {
                 Slot slot = slotService.getSlot(stop.getSlot().getId());
                 ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop, slot, car);
@@ -89,5 +89,9 @@ public class StopService {
     public void insertStop(Stop stop)
     {
     	this.stopRepository.save(stop);
+    }
+    
+    public Stop getStop(Car car) {
+    	return this.stopRepository.findByCar(car);
     }
 }

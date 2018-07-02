@@ -41,8 +41,11 @@
 				</tr>
 		</table>
 
-
-
+		<c:choose>
+			<c:when test="${alert == 'alert'}">
+				<p id="alert" hidden>Auto in sosta</p>
+			</c:when>
+		</c:choose>
 
 		<a class="btn btn-lg btn-primary btn-block submit-button"
 			href="/Car/addCar">Aggiungi auto</a></br> <a
@@ -51,6 +54,13 @@
 
 		</p>
 	</div>
+
+	<script> 
+		if(document.getElementById("alert") != null){
+			alert("Devi terminare la sosta con quest'auto prima di poterla eliminare.");
+			document.getElementById("alert").remove();
+		}
+	</script> 
 
 </body>
 </html>

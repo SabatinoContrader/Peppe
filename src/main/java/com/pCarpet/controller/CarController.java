@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pCarpet.model.Car;
+import com.pCarpet.model.Stop;
 import com.pCarpet.model.User;
 import com.pCarpet.services.CarService;
+import com.pCarpet.services.StopService;
 import com.pCarpet.services.UserService;
 import com.pCarpet.utils.Reference;
 
@@ -25,11 +27,13 @@ public class CarController {
 	
 	private UserService userService;
 	private CarService carService;
+	private StopService stopService;
 	
 	@Autowired
-	public CarController(UserService userService, CarService carService) {
+	public CarController(UserService userService, CarService carService, StopService stopService) {
 		this.userService = userService;
 		this.carService = carService;
+		this.stopService = stopService;
 	}
 	
 	@RequestMapping(value = "/carsList", method = RequestMethod.GET)
@@ -45,7 +49,12 @@ public class CarController {
 	
 	@RequestMapping(value = "/removeCar", method = RequestMethod.GET)
 	public String removeCar(@RequestParam("id") int id_car, Model model ) {
-		carService.removeCar(id_car);
+		Car car = carService.getCar(id_car);
+		Stop stop = stopService.getStop(car);
+		if(stop == null) 
+			carService.removeCar(id_car);
+		else
+			model.addAttribute("alert", "alert");
 		User user = userService.getLoggedUser();
 		model.addAttribute("cars", carService.getAllCar(user));
 		return "car";
