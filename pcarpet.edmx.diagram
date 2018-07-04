@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="35c167ab7b314224bc6cab0e55118780" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="7.875" PointY="0.5" />
+        <AssociationConnector Association="pcarpetModel.reportuser" />
+        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="7.875" PointY="3.875" />
+        <AssociationConnector Association="pcarpetModel.Slotuser" />
+        <EntityTypeShape EntityType="pcarpetModel.car" Width="1.5" PointX="0.875" PointY="0.5" />
+        <AssociationConnector Association="pcarpetModel.caruser" />
+        <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="0.75" PointY="3.5" />
+        <AssociationConnector Association="pcarpetModel.stopcar" />
+        <AssociationConnector Association="pcarpetModel.stopSlot" />
+        <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="0.75" PointY="7.25" />
+        <AssociationConnector Association="pcarpetModel.paymentstop" />
+        <AssociationConnector Association="pcarpetModel.paymentuser" />
+        <EntityTypeShape EntityType="pcarpetModel.book" Width="1.5" PointX="6.125" PointY="7.375" />
+        <AssociationConnector Association="pcarpetModel.bookuser" />
+        <AssociationConnector Association="pcarpetModel.bookpayment" />
+        <AssociationConnector Association="pcarpetModel.bookSlot" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

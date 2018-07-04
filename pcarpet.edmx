@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="pcarpetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="pcarpetModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pcarpetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="pcarpetEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="userSet" EntityType="pcarpetModel.user" />
+          <EntitySet Name="reportSet" EntityType="pcarpetModel.report" />
+          <AssociationSet Name="reportuser" Association="pcarpetModel.reportuser">
+            <End Role="report" EntitySet="reportSet" />
+            <End Role="user" EntitySet="userSet" />
+          </AssociationSet>
+          <EntitySet Name="slotSet1" EntityType="pcarpetModel.slot" />
+          <AssociationSet Name="Slotuser" Association="pcarpetModel.Slotuser">
+            <End Role="Slot" EntitySet="slotSet1" />
+            <End Role="user" EntitySet="userSet" />
+          </AssociationSet>
+          <EntitySet Name="carSet" EntityType="pcarpetModel.car" />
+          <AssociationSet Name="caruser" Association="pcarpetModel.caruser">
+            <End Role="car" EntitySet="carSet" />
+            <End Role="user" EntitySet="userSet" />
+          </AssociationSet>
+          <EntitySet Name="stopSet" EntityType="pcarpetModel.stop" />
+          <AssociationSet Name="stopcar" Association="pcarpetModel.stopcar">
+            <End Role="stop" EntitySet="stopSet" />
+            <End Role="car" EntitySet="carSet" />
+          </AssociationSet>
+          <AssociationSet Name="stopSlot" Association="pcarpetModel.stopSlot">
+            <End Role="stop" EntitySet="stopSet" />
+            <End Role="Slot" EntitySet="slotSet1" />
+          </AssociationSet>
+          <EntitySet Name="paymentSet" EntityType="pcarpetModel.payment" />
+          <AssociationSet Name="paymentstop" Association="pcarpetModel.paymentstop">
+            <End Role="payment" EntitySet="paymentSet" />
+            <End Role="stop" EntitySet="stopSet" />
+          </AssociationSet>
+          <AssociationSet Name="paymentuser" Association="pcarpetModel.paymentuser">
+            <End Role="payment" EntitySet="paymentSet" />
+            <End Role="user" EntitySet="userSet" />
+          </AssociationSet>
+          <EntitySet Name="bookSet" EntityType="pcarpetModel.book" />
+          <AssociationSet Name="bookuser" Association="pcarpetModel.bookuser">
+            <End Role="book" EntitySet="bookSet" />
+            <End Role="user" EntitySet="userSet" />
+          </AssociationSet>
+          <AssociationSet Name="bookpayment" Association="pcarpetModel.bookpayment">
+            <End Role="book" EntitySet="bookSet" />
+            <End Role="payment" EntitySet="paymentSet" />
+          </AssociationSet>
+          <AssociationSet Name="bookSlot" Association="pcarpetModel.bookSlot">
+            <End Role="book" EntitySet="bookSet" />
+            <End Role="Slot" EntitySet="slotSet1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="surname" Type="String" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="true" />
+          <Property Name="cap" Type="String" Nullable="true" />
+          <Property Name="city" Type="String" Nullable="true" />
+          <Property Name="handicapped" Type="String" Nullable="true" />
+          <Property Name="phone" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <NavigationProperty Name="report" Relationship="pcarpetModel.reportuser" FromRole="user" ToRole="report" />
+          <NavigationProperty Name="Slot" Relationship="pcarpetModel.Slotuser" FromRole="user" ToRole="Slot" />
+          <NavigationProperty Name="car" Relationship="pcarpetModel.caruser" FromRole="user" ToRole="car" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.paymentuser" FromRole="user" ToRole="payment" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.bookuser" FromRole="user" ToRole="book" />
+        </EntityType>
+        <EntityType Name="report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.reportuser" FromRole="report" ToRole="user" />
+          <Property Name="user_username" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="reportuser">
+          <End Type="pcarpetModel.report" Role="report" Multiplicity="*" />
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="user_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="slot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.Slotuser" FromRole="Slot" ToRole="user" />
+          <Property Name="user_username" Type="String" Nullable="false" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.stopSlot" FromRole="Slot" ToRole="stop" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.bookSlot" FromRole="Slot" ToRole="book" />
+        </EntityType>
+        <Association Name="Slotuser">
+          <End Type="pcarpetModel.slot" Role="Slot" Multiplicity="*" />
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Slot">
+              <PropertyRef Name="user_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="license_plate" Type="String" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="width" Type="Decimal" Nullable="true" />
+          <Property Name="length" Type="Decimal" Nullable="true" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.caruser" FromRole="car" ToRole="user" />
+          <Property Name="user_username" Type="String" Nullable="false" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.stopcar" FromRole="car" ToRole="stop" />
+        </EntityType>
+        <Association Name="caruser">
+          <End Type="pcarpetModel.car" Role="car" Multiplicity="*" />
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="user_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="stop">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start" Type="DateTime" Nullable="false" />
+          <Property Name="finish" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="car" Relationship="pcarpetModel.stopcar" FromRole="stop" ToRole="car" />
+          <Property Name="carId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Slot" Relationship="pcarpetModel.stopSlot" FromRole="stop" ToRole="Slot" />
+          <Property Name="SlotId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.paymentstop" FromRole="stop" ToRole="payment" />
+        </EntityType>
+        <Association Name="stopcar">
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="*" />
+          <End Type="pcarpetModel.car" Role="car" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="stop">
+              <PropertyRef Name="carId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="stopSlot">
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="*" />
+          <End Type="pcarpetModel.slot" Role="Slot" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="stop">
+              <PropertyRef Name="SlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.paymentstop" FromRole="payment" ToRole="stop" />
+          <Property Name="stopId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.paymentuser" FromRole="payment" ToRole="user" />
+          <Property Name="user_username" Type="String" Nullable="false" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.bookpayment" FromRole="payment" ToRole="book" />
+        </EntityType>
+        <Association Name="paymentstop">
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="*" />
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="stop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="stopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="paymentuser">
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="*" />
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="user_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.bookuser" FromRole="book" ToRole="user" />
+          <Property Name="user_username" Type="String" Nullable="false" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.bookpayment" FromRole="book" ToRole="payment" />
+          <Property Name="paymentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Slot" Relationship="pcarpetModel.bookSlot" FromRole="book" ToRole="Slot" />
+          <Property Name="SlotId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="bookuser">
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="user_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookpayment">
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="payment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="paymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookSlot">
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
+          <End Type="pcarpetModel.slot" Role="Slot" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="SlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pcarpetModelStoreContainer" CdmEntityContainer="pcarpetEntities" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
