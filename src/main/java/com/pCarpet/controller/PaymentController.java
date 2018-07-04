@@ -85,8 +85,6 @@ public class PaymentController {
         
 		Car car = carService.getCar(id_car);
 		
-		//non ci sarà il carplace!
-		//mi prenderò lo slot per la creazione di carplace!
 		Slot slot = slotService.getSlot(id_slot);
 		
 		Stop stop = new Stop(0,start,finish,false,car,slot);
