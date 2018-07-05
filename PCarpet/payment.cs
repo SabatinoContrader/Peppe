@@ -20,14 +20,14 @@ namespace PCarpet
             this.book = new HashSet<book>();
         }
     
-        public int Id { get; set; }
-        public decimal quantity { get; set; }
-        public int stopId { get; set; }
-        public string user_username { get; set; }
+        public int id { get; set; }
+        public double quantity { get; set; }
+        public string username { get; set; }
+        public Nullable<int> id_stop { get; set; }
     
-        public virtual stop stop { get; set; }
-        public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<book> book { get; set; }
+        public virtual stop stop { get; set; }
+        public virtual user user { get; set; }
     }
 }

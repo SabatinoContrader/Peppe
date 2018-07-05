@@ -12,15 +12,14 @@ namespace PCarpet
     using System;
     using System.Collections.Generic;
     
-    public partial class book
+    public class book
     {
-        public int Id { get; set; }
-        public string user_username { get; set; }
-        public int paymentId { get; set; }
-        public int SlotId { get; set; }
+        public int id { get; set; }
+        public string username { get; set; }
+        public int id_slot { get; set; }
+        public int id_payment { get; set; }
     
-        public virtual user user { get; set; }
         public virtual payment payment { get; set; }
-        public virtual slot Slot { get; set; }
+        public virtual slot slot { get; set; }
     }
 }

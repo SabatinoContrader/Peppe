@@ -17,22 +17,24 @@ namespace PCarpet
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public slot()
         {
-            this.stop = new HashSet<stop>();
             this.book = new HashSet<book>();
+            this.stop = new HashSet<stop>();
         }
     
-        public int Id { get; set; }
-        public double latitude { get; set; }
-        public double longitude { get; set; }
+        public int id { get; set; }
+        public int number_carplace { get; set; }
+        public int number_carplace_free { get; set; }
+        public decimal latitude { get; set; }
+        public decimal longitude { get; set; }
         public string address { get; set; }
+        public double price { get; set; }
         public int type { get; set; }
-        public decimal price { get; set; }
-        public string user_username { get; set; }
+        public string username { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<book> book { get; set; }
         public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<stop> stop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> book { get; set; }
     }
 }

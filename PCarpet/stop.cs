@@ -20,15 +20,15 @@ namespace PCarpet
             this.payment = new HashSet<payment>();
         }
     
-        public int Id { get; set; }
-        public System.DateTime start { get; set; }
-        public System.DateTime finish { get; set; }
-        public int carId { get; set; }
-        public int SlotId { get; set; }
+        public int id { get; set; }
+        public Nullable<System.DateTime> start { get; set; }
+        public Nullable<System.DateTime> finish { get; set; }
+        public int id_car { get; set; }
+        public int id_slot { get; set; }
     
         public virtual car car { get; set; }
-        public virtual slot Slot { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payment { get; set; }
+        public virtual slot slot { get; set; }
     }
 }

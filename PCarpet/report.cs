@@ -14,11 +14,11 @@ namespace PCarpet
     
     public partial class report
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public int type { get; set; }
         public string description { get; set; }
-        public System.DateTime time { get; set; }
-        public string user_username { get; set; }
+        public byte[] time { get; set; }
+        public string username { get; set; }
     
         public virtual user user { get; set; }
     }

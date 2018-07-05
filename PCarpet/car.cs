@@ -20,12 +20,12 @@ namespace PCarpet
             this.stop = new HashSet<stop>();
         }
     
-        public int Id { get; set; }
+        public int id { get; set; }
         public string license_plate { get; set; }
         public string name { get; set; }
         public Nullable<decimal> width { get; set; }
         public Nullable<decimal> length { get; set; }
-        public string user_username { get; set; }
+        public string username { get; set; }
     
         public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

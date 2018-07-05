@@ -17,34 +17,39 @@ namespace PCarpet
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
-            this.report = new HashSet<report>();
-            this.Slot = new HashSet<slot>();
             this.car = new HashSet<car>();
             this.payment = new HashSet<payment>();
-            this.book = new HashSet<book>();
+            this.report = new HashSet<report>();
+            this.slot = new HashSet<slot>();
         }
-    
+
+        public user(string username, string password, int type, string phone, string email)
+        {
+            this.username = username;
+            this.password = password;
+            this.type = type;
+            this.phone = phone;
+            this.email = email;
+        }
+
         public string username { get; set; }
         public string password { get; set; }
         public int type { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string address { get; set; }
-        public string cap { get; set; }
-        public string city { get; set; }
-        public string handicapped { get; set; }
+        public Nullable<int> cap { get; set; }
+        public string handiccaped { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<report> report { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<slot> Slot { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<car> car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> book { get; set; }
+        public virtual ICollection<report> report { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<slot> slot { get; set; }
     }
 }
