@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+
+<html>
+<head></head>
+<body>
+
+    <h1>Invia segnalazione</h1>
+    <div>
+        <div>
+            <form action="/Report/ownerAddedReport" method="post">
+
+                <textarea rows="6" cols="50" name="description"
+                          placeholder="Descrizione della segnalazione">
+                </textarea>
+                <br>
+                <button type="submit">
+                    Invia
+                </button>
+            </form>
+
+
+            <a href="/Report/ownerHystory">Accedi alla cronologia</a>
+            <br> <br> <br>
+            <a href="/Home/dispatchHome">Indietro</a><br>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ namespace PCarpet.Controllers
             return View();
         }
 
-        public ActionResult Legislations()
+        public ActionResult Legislation()
         {
             return View();
         }
