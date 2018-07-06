@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="pcarpetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="pcarpetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="book">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="id_slot" Type="int" Nullable="false" />
           <Property Name="id_payment" Type="int" Nullable="false" />
@@ -48,11 +48,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="number_carplace" Type="int" Nullable="false" />
           <Property Name="number_carplace_free" Type="int" Nullable="false" />
-          <Property Name="latitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="longitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="price" Type="float" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
@@ -107,6 +107,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_book_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_car_user">
           <End Role="user" Type="Self.user" Multiplicity="0..1" />
           <End Role="car" Type="Self.car" Multiplicity="*" />
@@ -155,18 +167,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_slot_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="slot" Type="Self.slot" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="username" />
-            </Principal>
-            <Dependent Role="slot">
-              <PropertyRef Name="username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_stop_car">
           <End Role="car" Type="Self.car" Multiplicity="1" />
           <End Role="stop" Type="Self.stop" Multiplicity="*" />
@@ -207,6 +207,10 @@
             <End Role="slot" EntitySet="slot" />
             <End Role="book" EntitySet="book" />
           </AssociationSet>
+          <AssociationSet Name="FK_book_user" Association="Self.FK_book_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
           <AssociationSet Name="FK_car_user" Association="Self.FK_car_user">
             <End Role="user" EntitySet="user" />
             <End Role="car" EntitySet="car" />
@@ -223,10 +227,6 @@
             <End Role="user" EntitySet="user" />
             <End Role="report" EntitySet="report" />
           </AssociationSet>
-          <AssociationSet Name="FK_slot_user" Association="Self.FK_slot_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="slot" EntitySet="slot" />
-          </AssociationSet>
           <AssociationSet Name="FK_stop_car" Association="Self.FK_stop_car">
             <End Role="car" EntitySet="car" />
             <End Role="stop" EntitySet="stop" />
@@ -236,8 +236,7 @@
             <End Role="stop" EntitySet="stop" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pcarpetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -251,6 +250,7 @@
           <Property Name="id_payment" Type="Int32" Nullable="false" />
           <NavigationProperty Name="payment" Relationship="Self.FK_book_payment" FromRole="book" ToRole="payment" />
           <NavigationProperty Name="slot" Relationship="Self.FK_book_slot" FromRole="book" ToRole="slot" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.FK_book_user" FromRole="book" ToRole="user" />
         </EntityType>
         <EntityType Name="car">
           <Key>
@@ -295,8 +295,8 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="number_carplace" Type="Int32" Nullable="false" />
           <Property Name="number_carplace_free" Type="Int32" Nullable="false" />
-          <Property Name="latitude" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="longitude" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
           <Property Name="address" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="type" Type="Int32" Nullable="false" />
@@ -336,6 +336,7 @@
           <NavigationProperty Name="payment" Relationship="Self.FK_payment_user" FromRole="user" ToRole="payment" />
           <NavigationProperty Name="report" Relationship="Self.FK_report_user" FromRole="user" ToRole="report" />
           <NavigationProperty Name="slot" Relationship="Self.FK_slot_user" FromRole="user" ToRole="slot" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.FK_book_user" FromRole="user" ToRole="book" />
         </EntityType>
         <Association Name="FK_book_payment">
           <End Role="payment" Type="Self.payment" Multiplicity="1" />
@@ -489,7 +490,23 @@
             <End Role="slot" EntitySet="slot" />
             <End Role="stop" EntitySet="stop" />
           </AssociationSet>
+          <AssociationSet Name="FK_book_user" Association="pcarpetModel.FK_book_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_book_user">
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

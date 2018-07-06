@@ -24,8 +24,8 @@ namespace PCarpet
         public int id { get; set; }
         public int number_carplace { get; set; }
         public int number_carplace_free { get; set; }
-        public decimal latitude { get; set; }
-        public decimal longitude { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
         public string address { get; set; }
         public double price { get; set; }
         public int type { get; set; }
