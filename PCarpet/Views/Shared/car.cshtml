@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+    List<car> cars = ViewBag.cars;
+    String alert = "";
+    if (@ViewBag.alert == "alert")
+    {
+        alert = "Attenzione! Auto in sosta";
+    }
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista auto</h1>
+        <br>
+        <table>
+            <thead>
+
+
+                <tr>
+                    <th>Targa</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var car in cars)
+                {
+                    <tr>
+                        <td>@car.license_plate</td>
+                        <td>@car.name</td>
+                        <td><a href="/Car/removeCar?id=@car.id">Elimina</a></td>
+                    </tr>
+                }
+
+
+
+</table>
+
+       
+                <p>@alert</p>
+        
+
+        <a href="/Car/addCar">Aggiungi auto</a><br> 
+        <a href="/Home/dispatchHome">Indietro</a><br>
+
+        </p>
+    </div>
+
+</body>
+</html>

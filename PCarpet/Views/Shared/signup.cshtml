@@ -23,7 +23,7 @@
 
         <br>
 
-        <form class="form-signin" action="/Home/Index" method="post">
+        <form class="form-signin" action="/Signup/Registered" method="post">
 
             <input type="text" name="username" class="form-control form-control-lg" id="username" placeholder="Username" required autofocus><br>
 
@@ -33,27 +33,25 @@
 
             <input type="text" name="surname" class="form-control form-control-lg" id="surname" placeholder="surname" required autofocus><br>
 
-            <input type="date" name="birthdate" id="birthdate" class="form-control form-control-lg" placeholder="birthdate" required autofocus><br>
+            <input type="text" name="address" id="birthdate" class="form-control form-control-lg" placeholder="address" required autofocus><br>
 
-            <input type="text" name="birthplace" class="form-control form-control-lg" id="birthplace" placeholder="birthplace" required autofocus><br>
+            <input type="text" name="cap" id="cap" class="form-control form-control-lg" placeholder="cap" required autofocus><br>
 
-            <input type="text" name="address" id="address" class="form-control form-control-lg" placeholder="address" required autofocus><br>
+            <input type="text" name="phone" class="form-control form-control-lg" id="phone" placeholder="phone" required autofocus><br>
 
+            <input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="email" required autofocus><br>
 
-            <div align="right" style="position: relative">
-                <label for="handicapped" class="signup-label-position signup-label">Disabile</label>
-                <input type="radio" id="handicappedChoice1" name="handicapped" value="true">
-                <label for="handicappedChoice1" class="signup-label">Si</label>
-                <input type="radio" id="handicappedChoice2" name="handicapped" value="false">
-                <label for="handicappedChoice2" class="signup-label">No</label><br>
-            </div>
+            <input type="text" name="handicapped" id="handicapped" placeholder="handicapped" required autofocus>
+
 
             <br>
 
             <button class="btn btn-lg btn-primary btn-block submit-button" type="submit">Sign up</button>
-            </form>
-          
-</div>
+        </form>
+
+        <a href="/Signup/Index">Indietro</a><br>
+
+    </div>
 
 </body>
 </html>

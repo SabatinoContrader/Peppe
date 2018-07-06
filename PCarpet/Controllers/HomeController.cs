@@ -23,38 +23,17 @@ namespace PCarpet.Controllers
             return View();
         }
 
-        public ActionResult Home(string username, string password)
+        public ActionResult dispatchHome()
         {
-           
-            using (pcarpetEntities a = new pcarpetEntities()) {
-
-                //a.user.Add(new user("Cacca", "Pipi", 0, "3331231231", "dasdas@"));
-                //a.SaveChanges();
-
-                //user user = a.user.Find(username);
-                Boolean login = userService.login(username, password);
-                if (login)
-                {
-                    user user = userService.getLoggedUser();
-                    int type = user.type;
-                    if (type == 1)
-                        return View("homeDriver");
-                    else if (type == 0)
-                        return View("homeOwner");
-                    else if (type == 2)
-                        return View("homeCop");
-                }
-                else
-                {
-                    ViewBag.feedback = "loginerror";
-                    return View("index");
-                }
-                    
-
-
-
-            }
-            return View("HomeDriver");
+            user user = userService.getLoggedUser();
+            int type = user.type;
+            if (type == 1)
+                return View("homeDriver");
+            else if (type == 0)
+                return View("homeOwner");
+            else if (type == 2)
+                return View("homeCop");
+            return View();
         }
     }
 }

@@ -196,9 +196,16 @@
     <Compile Include="car.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\ExtensionStopsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LegislationController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
+    <Compile Include="Controllers\UsefulNumbersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\ManagementExtensionStopDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +231,10 @@
     <Compile Include="report.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service\CarService.cs" />
+    <Compile Include="Service\PaymentService.cs" />
+    <Compile Include="Service\SlotService.cs" />
+    <Compile Include="Service\StopService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="slot.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
@@ -309,12 +320,24 @@
     <Content Include="Views\Shared\signup.cshtml" />
     <Content Include="Views\Shared\homeOwner.cshtml" />
     <Content Include="Views\Shared\homeCop.cshtml" />
+    <Content Include="Views\Shared\car.cshtml" />
+    <Content Include="Views\Shared\addCar.cshtml" />
+    <Content Include="Views\Shared\legislation.cshtml" />
+    <Content Include="Views\Shared\usefulNumbers.cshtml" />
+    <Content Include="Views\Shared\extensionStops.cshtml" />
+    <Content Include="Views\Shared\paymentsHystory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Car\" />
+    <Folder Include="Views\ExtensionStops\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Views\Legislation\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Payment\" />
     <Folder Include="Views\Signup\" />
+    <Folder Include="Views\UsefulNumbers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

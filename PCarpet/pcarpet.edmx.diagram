@@ -21,6 +21,7 @@
         <AssociationConnector Association="pcarpetModel.FK_report_user" ManuallyRouted="false" />
         <AssociationConnector Association="pcarpetModel.FK_slot_user" ManuallyRouted="false" />
         <AssociationConnector Association="pcarpetModel.FK_stop_slot" ManuallyRouted="false" />
+        <AssociationConnector Association="pcarpetModel.FK_book_user" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

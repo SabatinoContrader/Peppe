@@ -13,9 +13,9 @@ namespace PCarpet.Service
         public Boolean login(String username, String password)
         {
 
-            using (pcarpetEntities a = new pcarpetEntities())
+            using (pcarpetEntities context = new pcarpetEntities())
             {
-                user user = a.user.FirstOrDefault(e => e.password.Equals(password) && e.username.Equals(username));
+                user user = context.user.FirstOrDefault(e => e.password.Equals(password) && e.username.Equals(username));
 
                 if (user == null)
                 {
@@ -32,6 +32,29 @@ namespace PCarpet.Service
         public user getLoggedUser()
         {
             return loggedUser;
+        }
+
+        public void destroyUser()
+        {
+            loggedUser = null;
+        }
+
+        public Boolean insertUser(user user)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                user userNew = context.user.Find(user.username);
+                if (userNew != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    context.user.Add(user);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
         }
     }
 }

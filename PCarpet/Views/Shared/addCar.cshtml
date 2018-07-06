@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    
+</head>
+<body>
+        <h1>Aggiungi auto</h1>
+
+        <form action="/Car/addedCar" method="post">
+            <p>Targa:<input type="text" name="licensePlate" class="form-control form-control-lg" /></p>
+            <p>Nome:<input type="text" name="name" class="form-control form-control-lg" /></p>
+            
+
+        <button name="richiesta" value="addedCar">Aggiungi</button>
+        </form>
+
+        <br><br>
+
+        <form action="/Car/backCarsList" method="post">
+
+            <input type="submit" name="richiesta" value="Indietro" />
+
+        </form>
+   
+</body>
+</html>

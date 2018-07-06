@@ -42,6 +42,7 @@
           <Property Name="type" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="100" />
           <Property Name="time" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="slot">
@@ -287,6 +288,7 @@
           <Property Name="time" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="user" Relationship="Self.FK_report_user" FromRole="report" ToRole="user" />
+          <Property Name="state" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="slot">
           <Key>
@@ -548,6 +550,7 @@
           <EntitySetMapping Name="report">
             <EntityTypeMapping TypeName="pcarpetModel.report">
               <MappingFragment StoreEntitySet="report">
+                <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="description" ColumnName="description" />

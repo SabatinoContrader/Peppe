@@ -19,6 +19,7 @@ namespace PCarpet
         public string description { get; set; }
         public byte[] time { get; set; }
         public string username { get; set; }
+        public int state { get; set; }
     
         public virtual user user { get; set; }
     }

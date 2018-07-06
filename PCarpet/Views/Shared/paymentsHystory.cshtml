@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+    List<payment> payments = ViewBag.payments;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cronologia pagamenti</h1>
+        <br>
+        <table>
+            <thead>
+
+
+                <tr>
+                    <th>Id pagamento</th>
+                    <th>Quantità</th>
+                    <th>Id sosta</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var payment in payments)
+                {
+                    <tr>
+                        <td>@payment.id</td>
+                        <td>@payment.quantity</td>
+                        <td>@payment.id_stop</td>
+                    </tr>
+                }
+
+
+
+</table>
+
+
+
+
+        <a href="/Home/dispatchHome">Indietro</a><br>
+
+        </p>
+    </div>
+
+</body>
+</html>
