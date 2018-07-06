@@ -2,16 +2,35 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.title</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PCARPET</title>
+
 </head>
-<body>
-    <div>
-    
-    </div>
+
+<body class="text-center">
+    <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">
+            <b>DRIVER</b>
+        </h1>
+        <a href="/FindCarPlace/showSlot">Trova parcheggio</a><br>
+        <a href="/ExtensionStop/extensionStops">Prolunga sosta</a><br>
+        <a href="/Car/carsList">Aggiungi/Rimuoviauto</a><br>
+        <a href="/Report/driver/reports">Invia segnalazione</a><br>
+        <a href="/Report/driver/ownerReport">Segnalazioni del gestore</a><br>
+        <a href="/Payment/paymentList">Pagamenti</a><br>
+        <a class="btn btn-lg btn-primary btn-block" href="/UsefulNumber/userNumbers">Numeri utili</a><br>
+        <a href="/Legislation/legislations">Normative</a><br>
+        <a href="/Login/logoutControl">Logout</a><br>
+
+    </form>
+
 </body>
 </html>
