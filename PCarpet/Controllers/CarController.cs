@@ -1,4 +1,5 @@
-﻿using PCarpet.Service;
+﻿using PCarpet.DTO;
+using PCarpet.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace PCarpet.Controllers
         {
             user user = userService.getLoggedUser();
 
-            List<car> cars = carService.getAllCar(user);
+            List<CarDTO> cars = carService.getAllCarDTO(user);
             //Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
             ViewBag.cars = cars;
@@ -37,15 +38,13 @@ namespace PCarpet.Controllers
 
         public ActionResult removeCar(int id)
         {
-            car car = carService.getCar(id);
-
-            stop stop = stopService.getStop(car);
+            stop stop = stopService.getStop(id);
             if (stop == null)
-                carService.removeCar(car);
+                carService.removeCar(id);
             else
                 ViewBag.alert = "alert";
             user user = userService.getLoggedUser();
-            ViewBag.cars = carService.getAllCar(user);
+            ViewBag.cars = carService.getAllCarDTO(user);
             return View("car");
         }
 
@@ -62,20 +61,15 @@ namespace PCarpet.Controllers
         {
             user user = userService.getLoggedUser();
 
-            car car = new car();
-            car.license_plate = licensePlate;
-            car.name = name;
-            car.username = user.username;
-
-            carService.addCar(car);
-            ViewBag.cars = carService.getAllCar(user);
+            carService.addCar(new CarDTO(licensePlate, name, user.username));
+            ViewBag.cars = carService.getAllCarDTO(user);
             return View("car");
         }
 
         public ActionResult backCarsList()
         {
             user user = userService.getLoggedUser();
-            ViewBag.cars = carService.getAllCar(user);
+            ViewBag.cars = carService.getAllCarDTO(user);
             return View("car");
         }
     }

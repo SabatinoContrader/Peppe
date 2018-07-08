@@ -11,13 +11,15 @@ namespace PCarpet.Service
     {
         private CarService carService;
         private SlotService slotService;
-        //private UserService userService;
-        //private PaymentService paymentService;
+        private UserService userService;
+        private PaymentService paymentService;
 
         public StopService()
         {
             this.carService = new CarService();
             this.slotService = new SlotService();
+            this.userService = new UserService();
+            this.paymentService = new PaymentService();
         }
 
         public List<ManagementExtensionStopDTO> getAllExtensionStop(user user)
@@ -27,11 +29,14 @@ namespace PCarpet.Service
             List<car> usercars = carService.getAllCar(user);
             foreach(car car in usercars)
             {
-                stop stop = this.getStop(car);
+                stop stop = this.getStop(car.id);
                 if (stop != null)
                 {
                     slot slot = slotService.getSlot(stop.id_slot);
-                    ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop, slot, car);
+
+                    
+
+                    ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop.toStopDTO(stop, car.license_plate), slot.toSlotDTO(slot), car.toCarDTO(car));
                     managementExtensionStopDTOs.Add(managementExtensionStopDTO);
                 }
             }
@@ -53,35 +58,44 @@ namespace PCarpet.Service
  
         }
 
-        //public List<ManagementCarPlaceDTO> getAllStopDTOByCurrentUser()
-        //{
-        //    List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new ArrayList<ManagementCarPlaceDTO>();
+        public List<ManagementCarPlaceDTO> getAllStopDTOByCurrentUser()
+        {
+            List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new List<ManagementCarPlaceDTO>();
 
-        //    updateStopByUser();
+            //TODO: QUIIIIIIIII
+            //updateStopByUser();
 
-        //    User user = userService.getLoggedUser();
-        //    List<Slot> slots = (List<Slot>)slotService.getAllSlotByUser(user);
+            user user = userService.getLoggedUser();
+            List<slot> slots = slotService.getAllSlotByUser(user);
 
-        //    //Update expire status of user slots here;      
+            //Update expire status of user slots here;      
 
-        //    for (Slot slot : slots)
-        //    {
-        //        List<Stop> stops = getStops(slot);
-        //        List<Payment> payments = new ArrayList<>();
-        //        for (Stop stop : stops)
-        //        {
-        //            List<Payment> stopPayments = paymentService.getPaymentForStop(stop);
-        //            for (Payment payment : stopPayments)
-        //            {
-        //                payments.add(payment);
-        //            }
-        //        }
-        //        ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO(slot, payments, stops);
-        //        managementCarPlaceDTOs.add(managementCarPlaceDTO);
-        //    }
+            foreach (slot slot in slots)
+            {
+                List<stop> stops = getStops(slot);
+                List<StopDTO> stopsDTO = new List<StopDTO>();
+                List<PaymentDTO> payments = new List<PaymentDTO>();
+                foreach (stop stop in stops)
+                {
+                    //TODO: fill list of PaymentDTO from payment items
 
-        //    return managementCarPlaceDTOs;
-        //}
+                    //List<payment> stopPayments = paymentService.getPaymentForStop(stop);
+                    //foreach (payment payment in stopPayments)
+                    //{
+                    //    payments.Add(payment);
+                    //}
+                    car car = carService.getCar(stop.id_car);
+                    String license_plate = car.license_plate;
+
+                    stopsDTO.Add( stop.toStopDTO(stop, license_plate) );
+                }
+
+                ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO( slot.toSlotDTO(slot) , payments, stopsDTO);
+                managementCarPlaceDTOs.Add(managementCarPlaceDTO);
+            }
+
+            return managementCarPlaceDTOs;
+        }
 
         //public void updateStopByUser()
         //{
@@ -132,21 +146,16 @@ namespace PCarpet.Service
         //    }
         //}
 
-        //public List<Stop> getStops(Slot slot)
-        //{
-        //    return this.stopRepository.findBySlot(slot);
-        //}
-
         //public void insertStop(Stop stop)
         //{
         //    this.stopRepository.save(stop);
         //}
 
-        public stop getStop(car car)
+        public stop getStop(int id_car)
     {
         using (pcarpetEntities context = new pcarpetEntities())
         {
-            return context.stop.FirstOrDefault(e => e.id.Equals(car.id));
+            return context.stop.FirstOrDefault(e => e.id.Equals(id_car));
         }
             
     }
@@ -154,7 +163,7 @@ namespace PCarpet.Service
         //public List<Car> getCarWithoutStopOfUser()
         //{
         //    User user = userService.getLoggedUser();
-        //    List<Car> cars = carService.getAllCar(user);
+        //    List<Car> cars = carService.getAllCarDTO(user);
         //    List<Car> carsWithoutStop = new ArrayList<>();
         //    for (Car car: cars)
         //    {
@@ -163,5 +172,14 @@ namespace PCarpet.Service
         //    }
         //    return carsWithoutStop;
         //}
+
+        //metodi interni
+        private List<stop> getStops(slot slot)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.stop.Where(stop => stop.id_slot.Equals(slot.id)).ToList();
+            }
+        }
     }
 }

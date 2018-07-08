@@ -56,6 +56,9 @@ namespace PCarpet.Service
                 }
             }
         }
+
+        //metodi interni
+
     }
 }
 

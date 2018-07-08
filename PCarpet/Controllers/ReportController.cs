@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using System.Text;
+using PCarpet.DTO;
 
 namespace PCarpet.Controllers
 {
@@ -39,7 +40,7 @@ namespace PCarpet.Controllers
     public ActionResult driverHystory()
         {
             user user = userService.getLoggedUser();
-            List<report> reports = reportService.getAllReportModels(user);
+            List<ReportDTO> reports = reportService.getAllReportDTO(user);
 
             ViewBag.reports = reports;
             return View("reportHystory");
@@ -57,8 +58,7 @@ namespace PCarpet.Controllers
             if (int.TryParse(type, out mytype))
             {
                 //non gestita
-                report report = new report(0, mytype, mydescription, time, user.username, 0);
-                reportService.insertReport(report);
+                reportService.insertReport( new ReportDTO(mytype, mydescription, time, user.username, 0) );
             }
             return View("homeDriver");
         }
@@ -69,7 +69,7 @@ namespace PCarpet.Controllers
             String usernameOwner = "gestore"; //da sistemare
             user user = new user();
             user.username = usernameOwner;
-            List<report> reportOwner = reportService.getAllReportModels(user);
+            List<ReportDTO> reportOwner = reportService.getAllReportDTO(user);
             ViewBag.reports = reportOwner;
             return View("reportHystory");
         }
@@ -77,7 +77,7 @@ namespace PCarpet.Controllers
             //GET
     public ActionResult ownerReportuser()
         {
-            List<report> reports = reportService.getAllReportOwner();
+            List<ReportDTO> reports = reportService.getAllReportOwner();
             ViewBag.reports = reports;
             return View("reportOwner");
         }
@@ -100,8 +100,9 @@ namespace PCarpet.Controllers
 
             // lo stato della segnalazione 3 è lo stato iniziale della segnalazione inviata da owner
             int type = 0; //owner type
-            report report = new report(0, type, mydescription, time, user.username, 3);
-            reportService.insertReport(report);
+
+            reportService.insertReport(new ReportDTO(type, mydescription, time, user.username, 3));
+
             return View("homeOwner");
         }
 
@@ -109,7 +110,7 @@ namespace PCarpet.Controllers
     public ActionResult ownerHystory()
         {
             user user = userService.getLoggedUser();
-            List<report> reportsOwner = reportService.getAllReportModels(user);
+            List<ReportDTO> reportsOwner = reportService.getAllReportDTO(user);
 
             ViewBag.reports = reportsOwner;
             return View("reportHystory");

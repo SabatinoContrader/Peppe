@@ -201,16 +201,30 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LegislationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManagementParkController.cs" />
+    <Compile Include="Controllers\MarkerController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UsefulNumbersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\CarDTO.cs" />
+    <Compile Include="DTO\ManagementCarPlaceDTO.cs" />
     <Compile Include="DTO\ManagementExtensionStopDTO.cs" />
+    <Compile Include="DTO\PaymentDTO.cs" />
+    <Compile Include="DTO\ReportDTO.cs" />
+    <Compile Include="DTO\SlotDTO.cs" />
+    <Compile Include="DTO\StopDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\car.cs" />
+    <Compile Include="Models\payment.cs" />
     <Compile Include="Models\report.cs" />
+    <Compile Include="Models\slot.cs" />
+    <Compile Include="Models\stop.cs" />
+    <Compile Include="Models\user.cs" />
     <Compile Include="payment.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
@@ -268,6 +282,10 @@
       <DependentUpon>pcarpet.edmx</DependentUpon>
       <LastGenOutput>pcarpet.cs</LastGenOutput>
     </Content>
+    <Content Include="resources\googleApiManagerOwner.js" />
+    <Content Include="resources\green.png" />
+    <Content Include="resources\red.png" />
+    <Content Include="resources\yellow.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -333,6 +351,7 @@
     <Content Include="Views\Shared\legislation.cshtml" />
     <Content Include="Views\Shared\paymentsHystory.cshtml" />
     <Content Include="Views\Shared\usefulNumbers.cshtml" />
+    <Content Include="Views\Shared\managementPark.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

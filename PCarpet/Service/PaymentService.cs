@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCarpet.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +14,30 @@ namespace PCarpet.Service
         //    this.paymentRepository.save(payment);
         //}
 
-        public List<payment> getAllPayment(user user)
+        public List<PaymentDTO> getAllPayment(user user)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                return context.payment.Where(p => p.username.Equals(user.username)).ToList();
+                List<payment> payments = context.payment.Where(p => p.username.Equals(user.username)).ToList();
+                List<PaymentDTO> paymentsDTO = new List<PaymentDTO>();
+                foreach (payment payment in payments)
+                {
+                    paymentsDTO.Add( payment.toPaymentDTO(payment) );
+                }
+                return paymentsDTO;
             }
                 
         }
 
-        //public List<Payment> getPaymentForStop(Stop stop)
-        //{
-        //    return this.paymentRepository.findByStop(stop);
-        //}
+        //??
+        public List<payment> getPaymentForStop(stop stop)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.payment.Where(p => p.id_stop.Equals(stop.id)).ToList();
+            }
+        }
+
+        //metodi interni
     }
 }

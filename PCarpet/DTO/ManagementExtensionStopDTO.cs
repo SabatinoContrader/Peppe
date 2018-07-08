@@ -24,7 +24,7 @@ namespace PCarpet.DTO
             this.price = price;
         }
 
-        public ManagementExtensionStopDTO(stop stop, slot slot, car car)
+        public ManagementExtensionStopDTO(StopDTO stop, SlotDTO slot, CarDTO car)
         {
             this.id_stop = stop.id;
             this.address = slot.address;
