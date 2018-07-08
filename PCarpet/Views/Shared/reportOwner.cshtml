@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    List<report> reports = ViewBag.reports;
+    List<PCarpet.DTO.ReportDTO> reports = ViewBag.reports;
 }
 
 @*<%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -32,7 +32,9 @@
 
                 @foreach (var report in reports)
                 {
-                    <tr>
+                <tr>
+                    @if (@report.type != 0)
+                    {
                         <td>
                             @if (@report.type == 1)
                             {
@@ -46,12 +48,14 @@
                             {
                                 <p>Problema riscontrato nell'usufruire del servizio</p>
                             }
+
                         </td>
                         <td>@report.description</td>
                         <td>@report.time</td>
                         <td>@report.username</td>
-                        <!--  correggere? -->
-                    </tr>
+                    }
+                    <!--  correggere? -->
+                </tr>
                 }
         </table>
 

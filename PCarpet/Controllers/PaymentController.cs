@@ -1,4 +1,5 @@
-﻿using PCarpet.Service;
+﻿using PCarpet.DTO;
+using PCarpet.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace PCarpet.Controllers
         {
             user user = userService.getLoggedUser();
 
-            List<payment> payments = paymentService.getAllPayment(user);
+            List<PaymentDTO> payments = paymentService.getAllPayment(user);
             ViewBag.payments = payments;
             return View("paymentsHystory");
         }

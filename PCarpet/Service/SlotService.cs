@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCarpet.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,16 +8,30 @@ namespace PCarpet.Service
 {
     public class SlotService
     {
-        //public List<Slot> getAllSlot()
-        //{
-        //    return slotRepository.findAll();
-        //}
 
-        //public List<Slot> getAllSlotByUser(User user)
-        //{
-        //    return slotRepository.findByUser(user);
-        //}
+        public List<SlotDTO> getNearSlot(double lat, double lng)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                List<slot> slots = context.slot.Where( slot => Math.Abs(slot.latitude - lat) < 0.01 && Math.Abs(slot.longitude - lng) < 0.01 ).ToList();
+                List<SlotDTO> slotsDTO = new List<SlotDTO>();
+                foreach (slot slot in slots)
+                {
+                    slotsDTO.Add( slot.toSlotDTO(slot) );
+                }
+                return slotsDTO;
+            }
+        }
 
+        //metodi interni
+        public List<slot> getAllSlotByUser(user user)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.slot.Where(slot => slot.username.Equals(user.username)).ToList();
+            }
+
+        }
 
         public slot getSlot(int id_slot)
         {
@@ -25,10 +40,5 @@ namespace PCarpet.Service
                 return context.slot.FirstOrDefault(e => e.id.Equals(id_slot));
             }
         }
-
-        //public List<Slot> getNearSlot(double lat, double lng)
-        //{
-        //    return slotRepository.getNearSlot(lat, lng);
-        //}
     }
 }
