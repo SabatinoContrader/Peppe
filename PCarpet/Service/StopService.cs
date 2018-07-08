@@ -14,12 +14,14 @@ namespace PCarpet.Service
         private UserService userService;
         private PaymentService paymentService;
 
+
         public StopService()
         {
             this.carService = new CarService();
             this.slotService = new SlotService();
             this.userService = new UserService();
             this.paymentService = new PaymentService();
+
         }
 
         public List<ManagementExtensionStopDTO> getAllExtensionStop(user user)
@@ -27,7 +29,7 @@ namespace PCarpet.Service
             List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new List<ManagementExtensionStopDTO>();
 
             List<car> usercars = carService.getAllCar(user);
-            foreach(car car in usercars)
+            foreach (car car in usercars)
             {
                 stop stop = this.getStop(car.id);
                 if (stop != null)
@@ -55,7 +57,7 @@ namespace PCarpet.Service
                 context.SaveChanges();
             }
 
- 
+
         }
 
         public List<ManagementCarPlaceDTO> getAllStopDTOByCurrentUser()
@@ -146,32 +148,25 @@ namespace PCarpet.Service
         //    }
         //}
 
-        //public void insertStop(Stop stop)
-        //{
-        //    this.stopRepository.save(stop);
-        //}
+        public int insertStop(StopDTO stopDTO)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                stop stop = context.stop.Add(new stop(stopDTO));
+                context.SaveChanges();
+                return stop.id;
+            }
+                
+        }
 
         public stop getStop(int id_car)
-    {
-        using (pcarpetEntities context = new pcarpetEntities())
         {
-            return context.stop.FirstOrDefault(e => e.id.Equals(id_car));
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.stop.FirstOrDefault(e => e.id.Equals(id_car));
+            }
         }
-            
-    }
 
-        //public List<Car> getCarWithoutStopOfUser()
-        //{
-        //    User user = userService.getLoggedUser();
-        //    List<Car> cars = carService.getAllCarDTO(user);
-        //    List<Car> carsWithoutStop = new ArrayList<>();
-        //    for (Car car: cars)
-        //    {
-        //        if (!stopRepository.existsByCar(car))
-        //            carsWithoutStop.add(car);
-        //    }
-        //    return carsWithoutStop;
-        //}
 
         //metodi interni
         private List<stop> getStops(slot slot)
@@ -180,6 +175,24 @@ namespace PCarpet.Service
             {
                 return context.stop.Where(stop => stop.id_slot.Equals(slot.id)).ToList();
             }
+        }
+
+        public List<car> getCarWithoutStopOfUser()
+        {
+            user user = userService.getLoggedUser();
+            List<car> cars = carService.getAllCar(user);
+            List<car> carsWithoutStop = new List<car>();
+            stop stop;
+            foreach (car car in cars)
+            {
+                using (pcarpetEntities context = new pcarpetEntities())
+                {
+                    stop = context.stop.FirstOrDefault(c => c.id.Equals(car.id));
+                }
+                    if (stop == null)
+                        carsWithoutStop.Add(car);
+            }
+            return carsWithoutStop;
         }
     }
 }

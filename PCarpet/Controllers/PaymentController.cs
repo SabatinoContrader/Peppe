@@ -12,14 +12,17 @@ namespace PCarpet.Controllers
     {
         private PaymentService paymentService;
         private UserService userService;
-        //private StopService stopService;
-        //private CarService carService;
-        //private SlotService slotService;
+        private StopService stopService;
+        private CarService carService;
+        private SlotService slotService;
 
         public PaymentController()
         {
             this.userService = new UserService();
             this.paymentService = new PaymentService();
+            this.carService = new CarService();
+            this.slotService = new SlotService();
+            this.stopService = new StopService();
         }
 
         // GET: Payment
@@ -46,41 +49,34 @@ namespace PCarpet.Controllers
             return View("paymentsHystory");
         }
 
-        //    @ResponseBody
-        //    @PostMapping("/addPayment")
 
-        //public Payment addPayment(HttpServletRequest request, Model model)
-        //    {
+        public ActionResult addPayment(string timeToAdd, float totalPrice, int id_slot, int id_car)
+        {
 
-        //        User user = userService.getLoggedUser();
+            user user = userService.getLoggedUser();
 
-        //        String timeToAdd = request.getParameter("timeToAdd");
-        //        Float totalPrice = Float.parseFloat(request.getParameter("totalPrice"));
-        //        int id_slot = Integer.parseInt(request.getParameter("id_slot"));
-        //        int id_car = Integer.parseInt(request.getParameter("id_car"));
+            //String timeToAdd = request.getParameter("timeToAdd");
+            //Float totalPrice = Float.parseFloat(request.getParameter("totalPrice"));
+            //int id_slot = Integer.parseInt(request.getParameter("id_slot"));
+            //int id_car = Integer.parseInt(request.getParameter("id_car"));
 
-        //        System.out.println("timeToAdd: " + timeToAdd);
-        //        System.out.println("totalPrice: " + totalPrice);
-        //        System.out.println("id_slot: " + id_slot);
-        //        System.out.println("id_car: " + id_car);
 
-        //        LocalDateTime now = LocalDateTime.now();
-        //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        //        String start = now.format(formatter);
-        //        LocalDateTime nextTime = now.plusMinutes(Long.parseLong(timeToAdd));
-        //        String finish = nextTime.format(formatter);
+            //DateTime now = DateTime.Now;
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTime start = DateTime.Now;
+            DateTime finish = start.AddMinutes(Double.Parse(timeToAdd));
+            //DateTime finish = nextTime.format(formatter);
+            System.Diagnostics.Debug.WriteLine("START: "+ start+"FINISH: "+finish);
+            //car car = carService.getCar(id_car);
+            //slot slot = slotService.getSlot(id_slot);
 
-        //        Car car = carService.getCar(id_car);
+            //stop stop = new stop(0, start, finish, false, id_car, id_slot);
+            int id_stop = stopService.insertStop(new StopDTO(start, finish, id_car, id_slot));
+            
+            //payment payment = new payment(0, totalPrice, user, stop);
+            paymentService.insertPayment(new PaymentDTO(totalPrice, user.username, id_stop));
 
-        //        Slot slot = slotService.getSlot(id_slot);
-
-        //        Stop stop = new Stop(0, start, finish, false, car, slot);
-        //        stopService.insertStop(stop);
-
-        //        Payment payment = new Payment(0, totalPrice, user, stop);
-        //        paymentService.insertPayment(payment);
-
-        //        return payment;
-        //    }
+            return View("homeDriver");
+        }
     }
 }

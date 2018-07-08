@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\ExtensionStopsController.cs" />
+    <Compile Include="Controllers\FindCarPlaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LegislationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -282,6 +283,7 @@
       <DependentUpon>pcarpet.edmx</DependentUpon>
       <LastGenOutput>pcarpet.cs</LastGenOutput>
     </Content>
+    <Content Include="resources\googleApiManagerDriver.js" />
     <Content Include="resources\googleApiManagerOwner.js" />
     <Content Include="resources\green.png" />
     <Content Include="resources\red.png" />
@@ -352,6 +354,7 @@
     <Content Include="Views\Shared\paymentsHystory.cshtml" />
     <Content Include="Views\Shared\usefulNumbers.cshtml" />
     <Content Include="Views\Shared\managementPark.cshtml" />
+    <Content Include="Views\Shared\findCarPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,7 @@ namespace PCarpet.DTO
         public double quantity { get; set; }
         //public string slotAddress { get; set; }
         public int id_stop { get; set; }
+        public string username { get; set; }
 
         public PaymentDTO()
         {
@@ -20,6 +21,13 @@ namespace PCarpet.DTO
         {
             this.id = id;
             this.quantity = quantity;
+            this.id_stop = id_stop;
+        }
+
+        public PaymentDTO(double quantity, string username, int id_stop)
+        {
+            this.quantity = quantity;
+            this.username = username;
             this.id_stop = id_stop;
         }
     }

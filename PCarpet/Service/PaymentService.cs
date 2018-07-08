@@ -9,10 +9,15 @@ namespace PCarpet.Service
     public class PaymentService
     {
 
-        //public void insertPayment(Payment payment)
-        //{
-        //    this.paymentRepository.save(payment);
-        //}
+        public void insertPayment(PaymentDTO paymentDTO)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                context.payment.Add(new payment(paymentDTO));
+                context.SaveChanges();
+            }
+                
+        }
 
         public List<PaymentDTO> getAllPayment(user user)
         {

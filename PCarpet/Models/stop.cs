@@ -13,5 +13,13 @@ namespace PCarpet
         {
             return new StopDTO(stop.id, stop.start, stop.finish, license_plate);
         }
+
+        public stop(StopDTO stopDTO)
+        {
+            this.start = stopDTO.start;
+            this.finish = stopDTO.finish;
+            this.id_car = stopDTO.id_car;
+            this.id_slot = stopDTO.id_slot;
+        }
     }
 }
