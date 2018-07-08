@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+    List<report> reports = ViewBag.reports;
+}
+
+@*<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
+<%@ page import="java.util.List"%>
+<%@ page import="com.pCarpet.model.Report"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+    <div>
+        <h1>Lista segnalazioni</h1>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>TIPO SEGNALAZIONE</th>
+                    <th>SEGNALAZIONE</th>
+                    <th>DATA</th>
+                    <th>UTENTE</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var report in reports)
+                {
+                <tr>
+                    <td>
+                        @if (@report.type == 0)
+                        {
+                            <p>Avviso del gestore</p>
+                        }
+                        @if (@report.type == 1)
+                        {
+                            <p>Abuso spazio dedicato a persone con disabilità</p>
+                        }
+                        @if (@report.type == 2)
+                        {
+                            <p>Disservizio stradale</p>
+                        }
+                        @if (@report.type == 3)
+                        {
+                            <p>Problema riscontrato nell'usufruire del servizio</p>
+                        }
+                    </td>
+                    <td>@report.description</td>
+                    <td>@report.time</td>
+                    <td>@report.username</td>
+                    <!--  correggere? -->
+                </tr>
+                }
+</table>
+
+
+        <a href="/Report/back">Indietro</a><br>
+    </div>
+
+</body>
+</html>
