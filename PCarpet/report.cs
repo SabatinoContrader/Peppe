@@ -17,9 +17,9 @@ namespace PCarpet
         public int id { get; set; }
         public int type { get; set; }
         public string description { get; set; }
-        public byte[] time { get; set; }
-        public string username { get; set; }
+        public System.DateTime time { get; set; }
         public int state { get; set; }
+        public string username { get; set; }
     
         public virtual user user { get; set; }
     }

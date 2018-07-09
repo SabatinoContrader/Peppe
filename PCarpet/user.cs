@@ -17,13 +17,13 @@ namespace PCarpet
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user()
         {
+            this.book = new HashSet<book>();
             this.car = new HashSet<car>();
             this.payment = new HashSet<payment>();
             this.report = new HashSet<report>();
             this.slot = new HashSet<slot>();
-            this.book = new HashSet<book>();
         }
-
+    
         public string username { get; set; }
         public string password { get; set; }
         public int type { get; set; }
@@ -36,6 +36,8 @@ namespace PCarpet
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<book> book { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<car> car { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payment { get; set; }
@@ -43,7 +45,5 @@ namespace PCarpet
         public virtual ICollection<report> report { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<slot> slot { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> book { get; set; }
     }
 }

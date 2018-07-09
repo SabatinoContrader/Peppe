@@ -50,8 +50,7 @@ namespace PCarpet.Controllers
     public ActionResult driverAddReport(String description, String type)
         {
             user user = userService.getLoggedUser();
-            String str_time = DateTime.Now.ToString(); //.ToString("yyyyMMddHHmmssfff"); 
-            byte[] time = Encoding.ASCII.GetBytes(str_time);
+            DateTime time = DateTime.Now;
 
             String mydescription = description;
             int mytype = 0;
@@ -94,9 +93,7 @@ namespace PCarpet.Controllers
             user user = userService.getLoggedUser();
             String mydescription = description;
 
-            //Timestamp time = new Timestamp(System.currentTimeMillis());
-            String str_time = DateTime.Now.ToString(); //.ToString("yyyyMMddHHmmssfff");
-            byte[] time = Encoding.ASCII.GetBytes(str_time);
+            DateTime time = DateTime.Now;
 
             // lo stato della segnalazione 3 è lo stato iniziale della segnalazione inviata da owner
             int type = 0; //owner type

@@ -10,7 +10,7 @@ namespace PCarpet
     {
         public report() { }
 
-        public report(int id, int type, string description, byte[] time, string username, int state)
+        public report(int id, int type, string description, DateTime time, string username, int state)
         {
             this.id = id;
             this.type = type;
@@ -24,7 +24,7 @@ namespace PCarpet
         {
             this.type = reportDTO.type;
             this.description = reportDTO.description;
-            //this.time = reportDTO.time;
+            this.time = reportDTO.time;
             this.username = reportDTO.username;
             this.state = reportDTO.state;
         }

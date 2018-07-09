@@ -31,8 +31,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="quantity" Type="float" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="20" />
-          <Property Name="id_stop" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_stop" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="report">
           <Key>
@@ -41,7 +41,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="100" />
-          <Property Name="time" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
           <Property Name="state" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -64,8 +64,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="start" Type="datetime" />
-          <Property Name="finish" Type="datetime" />
+          <Property Name="start" Type="datetime" Nullable="false" />
+          <Property Name="finish" Type="datetime" Nullable="false" />
           <Property Name="id_car" Type="int" Nullable="false" />
           <Property Name="id_slot" Type="int" Nullable="false" />
         </EntityType>
@@ -133,7 +133,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_payment_stop">
-          <End Role="stop" Type="Self.stop" Multiplicity="0..1" />
+          <End Role="stop" Type="Self.stop" Multiplicity="1" />
           <End Role="payment" Type="Self.payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="stop">
@@ -145,7 +145,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_payment_user">
-          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="payment" Type="Self.payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="user">
@@ -164,6 +164,18 @@
               <PropertyRef Name="username" />
             </Principal>
             <Dependent Role="report">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_slot_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="slot" Type="Self.slot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="slot">
               <PropertyRef Name="username" />
             </Dependent>
           </ReferentialConstraint>
@@ -228,6 +240,10 @@
             <End Role="user" EntitySet="user" />
             <End Role="report" EntitySet="report" />
           </AssociationSet>
+          <AssociationSet Name="FK_slot_user" Association="Self.FK_slot_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="slot" EntitySet="slot" />
+          </AssociationSet>
           <AssociationSet Name="FK_stop_car" Association="Self.FK_stop_car">
             <End Role="car" EntitySet="car" />
             <End Role="stop" EntitySet="stop" />
@@ -241,16 +257,65 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pcarpetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="pcarpetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="book" EntityType="pcarpetModel.book" />
+          <EntitySet Name="car" EntityType="pcarpetModel.car" />
+          <EntitySet Name="payment" EntityType="pcarpetModel.payment" />
+          <EntitySet Name="report" EntityType="pcarpetModel.report" />
+          <EntitySet Name="slot" EntityType="pcarpetModel.slot" />
+          <EntitySet Name="stop" EntityType="pcarpetModel.stop" />
+          <EntitySet Name="user" EntityType="pcarpetModel.user" />
+          <AssociationSet Name="FK_book_payment" Association="pcarpetModel.FK_book_payment">
+            <End Role="payment" EntitySet="payment" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_slot" Association="pcarpetModel.FK_book_slot">
+            <End Role="slot" EntitySet="slot" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_user" Association="pcarpetModel.FK_book_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_car_user" Association="pcarpetModel.FK_car_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="car" EntitySet="car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stop_car" Association="pcarpetModel.FK_stop_car">
+            <End Role="car" EntitySet="car" />
+            <End Role="stop" EntitySet="stop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_stop" Association="pcarpetModel.FK_payment_stop">
+            <End Role="stop" EntitySet="stop" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_user" Association="pcarpetModel.FK_payment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_user" Association="pcarpetModel.FK_report_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="report" EntitySet="report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_slot_user" Association="pcarpetModel.FK_slot_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="slot" EntitySet="slot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stop_slot" Association="pcarpetModel.FK_stop_slot">
+            <End Role="slot" EntitySet="slot" />
+            <End Role="stop" EntitySet="stop" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="book">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_slot" Type="Int32" Nullable="false" />
           <Property Name="id_payment" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="payment" Relationship="Self.FK_book_payment" FromRole="book" ToRole="payment" />
-          <NavigationProperty Name="slot" Relationship="Self.FK_book_slot" FromRole="book" ToRole="slot" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.FK_book_payment" FromRole="book" ToRole="payment" />
+          <NavigationProperty Name="slot" Relationship="pcarpetModel.FK_book_slot" FromRole="book" ToRole="slot" />
           <NavigationProperty Name="user" Relationship="pcarpetModel.FK_book_user" FromRole="book" ToRole="user" />
         </EntityType>
         <EntityType Name="car">
@@ -258,13 +323,13 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="license_plate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="license_plate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="width" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="length" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_car_user" FromRole="car" ToRole="user" />
-          <NavigationProperty Name="stop" Relationship="Self.FK_stop_car" FromRole="car" ToRole="stop" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.FK_car_user" FromRole="car" ToRole="user" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.FK_stop_car" FromRole="car" ToRole="stop" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -272,11 +337,11 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="quantity" Type="Double" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="id_stop" Type="Int32" />
-          <NavigationProperty Name="book" Relationship="Self.FK_book_payment" FromRole="payment" ToRole="book" />
-          <NavigationProperty Name="stop" Relationship="Self.FK_payment_stop" FromRole="payment" ToRole="stop" />
-          <NavigationProperty Name="user" Relationship="Self.FK_payment_user" FromRole="payment" ToRole="user" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_stop" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.FK_book_payment" FromRole="payment" ToRole="book" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.FK_payment_stop" FromRole="payment" ToRole="stop" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.FK_payment_user" FromRole="payment" ToRole="user" />
         </EntityType>
         <EntityType Name="report">
           <Key>
@@ -285,64 +350,64 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="time" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_report_user" FromRole="report" ToRole="user" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.FK_report_user" FromRole="report" ToRole="user" />
         </EntityType>
         <EntityType Name="slot">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="number_carplace" Type="Int32" Nullable="false" />
           <Property Name="number_carplace_free" Type="Int32" Nullable="false" />
           <Property Name="latitude" Type="Double" Nullable="false" />
           <Property Name="longitude" Type="Double" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="type" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="book" Relationship="Self.FK_book_slot" FromRole="slot" ToRole="book" />
-          <NavigationProperty Name="user" Relationship="Self.FK_slot_user" FromRole="slot" ToRole="user" />
-          <NavigationProperty Name="stop" Relationship="Self.FK_stop_slot" FromRole="slot" ToRole="stop" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="book" Relationship="pcarpetModel.FK_book_slot" FromRole="slot" ToRole="book" />
+          <NavigationProperty Name="user" Relationship="pcarpetModel.FK_slot_user" FromRole="slot" ToRole="user" />
+          <NavigationProperty Name="stop" Relationship="pcarpetModel.FK_stop_slot" FromRole="slot" ToRole="stop" />
         </EntityType>
         <EntityType Name="stop">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="start" Type="DateTime" Precision="3" />
-          <Property Name="finish" Type="DateTime" Precision="3" />
+          <Property Name="start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="finish" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_car" Type="Int32" Nullable="false" />
           <Property Name="id_slot" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="car" Relationship="Self.FK_stop_car" FromRole="stop" ToRole="car" />
-          <NavigationProperty Name="payment" Relationship="Self.FK_payment_stop" FromRole="stop" ToRole="payment" />
-          <NavigationProperty Name="slot" Relationship="Self.FK_stop_slot" FromRole="stop" ToRole="slot" />
+          <NavigationProperty Name="car" Relationship="pcarpetModel.FK_stop_car" FromRole="stop" ToRole="car" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.FK_payment_stop" FromRole="stop" ToRole="payment" />
+          <NavigationProperty Name="slot" Relationship="pcarpetModel.FK_stop_slot" FromRole="stop" ToRole="slot" />
         </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="surname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="cap" Type="Int32" />
           <Property Name="handiccaped" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="car" Relationship="Self.FK_car_user" FromRole="user" ToRole="car" />
-          <NavigationProperty Name="payment" Relationship="Self.FK_payment_user" FromRole="user" ToRole="payment" />
-          <NavigationProperty Name="report" Relationship="Self.FK_report_user" FromRole="user" ToRole="report" />
-          <NavigationProperty Name="slot" Relationship="Self.FK_slot_user" FromRole="user" ToRole="slot" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="book" Relationship="pcarpetModel.FK_book_user" FromRole="user" ToRole="book" />
+          <NavigationProperty Name="car" Relationship="pcarpetModel.FK_car_user" FromRole="user" ToRole="car" />
+          <NavigationProperty Name="payment" Relationship="pcarpetModel.FK_payment_user" FromRole="user" ToRole="payment" />
+          <NavigationProperty Name="report" Relationship="pcarpetModel.FK_report_user" FromRole="user" ToRole="report" />
+          <NavigationProperty Name="slot" Relationship="pcarpetModel.FK_slot_user" FromRole="user" ToRole="slot" />
         </EntityType>
         <Association Name="FK_book_payment">
-          <End Role="payment" Type="Self.payment" Multiplicity="1" />
-          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="1" />
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="payment">
               <PropertyRef Name="id" />
@@ -353,8 +418,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_book_slot">
-          <End Role="slot" Type="Self.slot" Multiplicity="1" />
-          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <End Type="pcarpetModel.slot" Role="slot" Multiplicity="1" />
+          <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="slot">
               <PropertyRef Name="id" />
@@ -364,139 +429,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_car_user">
-          <End Role="user" Type="Self.user" Multiplicity="0..1" />
-          <End Role="car" Type="Self.car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="username" />
-            </Principal>
-            <Dependent Role="car">
-              <PropertyRef Name="username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_stop_car">
-          <End Role="car" Type="Self.car" Multiplicity="1" />
-          <End Role="stop" Type="Self.stop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="car">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="stop">
-              <PropertyRef Name="id_car" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payment_stop">
-          <End Role="stop" Type="Self.stop" Multiplicity="0..1" />
-          <End Role="payment" Type="Self.payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stop">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="payment">
-              <PropertyRef Name="id_stop" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payment_user">
-          <End Role="user" Type="Self.user" Multiplicity="0..1" />
-          <End Role="payment" Type="Self.payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="username" />
-            </Principal>
-            <Dependent Role="payment">
-              <PropertyRef Name="username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_report_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="report" Type="Self.report" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="username" />
-            </Principal>
-            <Dependent Role="report">
-              <PropertyRef Name="username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_slot_user">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="slot" Type="Self.slot" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="username" />
-            </Principal>
-            <Dependent Role="slot">
-              <PropertyRef Name="username" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_stop_slot">
-          <End Role="slot" Type="Self.slot" Multiplicity="1" />
-          <End Role="stop" Type="Self.stop" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="slot">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="stop">
-              <PropertyRef Name="id_slot" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="pcarpetEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="book" EntityType="Self.book" />
-          <EntitySet Name="car" EntityType="Self.car" />
-          <EntitySet Name="payment" EntityType="Self.payment" />
-          <EntitySet Name="report" EntityType="Self.report" />
-          <EntitySet Name="slot" EntityType="Self.slot" />
-          <EntitySet Name="stop" EntityType="Self.stop" />
-          <EntitySet Name="user" EntityType="Self.user" />
-          <AssociationSet Name="FK_book_payment" Association="Self.FK_book_payment">
-            <End Role="payment" EntitySet="payment" />
-            <End Role="book" EntitySet="book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_book_slot" Association="Self.FK_book_slot">
-            <End Role="slot" EntitySet="slot" />
-            <End Role="book" EntitySet="book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_car_user" Association="Self.FK_car_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="car" EntitySet="car" />
-          </AssociationSet>
-          <AssociationSet Name="FK_stop_car" Association="Self.FK_stop_car">
-            <End Role="car" EntitySet="car" />
-            <End Role="stop" EntitySet="stop" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payment_stop" Association="Self.FK_payment_stop">
-            <End Role="stop" EntitySet="stop" />
-            <End Role="payment" EntitySet="payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payment_user" Association="Self.FK_payment_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="payment" EntitySet="payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_report_user" Association="Self.FK_report_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="report" EntitySet="report" />
-          </AssociationSet>
-          <AssociationSet Name="FK_slot_user" Association="Self.FK_slot_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="slot" EntitySet="slot" />
-          </AssociationSet>
-          <AssociationSet Name="FK_stop_slot" Association="Self.FK_stop_slot">
-            <End Role="slot" EntitySet="slot" />
-            <End Role="stop" EntitySet="stop" />
-          </AssociationSet>
-          <AssociationSet Name="FK_book_user" Association="pcarpetModel.FK_book_user">
-            <End Role="user" EntitySet="user" />
-            <End Role="book" EntitySet="book" />
-          </AssociationSet>
-        </EntityContainer>
         <Association Name="FK_book_user">
           <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
           <End Type="pcarpetModel.book" Role="book" Multiplicity="*" />
@@ -509,6 +441,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_car_user">
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="pcarpetModel.car" Role="car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="car">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stop_car">
+          <End Type="pcarpetModel.car" Role="car" Multiplicity="1" />
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stop">
+              <PropertyRef Name="id_car" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_stop">
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="1" />
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stop">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="id_stop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_user">
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <End Type="pcarpetModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_user">
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <End Type="pcarpetModel.report" Role="report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_slot_user">
+          <End Type="pcarpetModel.user" Role="user" Multiplicity="1" />
+          <End Type="pcarpetModel.slot" Role="slot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="slot">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stop_slot">
+          <End Type="pcarpetModel.slot" Role="slot" Multiplicity="1" />
+          <End Type="pcarpetModel.stop" Role="stop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="slot">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stop">
+              <PropertyRef Name="id_slot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -518,86 +534,86 @@
           <EntitySetMapping Name="book">
             <EntityTypeMapping TypeName="pcarpetModel.book">
               <MappingFragment StoreEntitySet="book">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="id_slot" ColumnName="id_slot" />
                 <ScalarProperty Name="id_payment" ColumnName="id_payment" />
+                <ScalarProperty Name="id_slot" ColumnName="id_slot" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="car">
             <EntityTypeMapping TypeName="pcarpetModel.car">
               <MappingFragment StoreEntitySet="car">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="license_plate" ColumnName="license_plate" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="width" ColumnName="width" />
-                <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="license_plate" ColumnName="license_plate" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="payment">
             <EntityTypeMapping TypeName="pcarpetModel.payment">
               <MappingFragment StoreEntitySet="payment">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="id_stop" ColumnName="id_stop" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="report">
             <EntityTypeMapping TypeName="pcarpetModel.report">
               <MappingFragment StoreEntitySet="report">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="slot">
             <EntityTypeMapping TypeName="pcarpetModel.slot">
               <MappingFragment StoreEntitySet="slot">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="number_carplace" ColumnName="number_carplace" />
-                <ScalarProperty Name="number_carplace_free" ColumnName="number_carplace_free" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="number_carplace_free" ColumnName="number_carplace_free" />
+                <ScalarProperty Name="number_carplace" ColumnName="number_carplace" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="stop">
             <EntityTypeMapping TypeName="pcarpetModel.stop">
               <MappingFragment StoreEntitySet="stop">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="start" ColumnName="start" />
-                <ScalarProperty Name="finish" ColumnName="finish" />
-                <ScalarProperty Name="id_car" ColumnName="id_car" />
                 <ScalarProperty Name="id_slot" ColumnName="id_slot" />
+                <ScalarProperty Name="id_car" ColumnName="id_car" />
+                <ScalarProperty Name="finish" ColumnName="finish" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="user">
             <EntityTypeMapping TypeName="pcarpetModel.user">
               <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="cap" ColumnName="cap" />
-                <ScalarProperty Name="handiccaped" ColumnName="handiccaped" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="handiccaped" ColumnName="handiccaped" />
+                <ScalarProperty Name="cap" ColumnName="cap" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

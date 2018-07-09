@@ -5,23 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ae2b8e5948a143d6836ff2d3d3668033" Name="Diagram1">
-        <EntityTypeShape EntityType="pcarpetModel.book" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.car" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="pcarpetModel.FK_book_payment" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_book_slot" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_car_user" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_stop_car" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_payment_stop" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_payment_user" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_report_user" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_slot_user" ManuallyRouted="false" />
-        <AssociationConnector Association="pcarpetModel.FK_stop_slot" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="pcarpetModel.book" Width="1.5" PointX="8.25" PointY="9.75" />
+        <EntityTypeShape EntityType="pcarpetModel.car" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="7.5" PointY="6" />
+        <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="5.25" PointY="9.75" />
+        <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="pcarpetModel.FK_book_payment" />
+        <AssociationConnector Association="pcarpetModel.FK_book_slot" />
         <AssociationConnector Association="pcarpetModel.FK_book_user" />
+        <AssociationConnector Association="pcarpetModel.FK_car_user" />
+        <AssociationConnector Association="pcarpetModel.FK_stop_car" />
+        <AssociationConnector Association="pcarpetModel.FK_payment_stop" />
+        <AssociationConnector Association="pcarpetModel.FK_payment_user" />
+        <AssociationConnector Association="pcarpetModel.FK_report_user" />
+        <AssociationConnector Association="pcarpetModel.FK_slot_user" />
+        <AssociationConnector Association="pcarpetModel.FK_stop_slot" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

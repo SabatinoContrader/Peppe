@@ -23,7 +23,7 @@ namespace PCarpet
         public int id { get; set; }
         public double quantity { get; set; }
         public string username { get; set; }
-        public Nullable<int> id_stop { get; set; }
+        public int id_stop { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<book> book { get; set; }

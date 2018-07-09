@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCarpet.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -39,18 +40,18 @@ namespace PCarpet.Service
             loggedUser = null;
         }
 
-        public Boolean insertUser(user user)
+        public Boolean insertUser(UserDTO userDTO)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                user userNew = context.user.Find(user.username);
+                user userNew = context.user.Find(userDTO.username);
                 if (userNew != null)
                 {
                     return false;
                 }
                 else
                 {
-                    context.user.Add(user);
+                    context.user.Add(new user(userDTO));
                     context.SaveChanges();
                     return true;
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCarpet.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,7 @@ namespace PCarpet
 {
     public partial class user
     {
-        public user(string username, string password, int type, string name, string surname, string address, int? cap, string handiccaped, string phone, string email)
+        public user(string username, string password, int type, string name, string surname, string address, Nullable<int> cap, string handiccaped, string phone, string email)
         {
             this.username = username;
             this.password = password;
@@ -19,6 +20,20 @@ namespace PCarpet
             this.handiccaped = handiccaped;
             this.phone = phone;
             this.email = email;
+        }
+
+        public user(UserDTO userDTO)
+        {
+            this.username = userDTO.username;
+            this.password = userDTO.password;
+            this.type = userDTO.type;
+            this.name = userDTO.name;
+            this.surname = userDTO.surname;
+            this.address = userDTO.address;
+            this.cap = userDTO.cap;
+            this.handiccaped = userDTO.handiccaped;
+            this.phone = userDTO.phone;
+            this.email = userDTO.email;
         }
     }
 }

@@ -163,7 +163,7 @@ namespace PCarpet.Service
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                return context.stop.FirstOrDefault(e => e.id.Equals(id_car));
+                return context.stop.FirstOrDefault(e => e.id_car.Equals(id_car));
             }
         }
 

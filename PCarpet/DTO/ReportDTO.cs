@@ -9,7 +9,7 @@ namespace PCarpet.DTO
     {
         public int type { get; set; }
         public string description { get; set; }
-        public byte[] time { get; set; }
+        public DateTime time { get; set; }
         public string username { get; set; }
         public int state { get; set; }
 
@@ -17,7 +17,7 @@ namespace PCarpet.DTO
         {
         }
 
-        public ReportDTO(int type, string description, byte[] time, string username, int state)
+        public ReportDTO(int type, string description, DateTime time, string username, int state)
         {
             this.type = type;
             this.description = description;
