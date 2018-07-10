@@ -1,0 +1,19 @@
+<h1>PCARPET</h1>
+<h2>Login</h2>
+<form class="userForm" #f="ngForm">
+
+  <div class="form-group">
+    <label for="inputUser">Username</label>
+    <input type="text" name="username" id="inputUser" class="form-control" placeholder="Username" ngModel required>
+  </div>
+
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required>
+  </div>
+
+  <div class="form-group">
+    <button (click) = "login(f)">Sign in</button>
+  </div>
+  
+</form>
