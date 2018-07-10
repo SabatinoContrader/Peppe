@@ -6,9 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("api")]
     public class ReportController : ApiController
     {
         // REPORTS:
@@ -30,7 +33,7 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpGet]
-        [Route("api/reportDriverHystory")]
+        [Route("reportDriverHystory")]
         public List<ReportDTO> driverHystory()
         {
             user user = userService.getLoggedUser();
@@ -39,22 +42,16 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpPost]
-        [Route("api/driverAddReport")]
-        public void driverAddReport(String description, String type)
+        [Route("driverAddReport")]
+        public int driverAddReport(ReportDTO reportDTO)
         {
-            user user = userService.getLoggedUser();
-            DateTime time = DateTime.Now;
-            String mydescription = description;
-            int mytype = 0;
-            if (int.TryParse(type, out mytype))
-            {
-                //non gestita
-                reportService.insertReport(new ReportDTO(mytype, mydescription, time, user.username, 0));
-            }
+            reportDTO.state = 0;
+            reportDTO.time = DateTime.Now;
+            return reportService.insertReport(reportDTO);
         }
 
         [HttpPost]
-        [Route("api/listOwnerReport")]
+        [Route("listOwnerReport")]
         public List<ReportDTO> driverOwnerReport()
         {
             String usernameOwner = "gestore"; //voce "Segnalazioni del gestore" di homeDriver. da sistemare 
@@ -65,7 +62,7 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpGet]
-        [Route("api/listOwnerReport")]
+        [Route("listOwnerReport")]
         public List<ReportDTO> ownerReportuser()
         {
             List<ReportDTO> reports = reportService.getAllReportOwner(); //voce "segnalazioni degli utenti" di homeOwner. da sistemare
@@ -79,7 +76,7 @@ namespace PCarpet.ControllersApi
         //}
 
         [HttpPost]
-        [Route("api/ownerAddedReport")]
+        [Route("ownerAddedReport")]
         public void ownerAddedReport(String description)
         {
             user user = userService.getLoggedUser();
@@ -91,7 +88,7 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpPost]
-        [Route("api/ownerReportsHystory")]
+        [Route("ownerReportsHystory")]
         public List<ReportDTO> ownerHystory()
         {
             user user = userService.getLoggedUser();

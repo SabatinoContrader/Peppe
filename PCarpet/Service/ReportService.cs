@@ -23,12 +23,12 @@ namespace PCarpet.Service
             }
         }
 
-        public void insertReport(ReportDTO reportDTO)
+        public int insertReport(ReportDTO reportDTO)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
                 context.report.Add(new report(reportDTO));
-                context.SaveChanges();
+                return context.SaveChanges();
             }
         }
 
