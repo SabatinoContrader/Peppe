@@ -10,7 +10,7 @@ import { NgForm } from '../../../node_modules/@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  feedback: string;
   user: User;
 
   constructor(private userService: UserService, private router: Router){
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(){
-
+    this.feedback = this.userService.feedback;
   }
 
   login(f: NgForm): void{
@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
           else if(response.type == 0)
             this.router.navigateByUrl("/homeOwner");
         } else
-          console.log("LOGIN ERRATO");
+            this.feedback = "Username o password errati";
       });
   }
+
 
 }

@@ -10,6 +10,7 @@ import { UserService } from "../services/user.service";
 import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
 import { HomeOwnerComponent } from "../components/home-owner/home-owner.component";
+import { SignupComponent } from "../components/signup/signup.component";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HomeOwnerComponent } from "../components/home-owner/home-owner.componen
     AppComponent,
     LoginComponent,
     HomeDriverComponent,
-    HomeOwnerComponent
+    HomeOwnerComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
