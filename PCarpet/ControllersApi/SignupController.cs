@@ -6,9 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("api")]
     public class SignupController : ApiController
     {
         UserService userService;
@@ -19,11 +22,9 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpPost]
-        [Route("api/signupUser")]
-        public bool Registered(String username, String password, String name, String surname, String address, Nullable<int> cap, String phone, String email, String handicapped)
+        [Route("signupUser")]
+        public bool Registered(UserDTO userDTO)
         {
-            int type = 1;
-            UserDTO userDTO = new UserDTO(username, password, type, name, surname, address, cap, phone, email, handicapped);
             if (userService.insertUser(userDTO))
                 return true;
             else
