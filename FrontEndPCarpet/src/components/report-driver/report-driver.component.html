@@ -1,0 +1,47 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+  <div>
+    <div>
+      <div>
+        <h1>Invia segnalazione</h1>
+        <form class="reportForm" #f="ngForm">
+          <select name="select" ngModel = "select">
+            <option value="1">
+              Abuso spazio dedicato a persone con disabilità
+            </option>
+            <option value="2">Disservizio stradale</option>
+            <option value="3">
+              Problema riscontrato nell'usufruire del servizio
+            </option>
+          </select>
+          <br>
+          <textarea rows="6" cols="50" name="description" placeholder="Descrizione del problema riscontrato" ngModel>
+                  </textarea>
+          <br>
+          <button (click)="sendReport(f)">
+            Invia
+          </button>
+        </form>
+
+        <a href="/reportHystory">Accedi alla cronologia</a>
+        <br>
+        <br>
+        <br>
+
+
+        <a href="/login">Indietro</a>
+        <br>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

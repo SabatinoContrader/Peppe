@@ -11,6 +11,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from "./app.component";
 import { HomeOwnerComponent } from "../components/home-owner/home-owner.component";
 import { SignupComponent } from "../components/signup/signup.component";
+import { ReportDriverComponent } from "../components/report-driver/report-driver.component";
+import { ReportService } from "../services/report.service";
+
+
 
 
 @NgModule({
@@ -19,7 +23,8 @@ import { SignupComponent } from "../components/signup/signup.component";
     LoginComponent,
     HomeDriverComponent,
     HomeOwnerComponent,
-    SignupComponent
+    SignupComponent,
+    ReportDriverComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,7 @@ import { SignupComponent } from "../components/signup/signup.component";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, ReportService],
   bootstrap: [AppComponent]
 })
 

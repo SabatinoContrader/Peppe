@@ -6,6 +6,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { HomeDriverComponent } from '../components/home-driver/home-driver.component';
 import { HomeOwnerComponent } from '../components/home-owner/home-owner.component';
 import { SignupComponent } from '../components/signup/signup.component';
+import { ReportDriverComponent } from '../components/report-driver/report-driver.component';
 
 
 const routes: Routes = [
@@ -13,8 +14,15 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'homeDriver', component: HomeDriverComponent},
   {path: 'homeOwner', component: HomeOwnerComponent},
-  {path: 'signup', component: SignupComponent}
-  
+  {path: 'signup', component: SignupComponent},
+  // {path: 'findCarPlace', component: FindCarPlaceComponent},
+  // {path: 'extensionStops', component: ExtensionStopsComponent},
+  // {path: 'car', component: CarComponent},
+   {path: 'reportDriver', component: ReportDriverComponent}
+  // {path: 'reportHystory', component: ReportHystoryComponent},
+  // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
+  // {path: 'usefulNumbers', component: UsefulNumbersComponent},
+  // {path: 'legislation', component: LegislationComponent},
 ];
 
 @NgModule({

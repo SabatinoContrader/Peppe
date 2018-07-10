@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   login(f: NgForm): void{
       this.userService.login(f.value.username, f.value.password).subscribe((response) => {
         if (response != null) {
+          this.user = response;
           sessionStorage.setItem("user", JSON.stringify(this.user));
           if(response.type == 1)
             this.router.navigateByUrl("/homeDriver");
