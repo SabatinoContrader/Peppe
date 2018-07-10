@@ -1,4 +1,5 @@
-﻿using PCarpet.Service;
+﻿using PCarpet.DTO;
+using PCarpet.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace PCarpet.Controllers
 
         public ActionResult showSlot()
         {
-            List<car> cars = stopService.getCarWithoutStopOfUser();
-            ViewBag.cars = cars;
+            List<CarDTO> carsDTO = stopService.getCarWithoutStopOfUser();
+            ViewBag.cars = carsDTO;
             return View("findCarPlace");
 
         }

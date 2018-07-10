@@ -11,22 +11,21 @@ namespace PCarpet.Service
     {
         private static user loggedUser;
 
-        public Boolean login(String username, String password)
+        public UserDTO login(String username, String password)
         {
 
             using (pcarpetEntities context = new pcarpetEntities())
             {
                 user user = context.user.FirstOrDefault(e => e.password.Equals(password) && e.username.Equals(username));
+                UserDTO userDTO = null;
 
-                if (user == null)
+                if (user != null)
                 {
-                    return false;
-                }
-                else
-                {
+                    userDTO = user.toUserDTO(user);
                     loggedUser = user;
-                    return true;
                 }
+
+                return userDTO;
             }
         }
 

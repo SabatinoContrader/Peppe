@@ -35,5 +35,10 @@ namespace PCarpet
             this.phone = userDTO.phone;
             this.email = userDTO.email;
         }
+
+        public static UserDTO toUserDTO(user user)
+        {
+            return new UserDTO(user.username, user.password, user.type, user.name, user.surname, user.address, user.cap, user.handiccaped, user.phone, user.email);
+        }
     }
 }

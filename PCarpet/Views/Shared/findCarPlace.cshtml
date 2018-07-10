@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    List<car> cars = ViewBag.cars;
+    List<PCarpet.DTO.CarDTO> cars = ViewBag.cars;
 }
 
 
@@ -24,10 +24,7 @@
         
             <select id="carSelect" class="form-control form-control-lg">
                 <option value="" hidden>Seleziona auto</option>
-                @*<c:forEach items="${cars}" var="car">
-                    <option value="${car.id}" class="">${car.name}</option>
-                </c:forEach>*@
-
+                
                 @foreach (var car in cars)
                 {
                     <option value="@car.id" class="">@car.name</option>

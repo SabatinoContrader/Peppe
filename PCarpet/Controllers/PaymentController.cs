@@ -31,14 +31,6 @@ namespace PCarpet.Controllers
             return View();
         }
 
-        //    @RequestMapping(value = "/payment", method = RequestMethod.GET)
-
-        //public String openPayments(HttpServletRequest request, Model model)
-        //    {
-        //        return "payments";
-        //    }
-
-        
 
         public ActionResult paymentList()
         {

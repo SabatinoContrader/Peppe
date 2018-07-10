@@ -177,20 +177,19 @@ namespace PCarpet.Service
             }
         }
 
-        public List<car> getCarWithoutStopOfUser()
+        public List<CarDTO> getCarWithoutStopOfUser()
         {
             user user = userService.getLoggedUser();
             List<car> cars = carService.getAllCar(user);
-            List<car> carsWithoutStop = new List<car>();
-            stop stop;
+            List<CarDTO> carsWithoutStop = new List<CarDTO>();
             foreach (car car in cars)
             {
                 using (pcarpetEntities context = new pcarpetEntities())
                 {
-                    stop = context.stop.FirstOrDefault(c => c.id.Equals(car.id));
-                }
+                    stop stop = context.stop.FirstOrDefault(s => s.id_car.Equals(car.id));
                     if (stop == null)
-                        carsWithoutStop.Add(car);
+                        carsWithoutStop.Add(car.toCarDTO(car));
+                }
             }
             return carsWithoutStop;
         }

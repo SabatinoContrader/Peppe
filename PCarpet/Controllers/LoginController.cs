@@ -1,4 +1,5 @@
-﻿using PCarpet.Service;
+﻿using PCarpet.DTO;
+using PCarpet.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,11 @@ namespace PCarpet.Controllers
 
             using (pcarpetEntities a = new pcarpetEntities())
             {
-                Boolean login = userService.login(username, password);
-                if (login)
+                UserDTO userDTO = userService.login(username, password);
+                if (userDTO != null)
                 {
                     isLogged = true;
-                    user user = userService.getLoggedUser();
-                    int type = user.type;
+                    int type = userDTO.type;
                     if (type == 1)
                         return View("homeDriver");
                     else if (type == 0)
