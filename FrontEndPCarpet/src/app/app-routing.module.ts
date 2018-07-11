@@ -9,6 +9,10 @@ import { SignupComponent } from '../components/signup/signup.component';
 import { ReportDriverComponent } from '../components/report-driver/report-driver.component';
 import { CarComponent } from '../components/car/car.component';
 import { AddCarComponent } from '../components/addCar/addCar.component';
+import { ReportHystoryComponent } from '../components/report-hystory/report-hystory.component';
+import { ReportOwnerComponent } from '../components/report-owner/report-owner.component';
+import { ReportNearComponent } from '../components/report-near/report-near.component';
+
 
 
 const routes: Routes = [
@@ -17,12 +21,13 @@ const routes: Routes = [
   {path: 'homeDriver', component: HomeDriverComponent},
   {path: 'homeOwner', component: HomeOwnerComponent},
   {path: 'signup', component: SignupComponent},
-  // {path: 'findCarPlace', component: FindCarPlaceComponent},
-  // {path: 'extensionStops', component: ExtensionStopsComponent},
   {path: 'car', component: CarComponent},
   {path: 'addCar', component: AddCarComponent},
-  {path: 'reportDriver', component: ReportDriverComponent}
-  // {path: 'reportHystory', component: ReportHystoryComponent},
+  {path: 'reportDriver', component: ReportDriverComponent},
+  {path: 'reportHystory', component: ReportHystoryComponent},
+  {path: 'reportOwner', component: ReportOwnerComponent},
+  {path: 'reportNear', component: ReportNearComponent}
+
   // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
   // {path: 'usefulNumbers', component: UsefulNumbersComponent},
   // {path: 'legislation', component: LegislationComponent},

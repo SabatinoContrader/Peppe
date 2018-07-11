@@ -16,8 +16,9 @@ import { ReportService } from "../services/report.service";
 import { CarComponent } from "../components/car/car.component";
 import { CarService } from "../services/car.service";
 import { AddCarComponent } from "../components/addCar/addCar.component";
-
-
+import { ReportHystoryComponent } from "../components/report-hystory/report-hystory.component";
+import { ReportOwnerComponent } from "../components/report-owner/report-owner.component";
+import { ReportNearComponent } from "../components/report-near/report-near.component";
 
 
 @NgModule({
@@ -29,7 +30,10 @@ import { AddCarComponent } from "../components/addCar/addCar.component";
     SignupComponent,
     ReportDriverComponent,
     CarComponent,
-    AddCarComponent
+    AddCarComponent,
+    ReportHystoryComponent,
+    ReportOwnerComponent,
+    ReportNearComponent
   ],
   imports: [
     BrowserModule,

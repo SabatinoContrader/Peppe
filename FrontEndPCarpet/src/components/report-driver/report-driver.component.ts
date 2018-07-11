@@ -17,7 +17,7 @@ export class ReportDriverComponent implements OnInit {
 
   sendReport(f: NgForm): void {
     console.log("reportType:" + f.value.select);
-    this.reportService.sendReport(f.value.description, f.value.select.value).subscribe((response) => {
+    this.reportService.sendReport(f.value.description, f.value.select).subscribe((response) => {
         console.log("RISPOSTA: " + response);
         this.router.navigateByUrl("/homeDriver");
     });

@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<body>
+
+  <h1>Invia segnalazione</h1>
+  <div>
+      <div>
+          <form class="reportForm" #f="ngForm">
+
+              <textarea rows="6" cols="50" name="description"
+                        placeholder="Descrizione della segnalazione" ngModel>
+              </textarea>
+              <br>
+              <button (click)="sendReport(f)">
+                  Invia
+              </button>
+          </form>
+
+
+          <a href="/#/reportHystory">Accedi alla cronologia</a>
+          <br> <br> <br>
+          <a href="/#/homeOwner">Indietro</a><br>
+      </div>
+  </div>
+
+</body>
+</html>
