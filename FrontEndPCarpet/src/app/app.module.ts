@@ -13,6 +13,9 @@ import { HomeOwnerComponent } from "../components/home-owner/home-owner.componen
 import { SignupComponent } from "../components/signup/signup.component";
 import { ReportDriverComponent } from "../components/report-driver/report-driver.component";
 import { ReportService } from "../services/report.service";
+import { CarComponent } from "../components/car/car.component";
+import { CarService } from "../services/car.service";
+import { AddCarComponent } from "../components/addCar/addCar.component";
 
 
 
@@ -24,7 +27,9 @@ import { ReportService } from "../services/report.service";
     HomeDriverComponent,
     HomeOwnerComponent,
     SignupComponent,
-    ReportDriverComponent
+    ReportDriverComponent,
+    CarComponent,
+    AddCarComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { ReportService } from "../services/report.service";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService, ReportService],
+  providers: [UserService, ReportService, CarService],
   bootstrap: [AppComponent]
 })
 

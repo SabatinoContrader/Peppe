@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CarService } from "../../services/car.service";
 
 @Component({
   selector: "app-home-driver",
@@ -8,9 +9,9 @@ import { Component, OnInit } from "@angular/core";
 
 export class HomeDriverComponent implements OnInit {
   
-  constructor() { }
+  constructor(private carService: CarService) { }
 
   ngOnInit() {
-
+    this.carService.deleteFeedback();
   }
 }

@@ -12,7 +12,6 @@ import {Observable, of, BehaviorSubject} from 'rxjs';
 export class UserService {
   feedback: string;
 
-
   constructor(private http: HttpClient) { }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -37,6 +36,10 @@ export class UserService {
 
   changeFeedback(message: string){
     this.feedback = message;
+  }
+
+  deleteFeedback(){
+    this.feedback = "";
   }
 }
 

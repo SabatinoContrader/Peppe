@@ -7,6 +7,8 @@ import { HomeDriverComponent } from '../components/home-driver/home-driver.compo
 import { HomeOwnerComponent } from '../components/home-owner/home-owner.component';
 import { SignupComponent } from '../components/signup/signup.component';
 import { ReportDriverComponent } from '../components/report-driver/report-driver.component';
+import { CarComponent } from '../components/car/car.component';
+import { AddCarComponent } from '../components/addCar/addCar.component';
 
 
 const routes: Routes = [
@@ -17,8 +19,9 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   // {path: 'findCarPlace', component: FindCarPlaceComponent},
   // {path: 'extensionStops', component: ExtensionStopsComponent},
-  // {path: 'car', component: CarComponent},
-   {path: 'reportDriver', component: ReportDriverComponent}
+  {path: 'car', component: CarComponent},
+  {path: 'addCar', component: AddCarComponent},
+  {path: 'reportDriver', component: ReportDriverComponent}
   // {path: 'reportHystory', component: ReportHystoryComponent},
   // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
   // {path: 'usefulNumbers', component: UsefulNumbersComponent},

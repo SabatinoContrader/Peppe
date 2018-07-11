@@ -1,0 +1,34 @@
+<h1>Lista auto</h1>
+<br>
+<div *ngIf="carsList" class="table-responsive">
+    <table>
+        <th>
+
+
+            <tr>
+                <th>Targa</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+        </th>
+
+        <tr *ngFor="let car of carsList">
+            <td>{{car.license_plate}}</td>
+            <td>{{car.name}}</td>
+            <td>
+                <input type="submit" (click)="deleteCar([car.id])" value="Delete">
+            </td>
+        </tr>
+
+
+
+    </table>
+</div>
+
+<p>{{result}}</p>
+
+
+<a href="/#/addCar">Aggiungi auto</a>
+<br>
+<a href="/#/homeDriver">Indietro</a>
+<br>

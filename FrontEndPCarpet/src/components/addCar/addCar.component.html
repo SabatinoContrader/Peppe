@@ -1,0 +1,14 @@
+<h1>Aggiungi auto</h1>
+
+        <form class="userForm" #f="ngForm">
+
+            <p>Targa:<input type="text" name="licensePlate" class="form-control form-control-lg" ngModel/></p>
+            <p>Nome:<input type="text" name="name" class="form-control form-control-lg" ngModel/></p>
+            
+
+            <button (click)="addNewCar(f)">Aggiungi</button>
+        </form>
+
+        <br><br>
+
+        <a href="/#/car">Indietro</a><br>

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.feedback = this.userService.feedback;
+    this.userService.deleteFeedback();
   }
 
   login(f: NgForm): void{
