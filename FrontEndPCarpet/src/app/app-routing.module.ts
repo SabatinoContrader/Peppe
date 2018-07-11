@@ -12,6 +12,7 @@ import { AddCarComponent } from '../components/addCar/addCar.component';
 import { ReportHystoryComponent } from '../components/report-hystory/report-hystory.component';
 import { ReportOwnerComponent } from '../components/report-owner/report-owner.component';
 import { ReportNearComponent } from '../components/report-near/report-near.component';
+import { PaymentComponent } from '../components/payment/payment.component';
 
 
 
@@ -26,9 +27,14 @@ const routes: Routes = [
   {path: 'reportDriver', component: ReportDriverComponent},
   {path: 'reportHystory', component: ReportHystoryComponent},
   {path: 'reportOwner', component: ReportOwnerComponent},
-  {path: 'reportNear', component: ReportNearComponent}
-
+  {path: 'reportNear', component: ReportNearComponent},
   // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
+  // {path: 'findCarPlace', component: FindCarPlaceComponent},
+  // {path: 'extensionStops', component: ExtensionStopsComponent},
+  // {path: 'car', component: CarComponent},
+  {path: 'reportDriver', component: ReportDriverComponent},
+  // {path: 'reportHystory', component: ReportHystoryComponent},
+  {path: 'paymentsHystory', component: PaymentComponent},
   // {path: 'usefulNumbers', component: UsefulNumbersComponent},
   // {path: 'legislation', component: LegislationComponent},
 ];

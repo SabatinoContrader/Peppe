@@ -1,0 +1,18 @@
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+  selector: "app-home-driver",
+  templateUrl: "./home-driver.component.html",
+  styleUrls: ["./home-driver.component.scss"]
+})
+
+export class HomeDriverComponent implements OnInit {
+  
+  constructor() { 
+
+  }
+
+  ngOnInit() {
+
+  }
+}

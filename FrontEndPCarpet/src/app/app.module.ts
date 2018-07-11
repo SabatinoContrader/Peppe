@@ -19,6 +19,9 @@ import { AddCarComponent } from "../components/addCar/addCar.component";
 import { ReportHystoryComponent } from "../components/report-hystory/report-hystory.component";
 import { ReportOwnerComponent } from "../components/report-owner/report-owner.component";
 import { ReportNearComponent } from "../components/report-near/report-near.component";
+import { PaymentComponent } from "../components/payment/payment.component";
+import { PaymentService } from "../services/payment.service";
+
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { ReportNearComponent } from "../components/report-near/report-near.compo
     AddCarComponent,
     ReportHystoryComponent,
     ReportOwnerComponent,
-    ReportNearComponent
+    ReportNearComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,7 @@ import { ReportNearComponent } from "../components/report-near/report-near.compo
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UserService, ReportService, CarService],
+  providers: [UserService, ReportService, CarService,PaymentService],
   bootstrap: [AppComponent]
 })
 

@@ -1,0 +1,33 @@
+<h1>Cronologia pagamenti</h1>
+<br>
+<div *ngIf="paymentList" class="table-responsive">
+<table>
+  <thead>
+
+
+    <tr>
+      <th>Id pagamento</th>
+      <th>Quantità</th>
+      <th>Id sosta</th>
+    </tr>
+  </thead>
+
+
+
+    <tr *ngFor="let payment of paymentList" >
+      <td>{{payment.id}}</td>
+      <td>{{payment.quantity}}</td>
+      <td>{{payment.id_stop}}</td>
+    </tr>
+    
+
+
+
+</table>
+</div>
+
+
+
+<a href="/#/homeDriver">Indietro</a>
+<br>
+
