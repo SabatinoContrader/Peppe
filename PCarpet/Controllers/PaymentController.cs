@@ -36,7 +36,7 @@ namespace PCarpet.Controllers
         {
             user user = userService.getLoggedUser();
 
-            List<PaymentDTO> payments = paymentService.getAllPayment(user);
+            List<PaymentDTO> payments = paymentService.getAllPayment(user.username);
             ViewBag.payments = payments;
             return View("paymentsHystory");
         }
