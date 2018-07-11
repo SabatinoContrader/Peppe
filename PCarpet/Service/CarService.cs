@@ -32,11 +32,11 @@ namespace PCarpet.Service
         }
 
 
-        public List<CarDTO> getAllCarDTO(user user)
+        public List<CarDTO> getAllCarDTO(string username)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                List<car> cars = context.car.Where(car => car.username.Equals(user.username)).ToList();
+                List<car> cars = context.car.Where(car => car.username.Equals(username)).ToList();
                 List<CarDTO> carsDTO = new List<CarDTO>();
                 foreach (car car in cars)
                 {

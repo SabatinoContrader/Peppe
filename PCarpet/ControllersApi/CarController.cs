@@ -1,14 +1,13 @@
 ﻿using PCarpet.DTO;
 using PCarpet.Service;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] 
+    [RoutePrefix("api")]
     public class CarController : ApiController
     {
         private UserService userService;
@@ -23,17 +22,16 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpGet]
-        [Route("api/myCarsList")]
-        public List<CarDTO> carsList()
+        [Route("myCarsList")]
+        public List<CarDTO> carsList(string username)
         {
-            user user = userService.getLoggedUser();
-            List<CarDTO> cars = carService.getAllCarDTO(user);
+            List<CarDTO> cars = carService.getAllCarDTO(username);
             return cars;
         }
 
 
-        [HttpGet]
-        [Route("api/removeCar")]
+        [HttpDelete]
+        [Route("removeCar")]
         public bool removeCar(int id)
         {
             stop stop = stopService.getStop(id);
@@ -43,40 +41,17 @@ namespace PCarpet.ControllersApi
                 return true;
             }
             else
-                return false; //auto non eliminata perchè in sosta
-            //serviva per aggiornare la lista dopo la rimozione
-            //user user = userService.getLoggedUser();
-            //ViewBag.cars = carService.getAllCarDTO(user);
+                return false;
         }
 
 
-        //angular
-        //public ActionResult addCar()
-        //{
-        //    return View("addCar");
-        //}
-
-
-        [HttpGet]
-        [Route("api/addCar")]
-        public void addCar(String licensePlate, String name)
+        [HttpPost]
+        [Route("addCar")]
+        public void addCar(CarDTO carDTO)
         {
-            user user = userService.getLoggedUser();
 
-            carService.addCar(new CarDTO(licensePlate, name, user.username));
-
-            //serviva per aggiornare la lista dopo la add
-            //ViewBag.cars = carService.getAllCarDTO(user);
-       
+            carService.addCar(carDTO);
         }
-
-        //angular (back button)
-        //public ActionResult backCarsList()
-        //{
-        //    user user = userService.getLoggedUser();
-        //    ViewBag.cars = carService.getAllCarDTO(user);
-        //    return View("car");
-        //}
     }
 }
 

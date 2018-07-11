@@ -1,16 +1,11 @@
 ﻿using PCarpet.DTO;
 using PCarpet.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [EnableCors(origins: "*", headers: "*", methods: "*")] 
     [RoutePrefix("api")]
     public class SignupController : ApiController
     {
