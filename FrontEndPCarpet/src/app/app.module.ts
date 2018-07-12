@@ -21,6 +21,8 @@ import { ReportOwnerComponent } from "../components/report-owner/report-owner.co
 import { ReportNearComponent } from "../components/report-near/report-near.component";
 import { PaymentComponent } from "../components/payment/payment.component";
 import { PaymentService } from "../services/payment.service";
+import { ExtensionStopsComponent } from "../components/extension-stops/extension-stops.component";
+import { ExtensionStopsRowComponent } from "../components/extension-stops-row/extension-stops-row.component";
 
 
 
@@ -37,7 +39,9 @@ import { PaymentService } from "../services/payment.service";
     ReportHystoryComponent,
     ReportOwnerComponent,
     ReportNearComponent,
-    PaymentComponent
+    PaymentComponent,
+    ExtensionStopsComponent,
+    ExtensionStopsRowComponent
   ],
   imports: [
     BrowserModule,

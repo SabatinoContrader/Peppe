@@ -13,7 +13,7 @@ import { ReportHystoryComponent } from '../components/report-hystory/report-hyst
 import { ReportOwnerComponent } from '../components/report-owner/report-owner.component';
 import { ReportNearComponent } from '../components/report-near/report-near.component';
 import { PaymentComponent } from '../components/payment/payment.component';
-
+import { ExtensionStopsComponent } from '../components/extension-stops/extension-stops.component';
 
 
 const routes: Routes = [
@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'reportNear', component: ReportNearComponent},
   // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
   // {path: 'findCarPlace', component: FindCarPlaceComponent},
-  // {path: 'extensionStops', component: ExtensionStopsComponent},
+   {path: 'extensionStops', component: ExtensionStopsComponent},
   // {path: 'car', component: CarComponent},
   {path: 'reportDriver', component: ReportDriverComponent},
   // {path: 'reportHystory', component: ReportHystoryComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, {useHash: true, onSameUrlNavigation: 'reload'})],
   declarations: []
 })
 export class AppRoutingModule { }
