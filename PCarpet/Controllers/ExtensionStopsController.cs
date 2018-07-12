@@ -47,7 +47,8 @@ namespace PCarpet.Controllers
             DateTime updateddate = finish.AddMinutes(minutes);
 
             ManagementExtensionStopDTO item = new ManagementExtensionStopDTO(id_stop, address, start, updateddate, name, _price);
-            stopService.extensionStop(item);
+            //attenzione valore fittizio!
+            stopService.extensionStop(item.id_stop,15);
             List<ManagementExtensionStopDTO> managementExtensionStopDTO = stopService.getAllExtensionStop(user);
             ViewBag.stops = managementExtensionStopDTO;
             return View("extensionStops");
