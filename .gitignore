@@ -331,3 +331,4 @@ ASALocalRun/
 # csproj
 .csproj
 
+.config
