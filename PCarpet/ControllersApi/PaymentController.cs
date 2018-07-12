@@ -6,9 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("api")]
     public class PaymentController : ApiController
     {
         private PaymentService paymentService;
@@ -27,17 +30,16 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpGet]
-        [Route("api/paymentList")]
-        public List<PaymentDTO> paymentList()
+        [Route("paymentList")]
+        public List<PaymentDTO> paymentList(string username)
         {
-            user user = userService.getLoggedUser();
-            List<PaymentDTO> payments = paymentService.getAllPayment(user);
+            List<PaymentDTO> payments = paymentService.getAllPayment(username);
             return payments;
         }
 
 
         [HttpGet]
-        [Route("api/addPayment")]
+        [Route("addPayment")]
         public void addPayment(string timeToAdd, float totalPrice, int id_slot, int id_car)
         {
             user user = userService.getLoggedUser();

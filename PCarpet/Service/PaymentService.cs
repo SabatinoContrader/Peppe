@@ -19,11 +19,11 @@ namespace PCarpet.Service
                 
         }
 
-        public List<PaymentDTO> getAllPayment(user user)
+        public List<PaymentDTO> getAllPayment(string username)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                List<payment> payments = context.payment.Where(p => p.username.Equals(user.username)).ToList();
+                List<payment> payments = context.payment.Where(p => p.username.Equals(username)).ToList();
                 List<PaymentDTO> paymentsDTO = new List<PaymentDTO>();
                 foreach (payment payment in payments)
                 {

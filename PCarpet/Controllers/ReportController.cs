@@ -40,7 +40,7 @@ namespace PCarpet.Controllers
     public ActionResult driverHystory()
         {
             user user = userService.getLoggedUser();
-            List<ReportDTO> reports = reportService.getAllReportDTO(user);
+            List<ReportDTO> reports = reportService.getAllReportDTO(user.username);
 
             ViewBag.reports = reports;
             return View("reportHystory");
@@ -68,7 +68,7 @@ namespace PCarpet.Controllers
             String usernameOwner = "gestore"; //da sistemare
             user user = new user();
             user.username = usernameOwner;
-            List<ReportDTO> reportOwner = reportService.getAllReportDTO(user);
+            List<ReportDTO> reportOwner = reportService.getAllReportDTO(user.username);
             ViewBag.reports = reportOwner;
             return View("reportHystory");
         }
@@ -107,7 +107,7 @@ namespace PCarpet.Controllers
     public ActionResult ownerHystory()
         {
             user user = userService.getLoggedUser();
-            List<ReportDTO> reportsOwner = reportService.getAllReportDTO(user);
+            List<ReportDTO> reportsOwner = reportService.getAllReportDTO(user.username);
 
             ViewBag.reports = reportsOwner;
             return View("reportHystory");

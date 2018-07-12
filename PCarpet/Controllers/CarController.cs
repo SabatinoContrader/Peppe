@@ -22,11 +22,11 @@ namespace PCarpet.Controllers
             stopService = new StopService();
         }
 
-        public ActionResult carsList()
+        public ActionResult carsList(string username)
         {
-            user user = userService.getLoggedUser();
+            //user user = userService.getLoggedUser();
 
-            List<CarDTO> cars = carService.getAllCarDTO(user);
+            List<CarDTO> cars = carService.getAllCarDTO(username);
             //Reference<List<Car>> mycars = new Reference<List<Car>>(cars);
 
             ViewBag.cars = cars;
@@ -44,7 +44,7 @@ namespace PCarpet.Controllers
             else
                 ViewBag.alert = "alert";
             user user = userService.getLoggedUser();
-            ViewBag.cars = carService.getAllCarDTO(user);
+            ViewBag.cars = carService.getAllCarDTO(user.username);
             return View("car");
         }
 
@@ -57,19 +57,19 @@ namespace PCarpet.Controllers
 
 
 
-        public ActionResult addedCar(String licensePlate, String name)
+        public ActionResult addedCar(CarDTO carDTO)
         {
-            user user = userService.getLoggedUser();
+            //user user = userService.getLoggedUser();
 
-            carService.addCar(new CarDTO(licensePlate, name, user.username));
-            ViewBag.cars = carService.getAllCarDTO(user);
+            carService.addCar(carDTO);
+            ViewBag.cars = carService.getAllCarDTO(carDTO.username);
             return View("car");
         }
 
         public ActionResult backCarsList()
         {
             user user = userService.getLoggedUser();
-            ViewBag.cars = carService.getAllCarDTO(user);
+            ViewBag.cars = carService.getAllCarDTO(user.username);
             return View("car");
         }
     }
