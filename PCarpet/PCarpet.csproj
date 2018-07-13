@@ -203,7 +203,7 @@
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
     <Compile Include="ControllersApi\CarController.cs" />
-    <Compile Include="ControllersApi\ExtensionStopsController.cs" />
+    <Compile Include="ControllersApi\ExtensionstopsController.cs" />
     <Compile Include="ControllersApi\FindCarPlaceController.cs" />
     <Compile Include="ControllersApi\LoginController.cs" />
     <Compile Include="ControllersApi\ManagementParkController.cs" />
@@ -339,7 +339,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

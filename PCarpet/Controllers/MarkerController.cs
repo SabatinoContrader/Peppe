@@ -7,9 +7,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api")]
     public class MarkerController : ApiController
     {
         SlotService slotService;
@@ -22,7 +25,7 @@ namespace PCarpet.Controllers
         }
 
         [HttpGet]
-        [Route("api/updateParkings")]
+        [Route("updateParkings")]
         public List<SlotDTO> updateParkings(string lat, string lng)
         {
             double latitude = double.Parse(lat, CultureInfo.InvariantCulture);
@@ -36,7 +39,7 @@ namespace PCarpet.Controllers
         }
 
         [HttpGet]
-        [Route("api/updateSlots")]
+        [Route("updateSlots")]
         public IEnumerable<ManagementCarPlaceDTO> updateSlots()
         {
             List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new List<ManagementCarPlaceDTO>();

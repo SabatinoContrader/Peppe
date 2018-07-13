@@ -6,22 +6,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
-    public class ExtensionStopsController : ApiController
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("api")]
+
+    public class ExtensionstopsController : ApiController
     {
         private UserService userService;
         private StopService stopService;
 
-        public ExtensionStopsController()
+        public ExtensionstopsController()
         {
             this.userService = new UserService();
             this.stopService = new StopService();
         }
 
         [HttpGet]
-        [Route("api/myStopsList")]
+        [Route("myStopsList")]
         public List<ManagementExtensionStopDTO> extensionStops()
         {
             user user = userService.getLoggedUser();
@@ -32,22 +36,13 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpPut]
-        [Route("api/extendStop")]
-        public void extendStop(String minute, String id, String address, String name, DateTime start, DateTime finish, String price)
+        //  [Route("extendStop")]
+        public string Put(int id, [FromBody] int minute)
         {
-
-            user user = userService.getLoggedUser();
-
-            int minutes = Int32.Parse(minute);
-            int id_stop = Int32.Parse(id);
-            float _price = float.Parse(price);
-            DateTime updateddate = finish.AddMinutes(minutes);
-
-            ManagementExtensionStopDTO item = new ManagementExtensionStopDTO(id_stop, address, start, updateddate, name, _price);
-            stopService.extensionStop(item);
-            //serviva per aggiornare la lista dopo la extend
-            //List<ManagementExtensionStopDTO> managementExtensionStopDTO = stopService.getAllExtensionStop(user);
-            //ViewBag.stops = managementExtensionStopDTO;
+            
+            System.Diagnostics.Debug.WriteLine(id.ToString());
+            System.Diagnostics.Debug.WriteLine(minute.ToString());
+            return stopService.extensionStop(id,minute);
         }
     }
     }

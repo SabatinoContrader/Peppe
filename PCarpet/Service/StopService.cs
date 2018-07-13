@@ -45,16 +45,17 @@ namespace PCarpet.Service
             return managementExtensionStopDTOs;
         }
 
-        public void extensionStop(ManagementExtensionStopDTO managementExtensionStopDTO)
+        public string extensionStop(int id_stop, int minutes)
         {
-            int id_stop = managementExtensionStopDTO.id_stop;
-            DateTime finish = managementExtensionStopDTO.finish;
+            
             using (pcarpetEntities context = new pcarpetEntities())
             {
                 stop stop = context.stop.FirstOrDefault(s => s.id.Equals(id_stop));
-                stop.finish = finish;
+                DateTime newfinish = stop.finish.AddMinutes(minutes);
+                stop.finish = newfinish;
                 context.Entry(stop).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
+                return newfinish.ToString();
             }
 
 
