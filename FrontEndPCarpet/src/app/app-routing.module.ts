@@ -14,6 +14,7 @@ import { ReportOwnerComponent } from '../components/report-owner/report-owner.co
 import { ReportNearComponent } from '../components/report-near/report-near.component';
 import { PaymentComponent } from '../components/payment/payment.component';
 import { ExtensionStopsComponent } from '../components/extension-stops/extension-stops.component';
+import { FindCarplaceComponent } from '../components/find-carplace/find-carplace.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'reportOwner', component: ReportOwnerComponent},
   {path: 'reportNear', component: ReportNearComponent},
   // {path: 'paymentsHystory', component: PaymentsHystoryComponent},
-  // {path: 'findCarPlace', component: FindCarPlaceComponent},
+  {path: 'findCarPlace', component: FindCarplaceComponent},
    {path: 'extensionStops', component: ExtensionStopsComponent},
   // {path: 'car', component: CarComponent},
   {path: 'reportDriver', component: ReportDriverComponent},

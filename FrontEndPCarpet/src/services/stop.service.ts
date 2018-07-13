@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "../../node_modules/@angular/common/http";
-import { Observable, of } from "../../node_modules/rxjs";
-import { tap, catchError } from "../../node_modules/rxjs/operators";
-import { Stop } from "src/models/Stop";
+import { HttpClient } from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { tap, catchError } from "rxjs/operators";
+import { Stop } from "../models/Stop";
 
 
 /**

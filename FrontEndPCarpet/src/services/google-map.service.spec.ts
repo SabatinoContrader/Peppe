@@ -1,17 +1,16 @@
-
+import { GoogleMapService } from "./google-map.service";
 import { TestBed } from "@angular/core/testing";
-import { StopService } from "./stop.service";
 
-describe("Stop.serviceService", () => {
+describe("GoogleMapService", () => {
 
-  let service: StopService;
+  let service: GoogleMapService;
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        StopService
+        GoogleMapService
       ]
     });
-    service = TestBed.get(StopService);
+    service = TestBed.get(GoogleMapService);
 
   });
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from "../../../node_modules/@angular/forms";
+import { NgForm } from "@angular/forms";
 import { CarService } from "../../services/car.service";
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-addCar",

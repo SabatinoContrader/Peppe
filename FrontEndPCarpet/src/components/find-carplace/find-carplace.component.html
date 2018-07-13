@@ -1,0 +1,78 @@
+
+    <!-- Javascript -->
+    <!-- <script src="~/resources/googleApiManagerDriver.js"></script> -->
+
+
+
+    <h1 class="element-margin-left">Cerca Parcheggio</h1>
+
+    <div class="col-md-6 mb-3">
+        <input id="autocomplete" class="form-control form-control-lg" type="text" placeholder="Inserisci destinazione" #search>
+
+        <button id="myposition" class="btn btn-lg btn-primary btn-block back-button">Posizione</button>
+
+        <br><br> 
+        
+            <select id="carSelect" class="form-control form-control-lg">
+                <option value="" hidden>Seleziona auto</option>
+                
+                <!-- @foreach (var car in cars)
+                {
+                    <option value="@car.id" class="">@car.name</option>
+                } -->
+            </select> 
+        
+        <br>
+
+        <div style="float: left;">
+            <button id="startsearch">Cerca</button>
+
+            <button id="seleziona" disabled>Parti</button>
+
+            <button id="cambia" disabled>Cambia parcheggio</button>
+        </div>
+
+        <br> <br>
+
+        <agm-map style = "width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)" id="map"></agm-map>
+        <br>
+
+        <h3>Inserisci la durata della sosta</h3><br>
+        <p id='slot'>Slot: </p>
+        <select id='select' name='minute' disabled>
+            <option value='' hidden>Seleziona minuti</option>
+            <option value='15'>15 min</option>
+            <option value='30'>30 min</option>
+            <option value='45'>45 min</option>
+            <option value='60'>1 h</option>
+            <option value='75'>1 h 15 min</option>
+            <option value='90'>1 h 30 min</option>
+            <option value='105'>1 h 45 min</option>
+            <option value='120'>2 h</option>
+        </select><br>
+        <p id='newprice'>Prezzo: </p>
+
+        <form style="display: inline-block;" action="/Payment/addPayment" method="post">
+            <button id="payandgo" disabled>Paga ed inizia</button>
+        </form>
+
+        <br><br>
+
+        <form style="display: inline-block;" action="/Home/dispatchHome" method="post">
+            <button class="btn btn-lg btn-primary btn-block back-button" type="submit" name="richiesta" value="Indietro">Indietro</button>
+        </form>
+    </div>
+
+
+<!--     <script>
+	function myMap() {
+        var googleApiManagerDriver = new GoogleApiManagerDriver('map', 41.9, 12.48,'/api/updateParkings');
+			googleApiManagerDriver.selectAutoCompleteTextbox('autocomplete','startsearch');
+			googleApiManagerDriver.selectDirectionModeBackButton('cambia');
+			googleApiManagerDriver.selectRunTurnByTurnButton('seleziona');
+			googleApiManagerDriver.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
+			googleApiManagerDriver.selectFindMyPosition('myposition');
+		};
+    </script> -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyAUf_fIZF0iu40Uiwhj3RhFE3Kd1KrWUFw"></script>

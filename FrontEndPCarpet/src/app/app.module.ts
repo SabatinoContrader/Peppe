@@ -1,5 +1,3 @@
-
-
 import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
 import { FormsModule } from "@angular/forms";
@@ -23,6 +21,9 @@ import { PaymentComponent } from "../components/payment/payment.component";
 import { PaymentService } from "../services/payment.service";
 import { ExtensionStopsComponent } from "../components/extension-stops/extension-stops.component";
 import { ExtensionStopsRowComponent } from "../components/extension-stops-row/extension-stops-row.component";
+import { FindCarplaceComponent } from "../components/find-carplace/find-carplace.component";
+import { AgmCoreModule } from '@agm/core';
+import { GoogleMapService } from "../services/google-map.service";
 
 
 
@@ -41,15 +42,20 @@ import { ExtensionStopsRowComponent } from "../components/extension-stops-row/ex
     ReportNearComponent,
     PaymentComponent,
     ExtensionStopsComponent,
-    ExtensionStopsRowComponent
+    ExtensionStopsRowComponent,
+    FindCarplaceComponent 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAUf_fIZF0iu40Uiwhj3RhFE3Kd1KrWUFw',
+      libraries: ["places"]
+    })
   ],
-  providers: [UserService, ReportService, CarService,PaymentService],
+  providers: [UserService, ReportService, CarService,PaymentService, GoogleMapService],
   bootstrap: [AppComponent]
 })
 

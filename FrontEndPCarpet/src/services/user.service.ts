@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { logging } from '../../node_modules/protractor';
+import { logging } from 'protractor';
 import { environment } from '../environments/environment.prod';
 import { tap, catchError } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';

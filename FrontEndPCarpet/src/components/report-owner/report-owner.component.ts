@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../../services/report.service';
-import { Router } from '../../../node_modules/@angular/router';
-import { NgForm } from '../../../node_modules/@angular/forms';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-report-owner',

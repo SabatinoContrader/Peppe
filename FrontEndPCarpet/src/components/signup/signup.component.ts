@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { NgForm } from "../../../node_modules/@angular/forms";
+import { NgForm } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/User";
-import { Router, NavigationExtras } from '../../../node_modules/@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: "app-signup",

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '../../../node_modules/@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Stop } from '../../models/Stop';
 import { StopService } from '../../services/stop.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({

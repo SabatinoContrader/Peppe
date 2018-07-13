@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { NgForm } from '../../../node_modules/@angular/forms';
-import { Router } from '../../../node_modules/@angular/router';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StopService } from "../../services/stop.service";
 import { Stop } from "../../models/Stop";
 import { FormsModule } from "@angular/forms";
