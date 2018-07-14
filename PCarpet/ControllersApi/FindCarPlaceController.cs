@@ -6,9 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PCarpet.ControllersApi
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] 
+    [RoutePrefix("api")]
     public class FindCarPlaceController : ApiController
     {
         private StopService stopService;
@@ -19,10 +22,10 @@ namespace PCarpet.ControllersApi
         }
 
         [HttpGet]
-        [Route("api/getCarWithoutStopOfUser")]
-        public List<CarDTO> getCarWithoutStopOfUser()
+        [Route("getCarWithoutStop")]
+        public List<CarDTO> getCarWithoutStopOfUser(string username)
         {
-            List<CarDTO> cars = stopService.getCarWithoutStopOfUser();
+            List<CarDTO> cars = stopService.getCarWithoutStop(username);
             return cars;
 
         }

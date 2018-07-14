@@ -38,15 +38,19 @@ namespace PCarpet.ControllersApi
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("addPayment")]
-        public void addPayment(string timeToAdd, float totalPrice, int id_slot, int id_car)
+        public int addPayment(PaymentDTO paymentDTO)  
         {
-            user user = userService.getLoggedUser();
             DateTime start = DateTime.Now;
-            DateTime finish = start.AddMinutes(Double.Parse(timeToAdd));
-            int id_stop = stopService.insertStop(new StopDTO(start, finish, id_car, id_slot));
-            paymentService.insertPayment(new PaymentDTO(totalPrice, user.username, id_stop));
+            DateTime finish = start.AddMinutes(paymentDTO.timeToAdd);
+
+            //System.Diagnostics.Debug.WriteLine("id_car: " + paymentDTO.id_car + "id_slot: " + paymentDTO.id_slot);
+
+            int id_stop = stopService.insertStop(new StopDTO(start, finish, paymentDTO.id_car, paymentDTO.id_slot));
+            paymentDTO.id_stop = id_stop;
+            paymentService.insertPayment(paymentDTO);
+            return paymentDTO.id_car;
         }
     }
 }

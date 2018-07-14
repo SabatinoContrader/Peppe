@@ -23,6 +23,7 @@ namespace PCarpet.DTO
 
         public SlotDTO(int id, int number_carplace, int number_carplace_free, double latitude, double longitude, string address, double price, int type, string username)
         {
+            this.id = id;
             this.number_carplace = number_carplace;
             this.number_carplace_free = number_carplace_free;
             this.latitude = latitude;

@@ -57,11 +57,11 @@ namespace PCarpet.Service
             }
         }
 
-        public List<car> getAllCar(user user)
+        public List<car> getAllCar(string username)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                return context.car.Where(car => car.username.Equals(user.username)).ToList();
+                return context.car.Where(car => car.username.Equals(username)).ToList();
             }
         }
     }

@@ -16,6 +16,7 @@ namespace PCarpet
 
         public stop(StopDTO stopDTO)
         {
+            this.id = stopDTO.id;
             this.start = stopDTO.start;
             this.finish = stopDTO.finish;
             this.id_car = stopDTO.id_car;

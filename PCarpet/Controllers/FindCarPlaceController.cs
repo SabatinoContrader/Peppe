@@ -10,12 +10,12 @@ namespace PCarpet.Controllers
 {
     public class FindCarPlaceController : Controller
     {
-        //private UserService userService;
+        private UserService userService;
         private StopService stopService;
 
         public FindCarPlaceController()
         {
-            //this.userService = new UserService();
+            this.userService = new UserService();
             this.stopService = new StopService();
         }
 
@@ -29,7 +29,8 @@ namespace PCarpet.Controllers
 
         public ActionResult showSlot()
         {
-            List<CarDTO> carsDTO = stopService.getCarWithoutStopOfUser();
+            user user = userService.getLoggedUser();
+            List<CarDTO> carsDTO = stopService.getCarWithoutStop(user.username);
             ViewBag.cars = carsDTO;
             return View("findCarPlace");
 

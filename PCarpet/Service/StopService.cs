@@ -28,7 +28,7 @@ namespace PCarpet.Service
         {
             List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new List<ManagementExtensionStopDTO>();
 
-            List<car> usercars = carService.getAllCar(user);
+            List<car> usercars = carService.getAllCar(user.username);
             foreach (car car in usercars)
             {
                 stop stop = this.getStop(car.id);
@@ -178,10 +178,10 @@ namespace PCarpet.Service
             }
         }
 
-        public List<CarDTO> getCarWithoutStopOfUser()
+        public List<CarDTO> getCarWithoutStop(string username)
         {
-            user user = userService.getLoggedUser();
-            List<car> cars = carService.getAllCar(user);
+            //user user = userService.getLoggedUser();
+            List<car> cars = carService.getAllCar(username);
             List<CarDTO> carsWithoutStop = new List<CarDTO>();
             foreach (car car in cars)
             {
