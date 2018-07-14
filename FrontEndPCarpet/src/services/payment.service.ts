@@ -27,4 +27,13 @@ getpayments(): Observable <any> {
 );
 }
 
+addPayment(quantity:number,id_slot:number,id_car:number,timeToAdd:number): Observable <number> {
+  var user: User = JSON.parse(sessionStorage.getItem("user"));
+  //payment and stop id are autoincrement, we pass 0, backend will fix
+  var payment: Payment = new Payment(0,quantity,0,user.username,id_slot,id_car,timeToAdd);
+  return this.http.post<number>('http://localhost:58708/api/addPayment', payment)
+  .pipe(tap((response) => console.log("addPayment"), catchError(this.handleError("login error", {})))
+);
+}
+
 }

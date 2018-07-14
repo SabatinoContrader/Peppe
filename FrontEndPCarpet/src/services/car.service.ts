@@ -40,7 +40,14 @@ export class CarService {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
     var car = new Car(0, license_plate, name, user.username);
     return this.http.post<any>('http://localhost:58708/api/addCar', car)
-    .pipe(tap((response) => console.log("DeleteCar"), catchError(this.handleError("report error", {})))
+    .pipe(tap((response) => console.log("addNewCar"), catchError(this.handleError("report error", {})))
+  );
+  }
+
+  getNotStopCarList(): Observable<Array<Car>> {
+    var user: User = JSON.parse(sessionStorage.getItem("user"));
+    return this.http.get<Array<Car>>('http://localhost:58708/api/getCarWithoutStop?username=' + user.username)
+    .pipe(tap((response) => console.log("getNotStopCarList"), catchError(this.handleError("report error", {})))
   );
   }
 

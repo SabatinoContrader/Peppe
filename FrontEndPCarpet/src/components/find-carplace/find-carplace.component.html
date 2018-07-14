@@ -9,12 +9,13 @@
     <div class="col-md-6 mb-3">
         <input id="autocomplete" class="form-control form-control-lg" type="text" placeholder="Inserisci destinazione" #search>
 
-        <button id="myposition" class="btn btn-lg btn-primary btn-block back-button">Posizione</button>
+        <button id="myposition" class="btn btn-lg btn-primary btn-block back-button" #myposition>Posizione</button>
 
         <br><br> 
         
-            <select id="carSelect" class="form-control form-control-lg">
+            <select id="carSelect" class="form-control form-control-lg" #carSelect>
                 <option value="" hidden>Seleziona auto</option>
+                <option *ngFor="let car of carsList" [attr.value]="car.id" >{{car.name}}</option>
                 
                 <!-- @foreach (var car in cars)
                 {
@@ -25,11 +26,11 @@
         <br>
 
         <div style="float: left;">
-            <button id="startsearch">Cerca</button>
+            <!-- <button id="startsearch">Cerca</button> -->
 
-            <button id="seleziona" disabled>Parti</button>
+            <button id="seleziona" #seleziona disabled>Parti</button>
 
-            <button id="cambia" disabled>Cambia parcheggio</button>
+            <button id="cambia" #cambia disabled>Cambia parcheggio</button>
         </div>
 
         <br> <br>
@@ -38,8 +39,8 @@
         <br>
 
         <h3>Inserisci la durata della sosta</h3><br>
-        <p id='slot'>Slot: </p>
-        <select id='select' name='minute' disabled>
+        <p id='slot'>{{slotAddress}}</p>
+        <select id='select' name='minute' #select disabled>
             <option value='' hidden>Seleziona minuti</option>
             <option value='15'>15 min</option>
             <option value='30'>30 min</option>
@@ -50,16 +51,16 @@
             <option value='105'>1 h 45 min</option>
             <option value='120'>2 h</option>
         </select><br>
-        <p id='newprice'>Prezzo: </p>
+        <p id='newprice'>{{newPrice}}</p>
 
         <form style="display: inline-block;" action="/Payment/addPayment" method="post">
-            <button id="payandgo" disabled>Paga ed inizia</button>
+            <button id="payandgo" #payandgo disabled>Paga e inizia</button>
         </form>
 
         <br><br>
 
         <form style="display: inline-block;" action="/Home/dispatchHome" method="post">
-            <button class="btn btn-lg btn-primary btn-block back-button" type="submit" name="richiesta" value="Indietro">Indietro</button>
+            <a routerLink="/homeDriver"><button class="btn btn-lg btn-primary btn-block back-button" type="submit" name="richiesta" value="Indietro">Indietro</button></a>
         </form>
     </div>
 

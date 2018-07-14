@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/User';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NgForm } from '../../node_modules/@angular/forms';
+import { Router } from '../../node_modules/@angular/router';
+
+import {} from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'app-root',
