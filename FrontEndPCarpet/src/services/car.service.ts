@@ -44,13 +44,6 @@ export class CarService {
   );
   }
 
-  getNotStopCarList(): Observable<Array<Car>> {
-    var user: User = JSON.parse(sessionStorage.getItem("user"));
-    return this.http.get<Array<Car>>('http://localhost:58708/api/getCarWithoutStop?username=' + user.username)
-    .pipe(tap((response) => console.log("getNotStopCarList"), catchError(this.handleError("report error", {})))
-  );
-  }
-
   changeFeedback(message: string){
     this.feedback = message;
   }

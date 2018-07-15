@@ -3,23 +3,14 @@
 //togliendo questa riga l'errore appare ma in realtà la libreria è vista e funziona correttamente.
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
-//import {  } from '@types/googlemaps';
-
 import { Component, OnInit, ViewChild, ElementRef, NgZone, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '../../../node_modules/@angular/forms';
 import { MapsAPILoader } from '../../../node_modules/@agm/core';
 import { Marker, InfoWindow } from '../../../node_modules/@agm/core/services/google-maps-types';
 import { GoogleMapService } from '../../services/google-map.service';
-import { Slot } from '../../models/Slot';
 import { CarService } from '../../services/car.service';
 import { Car } from '../../models/Car';
 import { PaymentService } from '../../services/payment.service';
-
-//import {  } from '@types/googlemaps';
-//import {} from '../../../node_modules/@types/google.maps/index';
-
-
-
 
 declare var google: any;
 
@@ -58,9 +49,6 @@ export class FindCarplaceComponent implements OnInit {
   private freeCarPlaces: number = 0;
   private map: google.maps.Map;
 
-
-  //g: GoogleApiManagerDriver = new GoogleApiManagerDriver('map', 41.9, 12.48,'/api/updateParkings');
-
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -90,14 +78,13 @@ export class FindCarplaceComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private googleMapsService: GoogleMapService,
-    private carService: CarService,
     private paymentService: PaymentService,
     private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
 
-    this.carService.getNotStopCarList().subscribe((response) => {
+    this.googleMapsService.getNotStopCarList().subscribe((response) => {
       this.carsList = response;
     });
 
@@ -107,17 +94,10 @@ export class FindCarplaceComponent implements OnInit {
 
 
     this.searchControl = new FormControl();
-    // this.g.selectAutoCompleteTextbox('autocomplete','startsearch');
-    // this.g.selectDirectionModeBackButton('cambia');
-    // this.g.selectRunTurnByTurnButton('seleziona');
-    // this.g.selectChangeMinute('select','newprice','slot','payandgo','carSelect');
-    // this.g.selectFindMyPosition('myposition');
 
     var self = this;
     //tutti gli oggetti di google.maps vanno istanziati solo dopo il load()
     this.mapsAPILoader.load().then(() => {
-      // this.mapsAPILoader.disableDefaultUI: true,
-      //        zoomControl: true
       this.infoWindow = new google.maps.InfoWindow();
       this.directionsService = new google.maps.DirectionsService();
 
@@ -151,37 +131,37 @@ export class FindCarplaceComponent implements OnInit {
 
       var self = this;
       self.searchElementRef.nativeElement.addEventListener('keydown',
-      function (event) {
+        function (event) {
           // keycode 13 = Enter
           if (event.keyCode === 13) {
-              event.preventDefault();
+            event.preventDefault();
 
 
 
-              self.ngZone.run(() => {
-                //get the place result
-                let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-      
-                //verify result
-                if (place.geometry === undefined || place.geometry === null) {
-                  return;
-                }
-      
-                //set latitude, longitude and zoom
-                self.lat = place.geometry.location.lat();
-                self.lng = place.geometry.location.lng();
-                self.zoom = 15;
-      
-                self.googleMapsService.getNearSlots(self.lat, self.lng).subscribe((response) => {
-                  self.DrawSlots(response);
-                });
-      
+            self.ngZone.run(() => {
+              //get the place result
+              let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+              //verify result
+              if (place.geometry === undefined || place.geometry === null) {
+                return;
+              }
+
+              //set latitude, longitude and zoom
+              self.lat = place.geometry.location.lat();
+              self.lng = place.geometry.location.lng();
+              self.zoom = 15;
+
+              self.googleMapsService.getNearSlots(self.lat, self.lng).subscribe((response) => {
+                self.DrawSlots(response);
               });
+
+            });
 
 
           }
-      });
-  
+        });
+
 
 
 
@@ -230,8 +210,8 @@ export class FindCarplaceComponent implements OnInit {
     });
     google.maps.event.addListener(this.map, "zoom_changed", function (event) {
       self.zoom = self.map.getZoom();
-      if (this.isInSearchDirectionMode == false)
-        this.deleteMarkersZoom();
+      if (self.isInSearchDirectionMode == false)
+        self.deleteMarkersZoom();
     });
 
     self.DirectionModeBackElementRef.nativeElement.addEventListener("click", function () {
@@ -327,7 +307,6 @@ export class FindCarplaceComponent implements OnInit {
 
   }
 
-  //CHIAMATA AJAX SLOT VICINI
   DrawSlots(objlist): void {
     var self = this;
 
@@ -460,13 +439,11 @@ export class FindCarplaceComponent implements OnInit {
 
   // Removes the markers from the map, but keeps them in the array.
   clearMarkers(): void {
-    //var self = this;
     this.setMapOnAll(null);
   };
 
   // Sets the map on all markers in the array.
   setMapOnAll(map): void {
-    //var self = this;
     for (var i = 0; i < this.markers.length; i++) {
       this.markers[i].setMap(map);
     }
@@ -475,16 +452,14 @@ export class FindCarplaceComponent implements OnInit {
 
   // Shows any markers currently in the array.
   showMarkers(): void {
-    //var self = this;
     this.setMapOnAll(this.map);
   };
 
 
   // Hidden markers when zooming to far.
   deleteMarkersZoom(): void {
-    //var self = this;
     if (this.map.getZoom() < 15) {
-      console.log("zoom: " + this.map.getZoom());
+      //console.log("zoom: " + this.map.getZoom());
       this.clearMarkers();
     } else {
       this.showMarkers();

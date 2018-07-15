@@ -1,0 +1,46 @@
+<h1>Gestione Parcheggi</h1>
+
+<button id="refresh" (click)="updateSlots()">Aggiorna</button>
+
+<br>
+<br>
+<agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
+  id="map"></agm-map>
+<br>
+
+<a routerLink="/homeOwner">
+  <button>Indietro</button>
+</a>
+
+<div>
+  <h1>Auto in sosta</h1>
+  <br>
+  <table>
+    <thead>
+      <tr>
+
+        <!-- <th>ID STOP</th> -->
+        <!--  <th>TIPO DISABILE</th>  -->
+        <th>TARGA</th>
+        <th>START</th>
+        <th>FINISH</th>
+        <!--  <th>PAGATO</th> -->
+      </tr>
+    </thead>
+    <tbody id="stopList" *ngIf="isSlotSelected">
+      <tr *ngFor="let stop of CurrentManagementCarplace.stop_list">
+        <td>{{stop.license_plate}}</td>
+        <td>{{stop.start}}</td>
+        <td>{{stop.finish}}</td>
+        <!--da rivedere expired-->
+        <!-- <td>{{stop.expired}}</td> -->
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+  <p id="exeedingCars">
+    {{exceedingInStot}}
+  </p>
+</h3>
+
+</div>
