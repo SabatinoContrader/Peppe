@@ -30,7 +30,8 @@ namespace PCarpet.Controllers
 
         public ActionResult ManagementParkControl()
         {
-            List<ManagementCarPlaceDTO> managementCarPlaceDTO = stopService.getAllStopDTOByCurrentUser();
+            user user = userService.getLoggedUser();
+            List<ManagementCarPlaceDTO> managementCarPlaceDTO = stopService.getAllManagementCarPlaceDTO(user.username);
 
             ViewBag.ManagementCarPlaceDTO = managementCarPlaceDTO;
             return View("managementPark");

@@ -61,15 +61,15 @@ namespace PCarpet.Service
 
         }
 
-        public List<ManagementCarPlaceDTO> getAllStopDTOByCurrentUser()
+        public List<ManagementCarPlaceDTO> getAllManagementCarPlaceDTO(string username)
         {
             List<ManagementCarPlaceDTO> managementCarPlaceDTOs = new List<ManagementCarPlaceDTO>();
 
             //TODO: QUIIIIIIIII
             //updateStopByUser();
 
-            user user = userService.getLoggedUser();
-            List<slot> slots = slotService.getAllSlotByUser(user);
+            //user user = userService.getLoggedUser();
+            List<slot> slots = slotService.getAllSlotByUser(username);
 
             //Update expire status of user slots here;      
 

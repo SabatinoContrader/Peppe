@@ -24,11 +24,11 @@ namespace PCarpet.Service
         }
 
         //metodi interni
-        public List<slot> getAllSlotByUser(user user)
+        public List<slot> getAllSlotByUser(string username)
         {
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                return context.slot.Where(slot => slot.username.Equals(user.username)).ToList();
+                return context.slot.Where(slot => slot.username.Equals(username)).ToList();
             }
 
         }
