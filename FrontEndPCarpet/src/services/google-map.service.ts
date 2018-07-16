@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "../../node_modules/@angular/common/http";
-import { Observable , of} from "../../node_modules/rxjs";
-import { tap, catchError } from "../../node_modules/rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { Observable , of} from "rxjs";
+import { tap, catchError } from "rxjs/operators";
 import { Slot } from "../models/Slot";
 import { ManagementCarplace } from "../models/ManagementCarPlace";
 import { User } from "../models/User";

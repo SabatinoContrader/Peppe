@@ -1,20 +1,20 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { HomeDriverComponent } from "./home-driver.component";
+import { LegislationsComponent } from "./legislations.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-describe("HomeDriverComponent", () => {
+describe("LegislationsComponent", () => {
 
-  let fixture: ComponentFixture<HomeDriverComponent>;
-  let component: HomeDriverComponent;
+  let fixture: ComponentFixture<LegislationsComponent>;
+  let component: LegislationsComponent;
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
       ],
-      declarations: [HomeDriverComponent]
+      declarations: [LegislationsComponent]
     });
 
-    fixture = TestBed.createComponent(HomeDriverComponent);
+    fixture = TestBed.createComponent(LegislationsComponent);
     component = fixture.componentInstance;
 
   });

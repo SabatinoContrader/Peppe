@@ -4,9 +4,9 @@
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
 import { Component, OnInit, ViewChild, ElementRef, NgZone, ApplicationRef, ChangeDetectorRef } from '@angular/core';
-import { FormControl } from '../../../node_modules/@angular/forms';
-import { MapsAPILoader } from '../../../node_modules/@agm/core';
-import { Marker, InfoWindow } from '../../../node_modules/@agm/core/services/google-maps-types';
+import { FormControl } from '@angular/forms';
+import { MapsAPILoader } from '@agm/core';
+import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { GoogleMapService } from '../../services/google-map.service';
 import { CarService } from '../../services/car.service';
 import { Car } from '../../models/Car';

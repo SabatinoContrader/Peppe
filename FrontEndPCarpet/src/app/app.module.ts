@@ -25,6 +25,8 @@ import { FindCarplaceComponent } from "../components/find-carplace/find-carplace
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapService } from "../services/google-map.service";
 import { ManagementParkComponent } from "../components/management-park/management-park.component";
+import { LegislationsComponent } from "../components/legislations/legislations.component";
+import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numbers.component";
 
 
 
@@ -45,7 +47,9 @@ import { ManagementParkComponent } from "../components/management-park/managemen
     ExtensionStopsComponent,
     ExtensionStopsRowComponent,
     FindCarplaceComponent,
-    ManagementParkComponent
+    ManagementParkComponent,
+    LegislationsComponent,
+    UsefulNumbersComponent
   ],
   imports: [
     BrowserModule,

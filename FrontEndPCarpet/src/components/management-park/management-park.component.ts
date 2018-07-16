@@ -3,8 +3,8 @@
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
 import { Component, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
-import { Marker, InfoWindow } from '../../../node_modules/@agm/core/services/google-maps-types';
-import { MapsAPILoader } from '../../../node_modules/@agm/core';
+import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
+import { MapsAPILoader } from '@agm/core';
 import { GoogleMapService } from '../../services/google-map.service';
 import { ManagementCarplace } from '../../models/ManagementCarPlace';
 

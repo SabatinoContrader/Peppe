@@ -16,6 +16,8 @@ import { PaymentComponent } from '../components/payment/payment.component';
 import { ExtensionStopsComponent } from '../components/extension-stops/extension-stops.component';
 import { FindCarplaceComponent } from '../components/find-carplace/find-carplace.component';
 import { ManagementParkComponent } from '../components/management-park/management-park.component';
+import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numbers.component';
+import { LegislationsComponent } from '../components/legislations/legislations.component';
 
 
 const routes: Routes = [
@@ -34,9 +36,9 @@ const routes: Routes = [
   {path: 'extensionStops', component: ExtensionStopsComponent},
   {path: 'reportDriver', component: ReportDriverComponent},
   {path: 'paymentsHystory', component: PaymentComponent},
-  {path: 'managementPark', component: ManagementParkComponent}
-  // {path: 'usefulNumbers', component: UsefulNumbersComponent},
-  // {path: 'legislation', component: LegislationComponent},
+  {path: 'managementPark', component: ManagementParkComponent},
+  {path: 'usefulNumbers', component: UsefulNumbersComponent},
+  {path: 'legislations', component: LegislationsComponent}
 ];
 
 @NgModule({
