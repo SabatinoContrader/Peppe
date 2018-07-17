@@ -121,7 +121,7 @@ export class FindCarplaceComponent implements OnInit {
           this.lng = place.geometry.location.lng();
           this.zoom = 15;
 
-          this.googleMapsService.getNearSlots(this.lat, this.lng).subscribe((response) => {
+          this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
             this.DrawSlots(response);
           });
 
@@ -152,7 +152,7 @@ export class FindCarplaceComponent implements OnInit {
               self.lng = place.geometry.location.lng();
               self.zoom = 15;
 
-              self.googleMapsService.getNearSlots(self.lat, self.lng).subscribe((response) => {
+              self.googleMapsService.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
                 self.DrawSlots(response);
               });
 
@@ -203,7 +203,7 @@ export class FindCarplaceComponent implements OnInit {
         self.lat = self.map.getCenter().lat();
         self.lng = self.map.getCenter().lng();
 
-        self.googleMapsService.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng()).subscribe((response) => {
+        self.googleMapsService.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
           self.DrawSlots(response);
         });
       }
@@ -227,39 +227,13 @@ export class FindCarplaceComponent implements OnInit {
         self.lat = self.DirectionModeStartLatitude;
         self.lng = self.DirectionModeStartLongitude;
 
-        self.googleMapsService.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude).subscribe((response) => {
+        self.googleMapsService.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
           self.DrawSlots(response);
         });
 
       });
 
     });
-
-    self.MyPositionElementRef.nativeElement.addEventListener('click',
-      function () {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            self.currentLatitude = position.coords.latitude;
-            self.currentLongitude = position.coords.longitude;
-            self.ngZone.run(() => {
-
-              self.zoom = 15;
-              self.lat = self.currentLatitude;
-              self.lng = self.currentLongitude;
-
-              self.googleMapsService.getNearSlots(self.currentLatitude, self.currentLongitude).subscribe((response) => {
-                self.DrawSlots(response);
-              });
-
-            });
-
-          });
-        } else {
-          console.log("Geolocation is not supported by this browser.");
-        }
-
-      });
-
 
 
     self.SelectTimeElementRef.nativeElement.addEventListener('change', function () {
@@ -283,15 +257,10 @@ export class FindCarplaceComponent implements OnInit {
         var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
         var price = (obj.price / 60) * timeToAddFromNow;
 
-        // params.set('timeToAdd', timeToAddFromNow);
-        // params.set('totalPrice', price);
-        // params.set('id_slot', obj.id);
-        // params.set('id_car', selectedcar);
-
-        console.log('timeToAdd: ' + timeToAddFromNow);
-        console.log('totalPrice: ' + price);
-        console.log('id_slot: ' + obj.id);
-        console.log('id_car: ' + selectedcar);
+        // console.log('timeToAdd: ' + timeToAddFromNow);
+        // console.log('totalPrice: ' + price);
+        // console.log('id_slot: ' + obj.id);
+        // console.log('id_car: ' + selectedcar);
 
         self.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
 
@@ -304,6 +273,30 @@ export class FindCarplaceComponent implements OnInit {
       } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
 
     });
+
+  }
+
+  getPosition(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.currentLatitude = position.coords.latitude;
+        this.currentLongitude = position.coords.longitude;
+        this.ngZone.run(() => {
+
+          this.zoom = 15;
+          this.lat = this.currentLatitude;
+          this.lng = this.currentLongitude;
+
+          this.googleMapsService.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+            this.DrawSlots(response);
+          });
+
+        });
+
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
 
   }
 
@@ -321,8 +314,13 @@ export class FindCarplaceComponent implements OnInit {
         obj.latitude, obj.longitude);
       self.freeCarPlaces = obj.number_carplace_free;
       var numberCarPlaces = obj.number_carplace;
+      var type;
+      if(obj.type == 0)
+        type = "Pubblico";
+      else
+        type = "Privato";
       var info = "<h3>" + obj.address + "</h3>"
-        + "<br> Tipo: " + obj.type
+        + "<br> Tipo: " + type
         + "<br> Tariffa oraria: " + obj.price + "\u20AC"
         + "<br> Numero posti: " + numberCarPlaces
         + "<br> Disponibli: " + self.freeCarPlaces
@@ -508,5 +506,12 @@ export class FindCarplaceComponent implements OnInit {
     self.TurnByTurnElementRef.nativeElement.disabled = false;
     self.DirectionModeBackElementRef.nativeElement.disabled = false;
   };
+
+  changeCar(): void{
+    console.log("wewe");
+    this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+      this.DrawSlots(response);
+    });
+  }
 
 }

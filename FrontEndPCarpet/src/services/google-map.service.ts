@@ -33,8 +33,8 @@ export class GoogleMapService {
   );
   }
 
-  getNearSlots(lat: number,lng: number): Observable <Array<Slot>> {
-    return this.http.get<Array<Slot>>('http://localhost:58708/api/updateParkings?lat='+lat+'&lng='+lng)
+  getNearSlots(lat: number,lng: number,idCar:number): Observable <Array<Slot>> {
+    return this.http.get<Array<Slot>>('http://localhost:58708/api/updateParkings?lat='+lat+'&lng='+lng+'&id_car='+idCar)
     .pipe(tap((response) => console.log("success getting slots " + response), catchError(this.handleError("report error", {})))
   );}
 
