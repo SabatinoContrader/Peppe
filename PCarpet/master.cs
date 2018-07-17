@@ -12,23 +12,19 @@ namespace PCarpet
     using System;
     using System.Collections.Generic;
     
-    public partial class stop
+    public partial class master
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public stop()
+        public master()
         {
-            this.payment = new HashSet<payment>();
+            this.slave = new HashSet<slave>();
         }
     
-        public int id { get; set; }
-        public System.DateTime start { get; set; }
-        public System.DateTime finish { get; set; }
-        public int id_car { get; set; }
+        public string id { get; set; }
         public int id_slot { get; set; }
     
-        public virtual car car { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment> payment { get; set; }
         public virtual slot slot { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<slave> slave { get; set; }
     }
 }

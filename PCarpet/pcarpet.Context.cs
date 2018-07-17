@@ -27,8 +27,10 @@ namespace PCarpet
     
         public virtual DbSet<book> book { get; set; }
         public virtual DbSet<car> car { get; set; }
+        public virtual DbSet<master> master { get; set; }
         public virtual DbSet<payment> payment { get; set; }
         public virtual DbSet<report> report { get; set; }
+        public virtual DbSet<slave> slave { get; set; }
         public virtual DbSet<slot> slot { get; set; }
         public virtual DbSet<stop> stop { get; set; }
         public virtual DbSet<user> user { get; set; }
