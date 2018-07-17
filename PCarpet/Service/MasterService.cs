@@ -23,5 +23,17 @@ namespace PCarpet.Service
             }
 
         }
+
+        public List<master> getMasters(int id_slot)
+        {
+            List<master> masters;
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                masters = context.master.Where(m => m.id_slot.Equals(id_slot)).ToList();
+            }
+            return masters;
+
+        }
+
     }
 }

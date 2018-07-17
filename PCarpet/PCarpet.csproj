@@ -297,6 +297,7 @@
     <Compile Include="Service\MasterService.cs" />
     <Compile Include="Service\PaymentService.cs" />
     <Compile Include="Service\ReportService.cs" />
+    <Compile Include="Service\SlaveService.cs" />
     <Compile Include="Service\SlotService.cs" />
     <Compile Include="Service\StopService.cs" />
     <Compile Include="Service\UserService.cs" />

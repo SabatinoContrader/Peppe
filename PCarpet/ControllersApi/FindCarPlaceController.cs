@@ -35,12 +35,12 @@ namespace PCarpet.ControllersApi
 
         [HttpGet]
         [Route("updateParkings")]
-        public List<SlotDTO> updateParkings(string lat, string lng)
+        public List<SlotDTO> updateParkings(string lat, string lng, int id_car)
         {
             double latitude = double.Parse(lat, CultureInfo.InvariantCulture);
             double longitude = double.Parse(lng, CultureInfo.InvariantCulture);
             // calcolo slot vicini e li aggiungo a Map chiamata al service
-            List<SlotDTO> slots = slotService.getNearSlot(latitude, longitude);
+            List<SlotDTO> slots = slotService.getNearSlot(latitude, longitude, id_car);
             return slots;
         }
     }
