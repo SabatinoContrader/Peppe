@@ -21,11 +21,21 @@ export class ReportService {
     };
   }
 
-  sendReport(description: string, type: string): Observable <number> {
+  // passo lat/lng dal report-driver component
+  sendReport(description: string, type: string, latitude: number, longitude: number, selectedFile: File): Observable <number> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
-    var report: Report = new Report(+type,description,"",user.username,0);
+    //var mediaBytes: byte[];
+    
+    var report: Report = new Report(+type,description,"19/07/2018",user.username,"",latitude,longitude);
+
+    const fd = new FormData();
+    if(selectedFile) fd.append('image',selectedFile,selectedFile.name);
+    fd.append('report', JSON.stringify(report));
+
     console.log("username: "+ user.username);
-    return this.http.post<number>('http://localhost:58708/api/addReport', report)
+    console.log("lat al service : "+ report.latitude);
+    console.log("long al service : "+ report.longitude);
+    return this.http.post<number>('http://localhost:58708/api/addReport', fd)
     .pipe(tap((response) => console.log("Added Report"), catchError(this.handleError("report error", {})))
   );}
 
@@ -35,8 +45,10 @@ export class ReportService {
     .pipe(tap((response) => console.log("Retrieved My Report List"), catchError(this.handleError("report error", {})))
   );}
 
-  onOpenNear(lat: string, lng: string): Observable <Array<Report>> {
+  onOpenNear(lat: number, lng: number): Observable <Array<Report>> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
+    console.log("lat al service : "+ lat);
+    console.log("long al service : "+ lng);
     return this.http.get<Array<Report>>('http://localhost:58708/api/getNearReport?type='+ user.type + '&lat=' + lat + '&lng=' + lng)
     .pipe(tap((response) => console.log("Retrieved Near Report List"), catchError(this.handleError("report error", {})))
   );}

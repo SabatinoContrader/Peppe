@@ -3,6 +3,7 @@ import { Report } from '../../models/Report';
 import { ReportService } from '../../services/report.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
+import { DomSanitizer } from '../../../node_modules/@angular/platform-browser';
 
 @Component({
   selector: 'app-report-near',
@@ -12,10 +13,11 @@ import { User } from '../../models/User';
 export class ReportNearComponent implements OnInit {
 
   map: Map<string, string> = new Map<string, string>();
-
+  latitude: number;
+  longitude: number;
   reports: Array<Report>;
 
-  constructor(private reportService: ReportService, private router: Router) { }
+  constructor(private reportService: ReportService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.map.set('0', "Avviso del gestore");
@@ -30,11 +32,30 @@ export class ReportNearComponent implements OnInit {
 
     console.log("QUI");
     //use localization to get position
-    this.reportService.onOpenNear("changewithlat","changewithlng").subscribe((response) => {
-        console.log(response);
-        this.reports = response;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        console.log("lat al onOpenNear " +this.latitude);
+        console.log("long al onOpenNear " +this.longitude);
+        this.reportService.onOpenNear(this.latitude,this.longitude).subscribe((response) => {
+          console.log(response);
+          this.reports = response;
 
-    });}
+          this.reports.forEach(report => {
+            report.media = <string>this.sanitizer.bypassSecurityTrustUrl(report.media);
+          });
+
+        });
+      });
+    } else {
+      console.log("Geolocation is a bitch");
+    }
+
+
+    
+
+    }
 
   back(): void
   {

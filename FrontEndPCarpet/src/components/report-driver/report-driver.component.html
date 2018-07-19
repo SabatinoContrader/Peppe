@@ -23,6 +23,7 @@
           <br>
           <textarea rows="6" cols="50" name="description" placeholder="Descrizione del problema riscontrato" ngModel>
                   </textarea>
+                  <input type="file" (change)="onFileSelected($event)">
           <br>
           <button (click)="sendReport(f)">
             Invia

@@ -3,6 +3,7 @@ import { Report } from '../../models/Report';
 import { ReportService } from '../../services/report.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
+import { DomSanitizer } from '../../../node_modules/@angular/platform-browser';
 
 @Component({
   selector: 'app-report-hystory',
@@ -15,7 +16,7 @@ export class ReportHystoryComponent implements OnInit {
 
   reports: Array<Report>;
 
-  constructor(private reportService: ReportService, private router: Router) { }
+  constructor(private reportService: ReportService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.map.set('0', "Avviso del gestore");
@@ -33,6 +34,10 @@ export class ReportHystoryComponent implements OnInit {
     this.reportService.onOpenHystory().subscribe((response) => {
         console.log(response);
         this.reports = response;
+
+        this.reports.forEach(report => {
+          report.media = <string>this.sanitizer.bypassSecurityTrustUrl(report.media);
+        });
 
     });}
 

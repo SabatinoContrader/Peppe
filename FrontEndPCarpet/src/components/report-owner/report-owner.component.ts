@@ -17,7 +17,8 @@ export class ReportOwnerComponent implements OnInit {
 
   sendReport(f: NgForm): void {
     // 0 is type of owner report
-    this.reportService.sendReport(f.value.description, "0").subscribe((response) => {
+    //lat e lng saranno da gestire diversamente...
+    this.reportService.sendReport(f.value.description, "0", 41.1346778, 14.780854199999999,null).subscribe((response) => {
         console.log("RISPOSTA: " + response);
         this.router.navigateByUrl("/homeOwner");
     });
