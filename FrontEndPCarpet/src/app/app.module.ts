@@ -1,3 +1,4 @@
+import { IntestazioneComponent } from './../components/intestazione/intestazione.component';
 import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
 import { FormsModule } from "@angular/forms";
@@ -49,7 +50,8 @@ import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numb
     FindCarplaceComponent,
     ManagementParkComponent,
     LegislationsComponent,
-    UsefulNumbersComponent
+    UsefulNumbersComponent,
+    IntestazioneComponent
   ],
   imports: [
     BrowserModule,

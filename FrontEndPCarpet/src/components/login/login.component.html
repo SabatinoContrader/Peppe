@@ -1,24 +1,53 @@
-<h1>PCARPET</h1>
-<h1>Login</h1>
-<form class="userForm" #f="ngForm">
+<body>
 
-  <div class="form-group">
-    <label for="inputUser">Username</label>
-    <input type="text" name="username" id="inputUser" class="form-control" placeholder="Username" ngModel required>
+
+  <div class="row" id="blank">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
+
+
+      <form class="userForm" #f="ngForm">
+
+        <div class="form-group">
+          <input type="text" name="username" id="inputUser" class="form-control" placeholder="Username" ngModel required>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required>
+        </div>
+
+        <div class="row">
+          <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+            <label>
+              <input type="checkbox"> Ricordami</label>
+          </div>
+          <div class="col-2 col-sm-2 col-md-1 col-lg-2 col-xl-2"></div>
+          <div class="col-5 col-sm-5 col-md-6 col-lg-5 col-xl-5" id="forgot">
+            <a href="">Password dimenticata?</a>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button (click)="login(f)">Log in</button>
+        </div>
+
+        <div class="row">
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+
+          </div>
+          <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10" id="signup">
+            <a href="/#/signup">Prima volta su PCARPET? Iscriviti</a>
+          </div>
+          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+
+          </div>
+        </div>
+
+
+        <p>{{feedback}}</p>
+
+      </form>
+    </div>
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
   </div>
-
-  <div class="form-group">
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required>
-  </div>
-
-  <div class="form-group">
-    <button (click) = "login(f)">Sign in</button>
-  </div>
-
-  <a href="/#/signup">Prima volta su PCARPET? Iscriviti</a> 
-
-  <p>{{feedback}}</p>
-
-
-</form>
+</body>

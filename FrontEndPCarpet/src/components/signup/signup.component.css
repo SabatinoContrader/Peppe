@@ -1,0 +1,38 @@
+input{
+    border-radius: 15px;
+    width: 100%;
+    height: 50px;
+    font-family: myFirstFont;
+}
+
+h1{
+    text-align: center;
+    padding-top: 10%;
+    color: white;
+    font-family: myFirstFont;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url("/assets/OldSansBlack.ttf");
+}
+
+
+button{
+    margin:0 auto;
+    display: block;
+    background-color: #a8d342;
+    width: 30%;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    border-color: #a7d34200;
+    font-family: myFirstFont;
+}
+
+body{
+    background-image: url("/assets/img/sfondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

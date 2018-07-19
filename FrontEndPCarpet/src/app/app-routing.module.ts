@@ -1,3 +1,4 @@
+import { IntestazioneComponent } from './../components/intestazione/intestazione.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
   {path: 'paymentsHystory', component: PaymentComponent},
   {path: 'managementPark', component: ManagementParkComponent},
   {path: 'usefulNumbers', component: UsefulNumbersComponent},
-  {path: 'legislations', component: LegislationsComponent}
+  {path: 'legislations', component: LegislationsComponent},
+  {path: 'intestazione', component: IntestazioneComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,62 @@
+button{
+    margin:0 auto;
+    display: block;
+    background-color: #a8d342;
+    width: 30%;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    border-color: #a7d34200;
+    font-family: myFirstFont;
+}
+
+a{
+    margin:0 auto;
+    text-align: center;
+    color: white;
+    font-family: myFirstFont;
+}
+
+.signup {
+    margin: auto;
+    width: 50%;   
+}
+
+
+body{
+    background-image: url("/assets/img/sfondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+input{
+    border-color: white;
+    border-radius: 15px;
+    font-family: myFirstFont;
+}
+
+#blank{
+    padding-top: 10%;
+}
+
+label{
+    color: white;
+    font-family: myFirstFont;
+}
+
+#forgot{
+    text-align: right;
+}
+
+#signup{
+    text-align: center;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url("/assets/OldSansBlack.ttf");
+}
+
+
+

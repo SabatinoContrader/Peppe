@@ -1,0 +1,22 @@
+body{
+    background-image: url("/assets/img/sfondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    height: 10%;
+}
+
+img{
+    padding-top: 5%;
+    height: 90%;
+    width: 80%;
+    margin:0 auto;
+    display: block;
+}
+
+.int{
+    background-color:rgba(255, 255, 255, 0.664);
+    height: 100%;
+}
+
