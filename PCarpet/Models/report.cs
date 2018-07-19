@@ -10,28 +10,32 @@ namespace PCarpet
     {
         public report() { }
 
-        public report(int id, int type, string description, DateTime time, string username, int state)
+        public report(int id, int type, string description, DateTime time, string username, byte[] media, double latitude, double longitude)
         {
             this.id = id;
             this.type = type;
             this.description = description;
             this.time = time;
             this.username = username;
-            this.state = state;
+            this.media = media;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
 
-        public report(ReportDTO reportDTO)
+        public report(ReportDTO reportDTO, byte[] mediaBytes)
         {
             this.type = reportDTO.type;
             this.description = reportDTO.description;
             this.time = reportDTO.time;
             this.username = reportDTO.username;
-            this.state = reportDTO.state;
+            this.media = mediaBytes;
+            this.latitude = reportDTO.latitude;
+            this.longitude = reportDTO.longitude;
         }
 
         public static ReportDTO toReportDTO(report report)
         {
-            return new ReportDTO(report.type, report.description, report.time, report.username, report.state);
+            return new ReportDTO(report.type, report.description, report.time, report.username, report.media, report.latitude, report.longitude);
         }
     }
 }

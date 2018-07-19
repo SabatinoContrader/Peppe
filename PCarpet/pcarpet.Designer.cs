@@ -1,4 +1,4 @@
-﻿// Generazione del codice predefinita abilitata per il modello 'C:\Users\Contrader18_015\Desktop\DotNet\Peppe\PCarpet\PCarpet\pcarpet.edmx'. 
+﻿// Generazione del codice predefinita abilitata per il modello 'C:\Users\Contrader18_013\Desktop\Contrader_Project_Java\DotNet\Peppe\PCarpet\pcarpet.edmx'. 
 // Per abilitare la generazione del codice legacy, modificare il valore della proprietà della finestra di progettazione 'Strategia di generazione del codice
 // su 'Legacy ObjectContext'. Questa proprietà è disponibile nella finestra Proprietà quando il modello è
 // aperto nella finestra di progettazione.

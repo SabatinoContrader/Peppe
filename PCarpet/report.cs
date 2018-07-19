@@ -18,8 +18,10 @@ namespace PCarpet
         public int type { get; set; }
         public string description { get; set; }
         public System.DateTime time { get; set; }
-        public int state { get; set; }
+        public byte[] media { get; set; }
         public string username { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
     
         public virtual user user { get; set; }
     }

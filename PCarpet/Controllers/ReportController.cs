@@ -23,6 +23,8 @@ namespace PCarpet.Controllers
 
         UserService userService;
         ReportService reportService;
+        private double latitude;
+        private double longitude;
 
         public ReportController()
         {
@@ -40,7 +42,7 @@ namespace PCarpet.Controllers
     public ActionResult driverHystory()
         {
             user user = userService.getLoggedUser();
-            List<ReportDTO> reports = reportService.getAllReportDTO(user.username);
+            List<ReportDTO> reports = reportService.getAllReportDTO(user.username, latitude, longitude);
 
             ViewBag.reports = reports;
             return View("reportHystory");
@@ -57,7 +59,7 @@ namespace PCarpet.Controllers
             if (int.TryParse(type, out mytype))
             {
                 //non gestita
-                reportService.insertReport( new ReportDTO(mytype, mydescription, time, user.username, 0) );
+                reportService.insertReport( new ReportDTO(mytype, mydescription, time, user.username, null, latitude, longitude), null );
             }
             return View("homeDriver");
         }
@@ -68,7 +70,7 @@ namespace PCarpet.Controllers
             String usernameOwner = "gestore"; //da sistemare
             user user = new user();
             user.username = usernameOwner;
-            List<ReportDTO> reportOwner = reportService.getAllReportDTO(user.username);
+            List<ReportDTO> reportOwner = reportService.getAllReportDTO(user.username, latitude, longitude);
             ViewBag.reports = reportOwner;
             return View("reportHystory");
         }
@@ -76,7 +78,7 @@ namespace PCarpet.Controllers
             //GET
     public ActionResult ownerReportuser()
         {
-            List<ReportDTO> reports = reportService.getAllReportOwner();
+            List<ReportDTO> reports = reportService.getAllReportOwner(latitude, longitude);
             ViewBag.reports = reports;
             return View("reportOwner");
         }
@@ -98,7 +100,7 @@ namespace PCarpet.Controllers
             // lo stato della segnalazione 3 è lo stato iniziale della segnalazione inviata da owner
             int type = 0; //owner type
 
-            reportService.insertReport(new ReportDTO(type, mydescription, time, user.username, 3));
+            reportService.insertReport(new ReportDTO(type, mydescription, time, user.username, null, latitude, longitude), null);
 
             return View("homeOwner");
         }
@@ -107,7 +109,7 @@ namespace PCarpet.Controllers
     public ActionResult ownerHystory()
         {
             user user = userService.getLoggedUser();
-            List<ReportDTO> reportsOwner = reportService.getAllReportDTO(user.username);
+            List<ReportDTO> reportsOwner = reportService.getAllReportDTO(user.username,latitude,longitude);
 
             ViewBag.reports = reportsOwner;
             return View("reportHystory");

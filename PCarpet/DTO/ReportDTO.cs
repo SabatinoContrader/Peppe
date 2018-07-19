@@ -11,19 +11,23 @@ namespace PCarpet.DTO
         public string description { get; set; }
         public DateTime time { get; set; }
         public string username { get; set; }
-        public int state { get; set; }
+        public string media { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
 
         public ReportDTO()
         {
         }
 
-        public ReportDTO(int type, string description, DateTime time, string username, int state)
+        public ReportDTO(int type, string description, DateTime time, string username, byte[] media, double latitude, double longitude)
         {
             this.type = type;
             this.description = description;
             this.time = time;
             this.username = username;
-            this.state = state;
+            this.media = (media != null) ? "data:image/png;base64, " + System.Convert.ToBase64String(media) : "";
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
     }
 }
