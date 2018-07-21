@@ -1,4 +1,4 @@
-import { IntestazioneComponent } from './../components/intestazione/intestazione.component';
+import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { FindCarplaceComponent } from '../components/find-carplace/find-carplace
 import { ManagementParkComponent } from '../components/management-park/management-park.component';
 import { UsefulNumbersComponent } from '../components/useful-numbers/useful-numbers.component';
 import { LegislationsComponent } from '../components/legislations/legislations.component';
+import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,9 @@ const routes: Routes = [
   {path: 'managementPark', component: ManagementParkComponent},
   {path: 'usefulNumbers', component: UsefulNumbersComponent},
   {path: 'legislations', component: LegislationsComponent},
-  {path: 'intestazione', component: IntestazioneComponent}
+  {path: 'intestazione', component: IntestazioneComponent},
+  {path: 'managementSlot', component: ManagementSlotComponent}
+  
 ];
 
 @NgModule({

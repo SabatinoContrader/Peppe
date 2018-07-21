@@ -3,7 +3,7 @@ import { Report } from '../../models/Report';
 import { ReportService } from '../../services/report.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
-import { DomSanitizer } from '../../../node_modules/@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-report-near',

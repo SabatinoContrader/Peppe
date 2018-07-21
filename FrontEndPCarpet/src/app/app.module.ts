@@ -1,4 +1,4 @@
-import { IntestazioneComponent } from './../components/intestazione/intestazione.component';
+import { IntestazioneComponent } from '../components/intestazione/intestazione.component';
 import { LoginComponent } from "../components/login/login.component";
 import { HomeDriverComponent } from "../components/home-driver/home-driver.component";
 import { FormsModule } from "@angular/forms";
@@ -28,6 +28,8 @@ import { GoogleMapService } from "../services/google-map.service";
 import { ManagementParkComponent } from "../components/management-park/management-park.component";
 import { LegislationsComponent } from "../components/legislations/legislations.component";
 import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numbers.component";
+import { ManagementSlotComponent } from '../components/management-slot/management-slot.component';
+import { SlotService } from '../services/slot.service';
 
 
 
@@ -51,7 +53,8 @@ import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numb
     ManagementParkComponent,
     LegislationsComponent,
     UsefulNumbersComponent,
-    IntestazioneComponent
+    IntestazioneComponent,
+    ManagementSlotComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { UsefulNumbersComponent } from "../components/useful-numbers/useful-numb
       libraries: ["places"]
     })
   ],
-  providers: [UserService, ReportService, CarService,PaymentService, GoogleMapService],
+  providers: [UserService, ReportService, CarService, PaymentService, GoogleMapService, SlotService],
   bootstrap: [AppComponent]
 })
 
