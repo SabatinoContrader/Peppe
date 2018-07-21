@@ -7,11 +7,13 @@ namespace PCarpet.DTO
 {
     public class MasterDTO
     {
-        List<SlaveDTO> slaveDTO;
+        public string id { get; set; }
+        public int id_slot { get; set; }
 
-        public MasterDTO(List<SlaveDTO> slaveDTO)
+        public MasterDTO(string id, int id_slot)
         {
-            this.slaveDTO = slaveDTO;
+            this.id = id;
+            this.id_slot = id_slot;
         }
     }
 }

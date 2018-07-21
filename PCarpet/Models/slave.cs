@@ -18,5 +18,10 @@ namespace PCarpet
         public slave()
         {
         }
+
+        public static SlaveDTO toSlaveDTO(slave slave)
+        {
+            return new SlaveDTO(slave.id, slave.state, slave.id_master);
+        }
     }
 }

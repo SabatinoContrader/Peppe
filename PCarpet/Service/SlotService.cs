@@ -68,6 +68,45 @@ namespace PCarpet.Service
             }
         }
 
+        public List<SlotDTO> getSlots(string username)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                List<slot> slots = context.slot.Where(slot => slot.username.Equals(username)).ToList();
+                List<SlotDTO> slotDTO = new List<SlotDTO>();
+                foreach (slot slot in slots)
+                {
+                    slotDTO.Add(slot.toSlotDTO(slot));
+                }
+                return slotDTO;
+            }
+
+        }
+
+        //returns the id of deleted slot
+        public int deleteSlot(int id)
+        {
+            List<master> masters = masterService.getMasters(id);
+            foreach(master master in masters)
+            {
+                masterService.deleteAllSlaves(master.id);
+            }
+            masterService.deleteAllMasters(id);
+
+            int idDeleted;
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                slot slot = getSlot(id);
+                context.slot.Attach(slot);
+                slot deletedSlot = context.slot.Remove(slot);
+                context.SaveChanges();
+                idDeleted = deletedSlot.id;
+            }
+
+            return idDeleted;
+        }
+
+
         //metodi interni
         public List<slot> getAllSlotByUser(string username)
         {

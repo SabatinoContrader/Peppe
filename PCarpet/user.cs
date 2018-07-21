@@ -21,6 +21,7 @@ namespace PCarpet
             this.car = new HashSet<car>();
             this.payment = new HashSet<payment>();
             this.report = new HashSet<report>();
+            this.slot = new HashSet<slot>();
         }
     
         public string username { get; set; }
@@ -42,5 +43,7 @@ namespace PCarpet
         public virtual ICollection<payment> payment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<report> report { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<slot> slot { get; set; }
     }
 }

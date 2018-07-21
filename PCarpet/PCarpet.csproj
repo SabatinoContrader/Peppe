@@ -265,6 +265,7 @@
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\car.cs" />
+    <Compile Include="Models\master.cs" />
     <Compile Include="Models\payment.cs" />
     <Compile Include="Models\report.cs" />
     <Compile Include="Models\slave.cs" />
