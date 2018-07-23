@@ -1,0 +1,35 @@
+<ion-content padding>
+  <div id="main">
+      <ion-item class="title" no-lines>
+  
+          <img src="assets/imgs/logo1.png">
+  
+      </ion-item>
+  
+          <form class="userForm" #f="ngForm">
+  
+  
+              <ion-item>
+                  <ion-input type="text" name="username" autocomplete="on" id="inputUser" class="form-control" placeholder="Username" ngModel required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                  <ion-input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ngModel required></ion-input>
+              </ion-item>
+  
+              <div class="btn">
+                  <button ion-button (click)="login(f)">Login</button>
+              </div>
+  
+              <p>{{feedback}}</p>
+  
+              <div>
+                  <a (click) = "goToSignup()">Prima volta su PCARPET? Iscriviti</a>
+              </div>
+  
+              
+  
+          </form>
+     
+  </div>
+  </ion-content>

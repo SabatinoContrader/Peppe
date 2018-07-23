@@ -1,0 +1,46 @@
+<ion-header>
+    <!-- <ion-navbar hidden></ion-navbar> -->
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-searchbar animated="true" showCancelButton="false" right>
+    </ion-searchbar>
+
+     <!-- <ion-title>Home</ion-title> -->
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <h3>FindCarPlace</h3>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  <ion-buttons left>
+  <button ion-button (click)="openCar()" color="save">
+  LE MIE AUTO
+  </button>
+  </ion-buttons>
+  
+  <ion-buttons center>
+  <button ion-button color="save">
+  P
+  </button>
+  
+  </ion-buttons>
+  
+  <ion-buttons right>
+  <button ion-button color="save">
+  LE MIE SOSTE
+  </button>
+  
+  </ion-buttons>
+  </ion-toolbar>
+  </ion-footer>
