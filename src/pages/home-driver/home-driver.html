@@ -16,11 +16,65 @@
 </ion-header>
 
 <ion-content padding>
+  <div>
+    <input id="autocomplete" type="text" placeholder="Inserisci destinazione" #search>
 
-  <h3>FindCarPlace</h3>
+    <button id="myposition" (click) = "getPosition()" #myposition>Posizione</button>
 
+    <br>
+    <br>
+
+    <select id="carSelect" (change) = "changeCar()"  #carSelect>
+        <option value="" >Seleziona auto</option>
+        <option *ngFor="let car of carsList" [attr.value]="car.id">{{car.name}}</option>
+    </select>
+
+    <br>
+
+    <div style="float: left;">
+        <!-- <button id="startsearch">Cerca</button> -->
+
+        <button id="seleziona" #seleziona disabled>Parti</button>
+        
+        <button id="cambia" #cambia disabled>Cambia parcheggio</button>
+    </div>
+
+    <br>
+    <br>
+
+    <agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
+        id="map"></agm-map>
+    <br>
+
+    <h3>Inserisci la durata della sosta</h3>
+    <br>
+    <p id='slot'>{{slotAddress}}</p>
+    <select id='select' name='minute' #select disabled>
+        <option value='' hidden>Seleziona minuti</option>
+        <option value='15'>15 min</option>
+        <option value='30'>30 min</option>
+        <option value='45'>45 min</option>
+        <option value='60'>1 h</option>
+        <option value='75'>1 h 15 min</option>
+        <option value='90'>1 h 30 min</option>
+        <option value='105'>1 h 45 min</option>
+        <option value='120'>2 h</option>
+    </select>
+    <br>
+    <p id='newprice'>{{newPrice}}</p>
+
+    <button id="payandgo" #payandgo disabled>Paga e inizia</button>
+
+    <br>
+    <br>
+
+    <a routerLink="/homeDriver">
+        <button>Indietro</button>
+    </a>
+
+</div>
 </ion-content>
-
+s
 <ion-footer>
   <ion-toolbar>
   <ion-buttons left>

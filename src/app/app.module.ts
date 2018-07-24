@@ -20,6 +20,9 @@ import { ReportProvider } from '../providers/report/report';
 import { PaymentProvider } from '../providers/payment/payment';
 import { StopProvider } from '../providers/stop/stop';
 import { ExtensionStopsPage } from '../pages/extension-stops/extension-stops';
+import { AgmCoreModule } from '@agm/core';
+import { GoogleMapProvider } from '../providers/google-map/google-map';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import { ExtensionStopsPage } from '../pages/extension-stops/extension-stops';
     CarProvider,
     ReportProvider,
     PaymentProvider,
-    StopProvider
+    StopProvider,
+    GoogleMapProvider,
+    PaymentProvider
   ]
 })
 export class AppModule {}
