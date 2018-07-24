@@ -5,7 +5,7 @@ import { GoogleMapProvider } from './../../providers/google-map/google-map';
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
 import { Component, ViewChild, ElementRef, NgZone, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, AlertController, IonicPage, Searchbar } from 'ionic-angular';
+import { NavController, AlertController, IonicPage } from 'ionic-angular';
 import { Car } from '../../models/Car';
 import { CarProvider } from '../../providers/car/car';
 import { FormControl } from '../../../node_modules/@angular/forms';
@@ -97,6 +97,8 @@ export class HomeDriverPage {
 
 
 
+  //ionViewLoaded
+  //<HTMLInputElement>
   ionViewWillEnter() {
     console.log('ionViewDidLoad HomeDriverPage');
 

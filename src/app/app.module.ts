@@ -19,8 +19,6 @@ import { SettingsPage } from '../pages/settings/settings';
 import { ReportProvider } from '../providers/report/report';
 import { PaymentProvider } from '../providers/payment/payment';
 import { StopProvider } from '../providers/stop/stop';
-import { ExtensionStopsPage } from '../pages/extension-stops/extension-stops';
-import { AgmCoreModule } from '@agm/core';
 import { GoogleMapProvider } from '../providers/google-map/google-map';
 
 
@@ -33,7 +31,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     LegislationsPage,
     PaymentPage,
     UsefullNumbersPage,
-    SettingsPage
+    SettingsPage,
   ],
   imports: [
     HttpClientModule,
@@ -49,7 +47,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     LegislationsPage,
     PaymentPage,
     UsefullNumbersPage,
-    SettingsPage
+    SettingsPage,
   ],
   providers: [
     StatusBar,

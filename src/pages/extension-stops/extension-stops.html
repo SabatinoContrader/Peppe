@@ -6,37 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>extension-stops</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>extension-stops</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  
+
     <div>
         <h1>Prolunga la tua sosta</h1>
         <br>
         <table>
-                <tr>
-                    <th>INDIRIZZO</th>
-                    <th>AUTO</th>
-                    <th>INIZIO</th>
-                    <th>FINE</th>
-                    <th></th>
-                    <th>DA PAGARE</th>
-                    <th></th>
-                </tr>
-                <!-- <tr page-extension-stops-row *ngFor="let stop of myStopsList" [stop] = "stop">  -->
-                    <tr page-extension-stops-row *ngFor="let stop of myStopsList"> 
-
-                </tr>
+            <tr>
+                <th>INDIRIZZO</th>
+                <th>AUTO</th>
+                <th>INIZIO</th>
+                <th>FINE</th>
+                <th></th>
+                <th>DA PAGARE</th>
+                <th></th>
+            </tr>
+            <!-- <tr page-extension-stops-row *ngFor="let stop of myStopsList" [stop] = "stop">  -->
+            <tr extension-stops-row *ngFor="let stop of myStopsList" [stop]='stop'>
+                
+            </tr>
         </table>
 
-        <a href="/#/homeDriver">Indietro</a><br>
-        
-        
+        <a href="/#/homeDriver">Indietro</a>
+        <br>
+
+
     </div>
 
 </ion-content>
