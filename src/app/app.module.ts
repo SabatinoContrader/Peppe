@@ -18,6 +18,8 @@ import { UsefullNumbersPage } from '../pages/usefull-numbers/usefull-numbers';
 import { SettingsPage } from '../pages/settings/settings';
 import { ReportProvider } from '../providers/report/report';
 import { PaymentProvider } from '../providers/payment/payment';
+import { StopProvider } from '../providers/stop/stop';
+import { ExtensionStopsPage } from '../pages/extension-stops/extension-stops';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     UserProvider,
     CarProvider,
     ReportProvider,
-    PaymentProvider
+    PaymentProvider,
+    StopProvider
   ]
 })
 export class AppModule {}

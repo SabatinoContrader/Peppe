@@ -96,4 +96,8 @@ export class HomeDriverPage {
     alert.present();
   }
 
+  openMyStops(): void{
+    this.navCtrl.push("ExtensionStopsPage");
+  }
+
 }
