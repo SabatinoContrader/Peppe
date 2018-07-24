@@ -7,7 +7,7 @@
       </button>
     </ion-buttons>
 
-    <ion-searchbar animated="true" showCancelButton="false" right>
+    <ion-searchbar animated="true" showCancelButton="false" placeholder="Inserisci destinazione" right>
     </ion-searchbar>
 
      <!-- <ion-title>Home</ion-title> -->
@@ -17,7 +17,7 @@
 
 <ion-content padding>
   <div>
-    <input id="autocomplete" type="text" placeholder="Inserisci destinazione" #search>
+    <input id="autocomplete" type="text" placeholder="Inserisci destinazione"  #search >
 
     <button id="myposition" (click) = "getPosition()" #myposition>Posizione</button>
 
@@ -46,7 +46,7 @@
         id="map"></agm-map>
     <br>
 
-    <h3>Inserisci la durata della sosta</h3>
+    <!-- <h3>Inserisci la durata della sosta</h3>
     <br>
     <p id='slot'>{{slotAddress}}</p>
     <select id='select' name='minute' #select disabled>
@@ -66,11 +66,11 @@
     <button id="payandgo" #payandgo disabled>Paga e inizia</button>
 
     <br>
-    <br>
+    <br> -->
 
-    <a routerLink="/homeDriver">
+    <!-- <a routerLink="/homeDriver">
         <button>Indietro</button>
-    </a>
+    </a> -->
 
 </div>
 </ion-content>
@@ -84,7 +84,7 @@ s
   </ion-buttons>
   
   <ion-buttons center>
-  <button ion-button color="save">
+  <button ion-button (click)="chooseMinute()" color="save">
   P
   </button>
   

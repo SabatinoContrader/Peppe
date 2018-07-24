@@ -5,7 +5,7 @@ import { GoogleMapProvider } from './../../providers/google-map/google-map';
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
 import { Component, ViewChild, ElementRef, NgZone, ChangeDetectorRef } from '@angular/core';
-import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, AlertController, IonicPage, Searchbar } from 'ionic-angular';
 import { Car } from '../../models/Car';
 import { CarProvider } from '../../providers/car/car';
 import { FormControl } from '../../../node_modules/@angular/forms';
@@ -27,7 +27,7 @@ declare var google: any;
 })
 export class HomeDriverPage {
 
-  public carsList: Array<Car>;
+  public AllCarsList: Array<Car>;
   private selectedCar: Car;
 
   public searchControl: FormControl;
@@ -43,7 +43,7 @@ export class HomeDriverPage {
   DirectionModeStartLatitude;
   DirectionModeStartLongitude;
 
-  // carsList: Array<Car>;
+  carsList: Array<Car>;
 
   isInSearchDirectionMode: boolean = false;
 
@@ -71,8 +71,8 @@ export class HomeDriverPage {
   public MyPositionElementRef: ElementRef;
 
   //Seleziona pagamento per sosta
-  @ViewChild("select")
-  public SelectTimeElementRef: ElementRef;
+  // @ViewChild("select")
+  // public SelectTimeElementRef: ElementRef;
 
   public newPrice: string = "Prezzo: ";
 
@@ -101,8 +101,8 @@ export class HomeDriverPage {
     console.log('ionViewDidLoad HomeDriverPage');
 
     this.carProvider.myCarsList().subscribe(response => {
-      this.carsList = response;
-      if(this.carsList && this.carsList.length > 0) this.selectedCar = this.carsList[0];
+      this.AllCarsList = response;
+      if(this.AllCarsList && this.AllCarsList.length > 0) this.selectedCar = this.AllCarsList[0];
     });
     
     this.googleMapsProvider.getNotStopCarList().subscribe((response) => {
@@ -197,7 +197,7 @@ export class HomeDriverPage {
     });
     alert.setTitle("<b>Le Mie Auto:</b>");
 
-    this.carsList.forEach(car => {
+    this.AllCarsList.forEach(car => {
       
     alert.addInput({
       type: 'radio',
@@ -213,7 +213,7 @@ export class HomeDriverPage {
       text: "OK",
       handler: data => {
         console.log("datachecked: " + data);
-        this.selectedCar = this.carsList.find(car => car.id == data);       
+        this.selectedCar = this.AllCarsList.find(car => car.id == data);       
         }
       });
     alert.addButton("ANNULLA");
@@ -238,7 +238,7 @@ export class HomeDriverPage {
           handler: data => {
             this.carProvider.addNewCar(data.license_plate,data.name).subscribe(response => {
               //La response dovrà essere l'auto creata.
-              this.carsList.push(new Car(0,data.license_plate,data.name,"automobilista1"));
+              this.AllCarsList.push(new Car(0,data.license_plate,data.name,"automobilista1"));
               this.selectedCar = new Car(0,data.license_plate,data.name,"automobilista1");
             }
             );
@@ -248,6 +248,76 @@ export class HomeDriverPage {
       }
     });
     alert.present();
+  }
+
+  chooseMinute(){
+    let alert2 = this.alertCtrl.create({
+      enableBackdropDismiss: false,
+    });
+
+    var obj = this.markerMap.get(this.currentSelectedMarker);
+
+    alert2.setTitle("<b>Per quanti minuti vuoi sostare?</b>");
+
+    alert2.addInput({
+      type: 'radio',
+      label: '15 min ' +'('+ (obj.price / 60) * 15 + "\u20AC" +')',
+      value: '15',
+      checked: true      
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '30 min ' +'('+ (obj.price / 60) * 30 + "\u20AC" +')',
+      value: '30'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '45 min ' +'('+ (obj.price / 60) * 45 + "\u20AC" +')',
+      value: '45'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '1 h ' +'('+ (obj.price / 60) * 60 + "\u20AC" +')',
+      value: '60'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '1 h 15 min ' +'('+ (obj.price / 60) * 75 + "\u20AC" +')', 
+      value: '75'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '1 h 30 min ' +'('+ (obj.price / 60) * 90 + "\u20AC" +')',
+      value: '90'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '1 h 45 min ' +'('+ (obj.price / 60) * 105 + "\u20AC" +')',
+      value: '105'    
+    });
+
+    alert2.addInput({
+      type: 'radio',
+      label: '2 h ' +'('+ (obj.price / 60) * 120 + "\u20AC" +')',
+      value: '120'    
+    });
+
+    alert2.addButton({
+      text: "OK",
+      handler: data => {
+        console.log("datachecked: " + data);
+        this.payAndGo(data);      
+        }
+      });
+    alert2.addButton("ANNULLA");
+    
+    alert2.present();
   }
 
   openMyStops(): void{
@@ -321,43 +391,16 @@ export class HomeDriverPage {
     });
 
 
-    self.SelectTimeElementRef.nativeElement.addEventListener('change', function () {
-      var obj = self.markerMap.get(self.currentSelectedMarker);
-      var min = self.SelectTimeElementRef.nativeElement.value;
-      var pay = (obj.price / 60) * min;
-      //self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
-      self.newPrice = "Prezzo: " + pay + "\u20AC";
-    });
+    // self.SelectTimeElementRef.nativeElement.addEventListener('change', function () {
+    //   var obj = self.markerMap.get(self.currentSelectedMarker);
+    //   var min = self.SelectTimeElementRef.nativeElement.value;
+    //   var pay = (obj.price / 60) * min;
+    //   //self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
+    //   self.newPrice = "Prezzo: " + pay + "\u20AC";
+    // });
 
 
-    self.PayAndGoElementRef.nativeElement.addEventListener('click', () => {
-      var selectedcar = self.SelectCarElementRef.nativeElement.value;
-      if (selectedcar != "") {
-        self.SelectTimeElementRef.nativeElement.disabled = true;
-        self.PayAndGoElementRef.nativeElement.disabled = true;
 
-        var obj = self.markerMap.get(self.currentSelectedMarker);
-
-
-        var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
-        var price = (obj.price / 60) * timeToAddFromNow;
-
-        // console.log('timeToAdd: ' + timeToAddFromNow);
-        // console.log('totalPrice: ' + price);
-        // console.log('id_slot: ' + obj.id);
-        // console.log('id_car: ' + selectedcar);
-
-        self.paymentProvider.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
-
-          var index = this.carsList.findIndex((car) => { return car.id == response });
-          if (index > -1) {
-            this.carsList.splice(index, 1);
-          }
-          console.log("pagamento effettuato");
-        });
-      } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
-
-    });
 
   }
 
@@ -382,6 +425,35 @@ export class HomeDriverPage {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
+
+  }
+
+  payAndGo(data){
+    var selectedcar = this.selectedCar;
+    if (selectedcar != null) {
+      //self.SelectTimeElementRef.nativeElement.disabled = true;
+      //self.PayAndGoElementRef.nativeElement.disabled = true;
+
+      var obj = this.markerMap.get(this.currentSelectedMarker);
+
+
+      //var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
+      var price = (obj.price / 60) * data;
+
+      // console.log('timeToAdd: ' + timeToAddFromNow);
+      // console.log('totalPrice: ' + price);
+      // console.log('id_slot: ' + obj.id);
+      // console.log('id_car: ' + selectedcar);
+
+      this.paymentProvider.addPayment(price, obj.id, selectedcar.id, data).subscribe((response) => {
+
+        var index = this.carsList.findIndex((car) => { return car.id == response });
+        if (index > -1) {
+          this.carsList.splice(index, 1);
+        }
+        console.log("pagamento effettuato");
+      });
+    } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
 
   }
 
@@ -492,32 +564,32 @@ export class HomeDriverPage {
       if (obj.number_carplace_free > 0) {
         // call selectChangeMinute() before
         document.getElementById("sosta").addEventListener("click", () => {
-          self.StartStop(marker);
+          //self.StartStop(marker);
         });
       }
 
     });
   };
 
-  StartStop = (marker): void => {
+  // StartStop = (marker): void => {
 
-    var self = this;
-    var obj = self.markerMap.get(self.currentSelectedMarker);
+  //   var self = this;
+  //   var obj = self.markerMap.get(self.currentSelectedMarker);
 
-    self.SelectTimeElementRef.nativeElement.value = 15;
+  //   //self.SelectTimeElementRef.nativeElement.value = 15;
 
-    self.slotAddress = "Slot: " + obj.address + "";
+  //   self.slotAddress = "Slot: " + obj.address + "";
 
-    var min = self.SelectTimeElementRef.nativeElement.value;
-    var pay = (obj.price / 60) * min;
-    self.newPrice = "Prezzo: " + pay + "\u20AC";
+  //   //var min = self.SelectTimeElementRef.nativeElement.value;
+  //   var pay = (obj.price / 60) * min;
+  //   self.newPrice = "Prezzo: " + pay + "\u20AC";
 
-    self.SelectTimeElementRef.nativeElement.disabled = false;
-    self.PayAndGoElementRef.nativeElement.disabled = false;
+  //   self.SelectTimeElementRef.nativeElement.disabled = false;
+  //   self.PayAndGoElementRef.nativeElement.disabled = false;
 
-    //a quanto pare siamo fuori da ngZone e quindi dobbiamo dirgli manualmente di leggere i cambiamenti
-    this.ref.detectChanges();
-  }
+  //   //a quanto pare siamo fuori da ngZone e quindi dobbiamo dirgli manualmente di leggere i cambiamenti
+  //   this.ref.detectChanges();
+  // }
 
 
   // Removes the markers from the map, but keeps them in the array.
