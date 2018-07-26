@@ -28,7 +28,7 @@ declare var google: any;
 export class HomeDriverPage {
 
   public AllCarsList: Array<Car>;
-  private selectedCar: Car;
+  public selectedCar: Car;
 
   public searchControl: FormControl;
   public lat: number;
@@ -70,8 +70,8 @@ export class HomeDriverPage {
   @ViewChild("myposition")
   public MyPositionElementRef: ElementRef;
 
-  @ViewChild("parkBtn")
-  public parkBtnElementRef: ElementRef;
+  // @ViewChild("parkBtn")
+  // public parkBtnElementRef: ElementRef;
 
   //Seleziona pagamento per sosta
   // @ViewChild("select")
@@ -121,8 +121,6 @@ export class HomeDriverPage {
   }
 
   ionViewDidEnter() {
-
-    console.log("quiiii");
     this.searchControl = new FormControl();
 
     //var self = this;
@@ -131,7 +129,6 @@ export class HomeDriverPage {
       this.infoWindow = new google.maps.InfoWindow();
       this.directionsService = new google.maps.DirectionsService();
 
-      console.log("quiiii");
       let elem = <HTMLInputElement>document.getElementsByClassName('searchbar-input')[0];
       let autocomplete = new google.maps.places.Autocomplete(elem);
       // , {
@@ -154,7 +151,11 @@ export class HomeDriverPage {
           this.lng = place.geometry.location.lng();
           this.zoom = 15;
 
-          this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+          // this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+          //   this.DrawSlots(response);
+          // });
+
+          this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.selectedCar.id).subscribe((response) => {
             this.DrawSlots(response);
           });
 
@@ -371,7 +372,10 @@ export class HomeDriverPage {
         self.lat = self.map.getCenter().lat();
         self.lng = self.map.getCenter().lng();
 
-        self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+        // self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+        //   self.DrawSlots(response);
+        // });
+        self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.selectedCar.id).subscribe((response) => {
           self.DrawSlots(response);
         });
       }
@@ -395,7 +399,10 @@ export class HomeDriverPage {
         self.lat = self.DirectionModeStartLatitude;
         self.lng = self.DirectionModeStartLongitude;
 
-        self.googleMapsProvider.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+        // self.googleMapsProvider.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+        //   self.DrawSlots(response);
+        // });
+        self.googleMapsProvider.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.selectedCar.id).subscribe((response) => {
           self.DrawSlots(response);
         });
 
@@ -428,7 +435,10 @@ export class HomeDriverPage {
           this.lat = this.currentLatitude;
           this.lng = this.currentLongitude;
 
-          this.googleMapsProvider.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+          // this.googleMapsProvider.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+          //   this.DrawSlots(response);
+          // });
+          this.googleMapsProvider.getNearSlots(this.currentLatitude, this.currentLongitude, this.selectedCar.id).subscribe((response) => {
             this.DrawSlots(response);
           });
 
@@ -465,7 +475,7 @@ export class HomeDriverPage {
         }
 
         if (this.carsList && this.carsList.length > 0)
-        this.selectedCar = this.carsList[0];
+          this.selectedCar = this.carsList[0];
 
         console.log("pagamento effettuato");
       });
@@ -499,8 +509,8 @@ export class HomeDriverPage {
         + "<br> Disponibli: " + self.freeCarPlaces
         + "<br><a id='indications'>Indicazioni</a>";
 
-      if (self.freeCarPlaces > 0)
-        info += "<br><a id='sosta'>Inizia sosta</a>";
+      // if (self.freeCarPlaces > 0)
+      //   info += "<br><a id='sosta'>Inizia sosta</a>";
 
       if (obj.type == "privato")
         info = info + "<br><a>Prenota</a>";
@@ -516,7 +526,7 @@ export class HomeDriverPage {
       else
         marker = self.makeMarker(latLng, self.icons.parkingGreen.icon);
       self.markerMap.set(marker, obj);
-      self.AddMarkerEvent(marker, title[i]);
+      self.AddMarkerEvent(marker, title[i], obj);
     }
 
 
@@ -540,13 +550,18 @@ export class HomeDriverPage {
     return marker;
   };
 
-  AddMarkerEvent(marker, content): void {
+  AddMarkerEvent(marker, content, obj): void {
     var self = this;
     google.maps.event.addListener(marker, 'click',
       (function (marker, content) {
 
         return function () {
           self.currentSelectedMarker = marker;
+
+          if (obj.number_carplace_free) {
+            let parkBtn = <HTMLInputElement>document.getElementsByClassName('parkBtn')[0];
+            parkBtn.disabled = false;
+          }
 
           //self.parkBtnElementRef.nativeElement.disabled = true;
           //document.getElementById("parkBtn").disabled = true;
@@ -587,6 +602,12 @@ export class HomeDriverPage {
         });
       }
 
+    });
+
+
+    google.maps.event.addListener(self.infoWindow, 'closeclick', function () {
+      let parkBtn = <HTMLInputElement>document.getElementsByClassName('parkBtn')[0];
+      parkBtn.disabled = true;
     });
   };
 
