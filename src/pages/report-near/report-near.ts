@@ -63,11 +63,6 @@ export class ReportNearPage {
     }
   }
 
-  back(): void
-  {
-    var user: User = JSON.parse(sessionStorage.getItem("user"));
-    if(user.type == 0) this.navCtrl.push("HomeOwnerPage"); // non servirà più
-    if(user.type == 1) this.navCtrl.push("HomeDriverPage");
-  }
+
 
 }

@@ -1,8 +1,9 @@
+import { Car } from './../../models/Car';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import { User } from '../../models/User';
-import { Car } from '../../models/Car';
+
 
 /*
   Generated class for the CarProvider provider.
@@ -29,10 +30,10 @@ export class CarProvider {
     .pipe();
   }
 
-  addNewCar(license_plate: string, name: string): any{
+  addNewCar(license_plate: string, name: string): Observable<Car>{
     var user: User = JSON.parse(sessionStorage.getItem("user"));
     var car = new Car(0, license_plate, name, user.username);
-    return this.http.post<any>('http://localhost:58708/api/addCar', car)
+    return this.http.post<Car>('http://localhost:58708/api/addCar', car)
     .pipe();
   }
 

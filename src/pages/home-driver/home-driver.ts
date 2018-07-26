@@ -70,6 +70,9 @@ export class HomeDriverPage {
   @ViewChild("myposition")
   public MyPositionElementRef: ElementRef;
 
+  @ViewChild("parkBtn")
+  public parkBtnElementRef: ElementRef;
+
   //Seleziona pagamento per sosta
   // @ViewChild("select")
   // public SelectTimeElementRef: ElementRef;
@@ -95,8 +98,6 @@ export class HomeDriverPage {
   ) { }
 
 
-
-
   //ionViewLoaded
   //<HTMLInputElement>
   ionViewWillEnter() {
@@ -104,11 +105,12 @@ export class HomeDriverPage {
 
     this.carProvider.myCarsList().subscribe(response => {
       this.AllCarsList = response;
-      if(this.AllCarsList && this.AllCarsList.length > 0) this.selectedCar = this.AllCarsList[0];
     });
-    
+
     this.googleMapsProvider.getNotStopCarList().subscribe((response) => {
       this.carsList = response;
+      if (this.carsList && this.carsList.length > 0)
+        this.selectedCar = this.carsList[0];
     });
 
     this.zoom = 10;
@@ -192,7 +194,7 @@ export class HomeDriverPage {
     });
   }
 
-  openCar(): void{
+  openCar(): void {
     console.log('openCar');
     let alert = this.alertCtrl.create({
       enableBackdropDismiss: false,
@@ -200,14 +202,15 @@ export class HomeDriverPage {
     alert.setTitle("<b>Le Mie Auto:</b>");
 
     this.AllCarsList.forEach(car => {
-      
-    alert.addInput({
-      type: 'radio',
-      label: car.name + " (" + car.license_plate +  ")",
-      value: car.id+"",
-      checked: (car == this.selectedCar)      
-      
-    });
+      var carInStop: Car = this.carsList.find(c => c.id == car.id);
+      alert.addInput({
+        type: 'radio',
+        label: car.name + " (" + car.license_plate + ")",
+        value: car.id + "",
+        checked: (car.id == this.selectedCar.id),
+        disabled: carInStop == null
+      });
+
 
     });
 
@@ -215,13 +218,13 @@ export class HomeDriverPage {
       text: "OK",
       handler: data => {
         console.log("datachecked: " + data);
-        this.selectedCar = this.AllCarsList.find(car => car.id == data);       
-        }
-      });
+        this.selectedCar = this.AllCarsList.find(car => car.id == data);
+      }
+    });
     alert.addButton("ANNULLA");
     alert.addButton({
       text: "AGGIUNGI",
-      handler: data => {      
+      handler: data => {
         let alert1 = this.alertCtrl.create({
           enableBackdropDismiss: false,
         });
@@ -236,12 +239,12 @@ export class HomeDriverPage {
         });
         alert1.addButton("ANNULLA");
         alert1.addButton({
-          text:"AGGIUNGI",
+          text: "AGGIUNGI",
           handler: data => {
-            this.carProvider.addNewCar(data.license_plate,data.name).subscribe(response => {
+            this.carProvider.addNewCar(data.license_plate, data.name).subscribe(response => {
               //La response dovrà essere l'auto creata.
-              this.AllCarsList.push(new Car(0,data.license_plate,data.name,"automobilista1"));
-              this.selectedCar = new Car(0,data.license_plate,data.name,"automobilista1");
+              this.AllCarsList.push(response);
+              this.selectedCar = response;
             }
             );
           }
@@ -252,7 +255,7 @@ export class HomeDriverPage {
     alert.present();
   }
 
-  chooseMinute(){
+  chooseMinute() {
     let alert2 = this.alertCtrl.create({
       enableBackdropDismiss: false,
     });
@@ -263,66 +266,66 @@ export class HomeDriverPage {
 
     alert2.addInput({
       type: 'radio',
-      label: '15 min ' +'('+ (obj.price / 60) * 15 + "\u20AC" +')',
+      label: '15 min ' + '(' + (obj.price / 60) * 15 + "\u20AC" + ')',
       value: '15',
-      checked: true      
+      checked: true
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '30 min ' +'('+ (obj.price / 60) * 30 + "\u20AC" +')',
-      value: '30'    
+      label: '30 min ' + '(' + (obj.price / 60) * 30 + "\u20AC" + ')',
+      value: '30'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '45 min ' +'('+ (obj.price / 60) * 45 + "\u20AC" +')',
-      value: '45'    
+      label: '45 min ' + '(' + (obj.price / 60) * 45 + "\u20AC" + ')',
+      value: '45'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '1 h ' +'('+ (obj.price / 60) * 60 + "\u20AC" +')',
-      value: '60'    
+      label: '1 h ' + '(' + (obj.price / 60) * 60 + "\u20AC" + ')',
+      value: '60'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '1 h 15 min ' +'('+ (obj.price / 60) * 75 + "\u20AC" +')', 
-      value: '75'    
+      label: '1 h 15 min ' + '(' + (obj.price / 60) * 75 + "\u20AC" + ')',
+      value: '75'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '1 h 30 min ' +'('+ (obj.price / 60) * 90 + "\u20AC" +')',
-      value: '90'    
+      label: '1 h 30 min ' + '(' + (obj.price / 60) * 90 + "\u20AC" + ')',
+      value: '90'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '1 h 45 min ' +'('+ (obj.price / 60) * 105 + "\u20AC" +')',
-      value: '105'    
+      label: '1 h 45 min ' + '(' + (obj.price / 60) * 105 + "\u20AC" + ')',
+      value: '105'
     });
 
     alert2.addInput({
       type: 'radio',
-      label: '2 h ' +'('+ (obj.price / 60) * 120 + "\u20AC" +')',
-      value: '120'    
+      label: '2 h ' + '(' + (obj.price / 60) * 120 + "\u20AC" + ')',
+      value: '120'
     });
 
     alert2.addButton({
       text: "OK",
       handler: data => {
         console.log("datachecked: " + data);
-        this.payAndGo(data);      
-        }
-      });
+        this.payAndGo(data);
+      }
+    });
     alert2.addButton("ANNULLA");
-    
+
     alert2.present();
   }
 
-  openMyStops(): void{
+  openMyStops(): void {
     this.navCtrl.push("ExtensionStopsPage");
   }
 
@@ -406,7 +409,7 @@ export class HomeDriverPage {
 
   }
 
-  getPosition(){
+  getPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.currentLatitude = position.coords.latitude;
@@ -430,9 +433,8 @@ export class HomeDriverPage {
 
   }
 
-  payAndGo(data){
-    var selectedcar = this.selectedCar;
-    if (selectedcar != null) {
+  payAndGo(data) {
+    if (this.selectedCar != null) {
       //self.SelectTimeElementRef.nativeElement.disabled = true;
       //self.PayAndGoElementRef.nativeElement.disabled = true;
 
@@ -447,12 +449,16 @@ export class HomeDriverPage {
       // console.log('id_slot: ' + obj.id);
       // console.log('id_car: ' + selectedcar);
 
-      this.paymentProvider.addPayment(price, obj.id, selectedcar.id, data).subscribe((response) => {
+      this.paymentProvider.addPayment(price, obj.id, this.selectedCar.id, data).subscribe((response) => {
 
         var index = this.carsList.findIndex((car) => { return car.id == response });
         if (index > -1) {
           this.carsList.splice(index, 1);
         }
+
+        if (this.carsList && this.carsList.length > 0)
+        this.selectedCar = this.carsList[0];
+
         console.log("pagamento effettuato");
       });
     } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
@@ -474,7 +480,7 @@ export class HomeDriverPage {
       self.freeCarPlaces = obj.number_carplace_free;
       var numberCarPlaces = obj.number_carplace;
       var type;
-      if(obj.type == 0)
+      if (obj.type == 0)
         type = "Pubblico";
       else
         type = "Privato";
@@ -533,6 +539,9 @@ export class HomeDriverPage {
 
         return function () {
           self.currentSelectedMarker = marker;
+
+          //self.parkBtnElementRef.nativeElement.disabled = true;
+          //document.getElementById("parkBtn").disabled = true;
 
           google.maps.event.clearListeners(self.infoWindow, 'domready');
           self.infoWindow.setContent(content);
@@ -666,7 +675,7 @@ export class HomeDriverPage {
     self.DirectionModeBackElementRef.nativeElement.disabled = false;
   };
 
-  changeCar(): void{
+  changeCar(): void {
     console.log("wewe");
     this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
       this.DrawSlots(response);

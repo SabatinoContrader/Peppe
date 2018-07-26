@@ -19,7 +19,7 @@
     <br>
     <div *ngIf="carsList" class="table-responsive">
         <table>
-            <th>
+            
     
     
                 <tr>
@@ -27,7 +27,7 @@
                     <th>Nome</th>
                     <th></th>
                 </tr>
-            </th>
+            
     
             <tr *ngFor="let car of carsList">
                 <td>{{car.license_plate}}</td>
@@ -45,9 +45,8 @@
     <p>{{result}}</p>
     
     
-    <a href="/#/addCar">Aggiungi auto</a>
+    <a (click) = "addCar()" >Aggiungi auto</a>
     <br>
-    <a href="/#/homeDriver">Indietro</a>
-    <br>
+
 
 </ion-content>

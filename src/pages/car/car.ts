@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CarProvider } from '../../providers/car/car';
 import { Car } from '../../models/Car';
 
@@ -20,7 +20,7 @@ export class CarPage {
   carsList: Car[];
   result: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private carProvider: CarProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private carProvider: CarProvider, private alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -38,6 +38,33 @@ export class CarPage {
         this.carProvider.myCarsList().subscribe(response => {this.carsList = response});
       }
     });
+  }
+
+  addCar(){
+    let alert1 = this.alertCtrl.create({
+      enableBackdropDismiss: false,
+    });
+    alert1.setTitle("Aggiungi Auto");
+    alert1.addInput({
+      name: "license_plate",
+      placeholder: "Targa"
+    });
+    alert1.addInput({
+      name: "name",
+      placeholder: "Nome"
+    });
+    alert1.addButton("ANNULLA");
+    alert1.addButton({
+      text:"AGGIUNGI",
+      handler: data => {
+        this.carProvider.addNewCar(data.license_plate,data.name).subscribe(response => {
+          //La response dovrà essere l'auto creata.
+          this.carsList.push(response);
+        }
+        );
+      }
+    });
+    alert1.present();
   }
 
 }
