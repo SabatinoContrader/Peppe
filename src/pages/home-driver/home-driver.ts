@@ -58,8 +58,8 @@ export class HomeDriverPage {
   private freeCarPlaces: number = 0;
   private map: google.maps.Map;
 
-  @ViewChild("search")
-  public searchElementRef: ElementRef;
+  // @ViewChild("search")
+  // public searchElementRef: ElementRef;
 
   @ViewChild("cambia")
   public DirectionModeBackElementRef: ElementRef;
@@ -91,7 +91,7 @@ export class HomeDriverPage {
     private ngZone: NgZone,
     private googleMapsProvider: GoogleMapProvider,
     private paymentProvider: PaymentProvider,
-    private ref: ChangeDetectorRef,
+    //private ref: ChangeDetectorRef,
     private carProvider: CarProvider,
     private alertCtrl: AlertController,
     private navCtrl: NavController
@@ -100,6 +100,7 @@ export class HomeDriverPage {
 
   //ionViewLoaded
   //<HTMLInputElement>
+  //ionViewWillEnter
   ionViewWillEnter() {
     console.log('ionViewDidLoad HomeDriverPage');
 
@@ -117,16 +118,22 @@ export class HomeDriverPage {
     this.lat = 41.9;
     this.lng = 12.48;
 
+  }
 
+  ionViewDidEnter() {
+
+    console.log("quiiii");
     this.searchControl = new FormControl();
 
-    var self = this;
+    //var self = this;
     //tutti gli oggetti di google.maps vanno istanziati solo dopo il load()
     this.mapsAPILoader.load().then(() => {
       this.infoWindow = new google.maps.InfoWindow();
       this.directionsService = new google.maps.DirectionsService();
 
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      console.log("quiiii");
+      let elem = <HTMLInputElement>document.getElementsByClassName('searchbar-input')[0];
+      let autocomplete = new google.maps.places.Autocomplete(elem);
       // , {
       //   types: ["address"]
       //});
@@ -134,6 +141,7 @@ export class HomeDriverPage {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
+          console.log("quiiii");
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           //verify result
@@ -154,38 +162,38 @@ export class HomeDriverPage {
       });
 
 
-      var self = this;
-      self.searchElementRef.nativeElement.addEventListener('keydown',
-        function (event) {
-          // keycode 13 = Enter
-          if (event.keyCode === 13) {
-            event.preventDefault();
+      // var self = this;
+      // elem.addEventListener('keydown',
+      //   function (event) {
+      //     // keycode 13 = Enter
+      //     if (event.keyCode === 13) {
+      //       event.preventDefault();
 
 
 
-            self.ngZone.run(() => {
-              //get the place result
-              let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+      //       self.ngZone.run(() => {
+      //         //get the place result
+      //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-              //verify result
-              if (place.geometry === undefined || place.geometry === null) {
-                return;
-              }
+      //         //verify result
+      //         if (place.geometry === undefined || place.geometry === null) {
+      //           return;
+      //         }
 
-              //set latitude, longitude and zoom
-              self.lat = place.geometry.location.lat();
-              self.lng = place.geometry.location.lng();
-              self.zoom = 15;
+      //         //set latitude, longitude and zoom
+      //         self.lat = place.geometry.location.lat();
+      //         self.lng = place.geometry.location.lng();
+      //         self.zoom = 15;
 
-              self.googleMapsProvider.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                self.DrawSlots(response);
-              });
+      //         self.googleMapsProvider.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+      //           self.DrawSlots(response);
+      //         });
 
-            });
+      //       });
 
 
-          }
-        });
+      //     }
+      //   });
 
 
 
