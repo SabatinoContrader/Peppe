@@ -36,14 +36,23 @@ page-home-driver{
 }
 
 ion-grid img{
+    max-height: 30% !important;
+    max-width: 30%!important;
+}
+
+ion-grid #park{
     max-height: 40% !important;
     max-width: 40%!important;
 }
 
-ion-grid #park{
-    max-height: 50% !important;
-    max-width: 50%!important;
+.col{
+    max-width: 33%;
+    button{max-width: 100%;}
+    div{max-width: 100%;}
+    label {font-size: 3vw;}
 }
+
+
 
 .div{
     display: block;

@@ -19,7 +19,7 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 
 export class LoginPage {
   feedback: string;
-  user: User;
+  //user: User;
   rootPage = "SignupPage";
 
   constructor(public navCtrl: NavController, private userProvider: UserProvider, private modalCtrl: ModalController, private menuCtrl: MenuController) {
@@ -36,8 +36,6 @@ export class LoginPage {
     console.log("pressedLogin");
     this.userProvider.login(f.value.username, f.value.password).subscribe((response) => {
       if (response != null) {
-        this.user = response;
-        sessionStorage.setItem("user", JSON.stringify(this.user));
         if (response.type == 1)
           this.navCtrl.push("HomeDriverPage");
         // else if(response.type == 0)
@@ -48,6 +46,7 @@ export class LoginPage {
   }
 
   goToSignup() {
+    console.log("bleahhh");
     const modal = this.modalCtrl.create("SignupPage");
     modal.present();
   }
