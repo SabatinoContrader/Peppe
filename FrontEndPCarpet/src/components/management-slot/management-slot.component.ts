@@ -12,25 +12,27 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 })
 export class ManagementSlotComponent implements OnInit {
 
-  private slots: Array<Slot>;
-  private masters: Array<Master>;
-  private slaves: Array<Slave>;
+  public slots: Array<Slot>;
+  public masters: Array<Master>;
+  public slaves: Array<Slave>;
 
-  private selectedSlotID: number;
-  private selectedMasterID: string;
-  private selectedSlaveID: string;
+  public selectedSlotID: number;
+  public selectedMasterID: string;
+  public selectedSlaveID: string;
 
-  private selectedSlot: Slot;
-  private selectedMaster: Master;
-  private selectedSlave: Slave;
+  public selectedSlot: Slot;
+  public selectedMaster: Master;
+  public selectedSlave: Slave;
 
-  private exists: boolean = false;
+  public exists: boolean = false;
 
-  dummyCopy: object; 
+  public dummyCopySlot: Slot; 
+  public dummyCopyMaster: Master; 
+  public dummyCopySlave: Slave; 
 
 
   //0 = slot, 1 = master, 2 = slave
-  private typeTable: number = -1;
+  public typeTable: number = -1;
 
   constructor(private slotService: SlotService,private ref: ChangeDetectorRef) { }
 
@@ -47,7 +49,7 @@ export class ManagementSlotComponent implements OnInit {
     this.exists = true;
 
     this.selectedSlot = slot;
-    this.dummyCopy = Object.assign({}, slot);
+    this.dummyCopySlot = Object.assign({}, slot);
 
     this.typeTable = 0;
 
@@ -68,7 +70,7 @@ export class ManagementSlotComponent implements OnInit {
     this.exists = true;
 
     this.selectedMaster = master;
-    this.dummyCopy = Object.assign({}, master);
+    this.dummyCopyMaster = Object.assign({}, master);
 
     this.selectedSlave = null;
 
@@ -87,7 +89,7 @@ export class ManagementSlotComponent implements OnInit {
     this.exists = true;
 
     this.selectedSlave = slave;
-    this.dummyCopy = Object.assign({}, slave);
+    this.dummyCopySlave = Object.assign({}, slave);
 
     this.selectedSlaveID = slave.id;
 
@@ -97,7 +99,7 @@ export class ManagementSlotComponent implements OnInit {
 
   //SHOW FORMS
   newSlot(): void {
-    this.dummyCopy = Object.assign({}, new Slot(0,0,0,0,0,'',0,0,'') );
+    this.dummyCopySlot = Object.assign({}, new Slot(0,0,0,0,0,'',0,0,'') );
     this.exists = false;
     this.selectedSlot = null;
     this.selectedMaster = null;
@@ -110,7 +112,7 @@ export class ManagementSlotComponent implements OnInit {
   }
 
   newMaster(): void {
-    this.dummyCopy = Object.assign({}, new Master('',0) );
+    this.dummyCopyMaster = Object.assign({}, new Master('',0) );
     this.exists = false;
     this.selectedMaster = null;
     this.selectedSlave = null;
@@ -121,7 +123,7 @@ export class ManagementSlotComponent implements OnInit {
   }
 
   newSlave(): void {
-    this.dummyCopy = Object.assign({}, new Slave('',0,'') );
+    this.dummyCopySlave = Object.assign({}, new Slave('',0,'') );
     this.exists = false;
     this.selectedSlave = null;
 
@@ -168,7 +170,7 @@ export class ManagementSlotComponent implements OnInit {
       this.slots.push(response);
       console.log("Added Slot");  
 
-      this.dummyCopy = Object.assign({}, new Slot(0,0,0,0,0,'',0,0,'') );
+      this.dummyCopySlot = Object.assign({}, new Slot(0,0,0,0,0,'',0,0,'') );
       this.ref.detectChanges();
     });
   }
@@ -206,7 +208,7 @@ export class ManagementSlotComponent implements OnInit {
       this.masters.push(response);
       console.log("Added Master");  
 
-      this.dummyCopy = Object.assign({}, new Master('',0) );
+      this.dummyCopyMaster = Object.assign({}, new Master('',0) );
       this.ref.detectChanges();
     });
   }
@@ -244,7 +246,7 @@ export class ManagementSlotComponent implements OnInit {
       this.slaves.push(response);
       console.log("Added Slave");  
 
-      this.dummyCopy = Object.assign({}, new Slave('',0,'') );
+      this.dummyCopySlave = Object.assign({}, new Slave('',0,'') );
       this.ref.detectChanges();
     });
   }

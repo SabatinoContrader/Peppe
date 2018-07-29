@@ -5,16 +5,23 @@ button{
     width: 30%;
     height: 50px;
     border-radius: 15px;
-    color: white;
+    color: #414a52;
     border-color: #a7d34200;
-    font-family: myFirstFont;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    text-align: center;
+    padding-top: 10%;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a{
     margin:0 auto;
     text-align: center;
     color: white;
-    font-family: myFirstFont;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .signup {
@@ -33,7 +40,7 @@ body{
 input{
     border-color: white;
     border-radius: 15px;
-    font-family: myFirstFont;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #blank{
@@ -42,7 +49,7 @@ input{
 
 label{
     color: white;
-    font-family: myFirstFont;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #forgot{
@@ -53,10 +60,7 @@ label{
     text-align: center;
 }
 
-@font-face {
-    font-family: myFirstFont;
-    src: url("/assets/OldSansBlack.ttf");
-}
+
 
 
 
