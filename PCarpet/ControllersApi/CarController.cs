@@ -47,10 +47,9 @@ namespace PCarpet.ControllersApi
 
         [HttpPost]
         [Route("addCar")]
-        public void addCar(CarDTO carDTO)
+        public CarDTO addCar(CarDTO carDTO)
         {
-
-            carService.addCar(carDTO);
+            return carService.addCar(carDTO);
         }
     }
 }

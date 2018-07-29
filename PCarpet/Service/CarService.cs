@@ -9,14 +9,17 @@ namespace PCarpet.Service
     public class CarService
     {
 
-        public void addCar(CarDTO carDTO)
+        public CarDTO addCar(CarDTO carDTO)
         {
+            CarDTO newCarDTO;
             using (pcarpetEntities context = new pcarpetEntities())
             {
-                context.car.Add(new car(carDTO));
+                car car = context.car.Add(new car(carDTO));
                 context.SaveChanges();
+                newCarDTO = car.toCarDTO(car);
             }
-                
+            return newCarDTO;
+
         }
 
 
