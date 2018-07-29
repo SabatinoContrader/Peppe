@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-  <div>
+  <!-- <div>
     <div>
       <div>
         <h1>Invia segnalazione</h1>
@@ -40,18 +40,50 @@
         </form>
 
         <a (click)="openReportHystory()">Accedi alla cronologia</a>
-        <a (click)="openReportNear()">Accedi alle segnalazioni dei parcheggi vicini</a>
-<!--         <br>
-        <br>
-        <br>
-
-
-        <a href="/#/homeDriver">Indietro</a>
-        <br> -->
+        <a (click)="openReportNear()">Accedi alle segnalazioni dei parcheggi vicini</a> 
 
 
       </div>
     </div>
-  </div>
+  </div> -->
+
+  <form class="reportForm" #f="ngForm">
+  <ion-item>
+      <ion-label>Tipo segnalazione</ion-label>
+      <ion-select name="select" ngModel="select">
+        <ion-option value="1">Abuso spazio dedicato a persone con disabilità</ion-option>
+        <ion-option value="2">Disservizio stradale</ion-option>
+        <ion-option value="3">Problema riscontrato nell'usufruire del servizio</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-textarea rows="6" cols="50" name="description" placeholder="Descrizione del problema riscontrato" ngModel>
+      </ion-textarea>
+    </ion-item>
+
+    
+        <!-- <input type="file" (change)="onFileSelected($event)"> -->
+     <div class="btn"> 
+        <ion-row>
+            <ion-col id="col1">
+            <button ion-button id="camera">
+                <ion-icon name="camera"></ion-icon>
+            </button>
+          </ion-col>
+            <ion-col id="col2">
+            <button ion-button id="camera" (click)="sendReport(f)">
+                INVIA
+            </button>
+          </ion-col>
+          </ion-row>
+      </div> 
+    </form>
+
+
+    <div class="btn"> 
+        <button ion-button id="camera" (click)="openReportHystory()">Cronologia</button>
+    </div> 
+
 
 </ion-content>

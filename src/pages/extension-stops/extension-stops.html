@@ -13,31 +13,27 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
 
-    <div>
-        <h1>Prolunga la tua sosta</h1>
-        <br>
-        <table>
-            <tr>
-                <th>INDIRIZZO</th>
-                <th>AUTO</th>
-                <th>INIZIO</th>
-                <th>FINE</th>
-                <th></th>
-                <th>DA PAGARE</th>
-                <th></th>
-            </tr>
-            <!-- <tr page-extension-stops-row *ngFor="let stop of myStopsList" [stop] = "stop">  -->
-            <tr extension-stops-row *ngFor="let stop of myStopsList" [stop]='stop'>
-                
-            </tr>
-        </table>
+    <ion-card *ngFor="let stop of myStopsList; let i = index" class="card">
 
-        <a href="/#/homeDriver">Indietro</a>
-        <br>
+        <ion-card-header>
+            {{stop.address}}
+        </ion-card-header>
+
+        <ion-card-content>
+                <p>{{stop.finish | date: 'dd-MM-yyyy'}}</p>
+                <p> {{stop.finish | date: 'HH:mm:ss'}}</p>
+        </ion-card-content>
 
 
-    </div>
+        <ion-row>
+            <ion-col text-right>
+                <button ion-button small outline color="dark" (click)="prolungaSosta(i)" >
+                    PROLUNGA
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
 
 </ion-content>

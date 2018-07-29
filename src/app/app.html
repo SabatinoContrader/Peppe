@@ -1,11 +1,16 @@
 <ion-menu [content]="content">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
+      
     </ion-header>
   
     <ion-content>
+        <ion-card text-center class="hide-card">
+            <img src="assets/imgs/user.png" class="custom-avatar"/>
+            <h2>Nome Utente</h2>
+            <p>Have some p tag here</p>
+            <p>I am the third guy inline here</p>
+            <hr>
+        </ion-card>
       <ion-list>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           {{p.title}}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '../../../node_modules/@angular/forms';
 import { ReportProvider } from '../../providers/report/report';
@@ -60,8 +60,6 @@ export class ReportDriverPage {
     this.navCtrl.push("ReportHystoryPage");
   }
 
-  openReportNear(): void {
-    this.navCtrl.push("ReportNearPage");
-  }
+
 
 }

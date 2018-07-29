@@ -1,8 +1,11 @@
+page-car{
+
 .back-button {
     display: block;
     width:50px;
     height:32px;
     }
+
 
 ion-title.title {
     margin-bottom: 0px;
@@ -11,4 +14,20 @@ ion-title.title {
 
 div.toolbar-title.toolbar-title-md{
     height:32px;
+}
+
+
+#addCar{
+    width: 100%;
+    background-color: #a8d342;
+    color: #414a52;
+ }
+ 
+ .btn{
+     padding-bottom: 20px;
+     padding-top: 10px;
+     padding-left: 16px;
+     padding-right: 16px;
+ }
+
 }

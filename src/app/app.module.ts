@@ -1,3 +1,4 @@
+import { ReportNearPage } from './../pages/report-near/report-near';
 import { LoginPage } from './../pages/login/login';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +33,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     PaymentPage,
     UsefullNumbersPage,
     SettingsPage,
+    ReportNearPage
   ],
   imports: [
     HttpClientModule,
@@ -48,6 +50,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     PaymentPage,
     UsefullNumbersPage,
     SettingsPage,
+    ReportNearPage
   ],
   providers: [
     StatusBar,

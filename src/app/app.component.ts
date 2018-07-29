@@ -1,3 +1,4 @@
+import { ReportNearPage } from './../pages/report-near/report-near';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,6 +11,7 @@ import { PaymentPage } from '../pages/payment/payment';
 import { UsefullNumbersPage } from '../pages/usefull-numbers/usefull-numbers';
 import { LegislationsPage } from '../pages/legislations/legislations';
 import { SettingsPage } from '../pages/settings/settings';
+import { User } from '../models/User';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class MyApp {
       { title: 'Home', component: HomeDriverPage },
       { title: 'Gestione Auto', component: CarPage },
       { title: 'Segnalazioni', component: ReportDriverPage },
+      { title: 'Avvisi dei gestori', component: ReportNearPage },
       { title: 'Pagamenti', component: PaymentPage },
       { title: 'Numeri Utili', component: UsefullNumbersPage },
       { title: 'Normative', component: LegislationsPage },

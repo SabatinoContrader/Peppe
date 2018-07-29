@@ -1,79 +1,36 @@
 <ion-header>
-    <!-- <ion-navbar hidden></ion-navbar> -->
-    <ion-toolbar>
+    <ion-toolbar class="toolbar">
         <ion-buttons left>
             <button ion-button menuToggle>
                 <ion-icon name="menu"></ion-icon>
             </button>
-           
-            
-               
         </ion-buttons>
 
-        <img src="assets/imgs/logo.png" id="logo">
+        <img src="assets/imgs/logo1.png" id="logo">
    
-
-        <!-- <ion-title>Home</ion-title> -->
     </ion-toolbar>
 
 </ion-header>
 
 <ion-content padding>
 
-        <button id="myposition" (click)="getPosition()" #myposition>Posizione</button>
-        <!-- <button id="seleziona" #seleziona disabled>Parti</button> -->
-        <button id="cambia" #cambia disabled>Cambia parcheggio</button>
-        
-        <ion-searchbar animated="true" showCancelButton="false" placeholder="Inserisci destinazione"></ion-searchbar>
-        
-        <agm-map style="height: 100%" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
-            id="map">
-            <div class="action-buttons">
-                <button color="primary" ion-button text-only>
-                    Button 1
-                </button>
-                 <button color="primary" ion-button text-only>
-                    Button 2
-                </button>
-            </div>
-        </agm-map>
+        <div class="wrapper">
 
+        
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false" (mapReady)="mapReady($event)"
+            id="map"></agm-map>
+            <ion-searchbar animated="true" showCancelButton="false" placeholder="Inserisci destinazione" id="searchbar"></ion-searchbar>
+            <div class="div-position">
+                <button id="myposition" (click)="getPosition()" #myposition clear>
+                    <img src="assets/icon/myPosition.png">
+                </button>
+              </div>
+        
+    </div>
 
  
 </ion-content>
 
-<!-- <ion-footer >
-    <ion-toolbar color="dark">
-        <ion-buttons class="btn" left>
-            <button ion-button (click)="openCar()" color="save">
-                <div>
-                    <img src="assets/icon/icon-1.png">
-                    <label>{{selectedCar?.name}}</label>
-                </div>
-            </button>
-        </ion-buttons>
-
-
-        <ion-buttons class="btn1" right>
-            <button ion-button (click)="chooseMinute()" color="save" #parkBtn>
-                    <div>
-                        <img src="assets/icon/icon-2.png">
-                    </div>
-            </button>
-
-        </ion-buttons>
-
-        <ion-buttons class="btn" right>
-            <button ion-button color="save" (click)="openMyStops()">
-                    <div>
-                        <img src="assets/icon/icon-3.png">
-                        <label>Le mie soste</label>
-                    </div>
-            </button>
-
-        </ion-buttons>
-    </ion-toolbar>
-</ion-footer> -->
 
 <ion-footer class="foot">
     
@@ -84,7 +41,7 @@
                         <button ion-button (click)="openCar()" class="button-new">
                             <div>
                                 <img src="assets/icon/icon-1.png">
-                                <label>{{selectedCar?.name}}</label>
+                                <label class="div">{{selectedCar?.name}}</label>
                             </div>
                         </button>
                     </ion-buttons>
@@ -93,7 +50,7 @@
                 <ion-buttons>
                         <button ion-button (click)="chooseMinute()" class="button-new parkBtn" disabled>
                                 <div>
-                                    <img src="assets/icon/icon-2.png">
+                                    <img src="assets/icon/icon-2.png" id="park">
                                 </div>
                         </button>
                     </ion-buttons>
@@ -103,7 +60,7 @@
                         <button ion-button (click)="openMyStops()" class="button-new">
                                 <div>
                                     <img src="assets/icon/icon-3.png">
-                                    <label>Le mie soste</label>
+                                    <label class="div">Le mie soste</label>
                                 </div>
                         </button>
             

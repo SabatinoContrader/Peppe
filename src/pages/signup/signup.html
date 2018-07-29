@@ -13,8 +13,9 @@
   </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
     <form class="userForm" #f="ngForm">
+    <ion-list>
     <ion-item>
         <ion-input type="text" name="name" id="name" class="form-control" placeholder="Name" ngModel required></ion-input>
     </ion-item>
@@ -40,7 +41,8 @@
     </ion-item>
 
     <div class="btn">
-        <button ion-button (click)="signup(f)">Registrati</button>
+        <button ion-button id="signup" (click)="signup(f)">Registrati</button>
     </div>
+    </ion-list>
   </form>
 </ion-content>

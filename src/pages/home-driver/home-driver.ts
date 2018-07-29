@@ -5,7 +5,7 @@ import { GoogleMapProvider } from './../../providers/google-map/google-map';
 /// <reference path="../../../node_modules/@types/googlemaps/index.d.ts" />
 
 import { Component, ViewChild, ElementRef, NgZone, ChangeDetectorRef } from '@angular/core';
-import { NavController, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, AlertController, IonicPage, ModalController, MenuController } from 'ionic-angular';
 import { Car } from '../../models/Car';
 import { CarProvider } from '../../providers/car/car';
 import { FormControl } from '../../../node_modules/@angular/forms';
@@ -37,15 +37,7 @@ export class HomeDriverPage {
   private currentLatitude: number;
   private currentLongitude: number;
 
-  directionsService = null;
-  directionsRenderer = null;
-
-  DirectionModeStartLatitude;
-  DirectionModeStartLongitude;
-
   carsList: Array<Car>;
-
-  isInSearchDirectionMode: boolean = false;
 
   private iconBase: string = 'https://maps.google.com/mapfiles/kml/shapes/';
 
@@ -56,26 +48,13 @@ export class HomeDriverPage {
   private infoWindow: InfoWindow;
   private markerMap = new Map();
   private freeCarPlaces: number = 0;
-  private map: google.maps.Map;
-
-  // @ViewChild("search")
-  // public searchElementRef: ElementRef;
-
-  @ViewChild("cambia")
-  public DirectionModeBackElementRef: ElementRef;
+  private map: any;
 
   @ViewChild("seleziona")
   public TurnByTurnElementRef: ElementRef;
 
   @ViewChild("myposition")
   public MyPositionElementRef: ElementRef;
-
-  // @ViewChild("parkBtn")
-  // public parkBtnElementRef: ElementRef;
-
-  //Seleziona pagamento per sosta
-  // @ViewChild("select")
-  // public SelectTimeElementRef: ElementRef;
 
   public newPrice: string = "Prezzo: ";
 
@@ -91,17 +70,16 @@ export class HomeDriverPage {
     private ngZone: NgZone,
     private googleMapsProvider: GoogleMapProvider,
     private paymentProvider: PaymentProvider,
-    //private ref: ChangeDetectorRef,
     private carProvider: CarProvider,
     private alertCtrl: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private modalCtrl: ModalController,
+    private menuCtrl: MenuController
   ) { }
 
 
-  //ionViewLoaded
-  //<HTMLInputElement>
-  //ionViewWillEnter
   ionViewWillEnter() {
+    this.menuCtrl.enable(true);
     console.log('ionViewDidLoad HomeDriverPage');
 
     this.carProvider.myCarsList().subscribe(response => {
@@ -123,37 +101,24 @@ export class HomeDriverPage {
   ionViewDidEnter() {
     this.searchControl = new FormControl();
 
-    //var self = this;
     //tutti gli oggetti di google.maps vanno istanziati solo dopo il load()
     this.mapsAPILoader.load().then(() => {
       this.infoWindow = new google.maps.InfoWindow();
-      this.directionsService = new google.maps.DirectionsService();
 
       let elem = <HTMLInputElement>document.getElementsByClassName('searchbar-input')[0];
       let autocomplete = new google.maps.places.Autocomplete(elem);
-      // , {
-      //   types: ["address"]
-      //});
 
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          //get the place result
-          console.log("quiiii");
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          let place: any = autocomplete.getPlace();
 
-          //verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
 
-          //set latitude, longitude and zoom
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
           this.zoom = 15;
-
-          // this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-          //   this.DrawSlots(response);
-          // });
 
           this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.selectedCar.id).subscribe((response) => {
             this.DrawSlots(response);
@@ -161,45 +126,6 @@ export class HomeDriverPage {
 
         });
       });
-
-
-      // var self = this;
-      // elem.addEventListener('keydown',
-      //   function (event) {
-      //     // keycode 13 = Enter
-      //     if (event.keyCode === 13) {
-      //       event.preventDefault();
-
-
-
-      //       self.ngZone.run(() => {
-      //         //get the place result
-      //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-      //         //verify result
-      //         if (place.geometry === undefined || place.geometry === null) {
-      //           return;
-      //         }
-
-      //         //set latitude, longitude and zoom
-      //         self.lat = place.geometry.location.lat();
-      //         self.lng = place.geometry.location.lng();
-      //         self.zoom = 15;
-
-      //         self.googleMapsProvider.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-      //           self.DrawSlots(response);
-      //         });
-
-      //       });
-
-
-      //     }
-      //   });
-
-
-
-
-
     });
   }
 
@@ -208,7 +134,7 @@ export class HomeDriverPage {
     let alert = this.alertCtrl.create({
       enableBackdropDismiss: false,
     });
-    alert.setTitle("<b>Le Mie Auto:</b>");
+    alert.setTitle("<b>Le mie auto</b>");
 
     this.AllCarsList.forEach(car => {
       var carInStop: Car = this.carsList.find(c => c.id == car.id);
@@ -251,7 +177,6 @@ export class HomeDriverPage {
           text: "AGGIUNGI",
           handler: data => {
             this.carProvider.addNewCar(data.license_plate, data.name).subscribe(response => {
-              //La response dovrà essere l'auto creata.
               this.AllCarsList.push(response);
               this.selectedCar = response;
             }
@@ -335,7 +260,8 @@ export class HomeDriverPage {
   }
 
   openMyStops(): void {
-    this.navCtrl.push("ExtensionStopsPage");
+    const modal = this.modalCtrl.create("ExtensionStopsPage");
+    modal.present();
   }
 
   mapReady(map): void {
@@ -367,59 +293,23 @@ export class HomeDriverPage {
 
     var self = this;
     google.maps.event.addListener(self.map, "dragend", function (event) {
-      if (self.isInSearchDirectionMode == false) {
 
-        self.lat = self.map.getCenter().lat();
-        self.lng = self.map.getCenter().lng();
+      let parkBtn = <HTMLInputElement>document.getElementsByClassName('parkBtn')[0];
+      parkBtn.disabled = true;
 
-        // self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-        //   self.DrawSlots(response);
-        // });
-        self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.selectedCar.id).subscribe((response) => {
-          self.DrawSlots(response);
-        });
-      }
-    });
-    google.maps.event.addListener(this.map, "zoom_changed", function (event) {
-      self.zoom = self.map.getZoom();
-      if (self.isInSearchDirectionMode == false)
-        self.deleteMarkersZoom();
-    });
+      self.lat = self.map.getCenter().lat();
+      self.lng = self.map.getCenter().lng();
 
-    self.DirectionModeBackElementRef.nativeElement.addEventListener("click", function () {
-      self.isInSearchDirectionMode = false;
-      self.directionsRenderer.setMap(null);
-      self.directionsRenderer = null;
-      self.DirectionModeBackElementRef.nativeElement.disabled = true;
-      self.TurnByTurnElementRef.nativeElement.disabled = true;
-      self.deleteMarkers();
-      self.ngZone.run(() => {
-
-        self.zoom = 15;
-        self.lat = self.DirectionModeStartLatitude;
-        self.lng = self.DirectionModeStartLongitude;
-
-        // self.googleMapsProvider.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-        //   self.DrawSlots(response);
-        // });
-        self.googleMapsProvider.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.selectedCar.id).subscribe((response) => {
-          self.DrawSlots(response);
-        });
-
+      self.googleMapsProvider.getNearSlots(self.map.getCenter().lat(), self.map.getCenter().lng(), self.selectedCar.id).subscribe((response) => {
+        self.DrawSlots(response);
       });
 
     });
+    google.maps.event.addListener(this.map, "zoom_changed", function (event) {
+      self.zoom = self.map.getZoom();
 
-
-    // self.SelectTimeElementRef.nativeElement.addEventListener('change', function () {
-    //   var obj = self.markerMap.get(self.currentSelectedMarker);
-    //   var min = self.SelectTimeElementRef.nativeElement.value;
-    //   var pay = (obj.price / 60) * min;
-    //   //self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
-    //   self.newPrice = "Prezzo: " + pay + "\u20AC";
-    // });
-
-
+      self.deleteMarkersZoom();
+    });
 
 
   }
@@ -435,9 +325,6 @@ export class HomeDriverPage {
           this.lat = this.currentLatitude;
           this.lng = this.currentLongitude;
 
-          // this.googleMapsProvider.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-          //   this.DrawSlots(response);
-          // });
           this.googleMapsProvider.getNearSlots(this.currentLatitude, this.currentLongitude, this.selectedCar.id).subscribe((response) => {
             this.DrawSlots(response);
           });
@@ -453,19 +340,10 @@ export class HomeDriverPage {
 
   payAndGo(data) {
     if (this.selectedCar != null) {
-      //self.SelectTimeElementRef.nativeElement.disabled = true;
-      //self.PayAndGoElementRef.nativeElement.disabled = true;
 
       var obj = this.markerMap.get(this.currentSelectedMarker);
 
-
-      //var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
       var price = (obj.price / 60) * data;
-
-      // console.log('timeToAdd: ' + timeToAddFromNow);
-      // console.log('totalPrice: ' + price);
-      // console.log('id_slot: ' + obj.id);
-      // console.log('id_car: ' + selectedcar);
 
       this.paymentProvider.addPayment(price, obj.id, this.selectedCar.id, data).subscribe((response) => {
 
@@ -478,15 +356,19 @@ export class HomeDriverPage {
           this.selectedCar = this.carsList[0];
 
         console.log("pagamento effettuato");
+        this.infoWindow.close();
+        let parkBtn = <HTMLInputElement>document.getElementsByClassName('parkBtn')[0];
+        parkBtn.disabled = true;
       });
-    } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
+    } else {
+      alert("Devi inserire un auto prima di iniziare la sosta!");
+    }
 
   }
 
   DrawSlots(objlist): void {
     var self = this;
 
-    // rimuovo i markers precedenti
     self.deleteMarkers();
 
     var title = [];
@@ -509,15 +391,11 @@ export class HomeDriverPage {
         + "<br> Disponibli: " + self.freeCarPlaces
         + "<br><a id='indications'>Indicazioni</a>";
 
-      // if (self.freeCarPlaces > 0)
-      //   info += "<br><a id='sosta'>Inizia sosta</a>";
-
       if (obj.type == "privato")
         info = info + "<br><a>Prenota</a>";
 
       title[i] = info;
 
-      // make markers
       var marker;
       if (self.freeCarPlaces == 0)
         marker = self.makeMarker(latLng, self.icons.parkingRed.icon);
@@ -532,7 +410,6 @@ export class HomeDriverPage {
 
   };
 
-  // Deletes all markers in the array by removing references to them.
   deleteMarkers(): void {
     var self = this;
     self.clearMarkers();
@@ -563,9 +440,6 @@ export class HomeDriverPage {
             parkBtn.disabled = false;
           }
 
-          //self.parkBtnElementRef.nativeElement.disabled = true;
-          //document.getElementById("parkBtn").disabled = true;
-
           google.maps.event.clearListeners(self.infoWindow, 'domready');
           self.infoWindow.setContent(content);
           self.InitInfoWindowEvents(marker);
@@ -578,29 +452,12 @@ export class HomeDriverPage {
   InitInfoWindowEvents(marker): void {
     var self = this;
     google.maps.event.addListener(self.infoWindow, 'domready', function () {
-
       document.getElementById("indications").addEventListener("click", function () {
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          console.log("Geolocation is not supported by this browser.");
-        }
+        window.open("https://www.google.com/maps/search/?api=1&query=" + marker.getPosition().lat() + "," + marker.getPosition().lng());
 
-        function showPosition(position) {
-          self.currentLatitude = position.coords.latitude;
-          self.currentLongitude = position.coords.longitude;
-          self.StartDirectionsRequest(marker);
-        }
-      });
+      })
 
-      var obj = self.markerMap.get(self.currentSelectedMarker);
-      if (obj.number_carplace_free > 0) {
-        // call selectChangeMinute() before
-        document.getElementById("sosta").addEventListener("click", () => {
-          //self.StartStop(marker);
-        });
-      }
 
     });
 
@@ -610,27 +467,6 @@ export class HomeDriverPage {
       parkBtn.disabled = true;
     });
   };
-
-  // StartStop = (marker): void => {
-
-  //   var self = this;
-  //   var obj = self.markerMap.get(self.currentSelectedMarker);
-
-  //   //self.SelectTimeElementRef.nativeElement.value = 15;
-
-  //   self.slotAddress = "Slot: " + obj.address + "";
-
-  //   //var min = self.SelectTimeElementRef.nativeElement.value;
-  //   var pay = (obj.price / 60) * min;
-  //   self.newPrice = "Prezzo: " + pay + "\u20AC";
-
-  //   self.SelectTimeElementRef.nativeElement.disabled = false;
-  //   self.PayAndGoElementRef.nativeElement.disabled = false;
-
-  //   //a quanto pare siamo fuori da ngZone e quindi dobbiamo dirgli manualmente di leggere i cambiamenti
-  //   this.ref.detectChanges();
-  // }
-
 
   // Removes the markers from the map, but keeps them in the array.
   clearMarkers(): void {
@@ -654,55 +490,12 @@ export class HomeDriverPage {
   // Hidden markers when zooming to far.
   deleteMarkersZoom(): void {
     if (this.map.getZoom() < 15) {
-      //console.log("zoom: " + this.map.getZoom());
       this.clearMarkers();
     } else {
       this.showMarkers();
     }
   };
 
-  StartDirectionsRequest(marker): void {
-
-    var from = new google.maps.LatLng(this.currentLatitude, this.currentLongitude);
-    var to = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
-
-    var directionsRequest = {
-      origin: from,
-      destination: to,
-      travelMode: google.maps['DirectionsTravelMode'].DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC
-    };
-
-    var self = this;
-    this.directionsService.route(
-      directionsRequest,
-      function (response, status) {
-
-        if (status == google.maps.DirectionsStatus.OK) {
-          self.directionsRenderer = new google.maps.DirectionsRenderer({
-            map: self.map,
-            directions: response,
-            suppressMarkers: true
-
-          });
-          self.deleteMarkers();
-        }
-        else {
-          alert("Unable to retrive route");
-        }
-        var leg = response.routes[0].legs[0];
-        self.makeMarker(leg.start_location, self.icons.start);
-        self.makeMarker(leg.end_location, self.icons.parking);
-      }
-    );
-
-    self.DirectionModeStartLatitude = marker.getPosition().lat();
-    self.DirectionModeStartLongitude = marker.getPosition().lng();
-
-    self.isInSearchDirectionMode = true;
-    self.TurnByTurnElementRef.nativeElement.disabled = false;
-    self.DirectionModeBackElementRef.nativeElement.disabled = false;
-  };
 
   changeCar(): void {
     console.log("wewe");

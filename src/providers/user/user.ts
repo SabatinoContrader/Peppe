@@ -23,8 +23,7 @@ export class UserProvider {
   }
 
   signup(user: User): Observable <boolean> {
-    return this.http.post<boolean>('http://localhost:58708/api/signupUser', user)
-    .pipe();
+    return this.http.post<boolean>('http://localhost:58708/api/signupUser', user).pipe();
   }
 
   changeFeedback(message: string){
