@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCarpet", "PCarpet\PCarpet.csproj", "{BFBF3477-88E3-4115-9050-38A10E476116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MioBroker", "..\..\..\Client Giallo MQTT\MioBroker\MioBroker.csproj", "{4CF71F4C-1E6D-4FEF-A052-5D9DE2C37EF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MioBroker", "..\..\Client Giallo MQTT\MioBroker\MioBroker.csproj", "{4CF71F4C-1E6D-4FEF-A052-5D9DE2C37EF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

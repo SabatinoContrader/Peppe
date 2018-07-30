@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ae2b8e5948a143d6836ff2d3d3668033" Name="Diagram1">
-        <EntityTypeShape EntityType="pcarpetModel.book" Width="1.5" PointX="5.25" PointY="6.5" />
-        <EntityTypeShape EntityType="pcarpetModel.car" Width="1.5" PointX="3" PointY="14" />
-        <EntityTypeShape EntityType="pcarpetModel.master" Width="1.5" PointX="5.25" PointY="10.5" />
-        <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="7.5" PointY="13.125" />
-        <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="pcarpetModel.slave" Width="1.5" PointX="7.5" PointY="10.5" />
-        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="3" PointY="9.625" />
-        <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="5.25" PointY="13.75" />
-        <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="0.75" PointY="6.25" />
+      <Diagram DiagramId="ae2b8e5948a143d6836ff2d3d3668033" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="pcarpetModel.book" Width="1.5" PointX="6" PointY="9.75" />
+        <EntityTypeShape EntityType="pcarpetModel.car" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="pcarpetModel.master" Width="1.5" PointX="5.25" PointY="2" />
+        <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="8.5" PointY="7.875" />
+        <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="pcarpetModel.slave" Width="1.5" PointX="7.5" PointY="4.375" />
+        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="pcarpetModel.transaction" Width="1.5" PointX="3" PointY="17.625" />
+        <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="pcarpetModel.wallet" Width="1.5" PointX="3" PointY="15" />
         <AssociationConnector Association="pcarpetModel.FK_book_payment" />
         <AssociationConnector Association="pcarpetModel.FK_book_slot" />
         <AssociationConnector Association="pcarpetModel.FK_book_user" />
@@ -23,9 +25,10 @@
         <AssociationConnector Association="pcarpetModel.FK_slave_master" />
         <AssociationConnector Association="pcarpetModel.FK_payment_stop" />
         <AssociationConnector Association="pcarpetModel.FK_payment_user" />
-        <AssociationConnector Association="pcarpetModel.FK_report_user" />
-        <AssociationConnector Association="pcarpetModel.FK_slot_user" />
+        <AssociationConnector Association="pcarpetModel.FK_report_user1" />
         <AssociationConnector Association="pcarpetModel.FK_stop_slot" />
+        <AssociationConnector Association="pcarpetModel.FK_transaction_user" />
+        <AssociationConnector Association="pcarpetModel.FK_wallet_user" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

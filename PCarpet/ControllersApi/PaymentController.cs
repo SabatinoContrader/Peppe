@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -20,6 +21,7 @@ namespace PCarpet.ControllersApi
         private CarService carService;
         private SlotService slotService;
 
+
         public PaymentController()
         {
             this.userService = new UserService();
@@ -31,16 +33,16 @@ namespace PCarpet.ControllersApi
 
         [HttpGet]
         [Route("paymentList")]
-        public List<PaymentDTO> paymentList(string username)
+        public AllPaymentDTO paymentList(string username)
         {
-            List<PaymentDTO> payments = paymentService.getAllPayment(username);
+            AllPaymentDTO payments = paymentService.getAllPayment(username);
             return payments;
         }
 
 
         [HttpPost]
         [Route("addPayment")]
-        public int addPayment(PaymentDTO paymentDTO)  
+        public int addPayment(PaymentDTO paymentDTO)
         {
             DateTime start = DateTime.Now;
             DateTime finish = start.AddMinutes(paymentDTO.timeToAdd);
@@ -52,6 +54,40 @@ namespace PCarpet.ControllersApi
             paymentService.insertPayment(paymentDTO);
             return paymentDTO.id_car;
         }
+
+        [HttpPost]
+        [Route("executePayment")]
+        public int executePayment()
+        {
+            var token = HttpContext.Current.Request.Params["token"];
+            int amount = Convert.ToInt32(HttpContext.Current.Request.Params["amount"]);
+
+            System.Console.WriteLine("token " + token);
+            System.Console.WriteLine("amount " + amount);
+
+            return paymentService.setAmount(token, amount);
+        }
+
+        [HttpGet]
+        [Route("getWallet")]
+        public WalletDTO getWallet(string username)
+        {
+            return paymentService.getWallet(username);
+        }
+
+        [HttpPut]
+        [Route("modifyWallet")]
+        public double modifyWallet()
+        {
+            var username = HttpContext.Current.Request.Params["username"];
+            int money = Convert.ToInt32(HttpContext.Current.Request.Params["money"]);
+
+            System.Console.WriteLine("username " + username);
+            System.Console.WriteLine("money " + money);
+
+            return paymentService.modifyWallet(username, money);
+        }
+
     }
 }
 

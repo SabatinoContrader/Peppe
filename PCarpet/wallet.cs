@@ -12,22 +12,12 @@ namespace PCarpet
     using System;
     using System.Collections.Generic;
     
-    public partial class payment
+    public partial class wallet
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public payment()
-        {
-            this.book = new HashSet<book>();
-        }
-    
         public int id { get; set; }
-        public double quantity { get; set; }
+        public double amount { get; set; }
         public string username { get; set; }
-        public Nullable<int> id_stop { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<book> book { get; set; }
-        public virtual stop stop { get; set; }
         public virtual user user { get; set; }
     }
 }

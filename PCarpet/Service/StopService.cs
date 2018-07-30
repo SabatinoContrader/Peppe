@@ -1,4 +1,5 @@
 ﻿using PCarpet.DTO;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -193,6 +194,29 @@ namespace PCarpet.Service
                 }
             }
             return carsWithoutStop;
+        }
+
+        public void executePayment(string paymentToken, int price)
+        {
+            System.Diagnostics.Debug.WriteLine("al service " + paymentToken);
+            System.Diagnostics.Debug.WriteLine("al service " + price);
+            // Set your secret key: remember to change this to your live secret key in production
+            // See your keys here: https://dashboard.stripe.com/account/apikeys
+            StripeConfiguration.SetApiKey("sk_test_W7pNkQTgFoOCcHjwpuTknMN8");
+
+            // Token is created using Checkout or Elements!
+            // Get the payment token submitted by the form:
+            var token = paymentToken; // Using ASP.NET MVC
+
+            var options = new StripeChargeCreateOptions
+            {
+                Amount = price,
+                Currency = "usd",
+                Description = "Example charge",
+                SourceTokenOrExistingSourceId = token,
+            };
+            var service = new StripeChargeService();
+            StripeCharge charge = service.Create(options);
         }
     }
 }

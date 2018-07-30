@@ -53,11 +53,27 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.5.1.0\lib\net45\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.1.0\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.1.0\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Stripe.5.1.0\lib\net45\Stripe.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=17.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.17.4.0\lib\net45\Stripe.net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.NonGeneric, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.NonGeneric.4.3.0\lib\net46\System.Collections.NonGeneric.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.NameResolution, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.NameResolution.4.3.0\lib\net46\System.Net.NameResolution.dll</HintPath>
@@ -248,7 +264,10 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UsefulNumbersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\AllPaymentDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
+    <Compile Include="DTO\WalletDTO.cs" />
+    <Compile Include="DTO\TransactionDTO.cs" />
     <Compile Include="DTO\ManagementCarPlaceDTO.cs" />
     <Compile Include="DTO\ManagementExtensionStopDTO.cs" />
     <Compile Include="DTO\MasterDTO.cs" />
@@ -265,6 +284,8 @@
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\car.cs" />
+    <Compile Include="Models\wallet.cs" />
+    <Compile Include="Models\transaction.cs" />
     <Compile Include="Models\master.cs" />
     <Compile Include="Models\payment.cs" />
     <Compile Include="Models\report.cs" />
@@ -311,7 +332,13 @@
     <Compile Include="stop.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="transaction.cs">
+      <DependentUpon>pcarpet.tt</DependentUpon>
+    </Compile>
     <Compile Include="user.cs">
+      <DependentUpon>pcarpet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wallet.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
   </ItemGroup>

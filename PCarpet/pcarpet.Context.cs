@@ -33,6 +33,8 @@ namespace PCarpet
         public virtual DbSet<slave> slave { get; set; }
         public virtual DbSet<slot> slot { get; set; }
         public virtual DbSet<stop> stop { get; set; }
+        public virtual DbSet<transaction> transaction { get; set; }
         public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<wallet> wallet { get; set; }
     }
 }
