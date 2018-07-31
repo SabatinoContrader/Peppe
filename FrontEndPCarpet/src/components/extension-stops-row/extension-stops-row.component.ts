@@ -32,7 +32,7 @@ export class ExtensionStopsRowComponent implements OnInit {
   prolungaSosta(f: NgForm): void {
     if (this.wallet.amount >= this.price) {
       this.stopService.prolungaSosta(f.value.select, this.stop).subscribe((response) => { this.stop.finish = response; });
-      this.paymentService.modifyWallet(-this.price).subscribe((response) => { this.onWalletChanged.emit(response) });
+      this.paymentService.modifyWallet(-this.price, this.stop.id_stop).subscribe((response) => { this.onWalletChanged.emit(response) });
     } else {
       console.log("credito insufficiente, ricaricare il wallet!");
       alert("credito insufficiente, ricaricare il wallet!");

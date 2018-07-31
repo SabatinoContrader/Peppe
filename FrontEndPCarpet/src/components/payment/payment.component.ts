@@ -43,8 +43,8 @@ export class PaymentComponent implements OnInit {
               self.paymentService.executePayment(self.paymentToken, addedAmount).subscribe( response => {
               alert("Tansazione eseguita con successo!\n\n Il tuo portafoglio è stato incrementato di " +response +" €"); 
               this.addedAmount = response;} );
-              // updates the wallet
-              self.paymentService.modifyWallet(addedAmount).subscribe((response) => { self.wallet.amount = response });
+              // updates the wallet and update tramsactionList or paymentList 
+              self.paymentService.modifyWallet(addedAmount, 1234).subscribe((response) => { self.wallet.amount = response });
             }
           });
           handler.open({

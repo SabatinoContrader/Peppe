@@ -1,13 +1,13 @@
 export class Transaction {
 
     id: number;
-    value: number;
+    quantity: number;
     date: Date;
     card_number: number;   
  
-    constructor(id: number, value: number, date: Date, card_number: number) {
+    constructor(id: number, quantity: number, date: Date, card_number: number) {
         this.id = id;
-        this.value = value;
+        this.quantity = quantity;
         this.date = date;
         this.card_number = card_number;
     }

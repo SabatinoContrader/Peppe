@@ -58,15 +58,19 @@ export class PaymentService {
       );
   }
 
-  modifyWallet(money: number): Observable<any> {
+  modifyWallet(money: number, id: number): Observable<any> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
     var username: string = user.username;
+
+    console.log("money" +money);
 
     const fd = new FormData();
     fd.append('username', username);
     fd.append('money', "" + money);
+    fd.append('id', "" + id);
+       
 
-    return this.http.put<any>('http://localhost:58708/api/modifyWallet', fd)
+    return this.http.post<any>('http://localhost:58708/api/modifyWallet', fd)
       .pipe(tap((response) => console.log("wallet aumentato"), catchError(this.handleError("addWallet error", {})))
       );
   }

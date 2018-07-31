@@ -261,6 +261,15 @@ export class FindCarplaceComponent implements OnInit {
         // console.log('totalPrice: ' + price);
         // console.log('id_slot: ' + obj.id);
         // console.log('id_car: ' + selectedcar);
+        
+        self.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
+
+          var index = this.carsList.findIndex((car) => { return car.id == response });
+          if (index > -1) {
+            this.carsList.splice(index, 1);
+          }
+          console.log("pagamento effettuato");
+        });
 
       } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
 

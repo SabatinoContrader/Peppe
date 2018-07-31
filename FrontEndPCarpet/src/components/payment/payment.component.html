@@ -21,7 +21,7 @@
         </table>
       </div>
     </div>
-    <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-6">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-6">
       <div *ngIf="transactionList" id="due" class="table-responsive">
         <h4>Cronologia transazioni</h4>
         <br>
@@ -35,7 +35,7 @@
 
           <tr *ngFor="let transaction of transactionList">
             <td>{{transaction.id}}</td>
-            <td>{{transaction.value}}</td>
+            <td>{{transaction.quantity}}</td>
             <td>{{transaction.date}}</td>
             <td>{{transaction.card_number}}</td>
           </tr>
@@ -54,7 +54,7 @@
       </p>
 
     </div>
-    <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-6">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-6">
       <br>
       <h4>Stato del wallet</h4>
       <br>
