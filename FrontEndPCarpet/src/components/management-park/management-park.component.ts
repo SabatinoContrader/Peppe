@@ -21,25 +21,25 @@ export class ManagementParkComponent implements OnInit {
   public lng: number;
   public zoom: number;
 
-  private iconBase: string = 'https://maps.google.com/mapfiles/kml/shapes/';
+  public iconBase: string = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-  private icons;
+  public icons;
 
-  private markers = [];
-  private currentSelectedMarker: Marker;
-  private infoWindow: InfoWindow;
-  private markerMap = new Map();
+  public markers = [];
+  public currentSelectedMarker: Marker;
+  public infoWindow: InfoWindow;
+  public markerMap = new Map();
 
-  private freeCarPlaces: number = 0;
-  private map: google.maps.Map;
+  public freeCarPlaces: number = 0;
+  public map: google.maps.Map;
 
-  private exceedingInStot: string;
+  public exceedingInStot: string;
 
-  private currentLatitude: number;
-  private currentLongitude: number;
+  public currentLatitude: number;
+  public currentLongitude: number;
 
-  private isSlotSelected: boolean = false;
-  private CurrentManagementCarplace: ManagementCarplace;
+  public isSlotSelected: boolean = false;
+  public CurrentManagementCarplace: ManagementCarplace;
 
   managementCarplacesList: Array<ManagementCarplace>;
 

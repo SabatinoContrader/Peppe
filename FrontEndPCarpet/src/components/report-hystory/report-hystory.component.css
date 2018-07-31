@@ -6,7 +6,7 @@ a {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    background-color:white;
+    background-color:black;
 }
 
 a:visited
@@ -19,16 +19,11 @@ a:visited
 h1{
     text-align: center;
     padding-top: 10%;
-    color: white;
+    color: black;
     font-family: 'Open Sans', sans-serif;
 }
 
-body{
-    background-image: url("/assets/img/sfondo.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
+
 
 
 

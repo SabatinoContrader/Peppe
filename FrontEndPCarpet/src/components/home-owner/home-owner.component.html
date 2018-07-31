@@ -1,12 +1,24 @@
-<h1>OWNER</h1>
-<br>
-<a routerLink="/managementPark">Gestione parcheggi</a>
-<br>
-<a href="/#/managementSlot">Inserisci parcheggi</a>
-<br>
-<a href="/#/reportOwner">Invia segnalazione</a>
-<br>
-<a href="/#/reportNear">Segnalazioni degli utenti</a>
-<br>
-<a (click) = "logout()">Logout</a>
-<br>
+
+<body>
+        <div class="nav">
+            <nav class="navbar navbar-light bg-dark nav justify-content-end" id="nav">
+    
+                <li class="nav-item">
+                    <a class="nav-link active" href="/#/managementPark">Gestione parcheggi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/managementSlot">Inserisci parcheggi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/reportOwner">Invia segnalazione</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#/reportNear">Segnalazioni degli utenti</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" (click) = "logout()">ESCI</a>
+                    </li>
+                
+            </nav>
+        </div>
+    </body>

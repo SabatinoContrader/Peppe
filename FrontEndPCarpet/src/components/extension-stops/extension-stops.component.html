@@ -13,8 +13,7 @@
                         <th>INIZIO</th>
                         <th>FINE</th>
                         <th></th>
-                        <th>DA PAGARE</th>
-                        <th></th>
+                    
                     </tr>
                 </thead>
 
@@ -30,12 +29,9 @@
         <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
         <div class="col-1 col-sm-2 col-md-4 col-lg-4 col-xl-6">
 
-            <br>
-            <h4>Stato del wallet</h4>
-            <br>
-            <div *ngIf="wallet" class="table-responsive">
-                <p>Quantità: {{wallet.amount}}</p>
-            </div>
+            
+            <h4>Stato del wallet: {{wallet.amount}}</h4>
+            
 
         </div>
         <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
@@ -44,9 +40,3 @@
 </body>
 
 
-<!-- 
-    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
-    </div>
-        <a href="/#/homeDriver">Indietro</a><br>
-        
-     -->

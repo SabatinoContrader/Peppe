@@ -1,22 +1,16 @@
 h1, h4{
     text-align: center;
     padding-top: 10%;
-    color: white;
+    color: black;
     font-family: 'Open Sans', sans-serif;
 }
 
-body{
-    background-image: url("/assets/img/sfondo.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
 
 .table td, tr {
     text-align: center; }
 
 p {
-    color: white;
+    color: black;
 }
 
 button {

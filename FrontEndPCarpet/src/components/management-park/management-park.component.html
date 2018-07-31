@@ -1,18 +1,22 @@
-<h1>Gestione Parcheggi</h1>
+<div class="row" id="blank">
+  <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5">
 
-<button id="refresh" (click)="updateSlots()">Aggiorna</button>
+    <button id="refresh" (click)="updateSlots()">Aggiorna</button>
+  </div>
+  <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5"></div>
+  <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div>
+</div>
 
-<br>
-<br>
+<div class="row" id="blank">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5">
+
 <agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
   id="map"></agm-map>
-<br>
+</div>
 
-<a routerLink="/homeOwner">
-  <button>Indietro</button>
-</a>
+<div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5">
 
-<div>
+
   <h1>Auto in sosta</h1>
   <br>
   <table>
@@ -37,10 +41,10 @@
       </tr>
     </tbody>
   </table>
-  <h3>
-  <p id="exeedingCars">
-    {{exceedingInStot}}
-  </p>
-</h3>
+
+
+</div>
+
+<div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div>
 
 </div>
