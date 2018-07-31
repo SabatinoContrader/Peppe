@@ -53,9 +53,6 @@ export class HomeDriverPage {
   @ViewChild("seleziona")
   public TurnByTurnElementRef: ElementRef;
 
-  @ViewChild("myposition")
-  public MyPositionElementRef: ElementRef;
-
   public newPrice: string = "Prezzo: ";
 
   public slotAddress: string = "Slot: ";
@@ -79,7 +76,6 @@ export class HomeDriverPage {
 
 
   ionViewWillEnter() {
-    this.menuCtrl.enable(true);
     console.log('ionViewDidLoad HomeDriverPage');
 
     this.carProvider.myCarsList().subscribe(response => {
@@ -133,6 +129,7 @@ export class HomeDriverPage {
     console.log('openCar');
     let alert = this.alertCtrl.create({
       enableBackdropDismiss: false,
+      cssClass: 'alert',
     });
     alert.setTitle("<b>Le mie auto</b>");
 
@@ -498,7 +495,6 @@ export class HomeDriverPage {
 
 
   changeCar(): void {
-    console.log("wewe");
     this.googleMapsProvider.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
       this.DrawSlots(response);
     });

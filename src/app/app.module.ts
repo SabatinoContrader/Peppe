@@ -1,4 +1,6 @@
-import { ReportNearPage } from './../pages/report-near/report-near';
+import { SlotDetailsPage } from './../pages/slot-details/slot-details';
+import { ReportOwnerPage } from '../pages/report-owner/report-owner';
+import { ReportNearPage } from '../pages/report-near/report-near';
 import { LoginPage } from './../pages/login/login';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,12 +35,13 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     PaymentPage,
     UsefullNumbersPage,
     SettingsPage,
-    ReportNearPage
+    ReportNearPage,
+    ReportOwnerPage
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp,{
+    IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: false
     })
@@ -53,7 +56,8 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     PaymentPage,
     UsefullNumbersPage,
     SettingsPage,
-    ReportNearPage
+    ReportNearPage,
+    ReportOwnerPage
   ],
   providers: [
     StatusBar,

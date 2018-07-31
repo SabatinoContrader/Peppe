@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-title text-center>extension-stops</ion-title>
+    <ion-navbar>        
+                <ion-title text-center>Le mie soste</ion-title>            
     </ion-navbar>
 
 </ion-header>
@@ -22,14 +22,14 @@
         </ion-card-header>
 
         <ion-card-content>
-                <p>{{stop.finish | date: 'dd-MM-yyyy'}}</p>
-                <p> {{stop.finish | date: 'HH:mm:ss'}}</p>
+                <p>Scade il {{stop.finish | date: 'dd-MM-yyyy'}}</p>
+                <p>alle {{stop.finish | date: 'HH:mm:ss'}}</p>
         </ion-card-content>
 
 
         <ion-row>
             <ion-col text-right>
-                <button ion-button small outline color="dark" (click)="prolungaSosta(i)" >
+                <button ion-button small outline (click)="prolungaSosta(i)" >
                     PROLUNGA
                 </button>
             </ion-col>
@@ -37,3 +37,21 @@
     </ion-card>
 
 </ion-content>
+
+<ion-footer class="foot">
+    
+        <ion-grid class="grid" no-padding>
+                <ion-row class="row">
+                  <ion-col>
+                        <ion-buttons class="btn">
+                                <button ion-button class="home" (click) = "backToHome()">
+                                    <div>
+                                        <label>Torna alla home</label>
+                                    </div>
+                                </button>
+                            </ion-buttons>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+        
+        </ion-footer> 

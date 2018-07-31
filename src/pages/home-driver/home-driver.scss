@@ -46,7 +46,7 @@ ion-grid #park{
 }
 
 .col{
-    max-width: 33%;
+    max-width: 33.33%;
     button{max-width: 100%;}
     div{max-width: 100%;}
     label {font-size: 3vw;}
@@ -94,5 +94,39 @@ ion-grid #park{
   .toolbar{
       position: relative;
   }
+
   
+  
+}
+
+.alert{
+    // text color for basic alerts
+    color: #414a52; 
+
+    button.alert-button{
+        color: #414a52;
+      }
+   
+    input{
+        color: #414a52;
+    } 
+
+    .alert-message {
+        color: #414a52; // text color for confirm alerts
+    }
+
+
+  }
+
+.alert-md [aria-checked=true] .alert-radio-icon {
+    border-color: #414a52;
+}
+
+.alert-md .alert-radio-inner {
+    border-color: #414a52;
+    background-color: #414a52;
+}
+
+.alert-md [aria-checked=true] .alert-radio-label {
+    color: #414a52;
 }

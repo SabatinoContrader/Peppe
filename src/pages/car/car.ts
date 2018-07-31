@@ -58,7 +58,6 @@ export class CarPage {
       text:"AGGIUNGI",
       handler: data => {
         this.carProvider.addNewCar(data.license_plate,data.name).subscribe(response => {
-          //La response dovrà essere l'auto creata.
           this.carsList.push(response);
         }
         );

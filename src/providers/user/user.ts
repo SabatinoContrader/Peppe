@@ -1,10 +1,11 @@
+import { Events } from 'ionic-angular';
 import { User } from './../../models/User';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { tap } from '../../../node_modules/rxjs/operators';
-import { Events } from '../../../node_modules/ionic-angular';
+
 
 /*
   Generated class for the UserProvider provider.

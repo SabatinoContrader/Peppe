@@ -1,6 +1,6 @@
 import { Stop } from './../../models/Stop';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { StopProvider } from '../../providers/stop/stop';
 
 /**
@@ -20,7 +20,7 @@ import { StopProvider } from '../../providers/stop/stop';
 export class ExtensionStopsPage {
   myStopsList: Stop[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private stopProvider: StopProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private stopProvider: StopProvider, private alertCtrl: AlertController, private viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -103,5 +103,9 @@ export class ExtensionStopsPage {
     alert.present();
 
   };
+
+  backToHome(){
+    this.viewCtrl.dismiss();
+  }
 
 }

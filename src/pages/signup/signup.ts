@@ -2,7 +2,7 @@ import { LoginPage } from './../login/login';
 import { UserProvider } from './../../providers/user/user';
 import { User } from './../../models/User';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { NgForm } from '../../../node_modules/@angular/forms';
 
 /**
@@ -20,7 +20,7 @@ import { NgForm } from '../../../node_modules/@angular/forms';
 export class SignupPage {
   feedback: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private viewCtrl: ViewController) {
   }
 
   ionViewWillEnter() {
@@ -37,6 +37,10 @@ export class SignupPage {
     this.userProvider.changeFeedback(this.feedback);
     this.navCtrl.push(LoginPage);
     });
+  }
+
+  backToLogin(): void{
+    this.viewCtrl.dismiss();
   }
 
 }

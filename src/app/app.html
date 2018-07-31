@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" id="driverMenu">
     <ion-header>
       
     </ion-header>
@@ -12,7 +12,7 @@
             <hr>
         </ion-card>
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <button menuClose ion-item *ngFor="let p of driverPages" (click)="openPage(p)">
           {{p.title}}
         </button>
       </ion-list>
@@ -22,3 +22,25 @@
   
   <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
   <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+  <ion-menu [content]="content" id="ownerMenu">
+      <ion-header>
+        
+      </ion-header>
+    
+      <ion-content>
+          <ion-card text-center class="hide-card">
+              <img src="assets/imgs/user.png" class="custom-avatar"/>
+              <h2>{{loggeruser?.username}}</h2>
+              <p>{{loggeruser?.email}}</p>
+              <p>{{loggeruser?.phone}}</p>
+              <hr>
+          </ion-card>
+        <ion-list>
+          <button menuClose ion-item *ngFor="let p of ownerPages" (click)="openPage(p)">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </ion-content>
+    
+    </ion-menu>

@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+        <ion-buttons left>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+
+        <img src="assets/imgs/logo.png" id="logo">
+   
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+        <div class="wrapper">
+
+        
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [zoomControl]="false" [streetViewControl]="false" (mapReady)="mapReady($event)"
+                id="map"></agm-map>
+                
+                <div class="div-position">
+                    <button id="myposition" (click)="getPosition()" clear>
+                        <img src="assets/icon/myPosition.png">
+                    </button>
+                    <button id="update" (click)="updateSlots()" clear>
+                            <img src="assets/icon/update.png">
+                        </button>
+                  </div>
+            
+        
+    </div>
+
+ 
+</ion-content>
+
+

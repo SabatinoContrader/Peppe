@@ -1,0 +1,132 @@
+page-home-owner{
+
+    .scroll-content{
+        padding: 0 !important;
+    }
+    
+    #logo{
+        height: 90%;
+        width: 40%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    
+    }
+    
+    .grid{
+        padding: 0 !important;
+        background-color: #686969;
+        height: 100%;
+        width: 100%
+    }
+    
+    .button-new{
+        background-color: #686969;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        height: -webkit-fill-available;
+    }
+    
+    .foot{
+        height: 10%;
+    }
+    
+    ion-grid img{
+        max-height: 30% !important;
+        max-width: 30%!important;
+    }
+    
+    ion-grid #park{
+        max-height: 40% !important;
+        max-width: 40%!important;
+    }
+    
+    .col{
+        max-width: 33.33%;
+        button{max-width: 100%;}
+        div{max-width: 100%;}
+        label {font-size: 3vw;}
+    }
+    
+    
+    
+    .div{
+        display: block;
+    }
+    
+    .div-position {
+        position: absolute;
+        bottom: 5%;
+        right: 9%;
+        background: transparent;
+        width: 15%;
+    
+      }
+    
+      .wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+    
+      #searchbar{
+        position: absolute;
+        width: 100%;
+      }
+      
+      #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #eee;
+      }
+    
+      #myposition, #update{
+          background-color: rgba(0, 0, 0, 0.384);
+          border-radius: 50%;
+          padding: 0;
+      }
+    
+      .toolbar{
+          position: relative;
+      }
+    
+      
+      
+    }
+    
+    .alert{
+        // text color for basic alerts
+        color: #414a52; 
+    
+        button.alert-button{
+            color: #414a52;
+          }
+       
+        input{
+            color: #414a52;
+        } 
+    
+        .alert-message {
+            color: #414a52; // text color for confirm alerts
+        }
+    
+    
+      }
+    
+    .alert-md [aria-checked=true] .alert-radio-icon {
+        border-color: #414a52;
+    }
+    
+    .alert-md .alert-radio-inner {
+        border-color: #414a52;
+        background-color: #414a52;
+    }
+    
+    .alert-md [aria-checked=true] .alert-radio-label {
+        color: #414a52;
+    }
