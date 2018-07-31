@@ -7,32 +7,37 @@ namespace PCarpet.DTO
 {
     public class TransactionDTO
     {
-        private double? value1;
-        private DateTime? date1;
-
         public int id { get; set; }
-        public double value { get; set; }
+        public double quantity { get; set; }
         public DateTime date { get; set; }
         public int card_number { get; set; }
         public string username { get; set; }
 
 
 
-        public TransactionDTO(int id, double value, DateTime date, int card_number, string username)
+        public TransactionDTO(int id, double quantity, DateTime date, int card_number, string username)
         {
             this.id = id;
-            this.value = value;
+            this.quantity = quantity;
             this.date = date;
             this.card_number = card_number;
             this.username = username;
         }
 
-        public TransactionDTO(int id, double value, DateTime date, int card_number)
+        public TransactionDTO(int id, double quantity, DateTime date, int card_number)
         {
             this.id = id;
-            this.value = value;
+            this.quantity = quantity;
             this.date = date;
             this.card_number = card_number;
+        }
+
+        public TransactionDTO(double quantity, DateTime date, int card_number, string username)
+        {
+            this.quantity = quantity;
+            this.date = date;
+            this.card_number = card_number;
+            this.username = username;
         }
     }
 }

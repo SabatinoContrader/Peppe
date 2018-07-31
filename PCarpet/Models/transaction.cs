@@ -11,13 +11,13 @@ namespace PCarpet
         public transaction()
         { }
 
-        public transaction(int id, float quantity, DateTime date, int card_number, string username)
+        public transaction(TransactionDTO transactionDTO) 
         {
-            this.id = id;
-            this.quantity = quantity;
-            this.date = date;
-            this.card_number = card_number;
-            this.username = username;
+            this.quantity = transactionDTO.quantity;
+            this.date = transactionDTO.date;
+            this.card_number = transactionDTO.card_number;
+            this.username = transactionDTO.username;
+            
         }
 
         public static TransactionDTO toTransactionDTO(transaction transaction)

@@ -14,6 +14,15 @@ namespace PCarpet.Service
 
         public UserService userService;
 
+        public void createWallet(string username)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                WalletDTO wallet = new WalletDTO(0, 0, username);
+                context.wallet.Add(new wallet(wallet));
+                context.SaveChanges();
+            }
+        }
        
         public WalletDTO getWallet(string username)
         {
@@ -47,6 +56,16 @@ namespace PCarpet.Service
                 
         }
 
+        public void insertTransaction(TransactionDTO transactionDTO)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                context.transaction.Add(new transaction(transactionDTO));
+                context.SaveChanges();
+            }
+
+        }
+
         public AllPaymentDTO getAllPayment(string username)
         {
             using (pcarpetEntities context = new pcarpetEntities())
@@ -64,7 +83,7 @@ namespace PCarpet.Service
                 {
                     transactionsDTO.Add(transaction.toTransactionDTO(transaction));
                 }
-                
+
                 return new AllPaymentDTO(paymentsDTO, transactionsDTO);
             }
                 
@@ -105,7 +124,7 @@ namespace PCarpet.Service
 
             Debug.WriteLine("Variabile service ritornata " + charge.Amount/100);
             return ((charge.Amount/100));
-        }
+        }       
     }
 }
 

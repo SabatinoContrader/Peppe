@@ -10,10 +10,12 @@ namespace PCarpet.ControllersApi
     public class SignupController : ApiController
     {
         UserService userService;
+        PaymentService paymentService;
 
         public SignupController()
         {
             this.userService = new UserService();
+            this.paymentService = new PaymentService();
         }
 
         [HttpPost]
@@ -21,7 +23,10 @@ namespace PCarpet.ControllersApi
         public bool Registered(UserDTO userDTO)
         {
             if (userService.insertUser(userDTO))
+            {
+                paymentService.createWallet(userDTO.username);
                 return true;
+            }
             else
                 return false;
         }

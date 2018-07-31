@@ -75,15 +75,19 @@ namespace PCarpet.ControllersApi
             return paymentService.getWallet(username);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("modifyWallet")]
         public double modifyWallet()
         {
             var username = HttpContext.Current.Request.Params["username"];
-            int money = Convert.ToInt32(HttpContext.Current.Request.Params["money"]);
-
-            System.Console.WriteLine("username " + username);
-            System.Console.WriteLine("money " + money);
+            double money = Convert.ToDouble(HttpContext.Current.Request.Params["money"]);
+            int id = Convert.ToInt32(HttpContext.Current.Request.Params["id"]);
+           
+           
+            if(money>0)
+                paymentService.insertTransaction(new TransactionDTO(money, DateTime.Now, id, username));
+            else
+                paymentService.insertPayment(new PaymentDTO(money, username, id));
 
             return paymentService.modifyWallet(username, money);
         }
