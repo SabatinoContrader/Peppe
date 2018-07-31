@@ -80,7 +80,7 @@ namespace PCarpet.ControllersApi
         public double modifyWallet()
         {
             var username = HttpContext.Current.Request.Params["username"];
-            double money = Convert.ToDouble(HttpContext.Current.Request.Params["money"]);
+            double money = double.Parse(HttpContext.Current.Request.Params["money"], CultureInfo.InvariantCulture);
             int id = Convert.ToInt32(HttpContext.Current.Request.Params["id"]);
            
            
