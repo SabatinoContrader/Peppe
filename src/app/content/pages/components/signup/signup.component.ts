@@ -32,7 +32,12 @@ export class SignupComponent implements OnInit {
     //this.router.navigateByUrl("/login");
     this.router.navigateByUrl("/");
     });
+
+
   }
 
-  
+  back()
+  {
+    this.router.navigate(["/"]);
+  }
 }
