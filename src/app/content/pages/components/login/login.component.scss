@@ -1,0 +1,66 @@
+button{
+    margin:0 auto;
+    display: block;
+    background-color: #a8d342;
+    width: 30%;
+    height: 50px;
+    border-radius: 15px;
+    color: #414a52;
+    border-color: #a7d34200;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    text-align: center;
+    padding-top: 10%;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a{
+    margin:0 auto;
+    text-align: center;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#signup {
+    margin: auto;
+    width: 200px;   
+}
+
+
+body{
+    background-image: url("/assets/img/sfondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+input{
+    border-color: black;
+    border-radius: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#blank{
+    padding-top: 10%;
+}
+
+label{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#forgot{
+    text-align: right;
+}
+
+#signup{
+    text-align: center;
+}
+
+
+
+
+
