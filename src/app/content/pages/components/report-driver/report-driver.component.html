@@ -1,36 +1,58 @@
-<body>
-  <div class="row" id="blank">
-    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
+<!-- <body> -->
 
-    <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4">
-      <h1>Invia segnalazione</h1>
+<div class="m-portlet m-portlet--mobile">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">
+          Invia segnalazione
+        </h3>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" id="blank">
+    <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div> -->
+
+    <!-- <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-4"> -->
+    <div class="col-12">
+      <!-- <h1>Invia segnalazione</h1> -->
       <form class="reportForm" #f="ngForm">
-        <select name="select" ngModel="select">
-          <option value="1">
-            Abuso spazio dedicato a persone con disabilità
-          </option>
-          <option value="2">Disservizio stradale</option>
-          <option value="3">
-            Problema riscontrato nell'usufruire del servizio
-          </option>
-        </select>
+        <div class="form-group">
+          <select id="select" name="select" ngModel="select">
+            <option value="1">
+              Abuso spazio dedicato a persone con disabilità
+            </option>
+            <option value="2">Disservizio stradale</option>
+            <option value="3">
+              Problema riscontrato nell'usufruire del servizio
+            </option>
+          </select>
+        </div>
         <br>
-        <textarea rows="6" cols="55" name="description" placeholder="Descrizione del problema riscontrato" ngModel>
+        <div class="form-group">
+          <textarea id="textarea" rows="6" cols="55" name="description" placeholder="Descrizione del problema riscontrato" ngModel>
                   </textarea>
-                  <br>
-        <input type="file" (change)="onFileSelected($event)">
+        </div>
         <br>
-        <button (click)="sendReport(f)">
-          Invia
-        </button>
+        <div class="form-group">
+            <div id="relativebottom">
+          <input id="bottom1" name="bottom1" class="btn btn-outline-success" type="file" (change)="onFileSelected($event)">
+        
+          <button id="bottom2" class="btn btn-outline-success" (click)="sendReport(f)">
+            Invia
+          </button>
+          </div>
+        </div>
       </form>
 
       <a href="/#/reportHystory">Accedi alla cronologia</a>
     </div>
 
-    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div>
+    <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-4"></div> -->
   </div>
 
+</div>
 
-
-</body>
+<!-- </body> -->

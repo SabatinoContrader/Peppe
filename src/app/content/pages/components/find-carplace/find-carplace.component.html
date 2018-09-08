@@ -1,28 +1,32 @@
 <div class="row" id="blank">
     <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5">
+        <div class="form-group">
+            <input id="autocomplete" type="text" placeholder="Inserisci destinazione" #search>
+            <button id="myposition" class="btn btn-outline-success" (click)="getPosition()" #myposition>Posizione</button>
+        </div>
+        <!-- <br>
+        <br> -->
 
-        <input id="autocomplete" type="text" placeholder="Inserisci destinazione" #search>
+        <div class="form-group">
 
-        <button id="myposition" (click)="getPosition()" #myposition>Posizione</button>
+            <select id="carSelect" (change)="changeCar()" #carSelect>
+                <option value="">Seleziona auto</option>
+                <option *ngFor="let car of carsList" [attr.value]="car.id">{{car.name}}</option>
+            </select>
 
-        <br>
-        <br>
+            <div id="selezionadiv" style="float: left;">
+                <!-- <button id="startsearch">Cerca</button> -->
+                <button class="btn btn-outline-success" id="seleziona" #seleziona disabled>Parti</button>
+            </div>
+            <div style="float: left;">
+                <button class="btn btn-outline-success" id="cambia" #cambia disabled>Cambia parcheggio</button>
+            </div>
 
-        <select id="carSelect" (change)="changeCar()" #carSelect>
-            <option value="">Seleziona auto</option>
-            <option *ngFor="let car of carsList" [attr.value]="car.id">{{car.name}}</option>
-        </select>
 
-        <br>
 
-        <div style="float: left;">
-            <!-- <button id="startsearch">Cerca</button> -->
-
-            <button id="seleziona" #seleziona disabled>Parti</button>
-
-            <button id="cambia" #cambia disabled>Cambia parcheggio</button>
         </div>
 
+        <br>
     </div>
     <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5"></div>
     <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div>
@@ -30,17 +34,20 @@
 </div>
 
 <div class="row" id="blank" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="padding-left:0px;">
-        <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5" style="padding-left:0px;">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5" style="padding-left:0px; padding-bottom:3%">
 
-            <agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
-                id="map"></agm-map>
-        </div>
+        <agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
+            id="map"></agm-map>
+    </div>
 
 
-        <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5">
-            <h3>Inserisci la durata della sosta</h3>
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5">
 
-            <p id='slot'>{{slotAddress}}</p>
+
+        <h3>Inserisci la durata della sosta</h3>
+
+        <div class="form-group">
+            <label id='slot'>{{slotAddress}} </label>
             <select id='select' name='minute' #select disabled>
                 <option value='' hidden>Seleziona minuti</option>
                 <option value='15'>15 min</option>
@@ -52,18 +59,13 @@
                 <option value='105'>1 h 45 min</option>
                 <option value='120'>2 h</option>
             </select>
-            <br>
-            <p id='newprice'>{{newPrice}}</p>
-
-            <button id="payandgo" #payandgo disabled>Paga e inizia</button>
         </div>
 
-        <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div> -->
+        <p id='newprice'>{{newPrice}}</p>
 
+        <button class="btn btn-outline-success" id="payandgo" #payandgo disabled>Paga e inizia</button>
     </div>
 
+    <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div> -->
 
-
-
-
-
+</div>

@@ -13,9 +13,15 @@ h1{
 }
 
 p{
-    color: black;
+    color: red;
+    text-align: center;
 }
 
 a{
-    color: green;
+    color: #34bfa3;
+}
+
+#addAuto {
+    display: table;
+    margin: 0 auto !important;
 }

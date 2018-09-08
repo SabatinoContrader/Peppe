@@ -1,26 +1,32 @@
 button{
     margin:0 auto;
     display: block;
-    background-color: #a8d342;
-    width: 30%;
-    height: 50px;
-    border-radius: 15px;
-    color: #414a52;
-    border-color: #a7d34200;
-    font-family: 'Open Sans', sans-serif;
+    //background-color: #a8d342;
+    // width: 30%;
+    // height: 50px;
+    // border-radius: 15px;
+    // color: #414a52;
+    // border-color: #a7d34200;
+    // font-family: 'Open Sans', sans-serif;
+}
+
+p{
+    color:red;
+    text-align: center;
 }
 
 h1{
     text-align: center;
     padding-top: 10%;
-    color: black;
+    padding-bottom: 10%;
+    color: white;
     font-family: 'Open Sans', sans-serif;
 }
 
 a{
     margin:0 auto;
     text-align: center;
-    color: black;
+    color: white;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -29,16 +35,22 @@ a{
     width: 200px;   
 }
 
+.row{
+    margin-left:0px;
+    margin-right:0px;
+}
 
 body{
+    height: -webkit-fill-available;
     background-image: url("/assets/img/sfondo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    padding-top:0px !important;
 }
 
 input{
-    border-color: black;
+    border-color: white;
     border-radius: 15px;
     font-family: 'Open Sans', sans-serif;
 }
@@ -48,7 +60,7 @@ input{
 }
 
 label{
-    color: black;
+    color: white;
     font-family: 'Open Sans', sans-serif;
 }
 

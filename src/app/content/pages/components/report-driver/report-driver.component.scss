@@ -4,3 +4,48 @@ h1{
     color: black;
     font-family: 'Open Sans', sans-serif;
 }
+
+a{
+    color: #34bfa3;
+    margin-bottom: 4%;
+    display: block;
+}
+
+#textarea,select{
+    margin-right:2%;
+    min-height: 40px;
+    font-size: 14px;
+
+    border-color: #34bfa3;
+    border-width: 1px;
+    border-radius: 3.25px;
+    border-style: solid;
+}
+
+#select{
+    margin-top:4%;
+    width:408px;
+}
+
+form, a{
+    padding-left:3% !important;
+}
+
+#relativebottom{
+    position: relative;
+    width:408px;
+}
+
+#bottom1{
+    //position: absolute;
+    //left:0px;
+}
+
+#bottom2{
+    position: absolute;
+    right:0px;
+}
+
+input button{
+    width:100%;
+}

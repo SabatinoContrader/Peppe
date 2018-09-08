@@ -1,6 +1,6 @@
 h1{
     text-align: center;
-    padding-top: 10%;
+    padding: 10%;
     color: black;
     font-family: 'Open Sans', sans-serif;
 }
@@ -15,14 +15,27 @@ p{
     font-family: 'Open Sans', sans-serif;
 }
 
-button{
-    margin:0 auto;
-    display: block;
-    background-color: #a8d342;
-    width: 30%;
-    height: 50px;
-    border-radius: 15px;
-    color: #414a52;
-    border-color: #a7d34200;
-    font-family: 'Open Sans', sans-serif;
+// button{
+//     margin:0 auto;
+//     display: block;
+//     background-color: #a8d342;
+//     width: 30%;
+//     height: 50px;
+//     border-radius: 15px;
+//     color: #414a52;
+//     border-color: #a7d34200;
+//     font-family: 'Open Sans', sans-serif;
+// }
+
+#reference{
+    position: relative;
+}
+
+#aggiungi{
+    //position: absolute;
+}
+
+#indietro{
+    position: absolute;
+    right:0px;
 }

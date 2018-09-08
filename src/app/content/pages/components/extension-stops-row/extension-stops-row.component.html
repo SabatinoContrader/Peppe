@@ -5,8 +5,9 @@
 
 <!-- da sistemare -->
 
-<form #f="ngForm">
-  <td>
+
+<td>
+  <form #f="ngForm">
     <select name="select" (change)="detectChange(f)" ngModel="select">
       <option value="15">15 min</option>
       <option value="30">30 min</option>
@@ -17,14 +18,14 @@
       <option value="105">1 h 45 min</option>
       <option value="120">2 h</option>
     </select>
-  </td>
+  </form>
+</td>
 
 
-  <td>
-    <p class="newprice" ngForm="price"> {{price}} &euro;</p>
-  </td>
+<td>
+  <p class="newprice" ngForm="price"> {{price}} &euro;</p>
+</td>
 
-  <td align="center">
-    <button (click)="prolungaSosta(f)">Prolunga</button>
-  </td>
-</form>
+<td align="center">
+  <a class="fa fa-plus-circle" (click)="prolungaSosta(f)"></a>
+</td>

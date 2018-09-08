@@ -17,9 +17,14 @@ export class ReportNearComponent implements OnInit {
   longitude: number;
   reports: Array<Report>;
 
+  userType: number;
+
   constructor(private reportService: ReportService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    var user: User = JSON.parse(sessionStorage.getItem("user"));
+    this.userType = user.type;
+
     this.map.set('0', "Avviso del gestore");
     this.map.set('1', "Abuso spazio dedicato a persone con disabilità");
     this.map.set('2', "Disservizio stradale");

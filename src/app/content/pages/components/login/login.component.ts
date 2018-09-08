@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
             this.menuConfigService.setModel(this.menuConfigService.configModel);
             //non torno al menu di default quando clicco i link
             this.menuConfigService.menuHasChanged = false;
+            this.router.navigateByUrl("/managementPark");
         }
 
         if(response.type == 1)
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
             this.menuConfigService.setModel(this.menuConfigService.configModel);
             //non torno al menu di default quando clicco i link
             this.menuConfigService.menuHasChanged = false;
+            this.router.navigateByUrl("/findCarPlace");
         }
         
           //}

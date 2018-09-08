@@ -32,7 +32,7 @@ export class ReportDriverComponent implements OnInit {
 
           this.reportService.sendReport(f.value.description, f.value.select, this.latitude, this.longitude, this.selectedFile).subscribe((response) => {
               console.log("RISPOSTA: " + response);
-              //this.router.navigateByUrl("/homeDriver");
+              this.router.navigateByUrl("/findCarPlace");
           });
         });
       } else {

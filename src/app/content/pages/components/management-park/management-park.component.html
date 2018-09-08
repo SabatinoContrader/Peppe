@@ -1,14 +1,14 @@
 <div class="row" id="blank">
   <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5">
 
-    <button id="refresh" (click)="updateSlots()">Aggiorna</button>
+    <button class="btn btn-outline-success" id="refresh" (click)="updateSlots()">Aggiorna</button>
   </div>
   <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-5"></div>
   <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div>
 </div>
 
 <div class="row" id="blank" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="padding-left:0px;">
-    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5" style="padding-left:0px;">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-5" style="padding-left:0px; padding-bottom:3%;">
 
 <agm-map style="width:400px; height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)"
   id="map"></agm-map>
@@ -18,7 +18,6 @@
 
 
   <h1>Auto in sosta</h1>
-  <br>
   <table>
     <thead>
       <tr>

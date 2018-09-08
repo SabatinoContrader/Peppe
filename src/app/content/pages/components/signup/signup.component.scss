@@ -14,21 +14,40 @@ h1{
 
 
 
-button{
-    margin:0 auto;
-    display: block;
-    background-color: #a8d342;
-    width: 30%;
-    height: 50px;
-    border-radius: 15px;
-    color: #414a52;
-    border-color: #a7d34200;
-    font-family: 'Open Sans', sans-serif;
+// button{
+//     margin:0 auto;
+//     display: block;
+//     background-color: #a8d342;
+//     width: 30%;
+//     height: 50px;
+//     border-radius: 15px;
+//     color: #414a52;
+//     border-color: #a7d34200;
+//     font-family: 'Open Sans', sans-serif;
+// }
+
+.row{
+    margin-left:0px;
+    margin-right:0px;
 }
 
 body{
+    height: -webkit-fill-available;
     background-image: url("/assets/img/sfondo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+}
+
+#reference{
+    position: relative;
+}
+
+#registrati{
+    //position:absolute;
+}
+
+#indietro{
+    position:absolute;
+    right:0px;
 }

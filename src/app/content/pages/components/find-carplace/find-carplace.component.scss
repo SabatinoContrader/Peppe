@@ -1,0 +1,54 @@
+#carSelect{
+    float: left;
+    margin-right:2%;
+    min-height: 40px;
+
+    border-color: #34bfa3;
+    border-width: 1px;
+    border-radius: 3.25px;
+    border-style: solid;
+}
+
+#select{
+    //float: left;
+    margin-right:2%;
+    min-height: 40px;
+
+    border-color: #34bfa3;
+    border-width: 1px;
+    border-radius: 3.25px;
+    border-style: solid;
+}
+
+#autocomplete{
+    margin-right:2%;
+    min-height: 40px;
+    font-size: 14px;
+
+    border-color: #34bfa3;
+    border-width: 1px;
+    border-radius: 3.25px;
+    border-style: solid;
+}
+
+#blank{
+    padding-top: 3%;
+}
+
+#selezionadiv{
+    margin-right: 1.5%;
+}
+
+#slot, #newprice{
+    margin-right: 2%;
+    font-size:1.75rem;
+}
+
+app-find-carplace{
+    font-family: Poppins !important;
+}
+
+h3{
+    font-weight: 300;
+    margin-bottom: 13px;
+}
