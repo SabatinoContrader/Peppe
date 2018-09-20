@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12 col-md-4">
+        <div class="pull-left">
+            <div class="form-group pull-left" style="width: 100%;">
+                <div class="input-group">
+                    <input id="autocomplete" type="text" class="form-control" placeholder="Inserisci destinazione" #search>
+                    <div class="input-group-append">
+                        <button id="myposition" class="btn btn-outline-success" (click)="getPosition()" #myposition>
+                            <i class="fa fa-crosshairs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group pull-left" style="width: 100%;">
+                <div>
+                    <select id="carSelect" class="form-control custom-select" (change)="changeCar()" #carSelect>
+                        <option value="">Seleziona auto</option>
+                        <option *ngFor="let car of carsList" [attr.value]="car.id">{{car.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group pull-right">
+                <div>
+                    <button class="btn btn-outline-success" id="seleziona" #seleziona disabled>Parti</button>
+                    <button class="btn btn-outline-success" id="cambia" #cambia disabled>Cambia parcheggio</button>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h4>Inserisci la durata della sosta</h4>
+
+            <div class="form-group">
+                <label id='slot'>{{slotAddress}} </label>
+                <label id='newprice'>{{newPrice}}</label>
+                <div class="input-group">
+                    <select id='select' class="form-control custom-select" name='minute' #select disabled>
+                        <option value='' hidden>Seleziona minuti</option>
+                        <option value='15'>15 min</option>
+                        <option value='30'>30 min</option>
+                        <option value='45'>45 min</option>
+                        <option value='60'>1 h</option>
+                        <option value='75'>1 h 15 min</option>
+                        <option value='90'>1 h 30 min</option>
+                        <option value='105'>1 h 45 min</option>
+                        <option value='120'>2 h</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" id="payandgo" #payandgo disabled>Paga e inizia</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-8">
+        <div class="" style="padding-left:0px; padding-bottom:3%">
+            <agm-map style="height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)" id="map"></agm-map>
+        </div>
+        <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div> -->
+    </div>
+</div>

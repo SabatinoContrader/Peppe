@@ -1,0 +1,98 @@
+<!-- <body>
+    <div class="row" id="blank">
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+        <div class="col-1 col-sm-2 col-md-4 col-lg-4 col-xl-6">
+
+            <h1>Prolunga la tua sosta</h1>
+            <br>
+            <table class="table table-striped table-success table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>INDIRIZZO</th>
+                        <th>AUTO</th>
+                        <th>INIZIO</th>
+                        <th>FINE</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr app-extension-stops-row *ngFor="let stop of myStopsList" [stop]="stop" (onWalletChanged)="updateWallet($event)"></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+    </div>
+
+    <div class="row" id="blank">
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+        <div class="col-1 col-sm-2 col-md-4 col-lg-4 col-xl-6">
+
+
+            <h4>Stato del wallet: {{wallet?.amount}}</h4>
+
+
+        </div>
+        <div class="col-1 col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+    </div>
+
+</body> -->
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Stato del wallet: {{wallet?.amount}}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--begin: Datatable -->
+        <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed"
+                        id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 846px;">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 38.25px;"
+                                    aria-sort="ascending"><b>Indirizzo</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 53.25px;"><b>Auto</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 54.25px;"><b>Inizio</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 73.25px;"><b>Fine</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 62.25px;"><b>Tempo</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 62.25px;"><b>Prezzo</b></th>
+                                <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1"
+                                    style="width: 213.25px;"><b>Prolunga</b></th>
+                                
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                                <tr app-extension-stops-row *ngFor="let stop of myStopsList" (onWalletChanged)="updateWallet($event)"></tr>
+                            <!-- <tr role="row" class="odd">
+                                <td class="sorting_1" tabindex="0">0007-3230</td>
+                                <td>RU</td>
+                                <td>Bilyarsk</td>
+                                <td>Kuhlman-Bosco</td>
+                                <td>5899 Basil Place</td>
+                                <td>ablick18@pinterest.com</td>
+                            </tr> -->
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

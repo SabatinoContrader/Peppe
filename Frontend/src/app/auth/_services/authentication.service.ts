@@ -1,12 +1,29 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
+import { Observable, Subject } from "rxjs";
 import "rxjs/add/operator/map";
+
+import { TokenStorage } from "./token-storage.service";
+import { UtilsService } from "../../_services/utils.service";
+import { AccessData } from "../_models/access-data";
 
 @Injectable()
 export class AuthenticationService {
 
-    constructor(private http: Http) {
+    public onCredentialUpdated$: Subject<AccessData>;
+
+    constructor(private http: Http,
+                private tokenStorage: TokenStorage,
+                private utils: UtilsService) {
     }
+
+    /**
+	 * Get user roles
+	 * @returns {Observable<any>}
+	 */
+	public getUserRoles(): Observable<any> {
+		return this.tokenStorage.getUserRoles();
+	}
 
     login(email: string, password: string) {
         return this.http.post('/api/authenticate', JSON.stringify({ email: email, password: password }))
