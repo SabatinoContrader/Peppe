@@ -3,23 +3,6 @@ import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from "../auth/_guards/auth.guard";
 
-import { HomeDriverComponent } from './pages/aside-left-display-disabled/home-driver/home-driver.component';
-import { HomeOwnerComponent } from './pages/aside-left-display-disabled/home-owner/home-owner.component';
-import { FindCarplaceComponent } from './pages/aside-left-display-disabled/find-carplace/find-carplace.component';
-import { ExtensionStopsComponent } from './pages/aside-left-display-disabled/extension-stops/extension-stops.component';
-import { CarComponent } from './pages/aside-left-display-disabled/car/car.component';
-import { ReportDriverComponent } from './pages/aside-left-display-disabled/report-driver/report-driver.component';
-import { ReportNearComponent } from './pages/aside-left-display-disabled/report-near/report-near.component';
-import { PaymentComponent } from './pages/aside-left-display-disabled/payment/payment.component';
-import { UsefulNumbersComponent } from './pages/aside-left-display-disabled/useful-numbers/useful-numbers.component';
-import { LegislationsComponent } from './pages/aside-left-display-disabled/legislations/legislations.component';
-import { AddCarComponent } from './pages/aside-left-display-disabled/addCar/addCar.component';
-import { ReportHystoryComponent } from './pages/aside-left-display-disabled/report-hystory/report-hystory.component';
-import { ManagementParkComponent } from './pages/aside-left-display-disabled/management-park/management-park.component';
-import { ManagementSlotComponent } from './pages/aside-left-display-disabled/management-slot/management-slot.component';
-import { ReportOwnerComponent } from './pages/aside-left-display-disabled/report-owner/report-owner.component';
-import { SignupComponent } from './pages/aside-left-display-disabled/signup/signup.component';
-
 const routes: Routes = [
     {
         "path": "",
@@ -36,61 +19,60 @@ const routes: Routes = [
 			},
 			{
 				path: 'extensionStops',
-				component: ExtensionStopsComponent
+				loadChildren: "./pages/aside-left-display-disabled/extension-stops/extension-stops.module#ExtensionStopsModule"
 			},
 			{
 				path: 'car',
-				component: CarComponent
+				loadChildren: "./pages/aside-left-display-disabled/car/car.module#CarModule"
 			},
 			{
 				path: 'reportDriver',
-				component: ReportDriverComponent
+				loadChildren: "./pages/aside-left-display-disabled/report-driver/report-driver.module#ReportDriverModule"
 			},
 			{
 				path: 'reportNear',
-				component: ReportNearComponent
+				loadChildren: "./pages/aside-left-display-disabled/report-near/report-near.module#ReportNearModule"
 			},
 			{
 				path: 'paymentsHystory',
-				component: PaymentComponent
+				loadChildren: "./pages/aside-left-display-disabled/payment/payment.module#PaymentModule"
 			},
 			{
 				path: 'usefulNumbers',
-				component: UsefulNumbersComponent
+				loadChildren: "./pages/aside-left-display-disabled/useful-numbers/useful-numbers.module#UsefulNumbersModule"
 			},
 			{
 				path: 'legislations',
-				component: LegislationsComponent
+				loadChildren: "./pages/aside-left-display-disabled/legislations/legislations.module#LegislationsModule"
 			},
 			{
 				path: 'addCar',
-				component: AddCarComponent
+				loadChildren: "./pages/aside-left-display-disabled/addCar/addCar.module#AddCarModule"
 			},
 			{
 				path: 'reportHystory',
-				component: ReportHystoryComponent
+				loadChildren: "./pages/aside-left-display-disabled/report-hystory/report-hystory.module#ReportHystoryModule"
 			},
 			//owner
 			{
 				path: 'managementPark',
-				component: ManagementParkComponent
+				loadChildren: "./pages/aside-left-display-disabled/management-park/management-park.module#ManagementParkModule"
 			},
 			{
 				path: 'managementSlot',
-				component: ManagementSlotComponent
+				loadChildren: "./pages/aside-left-display-disabled/management-slot/management-slot.module#ManagementSlotModule"
 			},
 			{
 				path: 'reportOwner',
-				component: ReportOwnerComponent
+				loadChildren: "./pages/aside-left-display-disabled/report-owner/report-owner.module#ReportOwnerModule"
 			},
 			{
 				path: 'reportNearOwner',
-				component: ReportNearComponent
+				loadChildren: "./pages/aside-left-display-disabled/report-near/report-near.module#ReportNearModule"
 			},
-
 			{
 				path: 'signup',
-				component: SignupComponent
+				loadChildren: "./pages/aside-left-display-disabled/signup/signup.module#SignupModule"
 			},
             {
                 "path": "inner",

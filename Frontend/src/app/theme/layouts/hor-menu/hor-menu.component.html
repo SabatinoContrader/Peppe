@@ -13,11 +13,12 @@
 					</span>
 				</a>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"   data-menu-submenu-toggle="click" aria-haspopup="true">
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"   data-menu-submenu-toggle="click" aria-haspopup="true"
+					*ngIf="user && user.type == 1">
 				<a  href="#" class="m-menu__link m-menu__toggle">
 					<span class="m-menu__item-here"></span>
 					<span class="m-menu__link-text">
-						Actions
+						Parcheggio
 					</span>
 					<i class="m-menu__hor-arrow la la-angle-down"></i>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -26,78 +27,33 @@
 					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 					<ul class="m-menu__subnav">
 						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"   aria-haspopup="true">
-							<a  routerLink="/inner" class="m-menu__link">
-								<i class="m-menu__link-icon flaticon-diagram"></i>
+							<a  routerLink="/findCarPlace" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
 								<span class="m-menu__link-title">
 									<span class="m-menu__link-wrap">
 										<span class="m-menu__link-text">
-											Generate Reports
+											Trova Parcheggio
 										</span>
-										<span class="m-menu__link-badge">
+										<!-- <span class="m-menu__link-badge">
 											<span class="m-badge m-badge--success">
 												2
 											</span>
-										</span>
+										</span> -->
 									</span>
 								</span>
 							</a>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-business"></i>
-								<span class="m-menu__link-text">
-									Manage Orders
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"   aria-haspopup="true">
+							<a  routerLink="/extensionStops" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Prolunga Sosta
+										</span>
+									</span>
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-right"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
-							<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Latest Orders
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Pending Orders
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Processed Orders
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Delivery Reports
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Payments
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-										<a  routerLink="/inner" class="m-menu__link">
-											<span class="m-menu__link-text">
-												Customers
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
 							<a  href="#" class="m-menu__link m-menu__toggle">

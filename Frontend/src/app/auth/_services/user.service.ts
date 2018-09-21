@@ -9,7 +9,9 @@ export class UserService {
     }
 
     verify() {
-        return this.http.get('/api/verify', this.jwt()).map((response: Response) => response.json());
+        return this.http.get('/api/verify', this.jwt()).map((response: Response) => {
+            return response.json();
+        });
     }
 
     forgotPassword(email: string) {
@@ -40,9 +42,14 @@ export class UserService {
 
     private jwt() {
         // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+        let currentUser = JSON.parse(localStorage.getItem('user'));
+        if(!currentUser) {
+            currentUser = JSON.parse(sessionStorage.getItem("user"));
+        }
+        // Add '&& currentUser.token' when you've added JWT in the backend
+        if (currentUser) {
+            // let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            let headers = new Headers({ 'Authorization': 'Bearer ' + "fake-jwt-token" });
             return new RequestOptions({ headers: headers });
         }
     }

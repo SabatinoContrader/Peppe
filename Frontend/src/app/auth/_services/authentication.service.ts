@@ -9,6 +9,10 @@ import { AccessData } from "../_models/access-data";
 
 @Injectable()
 export class AuthenticationService {
+    API_URL = 'api';
+	API_ENDPOINT_LOGIN = '/login';
+	API_ENDPOINT_REFRESH = '/refresh';
+	API_ENDPOINT_REGISTER = '/register';
 
     public onCredentialUpdated$: Subject<AccessData>;
 
@@ -25,20 +29,24 @@ export class AuthenticationService {
 		return this.tokenStorage.getUserRoles();
 	}
 
-    login(email: string, password: string) {
-        return this.http.post('/api/authenticate', JSON.stringify({ email: email, password: password }))
+    login(username: string, password: string) {
+        // Change this to post and send the credentials in the body
+        // Don't send sensitive data in the URL
+        return this.http.get(this.API_URL + this.API_ENDPOINT_LOGIN + `?username=${username}&password=${password}`)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                if (user && user.token) {
+                // Add '&& user.token' when you have added a JWT to the login
+                if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('user', JSON.stringify(user));
                 }
             });
     }
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem("user");
+        sessionStorage.removeItem("user");
     }
 }

@@ -9,6 +9,7 @@ declare let mLayout: any;
 })
 export class HorMenuComponent implements OnInit, AfterViewInit {
 
+    user = JSON.parse(sessionStorage.getItem("user")) || JSON.parse(localStorage.getItem("user"));
 
     constructor() {
 

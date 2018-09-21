@@ -5,6 +5,7 @@ import {
     ViewChild,
     ViewContainerRef,
     ViewEncapsulation,
+    ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScriptLoaderService } from '../_services/script-loader.service';
@@ -14,6 +15,9 @@ import { UserService } from './_services/user.service';
 import { AlertComponent } from './_directives/alert.component';
 import { LoginCustom } from './_helpers/login-custom';
 import { Helpers } from '../helpers';
+import { NgForm } from '@angular/forms';
+import { UserService as UService } from '../_services/user.service';
+import { User } from './_models/User';
 // import { ApiService } from '../_services/';
 
 @Component({
@@ -26,6 +30,9 @@ export class AuthComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+
+    feedback: string;
+    user: User;
 
     @ViewChild('alertSignin',
         { read: ViewContainerRef }) alertSignin: ViewContainerRef;
@@ -41,7 +48,9 @@ export class AuthComponent implements OnInit {
         private _route: ActivatedRoute,
         private _authService: AuthenticationService,
         private _alertService: AlertService,
-        private cfr: ComponentFactoryResolver) {
+        private cfr: ComponentFactoryResolver,
+        private userService: UService,
+        private cdr: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -58,17 +67,68 @@ export class AuthComponent implements OnInit {
             });
     }
 
-    signin() {
+    // signin() {
+    //     this.loading = true;
+    //     this._authService.login(this.model.email, this.model.password).subscribe(
+    //         data => {
+    //             this._router.navigate([this.returnUrl]);
+    //         },
+    //         error => {
+    //             this.showAlert('alertSignin');
+    //             this._alertService.error(error);
+    //             this.loading = false;
+    //         });
+    // }
+
+    signin(f: NgForm): void{
         this.loading = true;
-        this._authService.login(this.model.email, this.model.password).subscribe(
-            data => {
-                this._router.navigate([this.returnUrl]);
-            },
-            error => {
+        this.userService.login(this.model.username, this.model.password).subscribe((response: any) => {
+            if (response != null) {
+                this.user = response;
+                console.log(this.user);
+                sessionStorage.setItem("user", JSON.stringify(this.user));
+    
+                //const aside = this.getActiveItemAside();
+                //if (aside) {
+                // override aside menu as secondary menu of current header menu
+                if(response.type == 0)
+                {
+                    //   this.menuConfigService.configModel.config.aside = this.menuConfigService.configModel.config.aside_owner;
+                    //   this.menuConfigService.setModel(this.menuConfigService.configModel);
+                    //   //non torno al menu di default quando clicco i link
+                    //   this.menuConfigService.menuHasChanged = false;
+                    this._router.navigateByUrl("/managementPark");
+                }
+    
+                if(response.type == 1)
+                {
+                    //   this.menuConfigService.configModel.config.aside = this.menuConfigService.configModel.config.aside_driver;
+                    //   this.menuConfigService.setModel(this.menuConfigService.configModel);
+                    //   //non torno al menu di default quando clicco i link
+                    //   this.menuConfigService.menuHasChanged = false;
+                    this._router.navigateByUrl("/findCarPlace");
+                }
+          
+                //}
+    
+                //if(response.type == 1)
+                //this.router.navigate(['/']);
+                //this.router.navigate(['/homeDriver']);
+                //this.router.navigateByUrl("/homeDriver");
+                //this.router.navigateByUrl("/");
+                //else if(response.type == 0)
+                //this.router.navigate(['/']);
+                //this.router.navigate(['/homeOwner']);
+                //this.router.navigateByUrl("/homeOwner");
+                //this.router.navigateByUrl("/");
+    
+                this.cdr.detectChanges();
+            } else {
                 this.showAlert('alertSignin');
-                this._alertService.error(error);
+                this._alertService.error("Username o password errati");
                 this.loading = false;
-            });
+            }
+        });
     }
 
     signup() {
