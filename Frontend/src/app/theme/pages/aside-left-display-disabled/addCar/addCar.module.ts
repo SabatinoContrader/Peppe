@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddCarComponent } from './addCar.component';
 import { LayoutModule } from '../../../layouts/layout.module';
 import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disabled.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -19,7 +20,8 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [
-        CommonModule, RouterModule.forChild(routes), LayoutModule
+        CommonModule, RouterModule.forChild(routes), LayoutModule,
+        FormsModule
     ],
     exports: [
         RouterModule
