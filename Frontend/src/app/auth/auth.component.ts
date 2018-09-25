@@ -56,7 +56,12 @@ export class AuthComponent implements OnInit {
     ngOnInit() {
         this.model.remember = true;
         // get return url from route parameters or default to '/'
-        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
+        var user = JSON.parse(localStorage.getItem("user"));
+        var url = "";
+        if(user) {
+            url = user.type == 0 ? "/managementPark" : "/findCarPlace";
+        }
+        this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || url;
         this._router.navigate([this.returnUrl]);
 
         this._script.loadScripts('body', [
