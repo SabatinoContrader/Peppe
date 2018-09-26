@@ -52,6 +52,9 @@ export class ReportNearComponent implements OnInit {
                     });
 
                 });
+            },
+            error => {
+                console.error("Hi, I'm a stalker. It's kind of hard stalking you when you don't share your location with me so please allow this site to send me your current location, thanks!", error);
             });
         } else {
             console.log("Geolocation is a bitch");

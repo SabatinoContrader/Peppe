@@ -294,6 +294,9 @@ export class FindCarplaceComponent implements OnInit {
 
                 });
 
+            },
+            error => {
+                console.error("Hello! This is your FBI agent bro, please enable location so we can track you. Thanks fam", error);
             });
         } else {
             console.log("Geolocation is not supported by this browser.");
@@ -392,7 +395,10 @@ export class FindCarplaceComponent implements OnInit {
             document.getElementById("indications").addEventListener("click", function() {
 
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
+                    navigator.geolocation.getCurrentPosition(showPosition,
+                        error => {
+                            console.error("Hi, your very own personal FBI agent here. Do you mind if I track your position? I'm just worried about your wellbeing. Stay safe now!", error);
+                        });
                 } else {
                     console.log("Geolocation is not supported by this browser.");
                 }
