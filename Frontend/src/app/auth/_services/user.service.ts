@@ -43,7 +43,7 @@ export class UserService {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('user'));
-        if(!currentUser) {
+        if (!currentUser) {
             currentUser = JSON.parse(sessionStorage.getItem("user"));
         }
         // Add '&& currentUser.token' when you've added JWT in the backend

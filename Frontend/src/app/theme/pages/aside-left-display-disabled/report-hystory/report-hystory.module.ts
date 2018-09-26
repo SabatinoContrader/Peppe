@@ -28,7 +28,7 @@ const routes: Routes = [
         ReportHystoryComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ReportHystoryModule {

@@ -32,7 +32,7 @@ const routes: Routes = [
         ReportDriverComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ReportDriverModule {

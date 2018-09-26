@@ -30,7 +30,7 @@ const routes: Routes = [
         ReportOwnerComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ReportOwnerModule {

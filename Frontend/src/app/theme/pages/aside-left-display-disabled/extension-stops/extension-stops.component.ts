@@ -9,28 +9,28 @@ import { Stop } from "../../../../_models/Stop";
 
 
 @Component({
-  selector: "app-extension-stops",
-  templateUrl: "./extension-stops.component.html",
-  styleUrls: ["./extension-stops.component.scss"]
+    selector: "app-extension-stops",
+    templateUrl: "./extension-stops.component.html",
+    styleUrls: ["./extension-stops.component.scss"]
 })
 
 export class ExtensionStopsComponent implements OnInit {
 
-  wallet: any;
-  myStopsList: Stop[];
+    wallet: any;
+    myStopsList: Stop[];
 
-  constructor(private stopService: StopService, private router: Router, private paymentService: PaymentService, private ref: ChangeDetectorRef) { 
+    constructor(private stopService: StopService, private router: Router, private paymentService: PaymentService, private ref: ChangeDetectorRef) {
 
-  }
+    }
 
-  ngOnInit() {
-     this.stopService.myStopsList().subscribe(response => {this.myStopsList = response});
-     this.paymentService.getwallet().subscribe(response => { this.wallet = response });
+    ngOnInit() {
+        this.stopService.myStopsList().subscribe(response => { this.myStopsList = response });
+        this.paymentService.getwallet().subscribe(response => { this.wallet = response });
     }
 
     updateWallet(newAmount: number) {
-      this.wallet.amount = newAmount;
-      this.ref.detectChanges();
+        this.wallet.amount = newAmount;
+        this.ref.detectChanges();
     }
-  
+
 }

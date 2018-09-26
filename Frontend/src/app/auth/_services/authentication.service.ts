@@ -10,24 +10,24 @@ import { AccessData } from "../_models/access-data";
 @Injectable()
 export class AuthenticationService {
     API_URL = 'api';
-	API_ENDPOINT_LOGIN = '/login';
-	API_ENDPOINT_REFRESH = '/refresh';
-	API_ENDPOINT_REGISTER = '/register';
+    API_ENDPOINT_LOGIN = '/login';
+    API_ENDPOINT_REFRESH = '/refresh';
+    API_ENDPOINT_REGISTER = '/register';
 
     public onCredentialUpdated$: Subject<AccessData>;
 
     constructor(private http: Http,
-                private tokenStorage: TokenStorage,
-                private utils: UtilsService) {
+        private tokenStorage: TokenStorage,
+        private utils: UtilsService) {
     }
 
     /**
 	 * Get user roles
 	 * @returns {Observable<any>}
 	 */
-	public getUserRoles(): Observable<any> {
-		return this.tokenStorage.getUserRoles();
-	}
+    public getUserRoles(): Observable<any> {
+        return this.tokenStorage.getUserRoles();
+    }
 
     login(username: string, password: string) {
         // Change this to post and send the credentials in the body

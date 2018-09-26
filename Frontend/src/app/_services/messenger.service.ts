@@ -6,13 +6,13 @@ import { MessageData } from '../_interfaces/message-data';
 
 @Injectable()
 export class MessengerService {
-	API_URL: any = 'api';
-	API_ENDPOINT: any = '/messenger';
+    API_URL: any = 'api';
+    API_ENDPOINT: any = '/messenger';
 
-	constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-	public getData(): Observable<any> {
-		return this.http
-			.get(this.API_URL + this.API_ENDPOINT);
-	}
+    public getData(): Observable<any> {
+        return this.http
+            .get(this.API_URL + this.API_ENDPOINT);
+    }
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
         AddCarComponent
     ],
     providers: [
-        
+
     ]
 })
 export class AddCarModule {

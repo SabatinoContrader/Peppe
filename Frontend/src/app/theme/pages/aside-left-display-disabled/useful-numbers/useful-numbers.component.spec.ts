@@ -4,23 +4,23 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 describe("UsefulNumbersComponent", () => {
 
-  let fixture: ComponentFixture<UsefulNumbersComponent>;
-  let component: UsefulNumbersComponent;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-      ],
-      declarations: [UsefulNumbersComponent]
+    let fixture: ComponentFixture<UsefulNumbersComponent>;
+    let component: UsefulNumbersComponent;
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            schemas: [NO_ERRORS_SCHEMA],
+            providers: [
+            ],
+            declarations: [UsefulNumbersComponent]
+        });
+
+        fixture = TestBed.createComponent(UsefulNumbersComponent);
+        component = fixture.componentInstance;
+
     });
 
-    fixture = TestBed.createComponent(UsefulNumbersComponent);
-    component = fixture.componentInstance;
+    it("should be able to create component instance", () => {
+        expect(component).toBeDefined();
+    });
 
-  });
-
-  it("should be able to create component instance", () => {
-    expect(component).toBeDefined();
-  });
-  
 });

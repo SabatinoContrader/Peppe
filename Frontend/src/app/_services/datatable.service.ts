@@ -8,10 +8,10 @@ const API_DATATABLE_URL = 'api/cars';
 @Injectable()
 export class DataTableService {
 
-	constructor(private http: HttpClient) {
-	}
+    constructor(private http: HttpClient) {
+    }
 
-	getAllItems(): Observable<DataTableItemModel[]> {
-		return this.http.get<DataTableItemModel[]>(API_DATATABLE_URL);
-	}
+    getAllItems(): Observable<DataTableItemModel[]> {
+        return this.http.get<DataTableItemModel[]>(API_DATATABLE_URL);
+    }
 }

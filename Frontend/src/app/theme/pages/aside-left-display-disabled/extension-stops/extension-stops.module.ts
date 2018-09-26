@@ -28,7 +28,7 @@ const routes: Routes = [
         ExtensionStopsComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ExtensionStopsModule {

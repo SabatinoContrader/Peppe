@@ -32,7 +32,7 @@ const routes: Routes = [
         ManagementSlotComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ManagementSlotModule {

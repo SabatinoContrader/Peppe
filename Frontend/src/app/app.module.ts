@@ -45,9 +45,9 @@ import { UtilsService } from './_services/utils.service';
         ThemeRoutingModule,
         AuthModule,
         AgmCoreModule.forRoot({
-			apiKey: 'AIzaSyAUf_fIZF0iu40Uiwhj3RhFE3Kd1KrWUFw',
-			libraries: ["places"]
-		}),
+            apiKey: 'AIzaSyAUf_fIZF0iu40Uiwhj3RhFE3Kd1KrWUFw',
+            libraries: ["places"]
+        }),
         FormsModule,
         HttpClientModule
     ],

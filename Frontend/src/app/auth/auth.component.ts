@@ -58,7 +58,7 @@ export class AuthComponent implements OnInit {
         // get return url from route parameters or default to '/'
         var user = JSON.parse(localStorage.getItem("user"));
         var url = "";
-        if(user) {
+        if (user) {
             url = user.type == 0 ? "/managementPark" : "/findCarPlace";
         }
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || url;
@@ -85,37 +85,35 @@ export class AuthComponent implements OnInit {
     //         });
     // }
 
-    signin(f: NgForm): void{
+    signin(f: NgForm): void {
         this.loading = true;
         this.userService.login(this.model.username, this.model.password).subscribe((response: any) => {
             if (response != null) {
                 this.user = response;
                 console.log(this.user);
                 sessionStorage.setItem("user", JSON.stringify(this.user));
-    
+
                 //const aside = this.getActiveItemAside();
                 //if (aside) {
                 // override aside menu as secondary menu of current header menu
-                if(response.type == 0)
-                {
+                if (response.type == 0) {
                     //   this.menuConfigService.configModel.config.aside = this.menuConfigService.configModel.config.aside_owner;
                     //   this.menuConfigService.setModel(this.menuConfigService.configModel);
                     //   //non torno al menu di default quando clicco i link
                     //   this.menuConfigService.menuHasChanged = false;
                     this._router.navigateByUrl("/managementPark");
                 }
-    
-                if(response.type == 1)
-                {
+
+                if (response.type == 1) {
                     //   this.menuConfigService.configModel.config.aside = this.menuConfigService.configModel.config.aside_driver;
                     //   this.menuConfigService.setModel(this.menuConfigService.configModel);
                     //   //non torno al menu di default quando clicco i link
                     //   this.menuConfigService.menuHasChanged = false;
                     this._router.navigateByUrl("/findCarPlace");
                 }
-          
+
                 //}
-    
+
                 //if(response.type == 1)
                 //this.router.navigate(['/']);
                 //this.router.navigate(['/homeDriver']);
@@ -126,7 +124,7 @@ export class AuthComponent implements OnInit {
                 //this.router.navigate(['/homeOwner']);
                 //this.router.navigateByUrl("/homeOwner");
                 //this.router.navigateByUrl("/");
-    
+
                 this.cdr.detectChanges();
             } else {
                 this.showAlert('alertSignin');

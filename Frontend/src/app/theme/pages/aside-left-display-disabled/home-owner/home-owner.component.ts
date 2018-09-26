@@ -2,21 +2,21 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home-owner',
-  templateUrl: './home-owner.component.html',
-  styleUrls: ['./home-owner.component.scss']
+    selector: 'app-home-owner',
+    templateUrl: './home-owner.component.html',
+    styleUrls: ['./home-owner.component.scss']
 })
 
 export class HomeOwnerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+    constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  logout(){
-    sessionStorage.clear();
-    this.router.navigateByUrl("/login");
-  }
+    logout() {
+        sessionStorage.clear();
+        this.router.navigateByUrl("/login");
+    }
 
 }

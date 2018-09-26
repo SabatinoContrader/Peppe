@@ -1,7 +1,7 @@
 export interface MessageData {
-	id: number;
-	type: string;
-	pic: string;
-	username: string;
-	text: string;
+    id: number;
+    type: string;
+    pic: string;
+    username: string;
+    text: string;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../_models/User';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
@@ -8,35 +8,35 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UserService {
-  feedback: string;
+    feedback: string;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log('${operation} failed: ${error.message}');
-      return of(result as T);
-    };
-  }
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            console.error(error);
+            console.log('${operation} failed: ${error.message}');
+            return of(result as T);
+        };
+    }
 
-  login(username: string, password: string): Observable <User> {
-    return this.http.get<User>('http://localhost:58708/api/login?username='+username+'&password='+password)
-    .pipe(tap((response) => console.log("Utente"), catchError(this.handleError("login error", {})))
-  );
-  }
+    login(username: string, password: string): Observable<User> {
+        return this.http.get<User>('http://localhost:58708/api/login?username=' + username + '&password=' + password)
+            .pipe(tap((response) => console.log("Utente"), catchError(this.handleError("login error", {})))
+            );
+    }
 
-  signup(user: User): Observable <boolean> {
-    return this.http.post<boolean>('http://localhost:58708/api/signupUser', user)
-    .pipe(tap((response) => console.log("Utente"), catchError(this.handleError("login error", {})))
-  );
-  }
+    signup(user: User): Observable<boolean> {
+        return this.http.post<boolean>('http://localhost:58708/api/signupUser', user)
+            .pipe(tap((response) => console.log("Utente"), catchError(this.handleError("login error", {})))
+            );
+    }
 
-  changeFeedback(message: string){
-    this.feedback = message;
-  }
+    changeFeedback(message: string) {
+        this.feedback = message;
+    }
 
-  deleteFeedback(){
-    this.feedback = "";
-  }
+    deleteFeedback() {
+        this.feedback = "";
+    }
 }

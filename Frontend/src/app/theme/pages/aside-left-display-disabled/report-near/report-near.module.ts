@@ -30,7 +30,7 @@ const routes: Routes = [
         ReportNearComponent
     ],
     providers: [
-        
+
     ]
 })
 export class ReportNearModule {

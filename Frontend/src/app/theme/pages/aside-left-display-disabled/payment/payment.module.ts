@@ -28,7 +28,7 @@ const routes: Routes = [
         PaymentComponent
     ],
     providers: [
-        
+
     ]
 })
 export class PaymentModule {

@@ -1,4 +1,4 @@
 export interface Breadcrumb {
-	title: string;
-	page: string | any;
+    title: string;
+    page: string | any;
 }

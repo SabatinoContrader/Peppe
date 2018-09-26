@@ -28,7 +28,7 @@ const routes: Routes = [
         SignupComponent
     ],
     providers: [
-        
+
     ]
 })
 export class SignupModule {

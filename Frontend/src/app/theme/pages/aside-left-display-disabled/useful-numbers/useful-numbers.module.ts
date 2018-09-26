@@ -28,7 +28,7 @@ const routes: Routes = [
         UsefulNumbersComponent
     ],
     providers: [
-        
+
     ]
 })
 export class UsefulNumbersModule {

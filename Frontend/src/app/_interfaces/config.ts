@@ -1,3 +1,3 @@
 export interface ConfigModel {
-	config: any;
+    config: any;
 }

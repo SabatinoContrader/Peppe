@@ -4,46 +4,46 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 
 export interface Locale {
-	lang: string;
-	data: Object;
+    lang: string;
+    data: Object;
 }
 
 @Injectable()
 export class TranslationService {
-	private langIds: any = [];
+    private langIds: any = [];
 
-	constructor(private translate: TranslateService) {
-		// add new langIds to the list
-		this.translate.addLangs(['en']);
+    constructor(private translate: TranslateService) {
+        // add new langIds to the list
+        this.translate.addLangs(['en']);
 
-		// this language will be used as a fallback when a translation isn't found in the current language
-		this.translate.setDefaultLang('en');
-	}
+        // this language will be used as a fallback when a translation isn't found in the current language
+        this.translate.setDefaultLang('en');
+    }
 
-	public loadTranslations(...args: Locale[]): void {
-		const locales = [...args];
+    public loadTranslations(...args: Locale[]): void {
+        const locales = [...args];
 
-		locales.forEach(locale => {
-			// use setTranslation() with the third argument set to true
-			// to append translations instead of replacing them
-			this.translate.setTranslation(locale.lang, locale.data, true);
+        locales.forEach(locale => {
+            // use setTranslation() with the third argument set to true
+            // to append translations instead of replacing them
+            this.translate.setTranslation(locale.lang, locale.data, true);
 
-			this.langIds.push(locale.lang);
-		});
+            this.langIds.push(locale.lang);
+        });
 
-		// add new languages to the list
-		this.translate.addLangs(this.langIds);
-	}
+        // add new languages to the list
+        this.translate.addLangs(this.langIds);
+    }
 
-	setLanguage(lang) {
-		if (lang) {
-			this.translate.use(this.translate.getDefaultLang());
-			this.translate.use(lang);
-			localStorage.setItem('language', lang);
-		}
-	}
+    setLanguage(lang) {
+        if (lang) {
+            this.translate.use(this.translate.getDefaultLang());
+            this.translate.use(lang);
+            localStorage.setItem('language', lang);
+        }
+    }
 
-	public getSelectedLanguage(): Observable<any> {
-		return of(localStorage.getItem('language') || this.translate.getDefaultLang());
-	}
+    public getSelectedLanguage(): Observable<any> {
+        return of(localStorage.getItem('language') || this.translate.getDefaultLang());
+    }
 }

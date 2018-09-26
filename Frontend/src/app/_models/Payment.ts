@@ -3,7 +3,7 @@ export class Payment {
     id: number;
     quantity: number;
     id_stop: number;
-    username: string;   
+    username: string;
     id_slot: number;
     id_car: number;
     timeToAdd: number;

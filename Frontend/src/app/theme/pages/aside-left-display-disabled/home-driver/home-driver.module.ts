@@ -28,7 +28,7 @@ const routes: Routes = [
         HomeDriverComponent
     ],
     providers: [
-        
+
     ]
 })
 export class HomeDriverModule {

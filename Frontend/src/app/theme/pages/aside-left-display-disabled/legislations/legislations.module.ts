@@ -28,7 +28,7 @@ const routes: Routes = [
         LegislationsComponent
     ],
     providers: [
-        
+
     ]
 })
 export class LegislationsModule {

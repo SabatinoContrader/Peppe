@@ -8,38 +8,38 @@ import { PaymentService } from '../../../../_services/payment.service';
 
 
 @Component({
-  selector: 'tr[app-extension-stops-row]',
-  templateUrl: './extension-stops-row.component.html',
-  styleUrls: ['./extension-stops-row.component.scss']
+    selector: 'tr[app-extension-stops-row]',
+    templateUrl: './extension-stops-row.component.html',
+    styleUrls: ['./extension-stops-row.component.scss']
 })
 export class ExtensionStopsRowComponent implements OnInit {
 
-  @Input() stop: Stop;
-  price: number;
-  wallet: any;
+    @Input() stop: Stop;
+    price: number;
+    wallet: any;
 
-  @Output() onWalletChanged: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onWalletChanged: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private stopService: StopService, private router: Router, private paymentService: PaymentService) { }
+    constructor(private stopService: StopService, private router: Router, private paymentService: PaymentService) { }
 
-  ngOnInit() {
-    this.paymentService.getwallet().subscribe(response => { this.wallet = response });
-  }
-
-  detectChange(f: NgForm): void {
-    console.log("time: " + f.value.select);
-    this.price = (this.stop.price / 60) * f.value.select;
-  }
-
-  prolungaSosta(f: NgForm): void {
-    if (this.wallet.amount >= this.price) {
-      this.stopService.prolungaSosta(f.value.select, this.stop).subscribe((response) => { this.stop.finish = response; });
-      this.paymentService.modifyWallet(-this.price, this.stop.id_stop).subscribe((response) => { this.onWalletChanged.emit(response) });
-    } else {
-      console.log("credito insufficiente, ricaricare il wallet!");
-      alert("credito insufficiente, ricaricare il wallet!");
+    ngOnInit() {
+        this.paymentService.getwallet().subscribe(response => { this.wallet = response });
     }
 
-  }
+    detectChange(f: NgForm): void {
+        console.log("time: " + f.value.select);
+        this.price = (this.stop.price / 60) * f.value.select;
+    }
+
+    prolungaSosta(f: NgForm): void {
+        if (this.wallet.amount >= this.price) {
+            this.stopService.prolungaSosta(f.value.select, this.stop).subscribe((response) => { this.stop.finish = response; });
+            this.paymentService.modifyWallet(-this.price, this.stop.id_stop).subscribe((response) => { this.onWalletChanged.emit(response) });
+        } else {
+            console.log("credito insufficiente, ricaricare il wallet!");
+            alert("credito insufficiente, ricaricare il wallet!");
+        }
+
+    }
 
 }
