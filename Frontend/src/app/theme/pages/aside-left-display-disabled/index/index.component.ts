@@ -1,28 +1,25 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Helpers } from '../../../../helpers';
-import { ScriptLoaderService } from '../../../../_services/script-loader.service';
+import { Router } from '@angular/router';
 
 
 @Component({
     selector: "app-index",
-    templateUrl: "./index.component.html",
+    // templateUrl: "./index.component.html",
+    template: "",
     encapsulation: ViewEncapsulation.None,
 })
-export class IndexComponent implements OnInit, AfterViewInit {
+export class IndexComponent implements OnInit {
+    constructor(private router: Router) {
+        var user = JSON.parse(sessionStorage.getItem("user"));
+        if(!user) {
+            router.navigateByUrl("login");
+            return;
+        }
 
-
-    constructor(private _script: ScriptLoaderService) {
-
+        var url = user.type === 0 ? "managementPark" : "findCarPlace";
+        router.navigateByUrl(url)
     }
     ngOnInit() {
 
     }
-    ngAfterViewInit() {
-        this._script.loadScripts('app-index',
-            ['assets/app/js/dashboard.js']);
-
-        Helpers.bodyClass('m-page--boxed m-body--fixed m-header--static m-aside--offcanvas-default');
-
-    }
-
 }
