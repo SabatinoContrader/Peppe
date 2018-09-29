@@ -18,7 +18,7 @@ import { ReportDriverPage } from '../pages/report-driver/report-driver';
 import { LegislationsPage } from '../pages/legislations/legislations';
 import { PaymentPage } from '../pages/payment/payment';
 import { UsefullNumbersPage } from '../pages/usefull-numbers/usefull-numbers';
-import { SettingsPage } from '../pages/settings/settings';
+//import { SettingsPage } from '../pages/settings/settings';
 import { ReportProvider } from '../providers/report/report';
 import { PaymentProvider } from '../providers/payment/payment';
 import { StopProvider } from '../providers/stop/stop';
@@ -34,7 +34,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     LegislationsPage,
     PaymentPage,
     UsefullNumbersPage,
-    SettingsPage,
+    //SettingsPage,
     ReportNearPage,
     ReportOwnerPage
   ],
@@ -55,7 +55,7 @@ import { GoogleMapProvider } from '../providers/google-map/google-map';
     LegislationsPage,
     PaymentPage,
     UsefullNumbersPage,
-    SettingsPage,
+    //SettingsPage,
     ReportNearPage,
     ReportOwnerPage
   ],

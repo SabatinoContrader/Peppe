@@ -24,10 +24,15 @@ export class ReportNearPage {
   longitude: number;
   reports: Array<Report>;
 
+  currentUser: User;
+
   constructor(private reportProvider: ReportProvider, public navCtrl: NavController, public navParams: NavParams,  private sanitizer: DomSanitizer) {
   }
 
   ionViewWillEnter() {
+
+    this.currentUser = JSON.parse(sessionStorage.getItem("user"));
+
     console.log('ionViewDidLoad ReportNearPage');
 
     this.map.set('0', "Avviso del gestore");

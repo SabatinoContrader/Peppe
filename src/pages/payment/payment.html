@@ -18,7 +18,7 @@
   <h1>Cronologia pagamenti</h1>
   <br>
   <div *ngIf="paymentList" class="table-responsive">
-    <table>
+    <!-- <table>
       <thead>
 
 
@@ -40,7 +40,29 @@
 
 
 
-    </table>
+    </table> -->
+
+
+    <ion-list>
+      <ion-item *ngFor="let payment of paymentList">
+        <!-- <ion-thumbnail item-start>
+          <img src="assets/icon/icon-1.png">
+        </ion-thumbnail> -->
+        <h2>Id pagamento: {{payment.id}}</h2>
+        <h2>Quantità: {{payment.quantity}}</h2>
+        <h2>Id sosta: {{payment.id_stop}}</h2>
+
+        <!-- <ion-row>
+          <ion-col text-right>
+              <button ion-button small outline color="dark" (click)="deleteCar([car.id])" >
+                  ELIMINA
+              </button>
+          </ion-col>
+      </ion-row> -->
+
+      </ion-item>
+    </ion-list>
+
   </div>
 
 

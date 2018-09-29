@@ -15,15 +15,17 @@
 
 <ion-content padding text-center>
 
-    <ion-card *ngFor="let stop of myStopsList; let i = index" class="card">
+    <ion-card *ngFor="let stop of myStopsList; let i = index; trackBy: trackFinish;" class="card">
 
         <ion-card-header>
             {{stop.address}}
         </ion-card-header>
 
         <ion-card-content>
-                <p>Scade il {{stop.finish | date: 'dd-MM-yyyy'}}</p>
-                <p>alle {{stop.finish | date: 'HH:mm:ss'}}</p>
+                <!-- <p>Scade il {{stop.finish | date: 'dd-MM-yyyy'}}</p>
+                <p>alle {{stop.finish | date: 'HH:mm:ss'}}</p> -->
+                <p>Scade il {{toDateFormat(stop?.finish)}}</p>
+                <p>alle {{toTimeFormat(stop?.finish)}}</p>
         </ion-card-content>
 
 

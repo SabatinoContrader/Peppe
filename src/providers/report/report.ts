@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import { User } from '../../models/User';
 import { Report } from '../../models/Report';
+import { SERVER_API_URL } from '../../constants/constants';
 
 /*
   Generated class for the ReportProvider provider.
@@ -31,19 +32,19 @@ export class ReportProvider {
     console.log("username: "+ user.username);
     console.log("lat al service : "+ report.latitude);
     console.log("long al service : "+ report.longitude);
-    return this.http.post<number>('http://localhost:58708/api/addReport', fd)
+    return this.http.post<number>(SERVER_API_URL + '/api/addReport', fd)
     .pipe();}
 
   onOpenHystory(): Observable <Array<Report>> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
-    return this.http.get<Array<Report>>('http://localhost:58708/api/reportHystory?username=' + user.username)
+    return this.http.get<Array<Report>>(SERVER_API_URL + '/api/reportHystory?username=' + user.username)
     .pipe();}
 
   onOpenNear(lat: number, lng: number): Observable <Array<Report>> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
     console.log("lat al service : "+ lat);
     console.log("long al service : "+ lng);
-    return this.http.get<Array<Report>>('http://localhost:58708/api/getNearReport?type='+ user.type + '&lat=' + lat + '&lng=' + lng)
+    return this.http.get<Array<Report>>(SERVER_API_URL + '/api/getNearReport?type='+ user.type + '&lat=' + lat + '&lng=' + lng)
     .pipe();}
 
 }

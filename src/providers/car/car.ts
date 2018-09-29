@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import { User } from '../../models/User';
+import { SERVER_API_URL } from '../../constants/constants';
 
 
 /*
@@ -21,19 +22,19 @@ export class CarProvider {
 
   myCarsList(): Observable<any>{
     var user: User = JSON.parse(sessionStorage.getItem("user"));
-    return this.http.get<any>('http://localhost:58708/api/myCarsList?username='+user.username)
+    return this.http.get<any>(SERVER_API_URL + '/api/myCarsList?username='+user.username)
     .pipe();
   }
 
   deleteCar(id: number): Observable<any>{
-    return this.http.delete<boolean>('http://localhost:58708/api/removeCar?id='+id)
+    return this.http.delete<boolean>(SERVER_API_URL + '/api/removeCar?id='+id)
     .pipe();
   }
 
   addNewCar(license_plate: string, name: string): Observable<Car>{
     var user: User = JSON.parse(sessionStorage.getItem("user"));
     var car = new Car(0, license_plate, name, user.username);
-    return this.http.post<Car>('http://localhost:58708/api/addCar', car)
+    return this.http.post<Car>(SERVER_API_URL + '/api/addCar', car)
     .pipe();
   }
 

@@ -19,8 +19,8 @@
 
   <ion-list>
       <ion-item *ngFor="let report of reports">
-          <ion-thumbnail item-start>
-              <img [src]="report.media">
+          <ion-thumbnail *ngIf="currentUser.type == 1" item-start>
+              <img *ngIf="report.media != ''" [src]="report.media">
             </ion-thumbnail>
         
         <h3>{{report.time | date: 'dd-MM-yyyy HH:mm:ss'}}</h3>

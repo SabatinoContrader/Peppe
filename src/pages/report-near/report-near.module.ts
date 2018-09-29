@@ -4,7 +4,7 @@ import { ReportNearPage } from './report-near';
 
 @NgModule({
   declarations: [
-    ReportNearPage,
+    //ReportNearPage,
   ],
   imports: [
     IonicPageModule.forChild(ReportNearPage),

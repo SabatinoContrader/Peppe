@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PaymentProvider } from '../../providers/payment/payment';
 import { Payment } from '../../models/Payment';
+import { AllPayment } from '../../models/AllPayment';
 
 /**
  * Generated class for the PaymentPage page.
@@ -24,7 +25,7 @@ export class PaymentPage {
 
   ionViewWillEnter() {
     console.log('ionViewDidLoad PaymentPage');
-    this.paymentProvider.getpayments().subscribe(response => { this.paymentList = response });
+    this.paymentProvider.getpayments().subscribe(response =>  this.paymentList = (response as AllPayment).payment_list   );
   }
 
 }

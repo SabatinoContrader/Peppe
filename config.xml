@@ -3,7 +3,7 @@
     <name>IonicFE</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.43.94:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -87,5 +87,8 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <allow-navigation href="http://192.168.1.152:8102" />
     <allow-navigation href="http://192.168.43.94:8101" />
+    <allow-navigation href="http://172.25.153.17:8101" />
+    <allow-navigation href="http://192.168.2.118:8101" />
+    <allow-navigation href="http://172.25.153.17:8100" />
     <engine name="android" spec="^7.0.0" />
 </widget>

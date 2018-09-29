@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { tap } from '../../../node_modules/rxjs/operators';
+import { SERVER_API_URL } from '../../constants/constants';
 
 
 /*
@@ -22,7 +23,7 @@ export class UserProvider {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.get<User>('http://localhost:58708/api/login?username='+username+'&password='+password).pipe(
+    return this.http.get<User>(SERVER_API_URL + '/api/login?username='+username+'&password='+password).pipe(
       tap(response => {
         if (response != null) {
         sessionStorage.setItem("user", JSON.stringify(response));
@@ -33,7 +34,7 @@ export class UserProvider {
   }
 
   signup(user: User): Observable <boolean> {
-    return this.http.post<boolean>('http://localhost:58708/api/signupUser', user).pipe();
+    return this.http.post<boolean>(SERVER_API_URL + '/api/signupUser', user).pipe();
   }
 
   changeFeedback(message: string){

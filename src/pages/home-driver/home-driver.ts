@@ -63,6 +63,8 @@ export class HomeDriverPage {
   @ViewChild("carSelect")
   public SelectCarElementRef: ElementRef;
 
+  autocomplete: any;
+
   constructor(private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private googleMapsProvider: GoogleMapProvider,
@@ -94,19 +96,27 @@ export class HomeDriverPage {
 
   }
 
+  ionViewWillLeave() {
+    google.maps.event.clearInstanceListeners(this.autocomplete);
+  }
+
   ionViewDidEnter() {
     this.searchControl = new FormControl();
 
     //tutti gli oggetti di google.maps vanno istanziati solo dopo il load()
     this.mapsAPILoader.load().then(() => {
+      console.log("mapsAPILoader");
+      this.infoWindow = null;
+
       this.infoWindow = new google.maps.InfoWindow();
 
       let elem = <HTMLInputElement>document.getElementsByClassName('searchbar-input')[0];
-      let autocomplete = new google.maps.places.Autocomplete(elem);
+      this.autocomplete = null;
+      this.autocomplete = new google.maps.places.Autocomplete(elem);
 
-      autocomplete.addListener("place_changed", () => {
+      this.autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          let place: any = autocomplete.getPlace();
+          let place: any = this.autocomplete.getPlace();
 
           if (place.geometry === undefined || place.geometry === null) {
             return;

@@ -4,7 +4,7 @@ import { ReportOwnerPage } from './report-owner';
 
 @NgModule({
   declarations: [
-    ReportOwnerPage,
+    //ReportOwnerPage,
   ],
   imports: [
     IonicPageModule.forChild(ReportOwnerPage),

@@ -23,10 +23,15 @@ export class ReportHystoryPage {
 
   reports: Array<Report>;
 
+  currentUser: User;
+
   constructor(private reportProvider: ReportProvider, public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
   }
 
   ionViewWillEnter() {
+
+    this.currentUser = JSON.parse(sessionStorage.getItem("user"));
+
     console.log('ionViewDidLoad ReportHystoryPage');
 
     this.map.set('0', "Avviso del gestore");
@@ -43,11 +48,12 @@ export class ReportHystoryPage {
         this.reports = response;
 
         this.reports.forEach(report => {
+
+          //console.log("media: " + report.media);
+          if(report.media != "")
           report.media = <string>this.sanitizer.bypassSecurityTrustUrl(report.media);
         });
 
     });}
-
-
 
 }

@@ -4,7 +4,7 @@ import { UsefullNumbersPage } from './usefull-numbers';
 
 @NgModule({
   declarations: [
-    UsefullNumbersPage,
+    //UsefullNumbersPage,
   ],
   imports: [
     IonicPageModule.forChild(UsefullNumbersPage),

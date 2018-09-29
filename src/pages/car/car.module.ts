@@ -4,7 +4,7 @@ import { CarPage } from './car';
 
 @NgModule({
   declarations: [
-    CarPage,
+    //CarPage,
   ],
   imports: [
     IonicPageModule.forChild(CarPage),

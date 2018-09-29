@@ -4,7 +4,7 @@ import { ReportDriverPage } from './report-driver';
 
 @NgModule({
   declarations: [
-    ReportDriverPage,
+    //ReportDriverPage,
   ],
   imports: [
     IonicPageModule.forChild(ReportDriverPage),

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import { Stop } from '../../models/Stop';
+import { SERVER_API_URL } from '../../constants/constants';
 
 /*
   Generated class for the StopProvider provider.
@@ -18,7 +19,7 @@ export class StopProvider {
 
         //user corrente da backend?
 myStopsList(): Observable<any> {
-  return this.http.get<any>('http://localhost:58708/api/myStopsList')
+  return this.http.get<any>(SERVER_API_URL + '/api/myStopsList')
   .pipe();
 }
 
@@ -27,7 +28,7 @@ prolungaSosta(minute: number, stop: Stop): any {
 // var newFinish= new Date((new Date(stop.finish)).getTime() + (60*1000*minute));
 // console.log(newFinish.toString());
 // var newStop: Stop = new Stop(stop.id_stop, stop.address, stop.start, newFinish, stop.name, stop.price);
-return this.http.put<any>('http://localhost:58708/api/extensionstops/'+stop.id_stop, JSON.parse(minute.toString()))
+return this.http.put<any>(SERVER_API_URL + '/api/extensionstops/'+stop.id_stop, JSON.parse(minute.toString()))
 .pipe();
 }
 

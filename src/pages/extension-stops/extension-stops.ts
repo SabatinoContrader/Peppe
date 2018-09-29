@@ -93,6 +93,9 @@ export class ExtensionStopsPage {
       handler: data => {
         this.stopProvider.prolungaSosta(data, this.myStopsList[i]).subscribe((response) => {
           var updateStop = Object.assign({}, this.myStopsList[i]);
+
+          //console.log("try: " + response);
+
           updateStop.finish = response;
           this.myStopsList[i] = updateStop;
         });
@@ -106,6 +109,35 @@ export class ExtensionStopsPage {
 
   backToHome(){
     this.viewCtrl.dismiss();
+  }
+
+  trackFinish(index: number, item: Stop) {
+    return item.finish;
+  }
+
+  toDateFormat(date: Date): string{
+    //console.log("toDateFormat");
+
+    if(date != null) {   
+      //console.log("date: " + date);
+      var LocaleDate = new Date(date).toLocaleDateString();
+      //console.log("DATE: " + LocaleDate);
+
+      return "" + LocaleDate;
+    }
+
+    else return "";
+  }
+  
+  toTimeFormat(date: Date): string{
+    //console.log("toTimeFormat");
+    if(date != null) {
+      //console.log("date: " + date);
+      var LocaleTime = new Date(date).toLocaleTimeString();
+      //console.log("TIME: " + LocaleTime);
+      return "" + LocaleTime;
+    }
+    else return "";
   }
 
 }
