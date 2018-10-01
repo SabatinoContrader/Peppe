@@ -77,7 +77,7 @@
                         </thead>
 
                         <tbody>
-                                <tr app-extension-stops-row *ngFor="let stop of myStopsList" (onWalletChanged)="updateWallet($event)"></tr>
+                                <tr app-extension-stops-row [stop]="stop" *ngFor="let stop of myStopsList" (onWalletChanged)="updateWallet($event)"></tr>
                             <!-- <tr role="row" class="odd">
                                 <td class="sorting_1" tabindex="0">0007-3230</td>
                                 <td>RU</td>
