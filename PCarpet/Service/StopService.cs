@@ -183,19 +183,19 @@ namespace PCarpet.Service
 
         public List<CarDTO> getCarWithoutStop(string username)
         {
-            DateTime now = DateTime.Now;
-            var t = from c in db.car
-                     where c.stop.Count < 1 || (from s in c.stop
-                                                where s.finish < DateTime.Now
-                                                select s).Count() < 1
-                     select new CarDTO
-                     {
-                         id = c.id,
-                         license_plate = c.license_plate,
-                         name = c.name,
-                         username = c.username
-                     };
-            return t.ToList();
+            var cars = (from c in db.car
+                        where c.user.username == username &&
+                             (c.stop.Count < 1 || (from s in c.stop
+                                                   where s.finish >= DateTime.Now
+                                                   select s).Count() < 1)
+                        select new CarDTO
+                        {
+                            id = c.id,
+                            license_plate = c.license_plate,
+                            name = c.name,
+                            username = c.username
+                        }).ToList();
+            return cars;
         }
 
         public void executePayment(string paymentToken, int price)
