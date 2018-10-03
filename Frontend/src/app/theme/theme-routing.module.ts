@@ -71,10 +71,6 @@ const routes: Routes = [
                 loadChildren: "./pages/aside-left-display-disabled/report-near/report-near.module#ReportNearModule"
             },
             {
-                path: 'signup',
-                loadChildren: "./pages/aside-left-display-disabled/signup/signup.module#SignupModule"
-            },
-            {
                 "path": "inner",
                 "loadChildren": ".\/pages\/default\/inner\/inner.module#InnerModule"
             },

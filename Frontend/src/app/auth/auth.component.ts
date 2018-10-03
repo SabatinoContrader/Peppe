@@ -18,6 +18,7 @@ import { Helpers } from '../helpers';
 import { NgForm } from '@angular/forms';
 import { UserService as UService } from '../_services/user.service';
 import { User } from './_models/User';
+import { User as SignupUser } from '../_models/User';
 // import { ApiService } from '../_services/';
 
 @Component({
@@ -136,15 +137,21 @@ export class AuthComponent implements OnInit {
 
     signup() {
         this.loading = true;
-        this._userService.create(this.model).subscribe(
+        var user = this.model as SignupUser;
+        user.type = 1;
+        this.userService.signup(user).subscribe(
             data => {
-                this.showAlert('alertSignin');
-                this._alertService.success(
-                    'Thank you. To complete your registration please check your email.',
-                    true);
+                if (data) {
+                    this.showAlert('alertSignin');
+                    this._alertService.success('Registrazione effettuata con successo', true);
+                    LoginCustom.displaySignInForm();
+                    this.model = {};
+                } else {
+                    this.showAlert('alertSignup');
+                    this._alertService.error('Registrazione non andata a buon fine', true);
+                }
+                
                 this.loading = false;
-                LoginCustom.displaySignInForm();
-                this.model = {};
             },
             error => {
                 this.showAlert('alertSignup');
