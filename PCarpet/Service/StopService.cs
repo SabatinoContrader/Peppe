@@ -10,6 +10,8 @@ namespace PCarpet.Service
 
     public class StopService
     {
+        private pcarpetEntities db = new pcarpetEntities();
+
         private CarService carService;
         private SlotService slotService;
         private UserService userService;
@@ -181,19 +183,19 @@ namespace PCarpet.Service
 
         public List<CarDTO> getCarWithoutStop(string username)
         {
-            //user user = userService.getLoggedUser();
-            List<car> cars = carService.getAllCar(username);
-            List<CarDTO> carsWithoutStop = new List<CarDTO>();
-            foreach (car car in cars)
-            {
-                using (pcarpetEntities context = new pcarpetEntities())
-                {
-                    stop stop = context.stop.FirstOrDefault(s => s.id_car.Equals(car.id));
-                    if (stop == null)
-                        carsWithoutStop.Add(car.toCarDTO(car));
-                }
-            }
-            return carsWithoutStop;
+            var cars = (from c in db.car
+                        where c.user.username == username &&
+                             (c.stop.Count < 1 || (from s in c.stop
+                                                   where s.finish >= DateTime.Now
+                                                   select s).Count() < 1)
+                        select new CarDTO
+                        {
+                            id = c.id,
+                            license_plate = c.license_plate,
+                            name = c.name,
+                            username = c.username
+                        }).ToList();
+            return cars;
         }
 
         public void executePayment(string paymentToken, int price)
