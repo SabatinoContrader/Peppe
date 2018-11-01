@@ -98,7 +98,7 @@ namespace PCarpet.Controllers
             DateTime time = DateTime.Now;
 
             // lo stato della segnalazione 3 è lo stato iniziale della segnalazione inviata da owner
-            int type = 0; //owner type
+            int type = user.type; //owner type
 
             reportService.insertReport(new ReportDTO(type, mydescription, time, user.username, null, latitude, longitude), null);
 
@@ -119,7 +119,7 @@ namespace PCarpet.Controllers
     public ActionResult back()
         {
             user user = userService.getLoggedUser();
-            //type = 1 è driver, type = 0 è owner
+            //type = 1 è driver, type != è owner
             if (user.type == 1) { return View("homeDriver"); }
             else { return View("addReportOwner"); }
         }

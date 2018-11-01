@@ -35,7 +35,7 @@ import { UtilsService } from './_services/utils.service';
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent
+        AppComponent,
     ],
     imports: [
         LayoutModule,

@@ -53,7 +53,49 @@ const routes: Routes = [
                 path: 'reportHystory',
                 loadChildren: "./pages/aside-left-display-disabled/report-hystory/report-hystory.module#ReportHystoryModule"
             },
-            //owner
+            //private owner
+            {
+                path: 'nearbyBooking',
+                loadChildren: "./pages/aside-left-display-disabled/nearby-booking/nearby-booking.module#NearbyBookingModule"
+            },
+            {
+                path: 'farBooking',
+                loadChildren: "./pages/aside-left-display-disabled/far-booking/far-booking.module#FarBookingModule"
+            },
+            {
+                path: 'bookingHistory',
+                loadChildren: "./pages/aside-left-display-disabled/booking-history/booking-history.module#BookingHistoryModule"
+            },
+
+            //all owners
+            {
+                path: 'reportPlatform',
+                loadChildren: "./pages/aside-left-display-disabled/report-platform/report-platform.module#ReportPlatformModule"
+            },
+            {
+                path: 'dashboard',
+                loadChildren: "./pages/aside-left-display-disabled/dashboard/dashboard.module#DashboardModule"
+            },
+            {
+                path: 'illegalStops',
+                loadChildren: "./pages/aside-left-display-disabled/illegal-stops/illegal-stops.module#IllegalStopsModule"
+            },
+            {
+                path: 'disabledReporting',
+                loadChildren: "./pages/aside-left-display-disabled/disabled-reporting/disabled-reporting.module#DisabledReportingModule"
+            },
+            {
+                path: 'disservices',
+                loadChildren: "./pages/aside-left-display-disabled/disservices/disservices.module#DisservicesModule"
+            },
+            {
+                path: 'infoManagePark',
+                loadChildren: "./pages/aside-left-display-disabled/info-manage-park/info-manage-park.module#InfoManageParkModule"
+            },
+            {
+                path: 'parkingPrice',
+                loadChildren: "./pages/aside-left-display-disabled/parking-price/parking-price.module#ParkingPriceModule"
+            },
             {
                 path: 'managementPark',
                 loadChildren: "./pages/aside-left-display-disabled/management-park/management-park.module#ManagementParkModule"

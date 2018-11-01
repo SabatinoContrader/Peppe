@@ -53,9 +53,9 @@ export class ReportNearComponent implements OnInit {
 
                 });
             },
-            error => {
-                console.error("Hi, I'm a stalker. It's kind of hard stalking you when you don't share your location with me so please allow this site to send me your current location, thanks!", error);
-            });
+                error => {
+                    console.error("Hi, I'm a stalker. It's kind of hard stalking you when you don't share your location with me so please allow this site to send me your current location, thanks!", error);
+                });
         } else {
             console.log("Geolocation is a bitch");
         }
@@ -65,9 +65,9 @@ export class ReportNearComponent implements OnInit {
 
     }
 
-    back(): void {
-        var user: User = JSON.parse(sessionStorage.getItem("user"));
-        if (user.type == 0) this.router.navigateByUrl("/homeOwner");
-        if (user.type == 1) this.router.navigateByUrl("/homeDriver");
-    }
+    // back(): void {
+    //     var user: User = JSON.parse(sessionStorage.getItem("user"));
+    //     if (user.type == 0 || user.type == 3) this.router.navigateByUrl("/homeOwner");
+    //     if (user.type == 1) this.router.navigateByUrl("/homeDriver");
+    // }
 }

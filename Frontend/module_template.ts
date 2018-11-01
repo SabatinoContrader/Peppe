@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { {ComponentName}Component } from './{ComponentPath}.component';
+import { {ComponentName }Component } from './{ComponentPath}.component';
 import { LayoutModule } from '../../../layouts/layout.module';
 import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disabled.component';
 
@@ -12,7 +12,7 @@ const routes: Routes = [
         "children": [
             {
                 "path": "",
-                "component": {ComponentName}Component
+                "component": { ComponentName }Component
             }
         ]
     }
@@ -25,12 +25,12 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-        {ComponentName}Component
+        { ComponentName }Component
     ],
     providers: [
-        
+
     ]
 })
-export class {ComponentName}Module {
+export class { ComponentName } Module {
 
 }

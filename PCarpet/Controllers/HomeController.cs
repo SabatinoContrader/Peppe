@@ -29,7 +29,7 @@ namespace PCarpet.Controllers
             int type = user.type;
             if (type == 1)
                 return View("homeDriver");
-            else if (type == 0)
+            else if (type == 0 || type == 3)
                 return View("homeOwner");
             else if (type == 2)
                 return View("homeCop");

@@ -60,7 +60,14 @@ export class AuthComponent implements OnInit {
         var user = JSON.parse(localStorage.getItem("user"));
         var url = "";
         if (user) {
-            url = user.type == 0 ? "/managementPark" : "/findCarPlace";
+            switch(user.type)
+            {
+                case 0: url = "/managementPark"; break;
+                case 1: url = "/findCarPlace"; break;
+                case 2: url = "/findCarPlace"; break;
+                case 3: url = "/managementPark"; break;
+            }
+            //url = user.type == 0 ? "/managementPark" : "/findCarPlace";
         }
         this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || url;
         this._router.navigate([this.returnUrl]);
@@ -97,7 +104,7 @@ export class AuthComponent implements OnInit {
                 //const aside = this.getActiveItemAside();
                 //if (aside) {
                 // override aside menu as secondary menu of current header menu
-                if (response.type == 0) {
+                if (response.type == 0 || response.type == 3) {
                     //   this.menuConfigService.configModel.config.aside = this.menuConfigService.configModel.config.aside_owner;
                     //   this.menuConfigService.setModel(this.menuConfigService.configModel);
                     //   //non torno al menu di default quando clicco i link
@@ -150,7 +157,7 @@ export class AuthComponent implements OnInit {
                     this.showAlert('alertSignup');
                     this._alertService.error('Registrazione non andata a buon fine', true);
                 }
-                
+
                 this.loading = false;
             },
             error => {

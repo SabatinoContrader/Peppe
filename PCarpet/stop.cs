@@ -21,8 +21,8 @@ namespace PCarpet
         }
     
         public int id { get; set; }
-        public System.DateTime start { get; set; }
-        public System.DateTime finish { get; set; }
+        public Nullable<System.DateTime> start { get; set; }
+        public Nullable<System.DateTime> finish { get; set; }
         public int id_car { get; set; }
         public int id_slot { get; set; }
     

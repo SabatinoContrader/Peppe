@@ -36,8 +36,8 @@ export class ReportService {
         console.log("long al service : " + report.longitude);
         return this.http.post<number>('http://localhost:58708/api/addReport', fd)
             .pipe(tap((response) => console.log("Added Report"), catchError(this.handleError("report error", {})))
-            );    
-}
+            );
+    }
 
     onOpenHystory(): Observable<Array<Report>> {
         var user: User = JSON.parse(sessionStorage.getItem("user"));

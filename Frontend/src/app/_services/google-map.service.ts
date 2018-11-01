@@ -36,7 +36,7 @@ export class GoogleMapService {
     }
 
     getNearSlots(lat: number, lng: number, idCar: number): Observable<Array<Slot>> {
-        if(!idCar) {
+        if (!idCar) {
             return from([]);
         }
         return this.http.get<Array<Slot>>('http://localhost:58708/api/updateParkings?lat=' + lat + '&lng=' + lng + '&id_car=' + idCar)

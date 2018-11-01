@@ -34,10 +34,10 @@ export class ReportDriverComponent implements OnInit {
                     console.log("RISPOSTA: " + response);
                     this.router.navigateByUrl("/findCarPlace");
                 });
-            }, 
-            error => {
-                console.error("Geolocation can't get your position. Are you using incognito mode? If so, go into the normal version so the FBI can track you.", error);
-            });
+            },
+                error => {
+                    console.error("Geolocation can't get your position. Are you using incognito mode? If so, go into the normal version so the FBI can track you.", error);
+                });
         } else {
             console.log("Geolocation is a bitch");
         }

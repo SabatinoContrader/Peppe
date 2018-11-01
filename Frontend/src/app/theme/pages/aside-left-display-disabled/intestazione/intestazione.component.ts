@@ -23,7 +23,7 @@ export class IntestazioneComponent implements OnInit {
         if (user != null) {
             if (user.type == 1)
                 this.router.navigateByUrl("/homeDriver");
-            else if (user.type == 0)
+            else if (user.type == 0 || user.type == 3)
                 this.router.navigateByUrl("/homeOwner");
         }
         else

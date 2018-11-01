@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="pcarpetModel.payment" Width="1.5" PointX="8.5" PointY="7.875" />
         <EntityTypeShape EntityType="pcarpetModel.report" Width="1.5" PointX="3" PointY="8.5" />
         <EntityTypeShape EntityType="pcarpetModel.slave" Width="1.5" PointX="7.5" PointY="4.375" />
-        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="pcarpetModel.slot" Width="1.75" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="pcarpetModel.stop" Width="1.5" PointX="5.25" PointY="5.125" />
         <EntityTypeShape EntityType="pcarpetModel.transaction" Width="1.5" PointX="3" PointY="17.625" />
         <EntityTypeShape EntityType="pcarpetModel.user" Width="1.5" PointX="0.75" PointY="8.875" />

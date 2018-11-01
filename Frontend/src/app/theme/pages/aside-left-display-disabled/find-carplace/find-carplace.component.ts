@@ -295,9 +295,9 @@ export class FindCarplaceComponent implements OnInit {
                 });
 
             },
-            error => {
-                console.error("Hello! This is your FBI agent bro, please enable location so we can track you. Thanks fam", error);
-            });
+                error => {
+                    console.error("Hello! This is your FBI agent bro, please enable location so we can track you. Thanks fam", error);
+                });
         } else {
             console.log("Geolocation is not supported by this browser.");
         }
