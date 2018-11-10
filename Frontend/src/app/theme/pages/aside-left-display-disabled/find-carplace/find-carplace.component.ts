@@ -27,6 +27,8 @@ export class FindCarplaceComponent implements OnInit {
     public zoom: number;
     private currentLatitude: number;
     private currentLongitude: number;
+    
+    parklist;
 
     directionsService = null;
     directionsRenderer = null;
@@ -75,6 +77,9 @@ export class FindCarplaceComponent implements OnInit {
     @ViewChild("carSelect")
     public SelectCarElementRef: ElementRef;
 
+    addressToPass;
+
+
     constructor(private mapsAPILoader: MapsAPILoader,
         private ngZone: NgZone,
         private googleMapsService: GoogleMapService,
@@ -101,7 +106,9 @@ export class FindCarplaceComponent implements OnInit {
             this.infoWindow = new google.maps.InfoWindow();
             this.directionsService = new google.maps.DirectionsService();
 
+            
             let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+            this.addressToPass = this.searchElementRef.nativeElement;
             // , {
             //   types: ["address"]
             //});
@@ -121,9 +128,12 @@ export class FindCarplaceComponent implements OnInit {
                     this.lng = place.geometry.location.lng();
                     this.zoom = 15;
 
-                    this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                        this.DrawSlots(response);
-                    });
+                    // this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                    //     this.DrawSlots(response);
+                    //     console.log("CIAOOOOO: "+response);
+                    // });
+
+                    
 
                 });
             });
@@ -152,9 +162,10 @@ export class FindCarplaceComponent implements OnInit {
                             self.lng = place.geometry.location.lng();
                             self.zoom = 15;
 
-                            self.googleMapsService.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                                self.DrawSlots(response);
-                            });
+                            // self.googleMapsService.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                            //     self.DrawSlots(response);
+                            //     this.parkList = response;
+                            // });
 
                         });
 
@@ -166,6 +177,12 @@ export class FindCarplaceComponent implements OnInit {
 
 
 
+        });
+    }
+
+    findPark(){
+        this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+            this.DrawSlots(response);
         });
     }
 
@@ -282,15 +299,19 @@ export class FindCarplaceComponent implements OnInit {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.currentLatitude = position.coords.latitude;
                 this.currentLongitude = position.coords.longitude;
+
+                this.lat = position.coords.latitude;
+                this.lng = position.coords.longitude;
+
                 this.ngZone.run(() => {
 
                     this.zoom = 15;
                     this.lat = this.currentLatitude;
                     this.lng = this.currentLongitude;
 
-                    this.googleMapsService.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                        this.DrawSlots(response);
-                    });
+                    // this.googleMapsService.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                    //     this.DrawSlots(response);
+                    // });
 
                 });
 
@@ -515,10 +536,10 @@ export class FindCarplaceComponent implements OnInit {
     };
 
     changeCar(): void {
-        console.log("wewe");
-        this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-            this.DrawSlots(response);
-        });
+            this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                this.DrawSlots(response);
+            });
+
     }
 
 }

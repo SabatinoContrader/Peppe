@@ -3,7 +3,11 @@
 	<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light" id="m_aside_header_menu_mobile_close_btn">
 		<i class="la la-close"></i>
 	</button>
+
 	<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light">
+
+	<!-- <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light"  >
+
 		<ul class="m-menu__nav  m-menu__nav--submenu-arrow" *ngIf="user && user.type == 1">
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open"
 			 routerLinkActiveOptions="{ exact: true }" data-menu-submenu-toggle="click" aria-haspopup="true">
@@ -27,11 +31,11 @@
 										<span class="m-menu__link-text">
 											Trova Parcheggio
 										</span>
-										<!-- <span class="m-menu__link-badge">
+										 <span class="m-menu__link-badge">
 											<span class="m-badge m-badge--success">
 												2
-											</span>
-										</span> -->
+											</span> span commentato
+										</span> 
 									</span>
 								</span>
 							</a>
@@ -138,11 +142,11 @@
 										<span class="m-menu__link-text">
 											Gestione parcheggi
 										</span>
-										<!-- <span class="m-menu__link-badge">
+										 <span class="m-menu__link-badge">
 											<span class="m-badge m-badge--success">
 												2
 											</span>
-										</span> -->
+										</span> span commentato
 									</span>
 								</span>
 							</a>
@@ -627,6 +631,373 @@
 					</ul>
 				</div>
 			</li>
+		</ul>
+ 
+
+	
+		<ul class="m-menu__nav  m-menu__nav--submenu-arrow" *ngIf="user && user.type == 1">
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" aria-haspopup="true">
+				<a routerLink="/findCarPlace" class="m-menu__link">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Trova Parcheggio
+					</span>
+				</a>
+				<!-- <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"   aria-haspopup="true">
+							<a  routerLink="/findCarPlace" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Trova Parcheggio
+										</span>
+										 <span class="m-menu__link-badge">
+											<span class="m-badge m-badge--success">
+												2
+											</span>
+										</span> 
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"   aria-haspopup="true">
+							<a  routerLink="/extensionStops" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Prolunga Sosta
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>-->
+			</li>
+
+
+
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" aria-haspopup="true">
+				<a href="#" class="m-menu__link m-menu__toggle">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Le mie auto
+					</span>
+					<i class="m-menu__hor-arrow la la-angle-down"></i>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/car" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Elenco auto scelte
+										</span>
+										<!-- <span class="m-menu__link-badge">
+											<span class="m-badge m-badge--success">
+												2
+											</span>
+										</span>  -->
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/addCar" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Aggiungi auto
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" aria-haspopup="true">
+				<a href="#" class="m-menu__link m-menu__toggle">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Soste
+					</span>
+					<i class="m-menu__hor-arrow la la-angle-down"></i>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/stopsInProgress" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											In corso
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/extensionStops" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Prolunga
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/stopsHistory" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Cronologia
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" aria-haspopup="true">
+				<a href="#" class="m-menu__link m-menu__toggle">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Segnalazioni
+					</span>
+					<i class="m-menu__hor-arrow la la-angle-down"></i>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/reportDriver" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Invia
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/reportNear" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Ricevute
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/reportHystory" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Cronologia
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+
+			<li class="m-menu__item  " routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+				<a routerLink="/findCar" class="m-menu__link">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Trova auto
+					</span>
+				</a>
+			</li>
+
+
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" aria-haspopup="true">
+				<a href="#" class="m-menu__link m-menu__toggle">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Pagamenti
+					</span>
+					<i class="m-menu__hor-arrow la la-angle-down"></i>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+					<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/payments" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-car"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Versamenti
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/paymentsHistory" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Cronologia
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+							<a routerLink="/balance" class="m-menu__link">
+								<i class="m-menu__link-icon fa fa-clock-o"></i>
+								<span class="m-menu__link-title">
+									<span class="m-menu__link-wrap">
+										<span class="m-menu__link-text">
+											Saldo
+										</span>
+									</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+
+			<li class="m-menu__item  " routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+				<a routerLink="/usefulNumbers" class="m-menu__link">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Numeri Utili
+					</span>
+				</a>
+			</li>
+
+			<li class="m-menu__item  " routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+				<a routerLink="/legislations" class="m-menu__link">
+					<span class="m-menu__item-here"></span>
+					<span class="m-menu__link-text">
+						Normative
+					</span>
+				</a>
+			</li>
+
+			<ul class="m-menu__nav  m-menu__nav--submenu-arrow" *ngIf="user && user.type != 1">
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+				 data-menu-submenu-toggle="click" aria-haspopup="true">
+					<a href="#" class="m-menu__link m-menu__toggle">
+						<span class="m-menu__item-here"></span>
+						<span class="m-menu__link-text">
+							Parcheggio
+						</span>
+						<i class="m-menu__hor-arrow la la-angle-down"></i>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+						<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+								<a routerLink="/managementPark" class="m-menu__link">
+									<i class="m-menu__link-icon fa fa-car"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Gestione parcheggio
+											</span>
+											<!-- <span class="m-menu__link-badge">
+											<span class="m-badge m-badge--success">
+												2
+											</span>
+										</span> -->
+										</span>
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+								<a routerLink="/managementSlot" class="m-menu__link">
+									<i class="m-menu__link-icon fa fa-clock-o"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Inserisci parcheggi
+											</span>
+										</span>
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+				 data-menu-submenu-toggle="click" aria-haspopup="true">
+					<a href="#" class="m-menu__link m-menu__toggle">
+						<span class="m-menu__item-here"></span>
+						<span class="m-menu__link-text">
+							Segnalazione
+						</span>
+						<i class="m-menu__hor-arrow la la-angle-down"></i>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+						<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+								<a routerLink="/reportOwner" class="m-menu__link">
+									<i class="m-menu__link-icon fa fa-car"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Invia Segnalazione
+											</span>
+										</span>
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+								<a routerLink="/reportNearOwner" class="m-menu__link">
+									<i class="m-menu__link-icon fa fa-clock-o"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Segnalazione degli utenti
+											</span>
+										</span>
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
 		</ul>
 	</div>
 </div>

@@ -24,7 +24,7 @@ export class AddCarComponent implements OnInit {
     addNewCar(f: NgForm): void {
         this.carService.addNewCar(f.value.licensePlate, f.value.name).subscribe(response => {
             this.feedback = "Auto aggiunta con successo";
-            this.carService.changeFeedback(this.feedback);
+            // this.carService.changeFeedback(this.feedback);
             this.router.navigateByUrl("/car");
         });
     }

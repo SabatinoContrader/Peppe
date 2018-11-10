@@ -18,6 +18,22 @@ const routes: Routes = [
                 loadChildren: "./pages/aside-left-display-disabled/find-carplace/find-carplace.module#FindCarplaceModule"
             },
             {
+                path: 'parksMap/:car/:address',
+                loadChildren: "./pages/aside-left-display-disabled/parksMap/parksMap.module#ParksMapModule"
+            },
+            {
+                path: 'stopsInProgress',
+                loadChildren: "./pages/aside-left-display-disabled/stops-in-progress/stops-in-progress.module#StopsInProgressModule"
+            },
+            {
+                path: 'stopsHistory',
+                loadChildren: "./pages/aside-left-display-disabled/stops-history/stops-history.module#StopsHistoryModule"
+            },
+            {
+                path: 'findCar',
+                loadChildren: "./pages/aside-left-display-disabled/find-car/find-car.module#FindCarModule"
+            },
+            {
                 path: 'extensionStops',
                 loadChildren: "./pages/aside-left-display-disabled/extension-stops/extension-stops.module#ExtensionStopsModule"
             },
@@ -34,8 +50,16 @@ const routes: Routes = [
                 loadChildren: "./pages/aside-left-display-disabled/report-near/report-near.module#ReportNearModule"
             },
             {
-                path: 'paymentsHystory',
+                path: 'paymentsHistory',
                 loadChildren: "./pages/aside-left-display-disabled/payment/payment.module#PaymentModule"
+            },
+            {
+                path: 'balance',
+                loadChildren: "./pages/aside-left-display-disabled/balance/balance.module#BalanceModule"
+            },
+            {
+                path: 'payments',
+                loadChildren: "./pages/aside-left-display-disabled/payments/payments.module#PaymentsModule"
             },
             {
                 path: 'usefulNumbers',

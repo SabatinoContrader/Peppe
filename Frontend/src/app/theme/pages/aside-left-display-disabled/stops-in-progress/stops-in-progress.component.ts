@@ -4,14 +4,14 @@ import { StopService } from "../../../../_services/stop.service";
 import { PaymentService } from "../../../../_services/payment.service";
 import { Stop } from "../../../../_models/Stop";
 
-
 @Component({
-    selector: "app-extension-stops",
-    templateUrl: "./extension-stops.component.html",
-    styleUrls: ["./extension-stops.component.scss"]
+  selector: "app-stops-in-progress",
+  templateUrl: "./stops-in-progress.component.html",
+  styleUrls: ["./stops-in-progress.component.scss"]
 })
 
-export class ExtensionStopsComponent implements OnInit {
+
+export class StopsInProgressComponent implements OnInit {
 
     wallet: any;
     myStopsList: Stop[];
@@ -31,3 +31,4 @@ export class ExtensionStopsComponent implements OnInit {
     }
 
 }
+

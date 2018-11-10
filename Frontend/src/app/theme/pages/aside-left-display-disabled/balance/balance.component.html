@@ -1,0 +1,49 @@
+<body>
+
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Saldo
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="row" id="blank">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-6">
+      
+    <h3>Portafoglio: {{wallet?.amount}}&euro;</h3>
+      
+
+    </div>
+  </div>
+
+  <div class="row" id="blank">
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-6">
+      <br>
+      <h4 id="ricaricaconto">Ricarica il tuo conto: 
+      <button class="btn btn-outline-success" (click)="modifyWallet(3)">3€</button> 
+      <button class="btn btn-outline-success" (click)="modifyWallet(10)">10€</button>
+      <button class="btn btn-outline-success" (click)="modifyWallet(25)">25€</button>
+      </h4>
+
+    </div>
+    <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-6">
+      
+      <!-- <h4>Stato del wallet: {{wallet?.amount}}</h4> -->
+      
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</body>
