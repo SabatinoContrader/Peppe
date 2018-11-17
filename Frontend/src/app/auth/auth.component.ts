@@ -32,6 +32,10 @@ export class AuthComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
+    userType = -1;
+    driverFlag=false;
+    ownerFlag=false;
+
     feedback: string;
     user: User;
 
@@ -93,6 +97,25 @@ export class AuthComponent implements OnInit {
     //         });
     // }
 
+
+    changeTypeDriver(){
+        if(this.userType != 0)
+        {
+            this.userType = 0
+        }
+        this.driverFlag = true;
+        this.ownerFlag = false;
+    }
+
+    changeTypeOwner(){
+        if(this.userType != 1)
+        {
+            this.userType = 1
+        }
+        this.ownerFlag = true;
+        this.driverFlag = false;
+        }
+
     signin(f: NgForm): void {
         this.loading = true;
         this.userService.login(this.model.username, this.model.password).subscribe((response: any) => {
@@ -145,7 +168,7 @@ export class AuthComponent implements OnInit {
     signup() {
         this.loading = true;
         var user = this.model as SignupUser;
-        user.type = 1;
+        user.type = this.userType;
         this.userService.signup(user).subscribe(
             data => {
                 if (data) {

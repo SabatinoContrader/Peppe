@@ -61,17 +61,52 @@
 							</div>
 						</form>
 					</div>
-					<div class="m-login__signup">
+
+					<!-- <div class="m-login__signup">
 						<div class="m-login__head">
 							<h3 class="m-login__title">
 								Sign Up
 							</h3>
 							<div class="m-login__desc">
-								Enter your details to create your account:
+								Scegli il tipo di account che vuoi creare:
 							</div>
 						</div>
-						<form (ngSubmit)="f.form.valid && signup()" #f="ngForm" class="m-login__form m-form" action="">
+						<form class="m-login__form m-form" action="">
+							<div class="form-group m-form__group">
+								<button [disabled]="loading"  id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom">
+									Automobilista
+								</button>
+								<button [disabled]="loading"  id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom" style="float: right;">
+									Gestore
+								</button>
+							</div>
+							
+							
+						</form>
+					</div> -->
+
+					<div class="m-login__signup">
+						<div class="m-login__head">
+							<h3 class="m-login__title">
+								Sign Up
+							</h3>
+						<br>
+							<div class="form-group m-form__group">
+								<button [disabled]="loading"  class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom" (click)="changeTypeDriver()">
+									Automobilista
+								</button>
+								<button [disabled]="loading"  class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom" style="float: right;" (click)="changeTypeOwner()">
+									Gestore
+								</button>
+							</div>
+							
+						</div>
+						
+						<form (ngSubmit)="f.form.valid && signup()" #f="ngForm" class="m-login__form m-form" action="" *ngIf="driverFlag">
 							<ng-template #alertSignup></ng-template>
+							<div class="m-login__desc">
+								Enter your details to create your driver account:
+							</div>
 							<div class="form-group m-form__group">
 								<input class="form-control m-input" type="text" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
 							</div>
@@ -116,7 +151,58 @@
 								</button>
 							</div>
 						</form>
-					</div>
+
+						<form (ngSubmit)="f.form.valid && signup()" #f="ngForm" class="m-login__form m-form" action="" *ngIf="ownerFlag">
+							<ng-template #alertSignup></ng-template>
+							<div class="m-login__desc">
+								Enter your details to create your owner account:
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="text" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="text" placeholder="Name" name="name" [(ngModel)]="model.name" #name="ngModel" required>
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="text" placeholder="Last Name" name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel" required>
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="text" placeholder="Phone Number" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required>
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="text" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input" type="password" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel">
+							</div>
+							<div class="form-group m-form__group">
+								<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirm Password" name="rpassword" [(ngModel)]="model.rpassword" #rpassword="ngModel">
+							</div>
+							<div class="row form-group m-form__group m-login__form-sub">
+								<div class="col m--align-left">
+									<label class="m-checkbox m-checkbox--focus">
+										<input type="checkbox" name="agree" [(ngModel)]="model.agree" #agree="ngModel">
+										I Agree the
+										<a href="#" class="m-link m-link--focus">
+											terms and conditions
+										</a>
+										.
+										<span></span>
+									</label>
+									<span class="m-form__help"></span>
+								</div>
+							</div>
+							<div class="m-login__form-action">
+								<button [disabled]="loading" [ngClass]="{'m-loader m-loader--right m-loader--light': loading}" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+									Sign Up
+								</button>
+								<button [disabled]="loading"  id="m_login_signup_cancel" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom">
+									Cancel
+								</button>
+							</div>
+						</form>
+					</div> 
+
 					<div class="m-login__forget-password">
 						<div class="m-login__head">
 							<h3 class="m-login__title">

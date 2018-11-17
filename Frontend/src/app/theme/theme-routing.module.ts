@@ -30,10 +30,6 @@ const routes: Routes = [
                 loadChildren: "./pages/aside-left-display-disabled/stops-history/stops-history.module#StopsHistoryModule"
             },
             {
-                path: 'findCar',
-                loadChildren: "./pages/aside-left-display-disabled/find-car/find-car.module#FindCarModule"
-            },
-            {
                 path: 'extensionStops',
                 loadChildren: "./pages/aside-left-display-disabled/extension-stops/extension-stops.module#ExtensionStopsModule"
             },
