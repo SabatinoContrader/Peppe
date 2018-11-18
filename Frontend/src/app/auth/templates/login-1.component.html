@@ -3,7 +3,7 @@
 	<div class="m-grid__item m-grid__item--order-tablet-and-mobile-2 m-login__aside">
 		<div class="m-stack m-stack--hor m-stack--desktop">
 			<div class="m-stack__item m-stack__item--fluid">
-				<div class="m-login__wrapper">
+				<div class="m-login__wrapper" style="padding:0">
 					<div class="m-login__logo">
 						<a href="#">
 							<img src="./assets/app/media/img//logos/logo-2.png">
@@ -12,9 +12,9 @@
 					<div class="m-login__signin">
 						<div class="m-login__head">
 							<h3 class="m-login__title">
-								Sign In To Admin
+								Accedi a PCarpet
 							</h3>
-							<div class="m--margin-top-40 m-alert m-alert--outline m-alert--outline-2x alert alert-success fade show" role="alert">
+							<!-- <div class="m--margin-top-40 m-alert m-alert--outline m-alert--outline-2x alert alert-success fade show" role="alert">
 								Use username
 								<span style="font-weight: 500;">
 									automobilista1
@@ -31,7 +31,7 @@
 								<span style="font-weight: 500;">
 									gestore
 								</span> for manager.
-							</div>
+							</div> -->
 						</div>
 						<form (ngSubmit)="f.form.valid && signin(f)" #f="ngForm" class="m-login__form m-form" action="">
 							<ng-template #alertSignin></ng-template>
@@ -92,7 +92,7 @@
 					<div class="m-login__signup">
 						<div class="m-login__head">
 							<h3 class="m-login__title">
-								Sign Up
+								Registrazione su PCarpet
 							</h3>
 							<br>
 							<div class="form-group m-form__group" *ngIf="!firstTimeFlag && !ownerFlag && !driverFlag">
@@ -239,26 +239,6 @@
 							</div>
 						</form>
 						
-						<!-- owner choice -->
-						<form (ngSubmit)="f.form.valid && signup()" #f="ngForm" class="m-login__form m-form" action="" *ngIf="ownerFlag && firstTimeFlag && model.email">
-							<ng-template #alertSignup></ng-template>
-							<div class="m-login__desc">
-								Grazie per aver scelto PCarpet!
-								<br>Gestione e controllo dei tuoi stalli in modo semplice ed istantaneo!
-								<br> Il tuo è un account:
-							</div>
-
-							<div class="m-login__form-action">
-								<button [disabled]="loading" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom" (click)="publicOwner()">
-									Pubblico
-								</button>
-								<button [disabled]="loading" class="btn btn-outline-focus  m-btn m-btn--pill m-btn--custom" style="float: right;"
-								 (click)="privateOwner()">
-									Privato
-								</button>
-							</div>
-						</form>
-
 						<!-- owner choice -->
 						<form (ngSubmit)="f.form.valid && signup()" #f="ngForm" class="m-login__form m-form" action="" *ngIf="ownerFlag && firstTimeFlag && model.email">
 							<ng-template #alertSignup></ng-template>

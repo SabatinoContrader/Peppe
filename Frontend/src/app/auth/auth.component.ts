@@ -216,6 +216,9 @@ export class AuthComponent implements OnInit {
                 } else {
                     this.showAlert('alertSignup');
                     this._alertService.error('Registrazione non andata a buon fine', true);
+                    this.driverFlag = false;
+                    this.ownerFlag = false;
+                    this.firstTimeFlag = true;                    
                 }
 
                 this.loading = false;
