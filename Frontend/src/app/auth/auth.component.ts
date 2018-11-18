@@ -117,25 +117,17 @@ export class AuthComponent implements OnInit {
     }
 
     changeTypeDriver(){
-        if(this.userType != 0)
-        {
-            this.userType = 0
-        }
         this.driverFlag = true;
         this.ownerFlag = false;
     }
 
     changeTypeOwner(){
-        if(this.userType != 1)
-        {
-            this.userType = 1
-        }
         this.ownerFlag = true;
         this.driverFlag = false;
         }
 
     publicOwner() {
-            if (this.userType == -1) {
+            if (this.userType != 0) {
                 this.userType = 0;
                 this.firstTimeFlag = false;
                 this.ownerFlag = false;
@@ -144,7 +136,7 @@ export class AuthComponent implements OnInit {
         }
     
     privateOwner() {
-            if (this.userType == -1) {
+            if (this.userType != 3) {
                 this.userType = 3;
                 this.firstTimeFlag = false;
                 this.ownerFlag = false;
@@ -153,7 +145,7 @@ export class AuthComponent implements OnInit {
         }
 
     driverSignup(){
-        if (this.userType == -1) {
+        if (this.userType != 1) {
             this.userType = 1;
             this.firstTimeFlag = false;
             this.driverFlag = false;
