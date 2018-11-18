@@ -10,6 +10,7 @@ import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { Car } from '../../../../_models/Car';
 import { GoogleMapService } from '../../../../_services/google-map.service';
 import { PaymentService } from '../../../../_services/payment.service';
+import { Slot } from '../../../../_models/Slot';
 
 
 declare var google: any;
@@ -43,6 +44,9 @@ export class FindCarplaceComponent implements OnInit {
     private iconBase: string = 'https://maps.google.com/mapfiles/kml/shapes/';
 
     private icons;
+
+    public slots: Array<Slot>;
+    flagMapAndInfo = false;
 
     private markers = [];
     private currentSelectedMarker: Marker;
@@ -122,6 +126,7 @@ export class FindCarplaceComponent implements OnInit {
                     if (place.geometry === undefined || place.geometry === null) {
                         return;
                     }
+                    this.flagMapAndInfo = false;
 
                     //set latitude, longitude and zoom
                     this.lat = place.geometry.location.lat();
@@ -181,8 +186,10 @@ export class FindCarplaceComponent implements OnInit {
     }
 
     findPark() {
+        this.flagMapAndInfo = true;
         this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
             this.DrawSlots(response);
+            this.slots = response;
         });
     }
 

@@ -49,27 +49,28 @@
 </div>
 <br>
 <br>
+<div *ngIf="flagMapAndInfo">
 <div class="row">
     <div class="col-12 col-md-3">
-        <!-- <table class="table table-striped table-success table-sm" >
+        <table class="table table-striped table-success table-sm" >
 
             <tr>
                 <th></th>
-                <th>Informazioni</th>
+                <th>Elenco parcheggi</th>
             </tr>
 
-            <tr *ngFor="let park of parklist">
+            <tr *ngFor="let slot of slots">
                     <td></td>
-                    <td>{{park.address}}
-                            <br> Totale stalli: {{park.number_carplace}}
-                            <br> Disponibili: {{park.number_carplace_free}}
-                            <br> Occupati: {{park.number_carplace - park.number_carplace_free}}
+                    <td>{{slot.address}}
+                            <br> Totale stalli: {{slot.number_carplace}}
+                            <br> Disponibili: {{slot.number_carplace_free}}
+                            <br> Occupati: {{slot.number_carplace - slot.number_carplace_free}}
                             <br> Disabili: 
-                            <br> Tariffa: {{park.price}}€
+                            <br> Tariffa: {{slot.price}}€
                     </td>
                   </tr>
 
-        </table> -->
+        </table>
     </div>
     <div class="col-12 col-md-9">
         <div class="" style="padding-left:0px; padding-bottom:3%">
@@ -112,4 +113,5 @@
     <div class="col-12 col-md-4">
 
     </div>
+</div>
 </div>
