@@ -4,12 +4,12 @@ import { NgForm } from '@angular/forms';
 import { Slot } from '../../../../_models/Slot';
 
 @Component({
-    selector: 'app-info-manage-park',
-    templateUrl: './info-manage-park.component.html',
-    styleUrls: ['./info-manage-park.component.scss']
+    selector: 'app-info-manage-park-public',
+    templateUrl: './info-manage-park-public.component.html',
+    styleUrls: ['./info-manage-park-public.component.scss']
 })
 
-export class InfoManageParkComponent implements OnInit {
+export class InfoManageParkPublicComponent implements OnInit {
 
     public slots: Array<Slot>;
     public selectedSlotID: number;

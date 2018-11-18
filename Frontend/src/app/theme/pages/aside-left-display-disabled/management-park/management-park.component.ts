@@ -7,7 +7,8 @@ import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { MapsAPILoader } from '@agm/core';
 import { ManagementCarplace } from '../../../../_models/ManagementCarPlace';
 import { GoogleMapService } from '../../../../_services/google-map.service';
-
+import { SlotService } from '../../../../_services/slot.service';
+import { Slot } from '../../../../_models/Slot';
 declare var google: any;
 
 @Component({
@@ -16,6 +17,13 @@ declare var google: any;
     styleUrls: ['./management-park.component.scss']
 })
 export class ManagementParkComponent implements OnInit {
+
+    public slots: Array<Slot>;
+    public selectedSlotID: number;
+    public selectedSlot: Slot;
+    public exists: boolean = false;
+    public dummyCopySlot: Slot;
+
     public lat: number;
     public lng: number;
     public zoom: number;
@@ -50,7 +58,8 @@ export class ManagementParkComponent implements OnInit {
         private googleMapsService: GoogleMapService,
         //private carService: CarService,
         //private paymentService: PaymentService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private slotService: SlotService
     ) { }
 
     ngOnInit() {
@@ -59,9 +68,23 @@ export class ManagementParkComponent implements OnInit {
             this.updateSlots();
         });
 
+        this.slotService.getSlots().subscribe((response) => {
+            this.slots = response;
+        });
+
         this.zoom = 10;
         this.lat = 41.9;
         this.lng = 12.48;
+    }
+
+    selectSlot(slot: Slot): void {
+        this.exists = true;
+
+        this.selectedSlot = slot;
+        this.dummyCopySlot = Object.assign({}, slot);
+
+        this.selectedSlotID = slot.id;
+
     }
 
     updateSlots(): void {

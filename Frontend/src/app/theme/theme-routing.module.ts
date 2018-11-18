@@ -86,6 +86,16 @@ const routes: Routes = [
                 path: 'bookingHistory',
                 loadChildren: "./pages/aside-left-display-disabled/booking-history/booking-history.module#BookingHistoryModule"
             },
+            {
+                path: 'infoManageParkPrivate',
+                loadChildren: "./pages/aside-left-display-disabled/info-manage-park-private/info-manage-park-private.module#InfoManageParkPrivateModule"
+            },
+
+            //public owner
+            {
+                path: 'infoManageParkPublic',
+                loadChildren: "./pages/aside-left-display-disabled/info-manage-park-public/info-manage-park-public.module#InfoManageParkPublicModule"
+            },
 
             //all owners
             {
@@ -107,10 +117,6 @@ const routes: Routes = [
             {
                 path: 'disservices',
                 loadChildren: "./pages/aside-left-display-disabled/disservices/disservices.module#DisservicesModule"
-            },
-            {
-                path: 'infoManagePark',
-                loadChildren: "./pages/aside-left-display-disabled/info-manage-park/info-manage-park.module#InfoManageParkModule"
             },
             {
                 path: 'parkingPrice',

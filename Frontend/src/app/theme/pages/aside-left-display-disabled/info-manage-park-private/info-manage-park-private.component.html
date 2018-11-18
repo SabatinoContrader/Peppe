@@ -1,0 +1,41 @@
+<table class="table">
+    <thead>
+        <tr class="title">
+            <th>Nome parcheggio</th>
+            <th>Posti auto<br>totali</th>
+            <th>Posti auto<br>liberi</th>
+            <th>Tipo di<br>posti auto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.address}}</div>
+                </div>
+            </td>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.number_carplace}}</div>
+                </div>
+            </td>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.number_carplace_free}}</div>
+                </div>
+            </td>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let slot of slots" (click)="selectSlot(slot)">
+                        <div *ngIf="slot.type===1">
+                            disabile
+                        </div>
+                        <div *ngIf="slot.type===0">
+                            standard
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -4,9 +4,9 @@ import { Transaction } from '../../../../_models/Transaction';
 import { PaymentService } from '../../../../_services/payment.service';
 
 @Component({
-  selector: "app-payments",
-  templateUrl: "./payments.component.html",
-  styleUrls: ["./payments.component.scss"]
+    selector: "app-payments",
+    templateUrl: "./payments.component.html",
+    styleUrls: ["./payments.component.scss"]
 })
 
 export class PaymentsComponent implements OnInit {
@@ -21,7 +21,7 @@ export class PaymentsComponent implements OnInit {
 
     ngOnInit() {
         this.paymentService.getpayments().subscribe(response => { this.transactionList = response.transaction_list });
-            }
+    }
 
 
 }

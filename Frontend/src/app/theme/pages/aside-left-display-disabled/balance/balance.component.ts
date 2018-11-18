@@ -30,7 +30,7 @@ export class BalanceComponent implements OnInit {
             var handler = (<any>window).StripeCheckout.configure({
                 key: 'pk_test_wsNSAHk7uRwp7SHSthrcciFZ',
                 locale: 'auto',
-                token: function (token: any) {
+                token: function(token: any) {
                     self.paymentToken = token.id;
                     console.log("token id:" + this.paymentToken);
                     // confirms the payment (sovrascrive addedAmount con il risultato effettivo della transazione)

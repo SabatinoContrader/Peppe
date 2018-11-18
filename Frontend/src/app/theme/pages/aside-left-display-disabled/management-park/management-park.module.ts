@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [
-        CommonModule, 
+        CommonModule,
         RouterModule.forChild(routes),
         LayoutModule,
         AgmCoreModule

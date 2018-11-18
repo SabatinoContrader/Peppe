@@ -7,9 +7,9 @@ import { StopService } from '../../../../_services/stop.service';
 import { PaymentService } from '../../../../_services/payment.service';
 
 @Component({
-  selector: "tr[app-stops-in-progress-row]",
-  templateUrl: "./stops-in-progress-row.component.html",
-  styleUrls: ["./stops-in-progress-row.component.scss"]
+    selector: "tr[app-stops-in-progress-row]",
+    templateUrl: "./stops-in-progress-row.component.html",
+    styleUrls: ["./stops-in-progress-row.component.scss"]
 })
 
 export class StopsInProgressRowComponent implements OnInit {

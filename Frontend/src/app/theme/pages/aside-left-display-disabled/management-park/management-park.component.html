@@ -1,31 +1,52 @@
 <div class="row">
   <div class="col-12 col-md-4">
-      <h1>Auto in sosta</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <!-- <th>ID STOP</th> -->
-            <!--  <th>TIPO DISABILE</th>  -->
-            <th>TARGA</th>
-            <th>START</th>
-            <th>FINISH</th>
-            <!--  <th>PAGATO</th> -->
-          </tr>
-        </thead>
-        <tbody id="stopList" *ngIf="isSlotSelected">
-          <tr *ngFor="let stop of CurrentManagementCarplace.stop_list">
-            <td>{{stop.license_plate}}</td>
-            <td>{{stop.start}}</td>
-            <td>{{stop.finish}}</td>
-            <!--da rivedere expired-->
-            <!-- <td>{{stop.expired}}</td> -->
-          </tr>
-        </tbody>
-      </table>
-      <button class="btn btn-outline-success" id="refresh" (click)="updateSlots()">Aggiorna</button>
+    <h1>Elenco parcheggi</h1>
+    <table class="table">
+      <thead>
+        <tr class="title">
+          <th>Nome parcheggio</th>
+          <th>Posti auto<br>totali</th>
+          <th>Posti auto<br>liberi</th>
+          <th>Tipo di<br>posti auto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div size="10" id="slotsList">
+              <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.address}}</div>
+            </div>
+          </td>
+          <td>
+            <div size="10" id="slotsList">
+              <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.number_carplace}}</div>
+            </div>
+          </td>
+          <td>
+            <div size="10" id="slotsList">
+              <div *ngFor="let slot of slots" (click)="selectSlot(slot)">{{slot.number_carplace_free}}</div>
+            </div>
+          </td>
+          <td>
+            <div size="10" id="slotsList">
+              <div *ngFor="let slot of slots" (click)="selectSlot(slot)">
+                <div *ngIf="slot.type===1">
+                  disabile
+                </div>
+                <div *ngIf="slot.type===0">
+                  standard
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-outline-success" id="refresh" (click)="updateSlots()">Aggiorna</button>
   </div>
 
   <div class="col-12 col-md-8">
-    <agm-map style="height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)" id="map"></agm-map>
+    <agm-map style="height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false"
+      (mapReady)="mapReady($event)" id="map"></agm-map>
   </div>
 </div>

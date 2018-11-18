@@ -33,8 +33,9 @@ export class AuthComponent implements OnInit {
     returnUrl: string;
 
     userType = -1;
-    driverFlag=false;
-    ownerFlag=false;
+    driverFlag = false;
+    ownerFlag = false;
+    firstTimeFlag = false;
 
     feedback: string;
     user: User;
@@ -64,8 +65,7 @@ export class AuthComponent implements OnInit {
         var user = JSON.parse(localStorage.getItem("user"));
         var url = "";
         if (user) {
-            switch(user.type)
-            {
+            switch (user.type) {
                 case 0: url = "/managementPark"; break;
                 case 1: url = "/findCarPlace"; break;
                 case 2: url = "/findCarPlace"; break;
@@ -97,24 +97,58 @@ export class AuthComponent implements OnInit {
     //         });
     // }
 
+    cancelForm() {
+        //settaggi per il tasto Cancel di signup
+        this.model.username = "";
+        this.model.email = "";
+        this.model.password = "";
+        this.model.rpassword = "";
+        //fine settaggi
+        this.signin(this.model);
+    }
 
-    changeTypeDriver(){
-        if(this.userType != 0)
-        {
-            this.userType = 0
+    setFirstTrue() {
+        this.firstTimeFlag = true;
+    }
+
+    setFirstFalse() {
+        this.firstTimeFlag = false;
+    }
+
+    changeTypeDriver() {
+        if (this.userType != 1) {
+            this.userType = 1;
         }
         this.driverFlag = true;
         this.ownerFlag = false;
     }
 
-    changeTypeOwner(){
-        if(this.userType != 1)
-        {
-            this.userType = 1
-        }
+    changeTypeOwner() {
+        // if(this.userType != 10)
+        // {
+        //     //this.userType = 10;
+        // }
         this.ownerFlag = true;
         this.driverFlag = false;
+    }
+
+    publicOwner() {
+        if (this.userType == -1) {
+            this.userType = 0;
+            this.firstTimeFlag = false;
+            this.ownerFlag = false;
+            this.signup();
         }
+    }
+
+    privateOwner() {
+        if (this.userType == -1) {
+            this.userType = 3;
+            this.firstTimeFlag = false;
+            this.ownerFlag = false;
+            this.signup();
+        }
+    }
 
     signin(f: NgForm): void {
         this.loading = true;
@@ -179,6 +213,9 @@ export class AuthComponent implements OnInit {
                 } else {
                     this.showAlert('alertSignup');
                     this._alertService.error('Registrazione non andata a buon fine', true);
+                    this.driverFlag = false;
+                    this.ownerFlag = false;
+                    this.firstTimeFlag = true;
                 }
 
                 this.loading = false;

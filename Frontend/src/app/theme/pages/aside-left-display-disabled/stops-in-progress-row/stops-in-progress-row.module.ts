@@ -7,25 +7,25 @@ import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disable
 import { LayoutModule } from '../../../layouts/layout.module';
 
 const routes: Routes = [
-  {
-      "path": "",
-      "component": AsideLeftDisplayDisabledComponent,
-      "children": [
-          {
-              "path": "",
-              "component": StopsInProgressRowComponent
-          }
-      ]
-  }
+    {
+        "path": "",
+        "component": AsideLeftDisplayDisabledComponent,
+        "children": [
+            {
+                "path": "",
+                "component": StopsInProgressRowComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule, RouterModule.forChild(routes), LayoutModule, FormsModule
-],
-exports: [
-    RouterModule
-],
-  declarations: [StopsInProgressRowComponent]
+    imports: [
+        CommonModule, RouterModule.forChild(routes), LayoutModule, FormsModule
+    ],
+    exports: [
+        RouterModule
+    ],
+    declarations: [StopsInProgressRowComponent]
 })
 export class StopsInProgressRowModule { }

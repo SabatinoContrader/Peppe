@@ -27,7 +27,7 @@ export class FindCarplaceComponent implements OnInit {
     public zoom: number;
     private currentLatitude: number;
     private currentLongitude: number;
-    
+
     parklist;
 
     directionsService = null;
@@ -106,7 +106,7 @@ export class FindCarplaceComponent implements OnInit {
             this.infoWindow = new google.maps.InfoWindow();
             this.directionsService = new google.maps.DirectionsService();
 
-            
+
             let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
             this.addressToPass = this.searchElementRef.nativeElement;
             // , {
@@ -133,7 +133,7 @@ export class FindCarplaceComponent implements OnInit {
                     //     console.log("CIAOOOOO: "+response);
                     // });
 
-                    
+
 
                 });
             });
@@ -180,7 +180,7 @@ export class FindCarplaceComponent implements OnInit {
         });
     }
 
-    findPark(){
+    findPark() {
         this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
             this.DrawSlots(response);
         });
@@ -536,9 +536,9 @@ export class FindCarplaceComponent implements OnInit {
     };
 
     changeCar(): void {
-            this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                this.DrawSlots(response);
-            });
+        this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+            this.DrawSlots(response);
+        });
 
     }
 

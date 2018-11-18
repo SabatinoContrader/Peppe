@@ -3,7 +3,6 @@
 //togliendo questa riga l'errore appare ma in realtà la libreria è vista e funziona correttamente.
 /// <reference path="../../../../../../node_modules/@types/googlemaps/index.d.ts" />
 
-
 import { Component, OnInit, ViewChild, ElementRef, NgZone, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
@@ -11,27 +10,23 @@ import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { Car } from '../../../../_models/Car';
 import { GoogleMapService } from '../../../../_services/google-map.service';
 import { PaymentService } from '../../../../_services/payment.service';
-import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
+
 
 declare var google: any;
 
 @Component({
-    selector: "app-parksMap",
-    templateUrl: "./parksMap.component.html",
-    styleUrls: ["./parksMap.component.scss"]
+    selector: 'app-cop',
+    templateUrl: './cop.component.html',
+    styleUrls: ['./cop.component.scss']
 })
 
-export class ParksMapComponent implements OnInit {
-    car: string;
-    address: string;
-
+export class CopComponent implements OnInit {
     public searchControl: FormControl;
     public lat: number;
     public lng: number;
     public zoom: number;
     private currentLatitude: number;
     private currentLongitude: number;
-
 
     directionsService = null;
     directionsRenderer = null;
@@ -54,21 +49,21 @@ export class ParksMapComponent implements OnInit {
     private freeCarPlaces: number = 0;
     private map: google.maps.Map;
 
-    // @ViewChild("search")
-    // public searchElementRef: ElementRef;
+    @ViewChild("search")
+    public searchElementRef: ElementRef;
 
-    // @ViewChild("cambia")
-    // public DirectionModeBackElementRef: ElementRef;
+    @ViewChild("cambia")
+    public DirectionModeBackElementRef: ElementRef;
 
-    // @ViewChild("seleziona")
-    // public TurnByTurnElementRef: ElementRef;
+    @ViewChild("seleziona")
+    public TurnByTurnElementRef: ElementRef;
 
-    // @ViewChild("myposition")
-    // public MyPositionElementRef: ElementRef;
+    @ViewChild("myposition")
+    public MyPositionElementRef: ElementRef;
 
-    // //Seleziona pagamento per sosta
-    // @ViewChild("select")
-    // public SelectTimeElementRef: ElementRef;
+    //Seleziona pagamento per sosta
+    @ViewChild("select")
+    public SelectTimeElementRef: ElementRef;
 
     public newPrice: string = "Prezzo: ";
 
@@ -80,23 +75,22 @@ export class ParksMapComponent implements OnInit {
     @ViewChild("carSelect")
     public SelectCarElementRef: ElementRef;
 
-
     constructor(private mapsAPILoader: MapsAPILoader,
         private ngZone: NgZone,
         private googleMapsService: GoogleMapService,
         private paymentService: PaymentService,
-        private ref: ChangeDetectorRef,
-        private _Activatedroute: ActivatedRoute
+        private ref: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
 
-        this.car = this._Activatedroute.snapshot.params['car'];
-        this.address = this._Activatedroute.snapshot.params['address'];
-
         this.googleMapsService.getNotStopCarList().subscribe((response) => {
             this.carsList = response;
         });
+
+        this.zoom = 10;
+        this.lat = 41.9;
+        this.lng = 12.48;
 
 
         this.searchControl = new FormControl();
@@ -107,78 +101,71 @@ export class ParksMapComponent implements OnInit {
             this.infoWindow = new google.maps.InfoWindow();
             this.directionsService = new google.maps.DirectionsService();
 
-            // let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-            let autocomplete = new google.maps.places.Autocomplete(this.address);
+            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
             // , {
             //   types: ["address"]
             //});
 
+            autocomplete.addListener("place_changed", () => {
+                this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-            this.ngZone.run(() => {
-                //get the place result
-                let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
 
-                //verify result
-                if (place.geometry === undefined || place.geometry === null) {
-                    return;
-                }
+                    //set latitude, longitude and zoom
+                    this.lat = place.geometry.location.lat();
+                    this.lng = place.geometry.location.lng();
+                    this.zoom = 15;
 
-                //set latitude, longitude and zoom
-                this.lat = place.geometry.location.lat();
-                this.lng = place.geometry.location.lng();
-                this.zoom = 15;
+                    this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                        this.DrawSlots(response);
+                    });
 
-                // this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-                //     this.DrawSlots(response);
-                // });
-
+                });
             });
 
 
-
-            //   //var self = this;
-            //   // self.searchElementRef.nativeElement.addEventListener('keydown',
-            //   //   function (event) {
-            //   //     // keycode 13 = Enter
-            //   //     if (event.keyCode === 13) {
-            //   //       event.preventDefault();
-
+            var self = this;
+            self.searchElementRef.nativeElement.addEventListener('keydown',
+                function(event) {
+                    // keycode 13 = Enter
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
 
 
-            //   //       self.ngZone.run(() => {
-            //   //         //get the place result
-            //   //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-            //   //         //verify result
-            //   //         if (place.geometry === undefined || place.geometry === null) {
-            //   //           return;
-            //   //         }
+                        self.ngZone.run(() => {
+                            //get the place result
+                            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
-            //   //         //set latitude, longitude and zoom
-            //   //         self.lat = place.geometry.location.lat();
-            //   //         self.lng = place.geometry.location.lng();
-            //   //         self.zoom = 15;
+                            //verify result
+                            if (place.geometry === undefined || place.geometry === null) {
+                                return;
+                            }
 
-            //   //         self.googleMapsService.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-            //   //           self.DrawSlots(response);
-            //   //         });
+                            //set latitude, longitude and zoom
+                            self.lat = place.geometry.location.lat();
+                            self.lng = place.geometry.location.lng();
+                            self.zoom = 15;
 
-            //   //       });
+                            self.googleMapsService.getNearSlots(self.lat, self.lng, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                                self.DrawSlots(response);
+                            });
+
+                        });
 
 
-            //   //     }
-            //   //   });
-
+                    }
+                });
 
 
 
 
-        });
-    }
 
-    findPark() {
-        this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-            this.DrawSlots(response);
         });
     }
 
@@ -221,106 +208,101 @@ export class ParksMapComponent implements OnInit {
                 });
             }
         });
-
         google.maps.event.addListener(this.map, "zoom_changed", function(event) {
             self.zoom = self.map.getZoom();
             if (self.isInSearchDirectionMode == false)
                 self.deleteMarkersZoom();
         });
 
-        // self.DirectionModeBackElementRef.nativeElement.addEventListener("click", function () {
-        //   self.isInSearchDirectionMode = false;
-        //   self.directionsRenderer.setMap(null);
-        //   self.directionsRenderer = null;
-        //   self.DirectionModeBackElementRef.nativeElement.disabled = true;
-        //   self.TurnByTurnElementRef.nativeElement.disabled = true;
-        //   self.deleteMarkers();
-        //   self.ngZone.run(() => {
+        self.DirectionModeBackElementRef.nativeElement.addEventListener("click", function() {
+            self.isInSearchDirectionMode = false;
+            self.directionsRenderer.setMap(null);
+            self.directionsRenderer = null;
+            self.DirectionModeBackElementRef.nativeElement.disabled = true;
+            self.TurnByTurnElementRef.nativeElement.disabled = true;
+            self.deleteMarkers();
+            self.ngZone.run(() => {
 
-        //     self.zoom = 15;
-        //     self.lat = self.DirectionModeStartLatitude;
-        //     self.lng = self.DirectionModeStartLongitude;
+                self.zoom = 15;
+                self.lat = self.DirectionModeStartLatitude;
+                self.lng = self.DirectionModeStartLongitude;
 
-        //     self.googleMapsService.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-        //       self.DrawSlots(response);
-        //     });
+                self.googleMapsService.getNearSlots(self.DirectionModeStartLatitude, self.DirectionModeStartLongitude, self.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                    self.DrawSlots(response);
+                });
 
-        //   });
+            });
 
-        // });
-
-
-        // self.SelectTimeElementRef.nativeElement.addEventListener('change', function () {
-        //   var obj = self.markerMap.get(self.currentSelectedMarker);
-        //   var min = self.SelectTimeElementRef.nativeElement.value;
-        //   var pay = (obj.price / 60) * min;
-        //   //self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
-        //   self.newPrice = "Prezzo: " + pay + "\u20AC";
-        // });
+        });
 
 
-        // self.PayAndGoElementRef.nativeElement.addEventListener('click', () => {
-        //   var selectedcar = self.SelectCarElementRef.nativeElement.value;
-        //   if (selectedcar != "") {
-        //     self.SelectTimeElementRef.nativeElement.disabled = true;
-        //     self.PayAndGoElementRef.nativeElement.disabled = true;
+        self.SelectTimeElementRef.nativeElement.addEventListener('change', function() {
+            var obj = self.markerMap.get(self.currentSelectedMarker);
+            var min = self.SelectTimeElementRef.nativeElement.value;
+            var pay = (obj.price / 60) * min;
+            //self.showPriceDOM.innerHTML = "Prezzo: " + pay + "\u20AC";
+            self.newPrice = "Prezzo: " + pay + "\u20AC";
+        });
 
-        //     var obj = self.markerMap.get(self.currentSelectedMarker);
+
+        self.PayAndGoElementRef.nativeElement.addEventListener('click', () => {
+            var selectedcar = self.SelectCarElementRef.nativeElement.value;
+            if (selectedcar != "") {
+                self.SelectTimeElementRef.nativeElement.disabled = true;
+                self.PayAndGoElementRef.nativeElement.disabled = true;
+
+                var obj = self.markerMap.get(self.currentSelectedMarker);
 
 
-        //     var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
-        //     var price = (obj.price / 60) * timeToAddFromNow;
+                var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
+                var price = (obj.price / 60) * timeToAddFromNow;
 
-        //     // console.log('timeToAdd: ' + timeToAddFromNow);
-        //     // console.log('totalPrice: ' + price);
-        //     // console.log('id_slot: ' + obj.id);
-        //     // console.log('id_car: ' + selectedcar);
+                // console.log('timeToAdd: ' + timeToAddFromNow);
+                // console.log('totalPrice: ' + price);
+                // console.log('id_slot: ' + obj.id);
+                // console.log('id_car: ' + selectedcar);
 
-        //     self.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
+                self.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
 
-        //       var index = this.carsList.findIndex((car) => { return car.id == response });
-        //       if (index > -1) {
-        //         this.carsList.splice(index, 1);
-        //       }
-        //       console.log("pagamento effettuato");
-        //     });
+                    var index = this.carsList.findIndex((car) => { return car.id == response });
+                    if (index > -1) {
+                        this.carsList.splice(index, 1);
+                    }
+                    console.log("pagamento effettuato");
+                });
 
-        //   } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
+            } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
 
-        // });
+        });
 
     }
 
-    // getPosition() {
-    //   if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition((position) => {
-    //       this.currentLatitude = position.coords.latitude;
-    //       this.currentLongitude = position.coords.longitude;
+    getPosition() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.currentLatitude = position.coords.latitude;
+                this.currentLongitude = position.coords.longitude;
+                this.ngZone.run(() => {
 
-    //       this.lat = position.coords.latitude;
-    //       this.lng = position.coords.longitude;
+                    this.zoom = 15;
+                    this.lat = this.currentLatitude;
+                    this.lng = this.currentLongitude;
 
-    //       this.ngZone.run(() => {
+                    this.googleMapsService.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
+                        this.DrawSlots(response);
+                    });
 
-    //         this.zoom = 15;
-    //         this.lat = this.currentLatitude;
-    //         this.lng = this.currentLongitude;
+                });
 
-    //         // this.googleMapsService.getNearSlots(this.currentLatitude, this.currentLongitude, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
-    //         //     this.DrawSlots(response);
-    //         // });
+            },
+                error => {
+                    console.error("Hello! This is your FBI agent bro, please enable location so we can track you. Thanks fam", error);
+                });
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
 
-    //       });
-
-    //     },
-    //       error => {
-    //         console.error("Hello! This is your FBI agent bro, please enable location so we can track you. Thanks fam", error);
-    //       });
-    //   } else {
-    //     console.log("Geolocation is not supported by this browser.");
-    //   }
-
-    // }
+    }
 
     DrawSlots(objlist): void {
         var self = this;
@@ -432,32 +414,32 @@ export class ParksMapComponent implements OnInit {
             if (obj.number_carplace_free > 0) {
                 // call selectChangeMinute() before
                 document.getElementById("sosta").addEventListener("click", () => {
-                    //self.StartStop(marker);
+                    self.StartStop(marker);
                 });
             }
 
         });
     };
 
-    // StartStop = (marker): void => {
+    StartStop = (marker): void => {
 
-    //   var self = this;
-    //   var obj = self.markerMap.get(self.currentSelectedMarker);
+        var self = this;
+        var obj = self.markerMap.get(self.currentSelectedMarker);
 
-    //   self.SelectTimeElementRef.nativeElement.value = 15;
+        self.SelectTimeElementRef.nativeElement.value = 15;
 
-    //   self.slotAddress = "Slot: " + obj.address + "";
+        self.slotAddress = "Slot: " + obj.address + "";
 
-    //   var min = self.SelectTimeElementRef.nativeElement.value;
-    //   var pay = (obj.price / 60) * min;
-    //   self.newPrice = "Prezzo: " + pay + "\u20AC";
+        var min = self.SelectTimeElementRef.nativeElement.value;
+        var pay = (obj.price / 60) * min;
+        self.newPrice = "Prezzo: " + pay + "\u20AC";
 
-    //   self.SelectTimeElementRef.nativeElement.disabled = false;
-    //   self.PayAndGoElementRef.nativeElement.disabled = false;
+        self.SelectTimeElementRef.nativeElement.disabled = false;
+        self.PayAndGoElementRef.nativeElement.disabled = false;
 
-    //   //a quanto pare siamo fuori da ngZone e quindi dobbiamo dirgli manualmente di leggere i cambiamenti
-    //   this.ref.detectChanges();
-    // }
+        //a quanto pare siamo fuori da ngZone e quindi dobbiamo dirgli manualmente di leggere i cambiamenti
+        this.ref.detectChanges();
+    }
 
 
     // Removes the markers from the map, but keeps them in the array.
@@ -528,15 +510,15 @@ export class ParksMapComponent implements OnInit {
         self.DirectionModeStartLongitude = marker.getPosition().lng();
 
         self.isInSearchDirectionMode = true;
-        //self.TurnByTurnElementRef.nativeElement.disabled = false;
-        //self.DirectionModeBackElementRef.nativeElement.disabled = false;
+        self.TurnByTurnElementRef.nativeElement.disabled = false;
+        self.DirectionModeBackElementRef.nativeElement.disabled = false;
     };
 
     changeCar(): void {
+        console.log("wewe");
         this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
             this.DrawSlots(response);
         });
-
     }
 
 }

@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-12 col-md-4">
+        <div class="pull-left">
+            <div class="form-group pull-left" style="width: 100%;">
+                <div class="input-group">
+                    <input id="autocomplete" type="text" class="form-control" placeholder="Inserisci destinazione" #search>
+                    <div class="input-group-append">
+                        <button id="myposition" class="btn btn-outline-success" (click)="getPosition()" #myposition>
+                            <i class="fa fa-crosshairs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left">
+            <h1>Funzionalità COP (da implementare)</h1>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-8">
+        <div class="" style="padding-left:0px; padding-bottom:3%">
+            <agm-map style="height:400px" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="false" (mapReady)="mapReady($event)" id="map"></agm-map>
+        </div>
+        <!-- <div class="col-1 col-sm-2 col-md-3 col-lg-4 col-xl-2"></div> -->
+    </div>
+</div>

@@ -5,9 +5,9 @@ import { PaymentService } from "../../../../_services/payment.service";
 import { Stop } from "../../../../_models/Stop";
 
 @Component({
-  selector: "app-stops-in-progress",
-  templateUrl: "./stops-in-progress.component.html",
-  styleUrls: ["./stops-in-progress.component.scss"]
+    selector: "app-stops-in-progress",
+    templateUrl: "./stops-in-progress.component.html",
+    styleUrls: ["./stops-in-progress.component.scss"]
 })
 
 

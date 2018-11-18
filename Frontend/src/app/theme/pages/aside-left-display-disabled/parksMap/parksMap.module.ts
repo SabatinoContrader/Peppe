@@ -8,16 +8,16 @@ import { ParksMapComponent } from './parksMap.component';
 import { AgmCoreModule } from '../../../../../../node_modules/@agm/core';
 
 const routes: Routes = [
-  {
-      "path": "",
-      "component": AsideLeftDisplayDisabledComponent,
-      "children": [
-          {
-              "path": "",
-              "component": ParksMapComponent
-          }
-      ]
-  }
+    {
+        "path": "",
+        "component": AsideLeftDisplayDisabledComponent,
+        "children": [
+            {
+                "path": "",
+                "component": ParksMapComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
@@ -25,9 +25,9 @@ const routes: Routes = [
         CommonModule, RouterModule.forChild(routes), LayoutModule,
         AgmCoreModule
     ],
-exports: [
-    RouterModule
-],
-  declarations: [ParksMapComponent]
+    exports: [
+        RouterModule
+    ],
+    declarations: [ParksMapComponent]
 })
 export class ParksMapModule { }

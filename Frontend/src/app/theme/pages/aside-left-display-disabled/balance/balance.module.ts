@@ -7,28 +7,28 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { BalanceComponent } from './balance.component';
 
 const routes: Routes = [
-  {
-      "path": "",
-      "component": AsideLeftDisplayDisabledComponent,
-      "children": [
-          {
-              "path": "",
-              "component": BalanceComponent
-          }
-      ]
-  }
+    {
+        "path": "",
+        "component": AsideLeftDisplayDisabledComponent,
+        "children": [
+            {
+                "path": "",
+                "component": BalanceComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    LayoutModule,
-    FormsModule
-],
-exports: [
-    RouterModule
-],
-  declarations: [BalanceComponent]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        LayoutModule,
+        FormsModule
+    ],
+    exports: [
+        RouterModule
+    ],
+    declarations: [BalanceComponent]
 })
 export class BalanceModule { }

@@ -17,14 +17,13 @@ export class IndexComponent implements OnInit {
         }
 
         //var url = user.type === 0 ? "managementPark" : "findCarPlace";
-        var url="";
-        switch(user.type)
-            {
-                case 0: url = "managementPark"; break;
-                case 1: url = "findCarPlace"; break;
-                case 2: url = "findCarPlace"; break;
-                case 3: url = "managementPark"; break;
-            }
+        var url = "";
+        switch (user.type) {
+            case 0: url = "managementPark"; break;
+            case 1: url = "findCarPlace"; break;
+            case 2: url = "findCarPlace"; break;
+            case 3: url = "managementPark"; break;
+        }
 
         router.navigateByUrl(url)
     }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { InfoManageParkPrivateComponent } from './info-manage-park-private.component';
 import { LayoutModule } from '../../../layouts/layout.module';
 import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disabled.component';
-import { NgForm, FormsModule } from '@angular/forms';
-import { PaymentsComponent } from './payments.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -13,7 +13,7 @@ const routes: Routes = [
         "children": [
             {
                 "path": "",
-                "component": PaymentsComponent
+                "component": InfoManageParkPrivateComponent
             }
         ]
     }
@@ -29,6 +29,16 @@ const routes: Routes = [
     exports: [
         RouterModule
     ],
-    declarations: [PaymentsComponent]
+    declarations: [
+        InfoManageParkPrivateComponent
+    ],
+    providers: [
+
+    ]
 })
-export class PaymentsModule { }
+export class InfoManageParkPrivateModule { }
+
+
+
+
+
