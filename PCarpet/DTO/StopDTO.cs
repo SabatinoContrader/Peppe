@@ -10,7 +10,7 @@ namespace PCarpet.DTO
         public int id { get; set; }
         public DateTime start { get; set; }
         public DateTime finish { get; set; }
-        public string license_plate { get; set; }
+        //public string license_plate { get; set; }
         public int id_car { get; set; }
         public int id_slot { get; set; }
 
@@ -18,12 +18,12 @@ namespace PCarpet.DTO
         {
         }
 
-        public StopDTO(int id, DateTime start, DateTime finish, string license_plate)
+        public StopDTO(int id, DateTime start, DateTime finish)
         {
             this.id = id;
             this.start = start;
             this.finish = finish;
-            this.license_plate = license_plate;
+            //this.license_plate = license_plate;
         }
 
         public StopDTO(DateTime start, DateTime finish, int id_car, int id_slot)

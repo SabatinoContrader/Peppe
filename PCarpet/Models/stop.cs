@@ -9,9 +9,9 @@ namespace PCarpet
     public partial class stop
     {
 
-        public static StopDTO toStopDTO(stop stop, String license_plate)
+        public static StopDTO toStopDTO(stop stop)
         {
-            return new StopDTO(stop.id, stop.start, stop.finish, license_plate);
+            return new StopDTO(stop.id, stop.start, stop.finish);
         }
 
         public stop(StopDTO stopDTO)

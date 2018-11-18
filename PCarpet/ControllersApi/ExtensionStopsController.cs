@@ -35,6 +35,17 @@ namespace PCarpet.ControllersApi
             return managementExtensionStopDTO;
         }
 
+        [HttpGet]
+        [Route("stopsHistory")]
+        public List<ManagementExtensionStopDTO> history()
+        {
+            user user = userService.getLoggedUser();
+            List<ManagementExtensionStopDTO> managementExtensionStopDTO;
+            managementExtensionStopDTO = stopService.getStopsHistory(user);
+            //ViewBag.stops = managementExtensionStopDTO;
+            return managementExtensionStopDTO;
+        }
+
         [HttpPut]
         //  [Route("extendStop")]
         public string Put(int id, [FromBody] int minute)

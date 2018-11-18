@@ -30,6 +30,11 @@ export class StopService {
             .pipe(tap((response) => console.log(response), catchError(this.handleError("extension error", {}))));
     }
 
+    stopsHistory(): Observable<any> {
+        return this.http.get<any>('http://localhost:58708/api/stopsHistory')
+            .pipe(tap((response) => console.log(response), catchError(this.handleError("extension error", {}))));
+    }
+
 
     prolungaSosta(minute: number, stop: Stop): any {
         // var newFinish= new Date((new Date(stop.finish)).getTime() + (60*1000*minute));

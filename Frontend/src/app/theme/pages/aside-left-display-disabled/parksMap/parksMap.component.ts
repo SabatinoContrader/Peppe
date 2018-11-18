@@ -11,7 +11,7 @@ import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { Car } from '../../../../_models/Car';
 import { GoogleMapService } from '../../../../_services/google-map.service';
 import { PaymentService } from '../../../../_services/payment.service';
-import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 declare var google: any;
 

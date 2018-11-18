@@ -37,9 +37,9 @@ export class CarService {
             );
     }
 
-    addNewCar(license_plate: string, name: string): any {
+    addNewCar(name: string): any {
         var user: User = JSON.parse(sessionStorage.getItem("user"));
-        var car = new Car(0, license_plate, name, user.username);
+        var car = new Car(0, name, user.username);
         return this.http.post<any>('http://localhost:58708/api/addCar', car)
             .pipe(tap((response) => console.log("addNewCar"), catchError(this.handleError("report error", {})))
             );

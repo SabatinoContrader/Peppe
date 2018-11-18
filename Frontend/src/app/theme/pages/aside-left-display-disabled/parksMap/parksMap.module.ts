@@ -5,7 +5,7 @@ import { LayoutModule } from '../../../layouts/layout.module';
 import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disabled.component';
 import { NgForm, FormsModule } from '@angular/forms';
 import { ParksMapComponent } from './parksMap.component';
-import { AgmCoreModule } from '../../../../../../node_modules/@agm/core';
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
     {

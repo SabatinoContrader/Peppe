@@ -18,7 +18,7 @@ namespace PCarpet
 
         public static CarDTO toCarDTO(car car)
         {
-            return new CarDTO(car.id, car.license_plate, car.name, car.username);
+            return new CarDTO(car.id, car.name, car.username);
         }
     }
 }

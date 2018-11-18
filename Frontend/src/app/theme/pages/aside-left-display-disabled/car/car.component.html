@@ -54,9 +54,6 @@
                                         id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 846px;">
                                         <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 38.25px;" aria-sort="ascending">
-                                                    <b>Targa</b>
-                                                </th>
                                                 <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 53.25px;">
                                                     <b>Nome</b>
                                                 </th>
@@ -68,7 +65,6 @@
 
                                         <tbody>
                                             <tr *ngFor="let car of carsList">
-                                                <td>{{car.license_plate}}</td>
                                                 <td>{{car.name}}</td>
                                                 <td>
                                                     <!-- <input type="submit" class="btn btn-danger" (click)="deleteCar([car.id])" value="Delete"> -->

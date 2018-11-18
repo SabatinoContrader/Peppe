@@ -19,7 +19,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="license_plate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="license_plate" Type="varchar" MaxLength="10" />
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="width" Type="decimal" Precision="18" Scale="0" />
           <Property Name="length" Type="decimal" Precision="18" Scale="0" />
@@ -81,8 +81,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="start" Type="datetime" />
-          <Property Name="finish" Type="datetime" />
+          <Property Name="start" Type="datetime" Nullable="false" />
+          <Property Name="finish" Type="datetime" Nullable="false" />
           <Property Name="id_car" Type="int" Nullable="false" />
           <Property Name="id_slot" Type="int" Nullable="false" />
         </EntityType>
@@ -203,7 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_report_user1">
+        <Association Name="FK_report_user">
           <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="report" Type="Self.report" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +315,7 @@
             <End Role="user" EntitySet="user" />
             <End Role="payment" EntitySet="payment" />
           </AssociationSet>
-          <AssociationSet Name="FK_report_user1" Association="Self.FK_report_user1">
+          <AssociationSet Name="FK_report_user" Association="Self.FK_report_user">
             <End Role="user" EntitySet="user" />
             <End Role="report" EntitySet="report" />
           </AssociationSet>
@@ -426,7 +426,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="license_plate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="license_plate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="width" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="length" Type="Decimal" Precision="18" Scale="0" />
@@ -500,8 +500,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="start" Type="DateTime" Precision="3" />
-          <Property Name="finish" Type="DateTime" Precision="3" />
+          <Property Name="start" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="finish" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="id_car" Type="Int32" Nullable="false" />
           <Property Name="id_slot" Type="Int32" Nullable="false" />
           <NavigationProperty Name="car" Relationship="pcarpetModel.FK_stop_car" FromRole="stop" ToRole="car" />

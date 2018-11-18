@@ -17,7 +17,7 @@ import { LoginCustom } from './_helpers/login-custom';
 import { Helpers } from '../helpers';
 import { NgForm } from '@angular/forms';
 import { UserService as UService } from '../_services/user.service';
-import { User } from './_models/User';
+import { User } from './_models/user';
 import { User as SignupUser } from '../_models/User';
 // import { ApiService } from '../_services/';
 
@@ -65,7 +65,8 @@ export class AuthComponent implements OnInit {
         var user = JSON.parse(localStorage.getItem("user"));
         var url = "";
         if (user) {
-            switch (user.type) {
+            switch(user.type)
+            {
                 case 0: url = "/managementPark"; break;
                 case 1: url = "/findCarPlace"; break;
                 case 2: url = "/findCarPlace"; break;
@@ -115,37 +116,47 @@ export class AuthComponent implements OnInit {
         this.firstTimeFlag = false;
     }
 
-    changeTypeDriver() {
-        if (this.userType != 1) {
-            this.userType = 1;
+    changeTypeDriver(){
+        if(this.userType != 0)
+        {
+            this.userType = 0
         }
         this.driverFlag = true;
         this.ownerFlag = false;
     }
 
-    changeTypeOwner() {
-        // if(this.userType != 10)
-        // {
-        //     //this.userType = 10;
-        // }
+    changeTypeOwner(){
+        if(this.userType != 1)
+        {
+            this.userType = 1
+        }
         this.ownerFlag = true;
         this.driverFlag = false;
-    }
+        }
 
     publicOwner() {
-        if (this.userType == -1) {
-            this.userType = 0;
-            this.firstTimeFlag = false;
-            this.ownerFlag = false;
-            this.signup();
+            if (this.userType == -1) {
+                this.userType = 0;
+                this.firstTimeFlag = false;
+                this.ownerFlag = false;
+                this.signup();
+            }
         }
-    }
-
+    
     privateOwner() {
+            if (this.userType == -1) {
+                this.userType = 3;
+                this.firstTimeFlag = false;
+                this.ownerFlag = false;
+                this.signup();
+            }
+        }
+
+    driverSignup(){
         if (this.userType == -1) {
-            this.userType = 3;
+            this.userType = 1;
             this.firstTimeFlag = false;
-            this.ownerFlag = false;
+            this.driverFlag = false;
             this.signup();
         }
     }
@@ -213,9 +224,6 @@ export class AuthComponent implements OnInit {
                 } else {
                     this.showAlert('alertSignup');
                     this._alertService.error('Registrazione non andata a buon fine', true);
-                    this.driverFlag = false;
-                    this.ownerFlag = false;
-                    this.firstTimeFlag = true;
                 }
 
                 this.loading = false;

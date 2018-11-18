@@ -1,4 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Router } from '@angular/router';
+import { StopService } from "../../../../_services/stop.service";
+import { PaymentService } from "../../../../_services/payment.service";
+import { Stop } from "../../../../_models/Stop";
 
 @Component({
     selector: "app-stops-history",
@@ -8,11 +12,18 @@ import { Component, OnInit } from "@angular/core";
 
 export class StopsHistoryComponent implements OnInit {
 
-    constructor() {
+  
+    myStopsList: Stop[];
+
+    constructor(private stopService: StopService, private router: Router, private paymentService: PaymentService, private ref: ChangeDetectorRef) {
 
     }
 
     ngOnInit() {
+        this.stopService.stopsHistory().subscribe(response => { this.myStopsList = response });
+     }
 
-    }
+
 }
+
+

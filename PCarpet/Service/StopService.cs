@@ -34,14 +34,35 @@ namespace PCarpet.Service
             List<car> usercars = carService.getAllCar(user.username);
             foreach (car car in usercars)
             {
-                stop stop = this.getStop(car.id);
-                if (stop != null)
+                List<stop> stops = this.getStopsInProgress(car.id);
+                foreach (stop stop in stops)
                 {
                     slot slot = slotService.getSlot(stop.id_slot);
 
                     
 
-                    ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop.toStopDTO(stop, car.license_plate), slot.toSlotDTO(slot), car.toCarDTO(car));
+                    ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop.toStopDTO(stop), slot.toSlotDTO(slot), car.toCarDTO(car));
+                    managementExtensionStopDTOs.Add(managementExtensionStopDTO);
+                }
+            }
+            return managementExtensionStopDTOs;
+        }
+
+        public List<ManagementExtensionStopDTO> getStopsHistory(user user)
+        {
+            List<ManagementExtensionStopDTO> managementExtensionStopDTOs = new List<ManagementExtensionStopDTO>();
+
+            List<car> usercars = carService.getAllCar(user.username);
+            foreach (car car in usercars)
+            {
+                List<stop> stops = this.getStopsInProgress(car.id);
+                foreach (stop stop in stops)
+                {
+                    slot slot = slotService.getSlot(stop.id_slot);
+
+
+
+                    ManagementExtensionStopDTO managementExtensionStopDTO = new ManagementExtensionStopDTO(stop.toStopDTO(stop), slot.toSlotDTO(slot), car.toCarDTO(car));
                     managementExtensionStopDTOs.Add(managementExtensionStopDTO);
                 }
             }
@@ -93,7 +114,7 @@ namespace PCarpet.Service
                     car car = carService.getCar(stop.id_car);
                     String license_plate = car.license_plate;
 
-                    stopsDTO.Add( stop.toStopDTO(stop, license_plate) );
+                    stopsDTO.Add( stop.toStopDTO(stop) );
                 }
 
                 ManagementCarPlaceDTO managementCarPlaceDTO = new ManagementCarPlaceDTO( slot.toSlotDTO(slot) , payments, stopsDTO);
@@ -168,6 +189,22 @@ namespace PCarpet.Service
             using (pcarpetEntities context = new pcarpetEntities())
             {
                 return context.stop.FirstOrDefault(e => e.id_car.Equals(id_car));
+            }
+        }
+
+        public List<stop> getStopsInProgress(int id_car)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.stop.Where(e => e.id_car.Equals(id_car) && e.finish >= DateTime.Now).ToList();
+            }
+        }
+
+        public List<stop> getStopsHistory(int id_car)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                return context.stop.Where(e => e.id_car.Equals(id_car) && e.finish < DateTime.Now).ToList();
             }
         }
 

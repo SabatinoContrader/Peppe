@@ -16,17 +16,17 @@ namespace PCarpet.DTO
         {
         }
 
-        public CarDTO(int id, string license_plate, string name, string username)
+        public CarDTO(int id, string name, string username)
         {
             this.id = id;
-            this.license_plate = license_plate;
+            this.license_plate = "";
             this.name = name;
             this.username = username;
         }
 
-        public CarDTO(string license_plate, string name, string username)
+        public CarDTO(string name, string username)
         {
-            this.license_plate = license_plate;
+            this.license_plate = "";
             this.name = name;
             this.username = username;
         }
