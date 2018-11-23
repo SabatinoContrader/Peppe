@@ -55,7 +55,7 @@ namespace PCarpet.Service
             List<car> usercars = carService.getAllCar(user.username);
             foreach (car car in usercars)
             {
-                List<stop> stops = this.getStopsInProgress(car.id);
+                List<stop> stops = this.getStopsHistory(car.id);
                 foreach (stop stop in stops)
                 {
                     slot slot = slotService.getSlot(stop.id_slot);
