@@ -185,6 +185,38 @@ export class FindCarplaceComponent implements OnInit {
         });
     }
 
+    startStop(){
+       
+            var selectedcar = this.SelectCarElementRef.nativeElement.value;
+            if (selectedcar != "") {
+                this.SelectTimeElementRef.nativeElement.disabled = true;
+                this.PayAndGoElementRef.nativeElement.disabled = true;
+
+                var obj = this.markerMap.get(this.currentSelectedMarker);
+
+
+                var timeToAddFromNow = this.SelectTimeElementRef.nativeElement.value;
+                var price = (obj.price / 60) * timeToAddFromNow;
+
+                 console.log('timeToAdd: ' + timeToAddFromNow);
+                // console.log('totalPrice: ' + price);
+                // console.log('id_slot: ' + obj.id);
+                // console.log('id_car: ' + selectedcar);
+
+                this.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
+
+                    var index = this.carsList.findIndex((car) => { return car.id == response });
+                    if (index > -1) {
+                        this.carsList.splice(index, 1);
+                    }
+                    console.log("pagamento effettuato");
+                });
+
+            } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
+
+        
+    }
+
     findPark() {
         this.flagMapAndInfo = true;
         this.googleMapsService.getNearSlots(this.lat, this.lng, this.SelectCarElementRef.nativeElement.value).subscribe((response) => {
@@ -268,36 +300,8 @@ export class FindCarplaceComponent implements OnInit {
             self.newPrice = "Prezzo: " + pay + "\u20AC";
         });
 
+    
 
-        self.PayAndGoElementRef.nativeElement.addEventListener('click', () => {
-            var selectedcar = self.SelectCarElementRef.nativeElement.value;
-            if (selectedcar != "") {
-                self.SelectTimeElementRef.nativeElement.disabled = true;
-                self.PayAndGoElementRef.nativeElement.disabled = true;
-
-                var obj = self.markerMap.get(self.currentSelectedMarker);
-
-
-                var timeToAddFromNow = self.SelectTimeElementRef.nativeElement.value;
-                var price = (obj.price / 60) * timeToAddFromNow;
-
-                // console.log('timeToAdd: ' + timeToAddFromNow);
-                // console.log('totalPrice: ' + price);
-                // console.log('id_slot: ' + obj.id);
-                // console.log('id_car: ' + selectedcar);
-
-                self.paymentService.addPayment(price, obj.id, selectedcar, timeToAddFromNow).subscribe((response) => {
-
-                    var index = this.carsList.findIndex((car) => { return car.id == response });
-                    if (index > -1) {
-                        this.carsList.splice(index, 1);
-                    }
-                    console.log("pagamento effettuato");
-                });
-
-            } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
-
-        });
 
     }
 
