@@ -242,6 +242,7 @@
     <Compile Include="car.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControllersApi\BookController.cs" />
     <Compile Include="ControllersApi\CarController.cs" />
     <Compile Include="ControllersApi\ExtensionstopsController.cs" />
     <Compile Include="ControllersApi\FindCarPlaceController.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Controllers\UsefulNumbersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\AllPaymentDTO.cs" />
+    <Compile Include="DTO\BookDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DTO\WalletDTO.cs" />
     <Compile Include="DTO\TransactionDTO.cs" />
@@ -283,6 +285,7 @@
     <Compile Include="master.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\book.cs" />
     <Compile Include="Models\car.cs" />
     <Compile Include="Models\wallet.cs" />
     <Compile Include="Models\transaction.cs" />
@@ -315,6 +318,7 @@
     <Compile Include="report.cs">
       <DependentUpon>pcarpet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\CarService.cs" />
     <Compile Include="Service\MasterService.cs" />
     <Compile Include="Service\PaymentService.cs" />

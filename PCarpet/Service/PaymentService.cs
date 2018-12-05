@@ -56,6 +56,18 @@ namespace PCarpet.Service
                 
         }
 
+        public int addPayment(PaymentDTO paymentDTO)
+        {
+            using (pcarpetEntities context = new pcarpetEntities())
+            {
+                payment payment = context.payment.Add(new payment(paymentDTO));
+                context.SaveChanges();
+                return payment.id;
+            }
+
+        }
+
+
         public void insertTransaction(TransactionDTO transactionDTO)
         {
             using (pcarpetEntities context = new pcarpetEntities())

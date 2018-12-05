@@ -1,3 +1,4 @@
+import { BookService } from './_services/book.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ThemeComponent } from './theme/theme.component';
@@ -71,7 +72,8 @@ import { UtilsService } from './_services/utils.service';
         SplashScreenService,
         TranslationService,
         UserService,
-        UtilsService
+        UtilsService,
+        BookService
     ],
     bootstrap: [AppComponent]
 })

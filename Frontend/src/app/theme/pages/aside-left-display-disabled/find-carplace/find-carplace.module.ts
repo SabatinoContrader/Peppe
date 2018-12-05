@@ -6,6 +6,7 @@ import { LayoutModule } from '../../../layouts/layout.module';
 import { AsideLeftDisplayDisabledComponent } from '../aside-left-display-disabled.component';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapService } from '../../../../_services/google-map.service';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 const routes: Routes = [
     {
@@ -22,7 +23,7 @@ const routes: Routes = [
 @NgModule({
     imports: [
         CommonModule, RouterModule.forChild(routes), LayoutModule,
-        AgmCoreModule
+        AgmCoreModule,DlDateTimePickerDateModule
     ],
     exports: [
         RouterModule

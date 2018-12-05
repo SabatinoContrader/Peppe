@@ -84,34 +84,72 @@
 
 <div class="row">
     <div class="col-12 col-md-4">
+            
 
     </div>
     <div class="col-12 col-md-4">
-        <h4>Inserisci la durata della sosta</h4>
+        <!-- Inizia sosta     -->
+        <div *ngIf="flagIniziaSosta">
+                <h4>Inserisci la durata della sosta</h4>
 
-        <div class="form-group">
-            <label id='slot'>{{slotAddress}} </label>
-            <label id='newprice'>{{newPrice}}</label>
-            <div class="input-group">
-                <select id='select' class="form-control custom-select" name='minute' #select>
-                    <option value='' hidden>Seleziona minuti</option>
-                    <option value='15'>15 min</option>
-                    <option value='30'>30 min</option>
-                    <option value='45'>45 min</option>
-                    <option value='60'>1 h</option>
-                    <option value='75'>1 h 15 min</option>
-                    <option value='90'>1 h 30 min</option>
-                    <option value='105'>1 h 45 min</option>
-                    <option value='120'>2 h</option>
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" id="payandgo" #payandgo (click)="startStop()">Paga e inizia</button>
+                <div class="form-group">
+                    <!-- <label id='slot'>{{slotAddress}} </label>
+                    <label id='newprice'>{{newPrice}}</label> -->
+                    <div class="input-group">
+                        <select id='select' class="form-control custom-select" name='minute' #select (change)="changeMinute()">
+                            <option value='' hidden>Seleziona minuti</option>
+                            <option value='15'>15 min</option>
+                            <option value='30'>30 min</option>
+                            <option value='45'>45 min</option>
+                            <option value='60'>1 h</option>
+                            <option value='75'>1 h 15 min</option>
+                            <option value='90'>1 h 30 min</option>
+                            <option value='105'>1 h 45 min</option>
+                            <option value='120'>2 h</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" id="payandgo" #payandgo (click)="startStop()">Paga e inizia</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
+
+
+        <!-- Prenota sosta -->
+        <div *ngIf="flagPrenotaSosta">
+                <h4>Inserisci dati prenotazione</h4>
+
+                <div class="form-group">
+                    <!-- <label id='slot'>{{slotAddress}} </label>
+                    <label id='newprice'>{{newPrice}}</label> -->
+                    <label for='dateTimePicker'>Seleziona giorno ed orario</label>
+                    <dl-date-time-picker id='dateTimePicker' (change)="dateChanged($event)"></dl-date-time-picker>
+                    <div class="input-group">
+                        <select id='selectTimeBook' class="form-control custom-select" name='minute' #selectTimeBook>
+                            <option value='' hidden>Seleziona minuti</option>
+                            <option value='15'>15 min</option>
+                            <option value='30'>30 min</option>
+                            <option value='45'>45 min</option>
+                            <option value='60'>1 h</option>
+                            <option value='75'>1 h 15 min</option>
+                            <option value='90'>1 h 30 min</option>
+                            <option value='105'>1 h 45 min</option>
+                            <option value='120'>2 h</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" id="payandbook" #payandbook (click)="startBook()">Paga e prenota</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
     </div>
     <div class="col-12 col-md-4">
+            
 
     </div>
 </div>
+
+
+
 </div>

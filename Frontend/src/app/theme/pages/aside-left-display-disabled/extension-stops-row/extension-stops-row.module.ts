@@ -9,12 +9,7 @@ const routes: Routes = [
     {
         "path": "",
         "component": AsideLeftDisplayDisabledComponent,
-        "children": [
-            {
-                "path": "",
-                "component": ExtensionStopsRowComponent
-            }
-        ]
+        
     }
 ];
 @NgModule({
@@ -25,7 +20,7 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-        ExtensionStopsRowComponent
+        
     ],
     providers: [
 

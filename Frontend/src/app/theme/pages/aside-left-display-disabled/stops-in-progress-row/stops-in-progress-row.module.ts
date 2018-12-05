@@ -10,12 +10,7 @@ const routes: Routes = [
     {
         "path": "",
         "component": AsideLeftDisplayDisabledComponent,
-        "children": [
-            {
-                "path": "",
-                "component": StopsInProgressRowComponent
-            }
-        ]
+        
     }
 ];
 
@@ -26,6 +21,6 @@ const routes: Routes = [
     exports: [
         RouterModule
     ],
-    declarations: [StopsInProgressRowComponent]
+    declarations: []
 })
 export class StopsInProgressRowModule { }

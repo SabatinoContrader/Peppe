@@ -1,4 +1,3 @@
-
 //previene la visualizzazione dell'errore Cannot find namespace "google",
 //togliendo questa riga l'errore appare ma in realtà la libreria è vista e funziona correttamente.
 /// <reference path="../../../../../../node_modules/@types/googlemaps/index.d.ts" />
@@ -10,6 +9,7 @@ import { Marker, InfoWindow } from '@agm/core/services/google-maps-types';
 import { Car } from '../../../../_models/Car';
 import { GoogleMapService } from '../../../../_services/google-map.service';
 import { PaymentService } from '../../../../_services/payment.service';
+import { BookService } from './../../../../_services/book.service';
 import { Slot } from '../../../../_models/Slot';
 
 
@@ -29,6 +29,8 @@ export class FindCarplaceComponent implements OnInit {
     private currentLatitude: number;
     private currentLongitude: number;
 
+    dateTimePicker;
+
     parklist;
 
     directionsService = null;
@@ -47,6 +49,8 @@ export class FindCarplaceComponent implements OnInit {
 
     public slots: Array<Slot>;
     flagMapAndInfo = false;
+    flagIniziaSosta = false;
+    flagPrenotaSosta = false;
 
     private markers = [];
     private currentSelectedMarker: Marker;
@@ -71,6 +75,10 @@ export class FindCarplaceComponent implements OnInit {
     @ViewChild("select")
     public SelectTimeElementRef: ElementRef;
 
+    @ViewChild("selectTimeBook")
+    public SelectTimeBookElementRef: ElementRef;
+
+
     public newPrice: string = "Prezzo: ";
 
     public slotAddress: string = "Slot: ";
@@ -88,7 +96,8 @@ export class FindCarplaceComponent implements OnInit {
         private ngZone: NgZone,
         private googleMapsService: GoogleMapService,
         private paymentService: PaymentService,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
+        private bookService: BookService
     ) { }
 
     ngOnInit() {
@@ -189,8 +198,8 @@ export class FindCarplaceComponent implements OnInit {
        
             var selectedcar = this.SelectCarElementRef.nativeElement.value;
             if (selectedcar != "") {
-                this.SelectTimeElementRef.nativeElement.disabled = true;
-                this.PayAndGoElementRef.nativeElement.disabled = true;
+                // this.SelectTimeElementRef.nativeElement.disabled = true;
+                // this.PayAndGoElementRef.nativeElement.disabled = true;
 
                 var obj = this.markerMap.get(this.currentSelectedMarker);
 
@@ -211,11 +220,54 @@ export class FindCarplaceComponent implements OnInit {
                     }
                     console.log("pagamento effettuato");
                 });
+                this.flagIniziaSosta = false;
 
             } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
 
         
     }
+
+    dateChanged(val: any) {
+        console.log('Date changed', val);
+        this.dateTimePicker = val;
+      }
+
+    startBook(){
+       
+        var selectedcar = this.SelectCarElementRef.nativeElement.value;
+        if (selectedcar != "") {
+            // this.SelectTimeElementRef.nativeElement.disabled = true;
+            // this.PayAndGoElementRef.nativeElement.disabled = true;
+
+            var obj = this.markerMap.get(this.currentSelectedMarker);
+
+
+            var timeToAddFromNow = this.SelectTimeBookElementRef.nativeElement.value;
+            var price = (obj.price / 60) * timeToAddFromNow;
+
+             console.log('timeToAdd: ' + timeToAddFromNow);
+            // console.log('totalPrice: ' + price);
+            // console.log('id_slot: ' + obj.id);
+            // console.log('id_car: ' + selectedcar);
+
+            this.bookService.addBook(this.dateTimePicker.value, timeToAddFromNow, obj.id, selectedcar, price).subscribe((response) => {
+
+                var index = this.carsList.findIndex((car) => { return car.id == response });
+                if (index > -1) {
+                    this.carsList.splice(index, 1);
+                }
+                console.log("prenotazione effettuata");
+            });
+            this.flagPrenotaSosta = false;
+
+        } else { alert("Devi inserire un auto prima di iniziare la sosta!"); }
+
+    
+}
+
+changeMinute(){
+    
+}
 
     findPark() {
         this.flagMapAndInfo = true;
@@ -363,10 +415,10 @@ export class FindCarplaceComponent implements OnInit {
                 + "<br><a id='indications'>Indicazioni</a>";
 
             if (self.freeCarPlaces > 0)
-                info += "<br><a id='sosta'>Inizia sosta</a>";
+                info += "<br><a id='sosta' style=color:green>Inizia sosta</a>";
 
-            if (obj.type == "privato")
-                info = info + "<br><a>Prenota</a>";
+            if (obj.type == 1)
+                info = info + "<br><a id='prenota' style=color:blue>Prenota</a>";
 
             title[i] = info;
 
@@ -446,6 +498,16 @@ export class FindCarplaceComponent implements OnInit {
             if (obj.number_carplace_free > 0) {
                 // call selectChangeMinute() before
                 document.getElementById("sosta").addEventListener("click", () => {
+                    self.flagPrenotaSosta = false;
+                    self.flagIniziaSosta = true;
+                    self.StartStop(marker);
+                });
+            }
+            if (obj.type == 1) {
+                // call selectChangeMinute() before
+                document.getElementById("prenota").addEventListener("click", () => {
+                    self.flagIniziaSosta = false;
+                    self.flagPrenotaSosta = true;
                     self.StartStop(marker);
                 });
             }
@@ -463,8 +525,8 @@ export class FindCarplaceComponent implements OnInit {
         self.slotAddress = "Slot: " + obj.address + "";
 
         var min = self.SelectTimeElementRef.nativeElement.value;
-        var pay = (obj.price / 60) * min;
-        self.newPrice = "Prezzo: " + pay + "\u20AC";
+        var pay = obj.price;
+        self.newPrice = "Prezzo orario: " + pay + "\u20AC";
 
         self.SelectTimeElementRef.nativeElement.disabled = false;
         self.PayAndGoElementRef.nativeElement.disabled = false;

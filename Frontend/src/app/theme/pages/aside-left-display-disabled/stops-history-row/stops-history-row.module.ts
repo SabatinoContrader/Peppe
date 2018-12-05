@@ -10,12 +10,7 @@ const routes: Routes = [
   {
       "path": "",
       "component": AsideLeftDisplayDisabledComponent,
-      "children": [
-          {
-              "path": "",
-              "component": StopsHistoryRowComponent
-          }
-      ]
+      
   }
 ];
 
@@ -26,6 +21,6 @@ const routes: Routes = [
 exports: [
     RouterModule
 ],
-  declarations: [StopsHistoryRowComponent]
+  declarations: []
 })
 export class StopsHistoryRowModule { }
