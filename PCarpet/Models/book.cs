@@ -8,6 +8,9 @@ namespace PCarpet
 {
     public partial class book
     {
+        public book()
+        {        
+        }
         public book(BookDTO bookDTO)
         {
             this.id = bookDTO.id;

@@ -1,6 +1,7 @@
 ﻿using PCarpet.DTO;
 using PCarpet.Service;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -39,6 +40,14 @@ namespace PCarpet.ControllersApi
 
             bookService.insertBook(bookDTO);
 
+        }
+
+        [HttpGet]
+        [Route("getAllBooks")]
+        public List<BookDTO> getAllBooks(string username)
+        {
+            List<BookDTO> books = bookService.getAllBooks(username);
+            return books;
         }
 
         //[HttpPost]

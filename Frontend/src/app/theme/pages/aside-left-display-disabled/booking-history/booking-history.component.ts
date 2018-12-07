@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BookService } from './../../../../_services/book.service';
+import { Book } from '../../../../_models/Book';
 
 @Component({
     selector: 'app-booking-history',
@@ -8,11 +10,16 @@ import { Component, OnInit } from '@angular/core';
 
 export class BookingHistoryComponent implements OnInit {
 
-    constructor() { }
+    public booksList: Array<Book>;
+   
+    constructor(
+        private bookService: BookService
+    ) { }
 
     ngOnInit() {
-
+        this.bookService.getAllBooks().subscribe(response => { this.booksList = response });
+      
     }
 
-
+    
 }

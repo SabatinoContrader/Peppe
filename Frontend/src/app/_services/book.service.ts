@@ -17,25 +17,31 @@ export class BookService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-        console.error(error);
-        console.log('${operation} failed: ${error.message}');
-        return of(result as T);
+      console.error(error);
+      console.log('${operation} failed: ${error.message}');
+      return of(result as T);
     };
-}
+  }
 
 
   constructor(private http: HttpClient) {
-    
+
   }
 
-  addBook(start:any, timeToAdd: number, id_slot: number, id_car: number, quantity): Observable<number> {
+  addBook(start: any, timeToAdd: number, id_slot: number, id_car: number, quantity): Observable<number> {
     var user: User = JSON.parse(sessionStorage.getItem("user"));
-    var book: Book = new Book(0,user.username,id_slot,0, quantity,0,start,timeToAdd, id_car);
+    var book: Book = new Book(0, user.username, id_slot, 0, quantity, 0, start, timeToAdd, id_car);
     return this.http.post<number>('http://localhost:58708/api/addBook', book)
-        .pipe(tap((response) => console.log("addPayment"), catchError(this.handleError("login error", {})))
+      .pipe(tap((response) => console.log("addPayment"), catchError(this.handleError("login error", {})))
+      );
+  }
+
+  getAllBooks(): Observable<any> {
+    console.log("Entrata in getAllBooks");
+    var user: User = JSON.parse(sessionStorage.getItem("user"));
+    return this.http.get<any>('http://localhost:58708/api/getAllBooks?username=' + user.username)
+        .pipe(tap((response) => console.log("Utente"), catchError(this.handleError("login error", {})))
         );
 }
-
-
 
 }

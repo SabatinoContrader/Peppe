@@ -7,11 +7,11 @@ import { SlotService } from '../../../../_services/slot.service';
 import { User } from '../../../../auth/_models';
 
 @Component({
-    selector: 'app-management-slot',
-    templateUrl: './management-slot.component.html',
-    styleUrls: ['./management-slot.component.scss']
+    selector: 'app-management-slot-private',
+    templateUrl: './management-slot-private.component.html',
+    styleUrls: ['./management-slot-private.component.scss']
 })
-export class ManagementSlotComponent implements OnInit {
+export class ManagementSlotPrivateComponent implements OnInit {
 
     public slots: Array<Slot>;
     public masters: Array<Master>;
@@ -159,7 +159,7 @@ export class ManagementSlotComponent implements OnInit {
         if(f.value.type==1)
             {this.typeSlot=2}
         else
-            {this.typeSlot=0}
+            {this.typeSlot=1}
         this.slotService.updateSlot(this.selectedSlotID, f.value.latitude, f.value.longitude, f.value.price, f.value.address, this.typeSlot).subscribe(response => {
             var index = this.slots.findIndex((slot) => { return slot.id == response.id });
             if (index > -1) {
@@ -174,8 +174,8 @@ export class ManagementSlotComponent implements OnInit {
         if(f.value.type==1)
             {this.typeSlot=2}
         else
-            {this.typeSlot=0}
-        this.slotService.addSlot(f.value.latitude, f.value.longitude, f.value.price, f.value.address, f.value.type).subscribe(response => {
+            {this.typeSlot=1}
+        this.slotService.addSlot(f.value.latitude, f.value.longitude, f.value.price, f.value.address, this.typeSlot).subscribe(response => {
             this.slots.push(response);
             console.log("Added Slot");
 

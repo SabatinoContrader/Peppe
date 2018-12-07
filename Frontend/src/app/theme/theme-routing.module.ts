@@ -90,11 +90,23 @@ const routes: Routes = [
                 path: 'infoManageParkPrivate',
                 loadChildren: "./pages/aside-left-display-disabled/info-manage-park-private/info-manage-park-private.module#InfoManageParkPrivateModule"
             },
+            {
+                path: 'infoManageParkPrivate',
+                loadChildren: "./pages/aside-left-display-disabled/info-manage-park-private/info-manage-park-private.module#InfoManageParkPrivateModule"
+            },
+            {
+                path: 'managementSlotPrivate',
+                loadChildren: "./pages/aside-left-display-disabled/management-slot-private/management-slot-private.module#ManagementSlotPrivateModule"
+            },
 
             //public owner
             {
                 path: 'infoManageParkPublic',
                 loadChildren: "./pages/aside-left-display-disabled/info-manage-park-public/info-manage-park-public.module#InfoManageParkPublicModule"
+            },
+            {
+                path: 'managementSlot',
+                loadChildren: "./pages/aside-left-display-disabled/management-slot/management-slot.module#ManagementSlotModule"
             },
 
             //all owners
@@ -125,10 +137,6 @@ const routes: Routes = [
             {
                 path: 'managementPark',
                 loadChildren: "./pages/aside-left-display-disabled/management-park/management-park.module#ManagementParkModule"
-            },
-            {
-                path: 'managementSlot',
-                loadChildren: "./pages/aside-left-display-disabled/management-slot/management-slot.module#ManagementSlotModule"
             },
             {
                 path: 'reportOwner',

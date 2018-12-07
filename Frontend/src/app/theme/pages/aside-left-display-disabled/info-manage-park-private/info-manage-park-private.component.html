@@ -27,10 +27,10 @@
             <td>
                 <div size="10" id="slotsList">
                     <div *ngFor="let slot of slots" (click)="selectSlot(slot)">
-                        <div *ngIf="slot.type===1">
+                        <div *ngIf="slot.type===2">
                             disabile
                         </div>
-                        <div *ngIf="slot.type===0">
+                        <div *ngIf="slot.type===0 || slot.type===1">
                             standard
                         </div>
                     </div>
