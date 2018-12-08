@@ -2,8 +2,10 @@
     <thead>
         <tr class="title">
             <th>Nome utente</th>
-            <th>id slot</th>
-            <th>id pagamento</th>
+            <th>Id parcheggio</th>
+            <th>Id pagamento</th>
+            <th>Costo</th>
+            <th>Inizio</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +23,16 @@
             <td>
                 <div size="10" id="slotsList">
                     <div *ngFor="let book of booksList">{{book.id_payment}}</div>
+                </div>
+            </td>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let book of booksList">{{book.quantity}} €</div>
+                </div>
+            </td>
+            <td>
+                <div size="10" id="slotsList">
+                    <div *ngFor="let book of booksList">{{book.start}}</div>
                 </div>
             </td>
         </tr>

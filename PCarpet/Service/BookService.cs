@@ -51,7 +51,7 @@ namespace PCarpet.Service
 
                     foreach (book book in books)
                     {
-                        bookDTO.Add(book.toBookDTO(book));
+                        bookDTO.Add(book.toBook2DTO(book));
                     }
 
                     }

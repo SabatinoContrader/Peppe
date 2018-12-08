@@ -23,5 +23,10 @@ namespace PCarpet
         {
             return new BookDTO(book.id, book.username, book.id_slot, book.id_payment);
         }
+
+        public static BookDTO toBook2DTO(book book)
+        {
+            return new BookDTO(book.id, book.username, book.id_slot, book.id_payment,book.payment.quantity,book.payment.stop.id,book.payment.stop.start,0,book.payment.stop.id_car);
+        }
     }
 }
